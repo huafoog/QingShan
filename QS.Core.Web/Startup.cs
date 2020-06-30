@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,6 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
+using QS.Core.AutoMapper;
+using QS.Core.Reflection;
 using QS.DataLayer.Entities;
 using QS.ServiceLayer.ProductService;
 
@@ -32,6 +35,9 @@ namespace QS.Core.Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddSingleton<IAssemblyFinder, AssemblyFinder>();
+            services.AddAutoMapper(typeof(AutoMapperConfig));
             //使用AddDbContext这个Extension method为MyContext在Container中进行注册，它默认的生命周期使是Scoped。
             //Scoped的生命周期为单次http请求唯一
             services.AddDbContext<EFContext>(o => o.UseSqlServer(Configuration["DB:SqlServer:ConnectionString"]));

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using QS.Core.Data;
 using QS.DataLayer.Entities;
 using QS.ServiceLayer.ProductService.Dtos;
@@ -13,10 +14,11 @@ namespace QS.ServiceLayer.ProductService
     public class ProductService:IProductService
     {
         private readonly EFContext _context;
-
-        public ProductService(EFContext context)
+        private readonly IMapper _mapper;
+        public ProductService(EFContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public async Task<List<Product>> Get()
@@ -38,11 +40,7 @@ namespace QS.ServiceLayer.ProductService
         /// <returns></returns>
         public async Task<StatusResult> Add(ProductInputDto dto)
         {
-            var model = new Product() { 
-                Address = dto.Address,
-                Name = dto.Name,
-                Price = dto.Price
-            };
+            var model = _mapper.Map<Product>(dto);
             await _context.Products.AddTentityAsync<Product,int>(model);
             var res = _context.SaveChangesAsync();
             return new StatusResult(res.Result>0,"添加失败");

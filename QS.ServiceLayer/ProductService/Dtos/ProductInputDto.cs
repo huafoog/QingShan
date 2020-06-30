@@ -1,9 +1,12 @@
-﻿using System;
+﻿using QS.Core.Attributes;
+using QS.DataLayer.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace QS.ServiceLayer.ProductService.Dtos
 {
+    [MapTo(typeof(Product))]
     public class ProductInputDto
     {
         public string Name { get; set; }
