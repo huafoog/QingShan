@@ -1,0 +1,80 @@
+2020-06-29 14:59:37,150 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-06-29 14:59:37,181 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-06-29 14:59:37,181 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core
+2020-06-29 14:59:37,215 [10] INFO  QS.Core.Controllers.TestController [(null)] - 请求
+2020-06-29 15:18:54,296 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-06-29 15:18:54,324 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-06-29 15:18:54,325 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core
+2020-06-29 15:19:06,841 [4] INFO  QS.Core.Controllers.TestController [(null)] - 请求
+2020-06-29 15:19:11,339 [10] INFO  QS.Core.Controllers.TestController [(null)] - 请求
+2020-06-29 15:21:02,371 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-06-29 15:21:02,412 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-06-29 15:21:02,419 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core
+2020-06-29 15:26:03,167 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-06-29 15:26:03,188 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-06-29 15:26:03,188 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core
+2020-06-29 15:26:57,557 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-06-29 15:26:57,572 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-06-29 15:26:57,573 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core
+2020-06-29 15:26:58,386 [10] INFO  QS.Core.Controllers.TestController [(null)] - 请求
+2020-06-29 15:54:15,450 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-06-29 15:54:15,465 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-06-29 15:54:15,466 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core
+2020-06-29 15:54:18,183 [10] INFO  QS.Core.Controllers.TestController [(null)] - 请求
+2020-06-29 16:03:59,181 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-06-29 16:03:59,202 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-06-29 16:03:59,202 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core
+2020-06-29 16:04:08,277 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-06-29 16:04:08,292 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-06-29 16:04:08,292 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core
+2020-06-29 16:04:09,246 [9] INFO  QS.Core.Controllers.TestController [(null)] - 请求
+2020-06-29 16:04:17,288 [9] INFO  QS.Core.Controllers.TestController [(null)] - 请求
+2020-06-29 16:13:57,201 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-06-29 16:13:57,217 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-06-29 16:13:57,217 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core
+2020-06-29 16:14:56,920 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-06-29 16:14:56,979 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-06-29 16:14:56,981 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core
+2020-06-29 16:16:50,324 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-06-29 16:16:50,342 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-06-29 16:16:50,342 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core
+2020-06-29 17:12:06,891 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-06-29 17:12:06,913 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-06-29 17:12:06,913 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core
+2020-06-29 17:12:18,053 [10] ERROR Microsoft.EntityFrameworkCore.Query [(null)] - An exception occurred while iterating over the results of a query for context type 'QS.DataLayer.Entities.EFContext'.
+System.InvalidCastException: Unable to cast object of type 'System.Decimal' to type 'System.Single'.
+   at Microsoft.Data.SqlClient.SqlBuffer.get_Single()
+   at Microsoft.Data.SqlClient.SqlDataReader.GetFloat(Int32 i)
+   at lambda_method(Closure , QueryContext , DbDataReader , ResultContext , Int32[] , ResultCoordinator )
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidCastException: Unable to cast object of type 'System.Decimal' to type 'System.Single'.
+   at Microsoft.Data.SqlClient.SqlBuffer.get_Single()
+   at Microsoft.Data.SqlClient.SqlDataReader.GetFloat(Int32 i)
+   at lambda_method(Closure , QueryContext , DbDataReader , ResultContext , Int32[] , ResultCoordinator )
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2020-06-29 17:12:18,092 [10] ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware [(null)] - An unhandled exception has occurred while executing the request.
+System.InvalidCastException: Unable to cast object of type 'System.Decimal' to type 'System.Single'.
+   at Microsoft.Data.SqlClient.SqlBuffer.get_Single()
+   at Microsoft.Data.SqlClient.SqlDataReader.GetFloat(Int32 i)
+   at lambda_method(Closure , QueryContext , DbDataReader , ResultContext , Int32[] , ResultCoordinator )
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at QS.ServiceLayer.ProductService.ProductService.Get() in C:\Users\QS\source\repos\QS.Core\QS.ServiceLayer\ProductService\ProductService.cs:line 22
+   at QS.Core.Controllers.TestController.Get() in C:\Users\QS\source\repos\QS.Core\QS.Core\Controllers\TestController.cs:line 33
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-06-29 17:12:42,357 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-06-29 17:12:42,373 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-06-29 17:12:42,374 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core
