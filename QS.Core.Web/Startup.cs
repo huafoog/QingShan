@@ -43,7 +43,7 @@ namespace QS.Core.Web
             services.AddAutoMapper(typeof(AutoMapperConfig));
             //使用AddDbContext这个Extension method为MyContext在Container中进行注册，它默认的生命周期使是Scoped。
             //Scoped的生命周期为单次http请求唯一
-            services.AddDbContext<EFContext>(o => o.UseSqlServer(Configuration["DB:SqlServer:ConnectionString"]));
+            services.AddDbContext<EFContext>(o => o.UseMySql(Configuration["DB:MySql:ConnectionString"]));
             services.AddTransient<IProductService, ProductService>();
             services.AddControllers();
             services.AddSwaggerGen(c=> {

@@ -207,3 +207,6 @@ File name: 'C:\Users\QS\source\repos\QS.Core\QS.Core.Web\bin\Debug\netcoreapp3.1
 2020-07-01 11:17:55,496 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
 2020-07-01 11:17:55,510 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
 2020-07-01 11:17:55,510 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core.Web
+2020-07-01 17:14:03,356 [1] ERROR Microsoft.EntityFrameworkCore.Database.Connection [(null)] - An error occurred using the connection to database '' on server '101.220.242.7'.
+2020-07-01 17:15:50,863 [1] ERROR Microsoft.EntityFrameworkCore.Database.Connection [(null)] - An error occurred using the connection to database '' on server '101.220.242.7'.
+2020-07-01 17:20:51,701 [1] ERROR Microsoft.EntityFrameworkCore.Database.Connection [(null)] - An error occurred using the connection to database '' on server '101.220.242.7'.

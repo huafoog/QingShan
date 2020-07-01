@@ -24,7 +24,6 @@ namespace QS.Core.Web
                 //过滤掉系统默认的一些日志
                 builder.AddFilter("System", LogLevel.Error);
                 builder.AddFilter("Microsoft", LogLevel.Error);
-                //builder.AddFilter("Blog.Core.AuthHelper.ApiResponseHandler", LogLevel.Error);
 
                 //可配置文件
                 var path = Path.Combine(Directory.GetCurrentDirectory(), "Log4net.config");
