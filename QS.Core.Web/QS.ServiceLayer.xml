@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QS.ServiceLayer</name>
+    </assembly>
+    <members>
+        <member name="T:QS.ServiceLayer.ProductService.Dtos.ProductInputDto">
+            <summary>
+            商品输入参数
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.ProductService.Dtos.ProductInputDto.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.ProductService.Dtos.ProductInputDto.Price">
+            <summary>
+            价格
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.ProductService.Dtos.ProductInputDto.Address">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="T:QS.ServiceLayer.ProductService.Dtos.ProductOutputDto">
+            <summary>
+            商品输入参数
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.ProductService.Dtos.ProductOutputDto.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.ProductService.Dtos.ProductOutputDto.Price">
+            <summary>
+            价格
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.ProductService.Dtos.ProductOutputDto.Address">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="T:QS.ServiceLayer.ProductService.Dtos.IdDto">
+            <summary>
+            id输入
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.ProductService.Dtos.IdDto.Id">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="M:QS.ServiceLayer.ProductService.IProductService.Delete(System.Int32)">
+            <summary>
+            删除指定数据
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QS.ServiceLayer.ProductService.ProductService.Add(QS.ServiceLayer.ProductService.Dtos.ProductInputDto)">
+            <summary>
+            添加
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

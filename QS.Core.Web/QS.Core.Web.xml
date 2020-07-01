@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QS.Core.Web</name>
+    </assembly>
+    <members>
+        <member name="T:QS.Core.Web.Areas.Admin.Controllers.Base.AdminBaseController">
+            <summary>
+            admin控制器基类
+            </summary>
+        </member>
+        <member name="T:QS.Core.Web.Areas.Admin.Controllers.HomeController">
+            <summary>
+            首页
+            </summary>
+        </member>
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.HomeController.Index">
+            <summary>
+            获取
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.HomeController.Add(QS.ServiceLayer.ProductService.Dtos.ProductInputDto)">
+            <summary>
+            添加
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.HomeController.Delete(QS.ServiceLayer.ProductService.Dtos.IdDto)">
+            <summary>
+            删除
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QS.Core.Web.Controllers.TestController">
+            <summary>
+            测试控制器
+            </summary>
+        </member>
+        <member name="M:QS.Core.Web.Controllers.TestController.Index">
+            <summary>
+            首页
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

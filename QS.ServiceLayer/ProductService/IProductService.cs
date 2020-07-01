@@ -10,7 +10,7 @@ namespace QS.ServiceLayer.ProductService
 {
     public interface IProductService
     {
-        Task<List<Product>> Get();
+        Task<List<ProductOutputDto>> Get();
 
         /// <summary>
         /// 删除指定数据

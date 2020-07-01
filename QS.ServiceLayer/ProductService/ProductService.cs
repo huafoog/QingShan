@@ -21,9 +21,11 @@ namespace QS.ServiceLayer.ProductService
             _mapper = mapper;
         }
 
-        public async Task<List<Product>> Get()
+        public async Task<List<ProductOutputDto>> Get()
         {
-            return await _context.Products.GetTrackEntities<Product,int>().ToListAsync();
+            var data = await _context.Products.GetTrackEntities<Product, int>().ToListAsync();
+                
+            return _mapper.Map<List<ProductOutputDto>>(data);
         }
 
         public async Task<StatusResult> Delete(int id)
