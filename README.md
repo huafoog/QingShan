@@ -31,4 +31,4 @@
 
 [官方文档](https://docs.microsoft.com/zh-cn/ef/core/miscellaneous/configuring-dbcontext)
 
-可以理解为：注入的DbContext周期为单次HTTP请求唯一
+可以理解为：注入的DbContext生命周期为单次HTTP请求唯一
