@@ -43,7 +43,23 @@ namespace QS.Core.Web
             services.AddAutoMapper(typeof(AutoMapperConfig));
             //使用AddDbContext这个Extension method为MyContext在Container中进行注册，它默认的生命周期使是Scoped。
             //Scoped的生命周期为单次http请求唯一
-            services.AddDbContext<EFContext>(o => o.UseMySql(Configuration["DB:MySql:ConnectionString"]));
+            services.AddDbContext<EFContext>(o => 
+                {
+                    var db = Configuration["DB:UseDB"];
+                    switch (db)
+                    {
+                        case "SqlServer":
+                            o.UseSqlServer(Configuration["DB:SqlServer:ConnectionString"]);
+                            break;
+                        case "MySql":
+                            o.UseMySql(Configuration["DB:MySql:ConnectionString"]);
+                            break;
+                        default:
+                            o.UseSqlServer(Configuration["DB:SqlServer:ConnectionString"]);
+                            break;
+                    }
+                } 
+            );
             services.AddTransient<IProductService, ProductService>();
             services.AddControllers();
             services.AddSwaggerGen(c=> {
@@ -72,6 +88,25 @@ namespace QS.Core.Web
                 var xmlPath2 = Path.Combine(AppContext.BaseDirectory, "QS.ServiceLayer.xml");
                 c.IncludeXmlComments(xmlPath2);
             });
+
+
+            #region CORS
+            //跨域第一种方法，先注入服务，声明策略，然后再下边app中配置开启中间件
+            services.AddCors(c =>
+            {
+                c.AddPolicy("LimitRequests", policy =>
+                {
+                    policy
+                    .WithOrigins("http://127.0.0.1:1818", "http://localhost:8080", "http://localhost:8021", "http://localhost:8081", "http://localhost:1818")//支持多个域名端口，注意端口号后不要带/斜杆：比如localhost:8000/，是错的
+                    .AllowAnyHeader()//Ensures that the policy allows any header.
+                    .AllowAnyMethod();
+                });
+            });
+
+            // 这是第二种注入跨域服务的方法，这里有歧义，部分读者可能没看懂，请看下边解释
+            //services.AddCors();
+            #endregion
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -90,6 +125,7 @@ namespace QS.Core.Web
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
+            app.UseCors();
             app.UseHttpsRedirection();
 
             app.UseRouting();
