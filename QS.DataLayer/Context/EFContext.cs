@@ -13,12 +13,12 @@ namespace QS.DataLayer.Entities
             : base(options)
         {
             //如果有数据库存在，那么什么也不会发生。但是如果没有，那么就会创建一个数据库。
-            Database.EnsureCreated();
-            if (Database.GetPendingMigrations().Any())
-            {
-                //数据库迁移
-                Database.Migrate();
-            }
+            //Database.EnsureCreated();
+            //if (Database.GetPendingMigrations().Any())
+            //{
+            //    //数据库迁移
+            //    Database.Migrate();
+            //}
 
         }
 
