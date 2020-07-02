@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using QS.Core.Data;
+using QS.Core.Dependency;
 using QS.DataLayer.Entities;
 using QS.ServiceLayer.ProductService.Dtos;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace QS.ServiceLayer.ProductService
 {
-    public class ProductService:IProductService
+    public class ProductService:IProductService, IScopeDependency
     {
         private readonly EFContext _context;
         private readonly IMapper _mapper;

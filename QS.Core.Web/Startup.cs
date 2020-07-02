@@ -17,6 +17,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using NLog.Extensions.Logging;
 using QS.Core.AutoMapper;
+using QS.Core.Extensions;
 using QS.Core.Reflection;
 using QS.DataLayer.Entities;
 using QS.ServiceLayer.ProductService;
@@ -41,6 +42,9 @@ namespace QS.Core.Web
 
             services.AddSingleton<IAssemblyFinder, AssemblyFinder>();
             services.AddAutoMapper(typeof(AutoMapperConfig));
+
+            services.AddToServices();
+
             //使用AddDbContext这个Extension method为MyContext在Container中进行注册，它默认的生命周期使是Scoped。
             //Scoped的生命周期为单次http请求唯一
             services.AddDbContext<EFContext>(o => 
@@ -60,7 +64,6 @@ namespace QS.Core.Web
                     }
                 } 
             );
-            services.AddTransient<IProductService, ProductService>();
             services.AddControllers();
             services.AddSwaggerGen(c=> {
                 c.SwaggerDoc("v1", new OpenApiInfo

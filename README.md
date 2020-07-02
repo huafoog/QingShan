@@ -11,7 +11,15 @@
 4.数据访问层直接使用EF Core提供数据访问支持
 ```
 
+#### 服务注入
+- 所有服务实例继承自`ITransientDependency`、`IScopeDependency`、`ISingletonDependency`接口，在启动时将自行注册
+- 通过服务实例找到相应的服务 服务实例依赖的服务必须在第一位。
+```
+public class ProductService:IProductService, IScopeDependency
+{
 
+}
+```
 
 #### 为什么直接使用EF Core而不再封装一次
 
