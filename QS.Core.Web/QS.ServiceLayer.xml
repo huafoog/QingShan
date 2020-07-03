@@ -4,6 +4,37 @@
         <name>QS.ServiceLayer</name>
     </assembly>
     <members>
+        <member name="T:QS.ServiceLayer.Permission.Dto.MenuActionDto">
+            <summary>
+            菜单
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.MenuActionDto.Name">
+            <summary>
+            菜单名称
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.MenuActionDto.Code">
+            <summary>
+            权限值
+            </summary>
+        </member>
+        <member name="T:QS.ServiceLayer.Permission.IPermissionService">
+            <summary>
+            权限服务
+            </summary>
+        </member>
+        <member name="T:QS.ServiceLayer.Permission.PermissionService">
+            <summary>
+            权限服务实现
+            </summary>
+        </member>
+        <member name="M:QS.ServiceLayer.Permission.PermissionService.SyncToDatabase(QS.DataLayer.Entities.Function[])">
+            <summary>
+            将从程序集获取的功能信息同步到数据库中
+            </summary>
+            <param name="functions">程序集获取的功能信息</param>
+        </member>
         <member name="T:QS.ServiceLayer.ProductService.Dtos.ProductInputDto">
             <summary>
             商品输入参数

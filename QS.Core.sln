@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QS.ServiceLayer", "QS.Servi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QS.DataLayer", "QS.DataLayer\QS.DataLayer.csproj", "{E676FCCB-A31A-4E96-A046-E425F08EC014}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QS.Core", "QS.Core\QS.Core.csproj", "{DE5C1F1C-A9BC-412D-8C8F-5B3985F6BDD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QS.Core", "QS.Core\QS.Core.csproj", "{DE5C1F1C-A9BC-412D-8C8F-5B3985F6BDD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QS.Permission", "QS.Permisson\QS.Permission.csproj", "{B88AF042-D1A1-43C4-98C9-BD8B8D03A056}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{DE5C1F1C-A9BC-412D-8C8F-5B3985F6BDD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE5C1F1C-A9BC-412D-8C8F-5B3985F6BDD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE5C1F1C-A9BC-412D-8C8F-5B3985F6BDD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B88AF042-D1A1-43C4-98C9-BD8B8D03A056}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B88AF042-D1A1-43C4-98C9-BD8B8D03A056}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B88AF042-D1A1-43C4-98C9-BD8B8D03A056}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B88AF042-D1A1-43C4-98C9-BD8B8D03A056}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

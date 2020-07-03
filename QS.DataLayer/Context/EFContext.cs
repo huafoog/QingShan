@@ -24,6 +24,9 @@ namespace QS.DataLayer.Entities
 
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<Function> Functions { get; set; }
+
+        public DbSet<Module> Modules { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

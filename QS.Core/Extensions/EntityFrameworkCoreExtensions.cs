@@ -4,6 +4,7 @@ using QS.Core.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,31 @@ namespace Microsoft.EntityFrameworkCore
     /// </summary>
     public static class EntityFrameworkCoreExtensions
     {
+
+        /// <summary>
+        /// 分页查询
+        /// </summary>
+        /// <param name="startPage">页码</param>
+        /// <param name="pageSize">单页数据数</param>
+        /// <param name="rowCount">行数</param>
+        /// <param name="where">条件</param>
+        /// <param name="order">排序</param>
+        /// <returns></returns>
+        public static IQueryable<TSoure> LoadPageList<TSoure>(this IQueryable<TSoure> soures,int startPage, int pageSize, out int rowCount, Expression<Func<TSoure, bool>> where = null, Expression<Func<TSoure, object>> order = null)
+            where TSoure : EntityBaseById<int>
+        {
+            var result = from p in soures
+                         select p;
+            if (where != null)
+                result = result.Where(where);
+            if (order != null)
+                result = result.OrderBy(order);
+            else
+                result = result.OrderBy(m => m.Id);
+            rowCount = result.Count();
+            return result.Skip((startPage - 1) * pageSize).Take(pageSize);
+        }
+
         /// <summary>
         /// 获取 <typeparamref name="TSource"/>不跟踪数据更改（NoTracking）的查询数据源  已筛选删除数据
         /// </summary>

@@ -45,5 +45,15 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:QS.Core.Web.Permission.PermCode">
+            <summary>
+            权限值枚举
+            </summary>
+        </member>
+        <member name="T:QS.Core.Web.Permission.PermissionAttribute">
+            <summary>
+            权限筛选
+            </summary>
+        </member>
     </members>
 </doc>

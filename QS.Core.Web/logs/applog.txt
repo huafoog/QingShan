@@ -368,3 +368,33 @@ Error Number:4060,State:1,Class:11
 2020-07-02 21:52:57,159 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
 2020-07-02 21:52:57,178 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
 2020-07-02 21:52:57,178 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: D:\code\.net core\QS.Core\QS.Core.Web
+2020-07-03 10:03:48,264 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-03 10:03:48,288 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-03 10:03:48,288 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core.Web
+2020-07-03 10:05:58,038 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-03 10:05:58,054 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-03 10:05:58,054 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core.Web
+2020-07-03 11:19:04,415 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-03 11:19:04,462 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-03 11:19:04,464 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core.Web
+2020-07-03 11:21:44,472 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-03 11:21:44,490 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-03 11:21:44,490 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core.Web
+2020-07-03 11:25:25,231 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-03 11:25:25,259 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-03 11:25:25,262 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core.Web
+2020-07-03 11:40:00,240 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-03 11:40:00,265 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-03 11:40:00,267 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core.Web
+2020-07-03 11:45:03,369 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-03 11:45:03,392 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-03 11:45:03,394 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core.Web
+2020-07-03 15:30:44,775 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-03 15:30:44,806 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-03 15:30:44,806 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core.Web
+2020-07-03 15:36:21,308 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-03 15:36:21,334 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-03 15:36:21,336 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core.Web
+2020-07-03 16:25:56,543 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-03 16:25:56,568 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-03 16:25:56,569 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core.Web

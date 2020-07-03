@@ -19,7 +19,9 @@ using NLog.Extensions.Logging;
 using QS.Core.AutoMapper;
 using QS.Core.Extensions;
 using QS.Core.Reflection;
+using QS.Core.Web.Permission;
 using QS.DataLayer.Entities;
+using QS.Permission;
 using QS.ServiceLayer.ProductService;
 
 namespace QS.Core.Web
@@ -113,7 +115,7 @@ namespace QS.Core.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory, IFunctionService functionService)
         {
             if (env.IsDevelopment())
             {
@@ -127,10 +129,11 @@ namespace QS.Core.Web
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
             });
             app.UseCors();
             app.UseHttpsRedirection();
-
+            app.UsePermission(functionService);
             app.UseRouting();
 
             app.UseAuthorization();

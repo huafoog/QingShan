@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Text;
 using System.Linq;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace QS.Core.Extensions
 {
@@ -26,6 +27,15 @@ namespace QS.Core.Extensions
                 return value;
             DescriptionAttribute descriptionAttribute = (DescriptionAttribute)objs[0];
             return descriptionAttribute.Description;
+        }
+
+        public static string GetDisplayName(this Enum enumSubitem)
+        {
+            var strValue = enumSubitem.ToString();
+
+            var fieldinfo = enumSubitem.GetType().GetField(strValue);
+            var objs = fieldinfo.GetCustomAttributes(typeof(DisplayAttribute), true).Cast<DisplayAttribute>().FirstOrDefault();
+            return objs?.Name;
         }
     }
 }

@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -8,6 +11,26 @@ namespace QS.Core.Extensions
 {
     public static class TypeExtensions
     {
+
+        #region WebApi
+        /// <summary>
+        /// 判断类型是否是Controller
+        /// </summary>
+        public static bool IsController(this Type type)
+        {
+            return IsController(type.GetTypeInfo());
+        }
+        /// <summary>
+        /// 判断类型是否是Controller
+        /// </summary>
+        public static bool IsController(this TypeInfo typeInfo)
+        {
+            return typeInfo.IsClass && !typeInfo.IsAbstract && typeInfo.IsPublic && !typeInfo.ContainsGenericParameters
+                && !typeInfo.IsDefined(typeof(NonControllerAttribute)) && (typeInfo.Name.EndsWith("Controller", StringComparison.OrdinalIgnoreCase)
+                    || typeInfo.IsDefined(typeof(ControllerAttribute)));
+        }
+        #endregion
+
         /// <summary>
         /// 检查指定指定类型成员中是否存在指定的Attribute特性
         /// </summary>
@@ -118,6 +141,75 @@ namespace QS.Core.Extensions
                 }
             }
             return interfaceTypes;
+        }
+
+        /// <summary>
+        /// 获取成员元数据的Description特性描述信息
+        /// </summary>
+        /// <param name="member">成员元数据对象</param>
+        /// <param name="inherit">是否搜索成员的继承链以查找描述特性</param>
+        /// <returns>返回Description特性描述信息，如不存在则返回成员的名称</returns>
+        public static string GetDescription(this MemberInfo member, bool inherit = true)
+        {
+            DescriptionAttribute desc = member.GetAttribute<DescriptionAttribute>(inherit);
+            if (desc != null)
+            {
+                return desc.Description;
+            }
+            DisplayNameAttribute displayName = member.GetAttribute<DisplayNameAttribute>(inherit);
+            if (displayName != null)
+            {
+                return displayName.DisplayName;
+            }
+            DisplayAttribute display = member.GetAttribute<DisplayAttribute>(inherit);
+            if (display != null)
+            {
+                return display.Name;
+            }
+            return member.Name;
+        }
+
+        /// <summary>
+        /// 返回当前方法信息是否是重写方法
+        /// </summary>
+        /// <param name="method">要判断的方法信息</param>
+        /// <returns>是否是重写方法</returns>
+        public static bool IsOverridden(this MethodInfo method)
+        {
+            return method.GetBaseDefinition().DeclaringType != method.DeclaringType;
+        }
+
+        /// <summary>
+        /// 判断类型是否为Nullable类型
+        /// </summary>
+        /// <param name="type"> 要处理的类型 </param>
+        /// <returns> 是返回True，不是返回False </returns>
+        public static bool IsNullableType(this Type type)
+        {
+            return type != null && type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
+        }
+        /// <summary>
+        /// 由类型的Nullable类型返回实际类型
+        /// </summary>
+        /// <param name="type"> 要处理的类型对象 </param>
+        /// <returns> </returns>
+        public static Type GetNonNullableType(this Type type)
+        {
+            return IsNullableType(type) ? type.GetGenericArguments()[0] : type;
+        }
+        /// <summary>
+        /// 通过类型转换器获取Nullable类型的基础类型
+        /// </summary>
+        /// <param name="type"> 要处理的类型对象 </param>
+        /// <returns> </returns>
+        public static Type GetUnNullableType(this Type type)
+        {
+            if (IsNullableType(type))
+            {
+                NullableConverter nullableConverter = new NullableConverter(type);
+                return nullableConverter.UnderlyingType;
+            }
+            return type;
         }
     }
 }
