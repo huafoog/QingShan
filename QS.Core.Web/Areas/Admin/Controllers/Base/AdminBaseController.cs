@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace QS.Core.Web.Areas.Admin.Controllers.Base
+namespace QS.Core.Web.Areas.Admin.Controllers
 {
     /// <summary>
     /// admin控制器基类

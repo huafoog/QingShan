@@ -54,7 +54,7 @@ namespace QS.DataLayer.Entities
         /// <summary>
         /// 更新时间
         /// </summary>
-        public DateTime UpdateDateTime { get; set; }
+        public DateTime? UpdateDateTime { get; set; }
     }
     /// <summary>
     /// 用户状态

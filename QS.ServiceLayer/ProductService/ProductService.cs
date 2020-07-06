@@ -36,6 +36,20 @@ namespace QS.ServiceLayer.ProductService
             return new StatusResult(result > 0,"删除失败");
         }
 
+        ///// <summary>
+        ///// 添加
+        ///// </summary>
+        ///// <param name="dto"></param>
+        ///// <returns></returns>
+        //public async Task<StatusResult> Add(ProductInputDto dto)
+        //{
+        //    var model = _mapper.Map<Product>(dto);
+        //    await _context.Products.AddTentityAsync<Product,int>(model);
+        //    var res = _context.SaveChangesAsync();
+        //    return new StatusResult(res.Result>0,"添加失败");
+        //}
+
+
         /// <summary>
         /// 添加
         /// </summary>
@@ -44,9 +58,8 @@ namespace QS.ServiceLayer.ProductService
         public async Task<StatusResult> Add(ProductInputDto dto)
         {
             var model = _mapper.Map<Product>(dto);
-            await _context.Products.AddTentityAsync<Product,int>(model);
-            var res = _context.SaveChangesAsync();
-            return new StatusResult(res.Result>0,"添加失败");
+            var id = await _context.AddTentityAsync<Product,int>(model);
+            return new StatusResult(id > 0, "添加失败");
         }
     }
 }

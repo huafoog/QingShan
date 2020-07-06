@@ -4,7 +4,19 @@
         <name>QS.Core.Web</name>
     </assembly>
     <members>
-        <member name="T:QS.Core.Web.Areas.Admin.Controllers.Base.AdminBaseController">
+        <member name="T:QS.Core.Web.Areas.Admin.Controllers.AccountController">
+            <summary>
+            用户授权控制器
+            </summary>
+        </member>
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.AccountController.Login(QS.ServiceLayer.Account.Dto.LoginInputDto)">
+            <summary>
+            用户登录
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QS.Core.Web.Areas.Admin.Controllers.AdminBaseController">
             <summary>
             admin控制器基类
             </summary>
@@ -53,6 +65,41 @@
         <member name="T:QS.Core.Web.Permission.PermissionAttribute">
             <summary>
             权限筛选
+            </summary>
+        </member>
+        <member name="T:QS.Core.Web.Permission.PolicyRequirement">
+            <summary>
+            权限承载实体
+            </summary>
+        </member>
+        <member name="P:QS.Core.Web.Permission.PolicyRequirement.UserPermissions">
+            <summary>
+            用户权限集合
+            </summary>
+        </member>
+        <member name="P:QS.Core.Web.Permission.PolicyRequirement.DeniedAction">
+            <summary>
+            无权限action
+            </summary>
+        </member>
+        <member name="M:QS.Core.Web.Permission.PolicyRequirement.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="T:QS.Core.Web.Permission.UserPermission">
+            <summary>
+            用户权限承载实体
+            </summary>
+        </member>
+        <member name="P:QS.Core.Web.Permission.UserPermission.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:QS.Core.Web.Permission.UserPermission.Url">
+            <summary>
+            请求Url
             </summary>
         </member>
     </members>

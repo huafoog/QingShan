@@ -110,5 +110,23 @@ namespace Microsoft.EntityFrameworkCore
             var res = await dbSet.AddAsync(entity);
             return res;
         }
+
+        /// <summary>
+        /// 添加
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="Tkey"></typeparam>
+        /// <param name="dbSet"></param>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public static async Task<Tkey> AddTentityAsync<TEntity, Tkey>(this DbContext context, TEntity entity) where TEntity : EntityBase<Tkey>, new()
+        {
+            entity.CreateTime = DateTime.Now;
+            entity.DataState = DataState.Normal;
+            var res = await context.Set<TEntity>().AddAsync(entity);
+            await context.SaveChangesAsync();
+            return entity.Id;
+        }
+
     }
 }

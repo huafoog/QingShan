@@ -4,6 +4,28 @@
         <name>QS.ServiceLayer</name>
     </assembly>
     <members>
+        <member name="M:QS.ServiceLayer.Account.AccountService.Login(QS.ServiceLayer.Account.Dto.LoginInputDto)">
+            <summary>
+            用户登录
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QS.ServiceLayer.Account.Dto.LoginInputDto">
+            <summary>
+            用户登录
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Account.Dto.LoginInputDto.Account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Account.Dto.LoginInputDto.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
         <member name="T:QS.ServiceLayer.Permission.Dto.MenuActionDto">
             <summary>
             菜单
@@ -34,6 +56,12 @@
             将从程序集获取的功能信息同步到数据库中
             </summary>
             <param name="functions">程序集获取的功能信息</param>
+        </member>
+        <member name="M:QS.ServiceLayer.Permission.PermissionService.SyncToDatabase(QS.Core.Data.Modules.ModuleInfo[])">
+            <summary>
+            重写以实现将提取到的模块信息同步到数据库中
+            </summary>
+            <param name="moduleInfos">从程序集中提取到的模块信息</param>
         </member>
         <member name="T:QS.ServiceLayer.ProductService.Dtos.ProductInputDto">
             <summary>

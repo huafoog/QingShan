@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using QS.Core.Web.Areas.Admin.Controllers.Base;
 using QS.Permission;
 using QS.ServiceLayer.ProductService;
 using QS.ServiceLayer.ProductService.Dtos;
@@ -15,6 +15,7 @@ namespace QS.Core.Web.Areas.Admin.Controllers
     /// </summary>
     [ModuleInfo(Order = 1)]
     [Description("用户管理")]
+    [Authorize("Permission")]
     public class HomeController: AdminBaseController
     {
         private readonly ILogger<HomeController> _logger;
