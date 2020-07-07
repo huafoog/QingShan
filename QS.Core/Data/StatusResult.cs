@@ -27,7 +27,7 @@ namespace QS.Core.Data
         {
         }
     }
-    public class StatusResult<TData>
+    public class StatusResult<TData> : IResponseOutput<TData>
     {
         public StatusResult()
         {
@@ -68,7 +68,7 @@ namespace QS.Core.Data
         public string Message { get; set; }
 
         /// <summary>
-        /// 是否成功
+        /// 是否成功    
         /// </summary>
         public bool IsSuccess { get; set; }
 

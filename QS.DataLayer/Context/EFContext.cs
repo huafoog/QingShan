@@ -28,6 +28,11 @@ namespace QS.DataLayer.Entities
 
         public DbSet<Module> Modules { get; set; }
 
+        /// <summary>
+        /// 用户表
+        /// </summary>
+        public DbSet<UserEntity> Users { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ProductConfiguration());

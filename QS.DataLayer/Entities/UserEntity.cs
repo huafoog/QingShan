@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace QS.DataLayer.Entities
@@ -9,17 +10,25 @@ namespace QS.DataLayer.Entities
     /// <summary>
     /// 用户表
     /// </summary>
-    public class User:EntityBase<int>
+    public class UserEntity:EntityBase<int>
     {
         /// <summary>
         /// 真实姓名
         /// </summary>
+        [Column(TypeName ="nvarchar(50)")]
         public string RealName { get; set; }
 
         /// <summary>
         /// 用户名称
+        /// <para>登录账号</para>
         /// </summary>
+        [Column(TypeName = "nvarchar(50)")]
         public string UserName { get; set; }
+        /// <summary>
+        /// 昵称
+        /// </summary>
+        [Column(TypeName = "nvarchar(50)")]
+        public string NickName { get; set; }
 
         /// <summary>
         /// 部门Id
@@ -63,11 +72,9 @@ namespace QS.DataLayer.Entities
     {
         [Description("已停用")]
         Stop = -1,
-        [Description("已删除")]
-        Deleted = -1,
-        [Description("未激活")]
-        NotActive = 0,
         [Description("正常")]
-        Normal = 1,
+        Normal = 0,
+        [Description("未激活")]
+        NotActive = 1,
     }
 }

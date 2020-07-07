@@ -1,13 +1,20 @@
 ﻿using QS.Core.Data;
 using QS.ServiceLayer.Account.Dto;
+using QS.ServiceLayer.Account.Dto.OutputDto;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace QS.ServiceLayer.Account
 {
     public interface IAccountService
     {
-        StatusResult<string> Login(LoginInputDto dto);
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        Task<StatusResult<AuthLoginOutputDto>> LoginAsync(LoginInputDto dto);
     }
 }

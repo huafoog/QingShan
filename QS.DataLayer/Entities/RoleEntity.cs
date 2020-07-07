@@ -9,7 +9,7 @@ namespace QS.DataLayer.Entities
     /// <summary>
     /// 角色模型
     /// </summary>
-    public class RoleModel:EntityBase<int>
+    public class RoleEntity:EntityBase<int>
     {
         /// <summary>
         /// 角色名

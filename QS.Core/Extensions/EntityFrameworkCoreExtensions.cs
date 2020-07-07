@@ -47,10 +47,16 @@ namespace Microsoft.EntityFrameworkCore
         /// <typeparam name="TKey">主键类型</typeparam>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static IQueryable<TSource> GetTrackEntities<TSource,TKey>(this IQueryable<TSource> source) 
+        public static IQueryable<TSource> GetTrackEntities<TSource,TKey>(this IQueryable<TSource> source,
+            Expression<Func<TSource, bool>> expression = null) 
             where TSource:EntityBase<TKey>,new()
         {
-            return source.Where(o => o.DataState == DataState.Normal).AsNoTracking();
+            source = source.Where(o => o.DataState == DataState.Normal);
+            if (expression != null)
+            {
+                source.Where(expression);
+            }
+            return source.AsNoTracking();
         }
 
         /// <summary>
