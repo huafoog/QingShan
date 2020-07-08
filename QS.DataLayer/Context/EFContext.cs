@@ -28,6 +28,16 @@ namespace QS.DataLayer.Entities
 
         public DbSet<Module> Modules { get; set; }
 
+        public DbSet<PermissionEntity> Permissions { get; set; }
+
+        public DbSet<RolePermissionEntity> RolePermissions { get; set; }
+
+        /// <summary>
+        /// 用户角色
+        /// </summary>
+        public DbSet<UserRoleEntity> UserRole { get; set; }
+
+
         /// <summary>
         /// 用户表
         /// </summary>

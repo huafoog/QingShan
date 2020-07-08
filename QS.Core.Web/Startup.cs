@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -20,8 +21,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NLog.Extensions.Logging;
+using QS.Core.Attributes;
 using QS.Core.AutoMapper;
 using QS.Core.Extensions;
+using QS.Core.Permission;
 using QS.Core.Reflection;
 using QS.Core.Web.Permission;
 using QS.DataLayer.Entities;
@@ -90,6 +93,36 @@ namespace QS.Core.Web
                         Url = new Uri("https://example.com/license"),
                     }
                 });
+
+                //添加设置Token的按钮
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT授权(数据将在请求头中进行传输) 直接在下框中输入Bearer {token}（注意两者之间是一个空格）",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+
+                //添加Jwt验证设置
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                    {
+                        {
+                            new OpenApiSecurityScheme
+                            {
+                                Reference = new OpenApiReference
+                                {
+                                    Type = ReferenceType.SecurityScheme,
+                                    Id = "Bearer"
+                                },
+                                Scheme = "oauth2",
+                                Name = "Bearer",
+                                In = ParameterLocation.Header,
+                            },
+                            new List<string>()
+                        }
+                    });
+
                 //添加读取注释服务
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -103,23 +136,29 @@ namespace QS.Core.Web
             //添加jwt验证：
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("Permission", policy => policy.Requirements.Add(new PolicyRequirement()));
-            }).AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options => {
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = true,//是否验证Issuer
-                        ValidateAudience = true,//是否验证Audience
-                        ValidateLifetime = true,//是否验证失效时间
-                        ClockSkew = TimeSpan.FromSeconds(30),
-                        ValidateIssuerSigningKey = true,//是否验证SecurityKey
-                        ValidAudience = Configuration["Audience:Audience"],//Audience
-                        ValidIssuer = Configuration["Audience:Issuer"],//Issuer，这两项和前面签发jwt的设置一致
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Audience:Secret"]))//拿到SecurityKey
-                    };
-                });
+                //基于策略的授权
+                //options.AddPolicy("Admin", policy => policy.Requirements.Add(new PolicyRequirement()));
+            }).AddAuthentication(options =>
+            {
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = nameof(ResponseAuthenticationHandler); //401
+                options.DefaultForbidScheme = nameof(ResponseAuthenticationHandler);    //403
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,//是否验证Issuer
+                    ValidateAudience = true,//是否验证Audience
+                    ValidateLifetime = true,//是否验证失效时间
+                    ClockSkew = TimeSpan.Zero,
+                    ValidateIssuerSigningKey = true,//是否验证SecurityKey
+                    ValidAudience = Configuration["Audience:Audience"],//Audience
+                    ValidIssuer = Configuration["Audience:Issuer"],//Issuer，这两项和前面签发jwt的设置一致
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Audience:Secret"]))//拿到SecurityKey
+                };
+            }).AddScheme<AuthenticationSchemeOptions, ResponseAuthenticationHandler>(nameof(ResponseAuthenticationHandler), o => { });
             //注入授权Handler
-            services.AddSingleton<IAuthorizationHandler, PolicyHandler>();
+            //services.AddSingleton<IAuthorizationHandler, PolicyHandler>();
             #endregion
 
             #region CORS
@@ -139,7 +178,14 @@ namespace QS.Core.Web
             //services.AddCors();
             #endregion
 
-            services.AddControllers();
+            services.AddControllers(o=> {
+                //注册模型验证过滤器到全局
+                o.Filters.Add<ApiResponseFilterAttribute>();
+            }).ConfigureApiBehaviorOptions(option =>
+            {
+                //关闭默认模型验证
+                option.SuppressModelStateInvalidFilter = true;
+            });
 
         }
 
@@ -150,6 +196,31 @@ namespace QS.Core.Web
             {
                 app.UseDeveloperExceptionPage();
             }
+            
+           
+            app.UseCors();
+            app.UseHttpsRedirection();
+            app.UsePermission(functionService);
+            app.UseRouting();
+            //添加jwt验证
+            app.UseAuthentication();
+            // UseAuthentication() 在 UseRouting之后调用，以便路由信息可用于身份验证决策,
+            // 在 UseEndpoints 之前调用，以便用户在经过身份验证后才能访问终结点
+            // 在依赖于要进行身份验证的用户的所有中间件之前调用 UseAuthentication
+            //授权
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
+            {
+                //exists 应用了路由必须与区域匹配的约束。 使用 {area:...} 是将路由添加到区域的最简单的机制。
+                //添加到启动的区域路由：
+                endpoints.MapAreaControllerRoute(name: "areas", "area",pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Test}/{action=Get}/{id?}");
+            });
+
+
+            #region Swagger
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
@@ -160,25 +231,7 @@ namespace QS.Core.Web
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
                 c.RoutePrefix = string.Empty;
             });
-           
-            app.UseCors();
-            app.UseHttpsRedirection();
-            app.UsePermission(functionService);
-            app.UseRouting();
-            //添加jwt验证
-            app.UseAuthentication();
-
-            //授权
-            app.UseAuthorization();
-            app.UseEndpoints(endpoints =>
-            {
-                //exists 应用了路由必须与区域匹配的约束。 使用 {area:...} 是将路由添加到区域的最简单的机制。
-                //添加到启动的区域路由：
-                endpoints.MapAreaControllerRoute(name: "areas", "Admin",pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Test}/{action=Get}/{id?}");
-            });
+            #endregion
         }
     }
 }

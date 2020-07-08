@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using QS.Permission;
+using QS.Core.Attributes.Permission;
 using QS.ServiceLayer.ProductService;
 using QS.ServiceLayer.ProductService.Dtos;
 using System.Collections.Generic;
@@ -13,9 +13,7 @@ namespace QS.Core.Web.Areas.Admin.Controllers
     /// <summary>
     /// 首页
     /// </summary>
-    [ModuleInfo(Order = 1)]
     [Description("用户管理")]
-    [Authorize("Permission")]
     public class HomeController: AdminBaseController
     {
         private readonly ILogger<HomeController> _logger;
@@ -32,8 +30,6 @@ namespace QS.Core.Web.Areas.Admin.Controllers
         /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(List<ProductOutputDto>), 200)]
-        [Permission(PermCode.Administrator_List)]
-        [ModuleInfo]
         [Description("获取")]
         public async Task<IActionResult> Index()
         {
@@ -47,8 +43,6 @@ namespace QS.Core.Web.Areas.Admin.Controllers
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost]
-        [Permission(PermCode.Administrator_Add)]
-        [ModuleInfo]
         [Description("添加")]
         public async Task<IActionResult> Add(ProductInputDto dto)
         {
@@ -61,8 +55,6 @@ namespace QS.Core.Web.Areas.Admin.Controllers
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost]
-        [Permission(PermCode.Administrator_Stop)]
-        [ModuleInfo]
         [Description("删除")]
         public async Task<IActionResult> Delete(IdDto dto)
         {

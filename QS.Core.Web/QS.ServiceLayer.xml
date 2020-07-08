@@ -4,7 +4,7 @@
         <name>QS.ServiceLayer</name>
     </assembly>
     <members>
-        <member name="M:QS.ServiceLayer.Account.AccountService.Login(QS.ServiceLayer.Account.Dto.LoginInputDto)">
+        <member name="M:QS.ServiceLayer.Account.AccountService.LoginAsync(QS.ServiceLayer.Account.Dto.LoginInputDto)">
             <summary>
             用户登录
             </summary>
@@ -25,6 +25,28 @@
             <summary>
             密码
             </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Account.Dto.OutputDto.AuthLoginOutputDto.Id">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Account.Dto.OutputDto.AuthLoginOutputDto.UserName">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Account.Dto.OutputDto.AuthLoginOutputDto.NickName">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="M:QS.ServiceLayer.Account.IAccountService.LoginAsync(QS.ServiceLayer.Account.Dto.LoginInputDto)">
+            <summary>
+            用户登录
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
         </member>
         <member name="T:QS.ServiceLayer.Permission.Dto.MenuActionDto">
             <summary>

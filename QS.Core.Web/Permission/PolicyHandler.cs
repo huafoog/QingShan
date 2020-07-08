@@ -20,7 +20,7 @@ namespace QS.Core.Web.Permission
 
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, PolicyRequirement requirement)
         {
-            //赋值用户权限
+            ////赋值用户权限
             var userPermissions = requirement.UserPermissions;
             //从AuthorizationHandlerContext转成HttpContext，以便取出表求信息
             var httpContext = _httpContext.HttpContext;
@@ -49,6 +49,7 @@ namespace QS.Core.Web.Permission
                     context.Succeed(requirement);
                 }
             }
+            context.Succeed(requirement);
             return Task.CompletedTask;
         }
     }

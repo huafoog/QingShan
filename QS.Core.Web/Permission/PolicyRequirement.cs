@@ -9,6 +9,7 @@ namespace QS.Core.Web.Permission
 {
     /// <summary>
     /// 权限承载实体
+    /// <para>该类主要用于获取所有权限</para>
     /// </summary>
     public class PolicyRequirement:IAuthorizationRequirement
     {

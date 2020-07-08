@@ -31,6 +31,12 @@ namespace QS.DataLayer.Entities
         public string NickName { get; set; }
 
         /// <summary>
+        /// 头像
+        /// </summary>
+        [Column(TypeName = "nvarchar(500)")]
+        public string Avatar { get; set; }
+
+        /// <summary>
         /// 部门Id
         /// </summary>
         public int DepartmentId { get; set; }

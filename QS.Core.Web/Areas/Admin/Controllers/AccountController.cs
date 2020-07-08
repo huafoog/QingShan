@@ -1,11 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using QS.Core.Data;
+using QS.Core.Data.Constants;
+using QS.Core.Permission;
 using QS.ServiceLayer.Account;
 using QS.ServiceLayer.Account.Dto;
 using QS.ServiceLayer.Account.Dto.OutputDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace QS.Core.Web.Areas.Admin.Controllers
@@ -19,9 +23,12 @@ namespace QS.Core.Web.Areas.Admin.Controllers
 
         private readonly IAccountService _accountService;
 
-        public AccountController(IAccountService accountService)
+        private readonly IJwtFactory _userToken;
+
+        public AccountController(IAccountService accountService,IJwtFactory userToken)
         {
             _accountService = accountService;
+            _userToken = userToken;
         }
 
 
@@ -31,18 +38,31 @@ namespace QS.Core.Web.Areas.Admin.Controllers
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IResponseOutput<AuthLoginOutputDto>> Login(LoginInputDto dto)
+        [AllowAnonymous]
+        public async Task<StatusResult> Login(LoginInputDto dto)
         {
-            var result = await _accountService.LoginAsync(dto);
+            //var result = await _accountService.LoginAsync(dto);
+            var result = new StatusResult<AuthLoginOutputDto>()
+            {
+                IsSuccess = true,
+                Data = new AuthLoginOutputDto()
+                {
+                    Id = 1,
+                    NickName = "123",
+                    UserName = "345"
+                }
+            };
             #region 添加登录日志
 
             #endregion
-            if (!result.IsSuccess)
-            {
-                return result;
-            }
-
-            return result;
+            if (!result.IsSuccess) return new StatusResult(result.Message);
+            var token = _userToken.Create(new Claim[] { 
+                new Claim(ClaimConst.USERID,result.Data.Id.ToString()),
+                new Claim(ClaimConst.USERNAME,result.Data.UserName),
+                new Claim(ClaimConst.USERNICKNAME,result.Data.NickName)
+            });
+            await Task.CompletedTask;
+            return new StatusResult(token);
         }
 
         ///// <summary>

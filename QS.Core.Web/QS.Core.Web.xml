@@ -62,14 +62,10 @@
             权限值枚举
             </summary>
         </member>
-        <member name="T:QS.Core.Web.Permission.PermissionAttribute">
-            <summary>
-            权限筛选
-            </summary>
-        </member>
         <member name="T:QS.Core.Web.Permission.PolicyRequirement">
             <summary>
             权限承载实体
+            <para>该类主要用于获取所有权限</para>
             </summary>
         </member>
         <member name="P:QS.Core.Web.Permission.PolicyRequirement.UserPermissions">

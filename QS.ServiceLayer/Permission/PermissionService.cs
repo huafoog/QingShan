@@ -1,13 +1,16 @@
 ﻿using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using QS.Core.Collections;
+using QS.Core.Data;
 using QS.Core.Data.Modules;
 using QS.Core.Dependency;
+using QS.Core.Permission;
 using QS.DataLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace QS.ServiceLayer.Permission
 {
@@ -16,12 +19,67 @@ namespace QS.ServiceLayer.Permission
     /// </summary>
     public class PermissionService:IPermissionService,IScopeDependency
     {
-        public readonly EFContext _context;
-        public PermissionService(EFContext context)
+        private readonly EFContext _context;
+
+        private readonly IUserInfo _user;
+
+        public PermissionService(EFContext context, IUserInfo user)
         {
             _context = context;
+            _user = user;
         }
 
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <returns></returns>
+        public async Task<StatusResult<object>> GetUserInfoAsync()
+        {
+            if (!(_user?.Id > 0))
+            {
+                return new StatusResult<object>("未登录！");
+            }
+
+            //用户信息
+            var user = await _context.Users.GetTrackEntities<UserEntity,int>(o=>o.Id == _user.Id).Select(m => new {
+                m.NickName,
+                m.UserName,
+                m.Avatar
+            }).FirstOrDefaultAsync();
+
+            var permission = _context.Permissions.GetTrackEntities<PermissionEntity, int>();
+            var userRole = _context.UserRole.GetTrackEntities<UserRoleEntity,int>();
+            var rolePermission = _context.RolePermissions.GetTrackEntities<RolePermissionEntity,int>();
+
+            var menus =await( from p in permission
+                       join rp in rolePermission on p.Id equals rp.PermissionId
+                       join u in userRole on rp.RoleId equals u.RoleId
+                       where u.UserId == _user.Id && new[] { PermissionType.Group, PermissionType.Menu }.Contains(p.Type)
+                       orderby p.ParentId, p.Sort
+                       select new
+                       {
+                           p.Id,
+                           p.ParentId,
+                           p.Path,
+                           p.Label,
+                           p.Icon,
+                           p.Opened,
+                           p.Closable,
+                           p.Hidden,
+                           p.NewWindow,
+                           p.External
+                       }).ToListAsync();
+            //用户权限点
+            var permissions = await (from p in permission
+                                     join rp in rolePermission on p.Id equals rp.PermissionId
+                                     join ur in userRole on rp.RoleId equals ur.RoleId
+                                     where ur.UserId == _user.Id && new[] { PermissionType.Api, PermissionType.Dot }.Contains(p.Type)
+                                     select p.Code).ToListAsync();
+            var data = new { user, menus, permissions };
+            return new StatusResult<object>(data);
+        }
+
+        #region 待考虑
         /// <summary>
         /// 将从程序集获取的功能信息同步到数据库中
         /// </summary>
@@ -218,5 +276,6 @@ namespace QS.ServiceLayer.Permission
         //    string[] codes = module.TreePathIds.Select(id => source.First(n => n.Id.Equals(id)).Code).ToArray();
         //    return codes.ExpandAndToString(".");
         //}
+        #endregion
     }
 }
