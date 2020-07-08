@@ -47,9 +47,9 @@ namespace Microsoft.EntityFrameworkCore
         /// <typeparam name="TKey">主键类型</typeparam>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static IQueryable<TSource> GetTrackEntities<TSource,TKey>(this IQueryable<TSource> source,
+        public static IQueryable<TSource> GetTrackEntities<TSource>(this IQueryable<TSource> source,
             Expression<Func<TSource, bool>> expression = null) 
-            where TSource:EntityBase<TKey>,new()
+            where TSource:class,IDataState
         {
             source = source.Where(o => o.DataState == DataState.Normal);
             if (expression != null)
@@ -66,8 +66,8 @@ namespace Microsoft.EntityFrameworkCore
         /// <typeparam name="TKey"></typeparam>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static IQueryable<TSource> GetEntities<TSource, TKey>(this IQueryable<TSource> source)
-            where TSource : EntityBase<TKey>,new()
+        public static IQueryable<TSource> GetEntities<TSource>(this IQueryable<TSource> source)
+            where TSource :ICreatedTime, IDataState,new()
         {
             return source.Where(o => o.DataState == DataState.Normal);
         }
@@ -81,7 +81,7 @@ namespace Microsoft.EntityFrameworkCore
         /// <param name="id"></param>
         /// <returns></returns>
         public static async Task<int> DeleteByIdAsync<TSource, TKey>(this IQueryable<TSource> source, TKey id) 
-            where TSource : EntityBase<TKey>,new()
+            where TSource : class,IEntity<TKey>,IDataState,new()
         {
             var i = await source.Where(o => o.Id.Equals(id)).BatchUpdateAsync(a => new TSource() { DataState = DataState.Delete });
             return i;
@@ -102,30 +102,16 @@ namespace Microsoft.EntityFrameworkCore
         }
 
         /// <summary>
-        /// 添加
+        /// 添加实体信息
         /// </summary>
-        /// <typeparam name="TEntity"></typeparam>
-        /// <typeparam name="Tkey"></typeparam>
-        /// <param name="dbSet"></param>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        public static async ValueTask<EntityEntry<TEntity>> AddTentityAsync<TEntity,Tkey>(this DbSet<TEntity> dbSet, TEntity entity) where TEntity: EntityBase<Tkey>,new()
-        {
-            entity.CreateTime = DateTime.Now;
-            entity.DataState = DataState.Normal;
-            var res = await dbSet.AddAsync(entity);
-            return res;
-        }
-
-        /// <summary>
-        /// 添加
-        /// </summary>
-        /// <typeparam name="TEntity"></typeparam>
-        /// <typeparam name="Tkey"></typeparam>
-        /// <param name="dbSet"></param>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        public static async Task<Tkey> AddTentityAsync<TEntity, Tkey>(this DbContext context, TEntity entity) where TEntity : EntityBase<Tkey>, new()
+        /// <typeparam name="TEntity">实体模型</typeparam>
+        /// <typeparam name="Tkey">主键</typeparam>
+        /// <param name="context"></param>
+        /// <param name="entity">实体</param>
+        /// <returns>实体Id</returns>
+        public static async Task<TKey> InsertEntityAsync<TEntity, TKey>(this DbContext context, TEntity entity) 
+            where TEntity: class,ICreatedTime,IDataState,IEntity<TKey>,new() 
+            where TKey:struct
         {
             entity.CreateTime = DateTime.Now;
             entity.DataState = DataState.Normal;
@@ -133,6 +119,5 @@ namespace Microsoft.EntityFrameworkCore
             await context.SaveChangesAsync();
             return entity.Id;
         }
-
     }
 }
