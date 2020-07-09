@@ -41,15 +41,15 @@ namespace QS.ServiceLayer.Permission
             }
 
             //用户信息
-            var user = await _context.Users.GetTrackEntities<UserEntity,int>(o=>o.Id == _user.Id).Select(m => new {
+            var user = await _context.Users.GetTrackEntities(o=>o.Id == _user.Id).Select(m => new {
                 m.NickName,
                 m.UserName,
                 m.Avatar
             }).FirstOrDefaultAsync();
 
-            var permission = _context.Permissions.GetTrackEntities<PermissionEntity, int>();
-            var userRole = _context.UserRole.GetTrackEntities<UserRoleEntity,int>();
-            var rolePermission = _context.RolePermissions.GetTrackEntities<RolePermissionEntity,int>();
+            var permission = _context.Permissions.GetTrackEntities();
+            var userRole = _context.UserRole.GetTrackEntities();
+            var rolePermission = _context.RolePermissions.GetTrackEntities();
 
             var menus =await( from p in permission
                        join rp in rolePermission on p.Id equals rp.PermissionId
@@ -91,7 +91,7 @@ namespace QS.ServiceLayer.Permission
                 return;
             }
 
-            Function[] dbItems = _context.Functions.GetTrackEntities<Function, int>().ToList().ToArray();
+            Function[] dbItems = _context.Functions.GetTrackEntities().ToList().ToArray();
 
             //删除的功能
             Function[] removeItems = dbItems.Except(functions,

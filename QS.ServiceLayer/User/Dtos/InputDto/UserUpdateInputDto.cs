@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using QS.DataLayer.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace QS.ServiceLayer.User.Dtos.InputDto
 {
@@ -31,7 +32,7 @@ namespace QS.ServiceLayer.User.Dtos.InputDto
         /// <summary>
         /// 状态
         /// </summary>
-        public int Status { get; set; }
+        public EAdministratorStatus Status { get; set; }
 
         /// <summary>
         /// 备注

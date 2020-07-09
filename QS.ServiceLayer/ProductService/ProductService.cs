@@ -24,7 +24,7 @@ namespace QS.ServiceLayer.ProductService
 
         public async Task<List<ProductOutputDto>> Get()
         {
-            var data = await _context.Products.GetTrackEntities<Product, int>().ToListAsync();
+            var data = await _context.Products.GetTrackEntities().ToListAsync();
                 
             return _mapper.Map<List<ProductOutputDto>>(data);
         }
@@ -58,7 +58,7 @@ namespace QS.ServiceLayer.ProductService
         public async Task<StatusResult> Add(ProductInputDto dto)
         {
             var model = _mapper.Map<Product>(dto);
-            var id = await _context.AddTentityAsync<Product,int>(model);
+            var id = await _context.InsertEntityAsync<Product,int>(model);
             return new StatusResult(id > 0, "添加失败");
         }
     }

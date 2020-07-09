@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QS.DataLayer.Entities
 {
-    public class EFContext:DbContext
+    public class EFContext : DbContext
     {
         public EFContext(DbContextOptions<EFContext> options)
             : base(options)
@@ -36,6 +36,10 @@ namespace QS.DataLayer.Entities
         /// 用户角色
         /// </summary>
         public DbSet<UserRoleEntity> UserRole { get; set; }
+
+        public DbSet<ApiEntity> Apis { get; set; }
+
+        public DbSet<RoleEntity> Roles { get; set; }
 
 
         /// <summary>

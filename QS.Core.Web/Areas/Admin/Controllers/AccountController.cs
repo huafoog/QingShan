@@ -6,6 +6,7 @@ using QS.Core.Permission;
 using QS.ServiceLayer.Account;
 using QS.ServiceLayer.Account.Dto;
 using QS.ServiceLayer.Account.Dto.OutputDto;
+using QS.ServiceLayer.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,12 +26,20 @@ namespace QS.Core.Web.Areas.Admin.Controllers
 
         private readonly IJwtFactory _userToken;
 
-        public AccountController(IAccountService accountService,IJwtFactory userToken)
+        private readonly IUserService _userService;
+
+        public AccountController(IAccountService accountService,IJwtFactory userToken,IUserService userService)
         {
             _accountService = accountService;
             _userToken = userToken;
+            _userService = userService;
         }
-
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<object> Test(int id)
+        {
+            return await _userService.GetAsync(id);
+        }
 
         /// <summary>
         /// 用户登录

@@ -39,7 +39,7 @@ namespace QS.ServiceLayer.Account
         public async Task<StatusResult<AuthLoginOutputDto>> LoginAsync(LoginInputDto dto)
         {
 
-            var user = await _context.Users.GetTrackEntities<UserEntity,int>(o => o.UserName == dto.Account).Select(o=>new { 
+            var user = await _context.Users.GetTrackEntities(o => o.UserName == dto.Account).Select(o=>new { 
                 o.Id,
                 o.NickName,
                 o.UserName,
