@@ -1,13 +1,14 @@
-﻿using System;
+﻿using QS.Core.Entity;
+using System;
 
 namespace QS.ServiceLayer.User.Dtos.OutputDto
 {
-    public class UserListOutputDto
+    public class UserListOutputDto:IEntity<int>
     {
         /// <summary>
         /// 主键Id
         /// </summary>
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// 账号

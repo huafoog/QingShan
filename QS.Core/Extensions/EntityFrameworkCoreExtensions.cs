@@ -1,5 +1,6 @@
 ﻿using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using QS.Core.Data;
 using QS.Core.Entity;
 using System;
 using System.Collections.Generic;
@@ -25,8 +26,8 @@ namespace Microsoft.EntityFrameworkCore
         /// <param name="where">条件</param>
         /// <param name="order">排序</param>
         /// <returns></returns>
-        public static IQueryable<TSoure> LoadPageList<TSoure>(this IQueryable<TSoure> soures,int startPage, int pageSize, out int rowCount, Expression<Func<TSoure, bool>> where = null, Expression<Func<TSoure, object>> order = null)
-            where TSoure : EntityBaseById<int>
+        public static async Task<PageOutputDto<TSoure>> LoadPageListAsync<TSoure>(this IQueryable<TSoure> soures, PageInputDto pageInputDto, Expression<Func<TSoure, bool>> where = null, Expression<Func<TSoure, object>> order = null)
+            where TSoure : IEntity<int>
         {
             var result = from p in soures
                          select p;
@@ -36,8 +37,15 @@ namespace Microsoft.EntityFrameworkCore
                 result = result.OrderBy(order);
             else
                 result = result.OrderBy(m => m.Id);
-            rowCount = result.Count();
-            return result.Skip((startPage - 1) * pageSize).Take(pageSize);
+            int rowCount = result.Count();
+            var data = await result.Skip((pageInputDto.PageIndex - 1) * pageInputDto.PageSize).Take(pageInputDto.PageSize).ToListAsync();
+            return new PageOutputDto<TSoure>()
+            {
+                PageIndex = pageInputDto.PageIndex,
+                PageSize = pageInputDto.PageSize,
+                Data = data,
+                Total = rowCount
+            };
         }
 
         /// <summary>
@@ -48,8 +56,8 @@ namespace Microsoft.EntityFrameworkCore
         /// <param name="source"></param>
         /// <returns></returns>
         public static IQueryable<TSource> GetTrackEntities<TSource>(this IQueryable<TSource> source,
-            Expression<Func<TSource, bool>> expression = null) 
-            where TSource:class,IDataState
+            Expression<Func<TSource, bool>> expression = null)
+            where TSource : class, IDataState
         {
             source = source.Where(o => o.DataState == DataState.Normal);
             if (expression != null)
@@ -67,7 +75,7 @@ namespace Microsoft.EntityFrameworkCore
         /// <param name="source"></param>
         /// <returns></returns>
         public static IQueryable<TSource> GetEntities<TSource>(this IQueryable<TSource> source)
-            where TSource :ICreatedTime, IDataState,new()
+            where TSource : ICreatedTime, IDataState, new()
         {
             return source.Where(o => o.DataState == DataState.Normal);
         }
@@ -80,8 +88,8 @@ namespace Microsoft.EntityFrameworkCore
         /// <param name="source"></param>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static async Task<int> DeleteByIdAsync<TSource, TKey>(this IQueryable<TSource> source, TKey id) 
-            where TSource : class,IEntity<TKey>,IDataState,new()
+        public static async Task<int> DeleteByIdAsync<TSource, TKey>(this IQueryable<TSource> source, TKey id)
+            where TSource : class, IEntity<TKey>, IDataState, new()
         {
             var i = await source.Where(o => o.Id.Equals(id)).BatchUpdateAsync(a => new TSource() { DataState = DataState.Delete });
             return i;
@@ -94,7 +102,7 @@ namespace Microsoft.EntityFrameworkCore
         /// <param name="source"></param>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static async Task<int> DeleteByIdsAsync<TEntity, TKey>(this IQueryable<TEntity> source, TKey[] ids) 
+        public static async Task<int> DeleteByIdsAsync<TEntity, TKey>(this IQueryable<TEntity> source, TKey[] ids)
             where TEntity : EntityBase<TKey>, new()
         {
             var i = await source.Where(o => ids.Contains(o.Id)).BatchUpdateAsync(a => new TEntity() { DataState = DataState.Delete });
@@ -109,15 +117,35 @@ namespace Microsoft.EntityFrameworkCore
         /// <param name="context"></param>
         /// <param name="entity">实体</param>
         /// <returns>实体Id</returns>
-        public static async Task<TKey> InsertEntityAsync<TEntity, TKey>(this DbContext context, TEntity entity) 
-            where TEntity: class,ICreatedTime,IDataState,IEntity<TKey>,new() 
-            where TKey:struct
+        public static async Task<TKey> InsertEntityAsync<TEntity, TKey>(this DbContext context, TEntity entity)
+            where TEntity : class, ICreatedTime, IDataState, IEntity<TKey>, new()
+            where TKey : struct
         {
             entity.CreateTime = DateTime.Now;
             entity.DataState = DataState.Normal;
             var res = await context.Set<TEntity>().AddAsync(entity);
             await context.SaveChangesAsync();
             return entity.Id;
+        }
+
+        /// <summary>
+        /// 添加实体信息
+        /// </summary>
+        /// <typeparam name="TEntity">实体模型</typeparam>
+        /// <typeparam name="Tkey">主键</typeparam>
+        /// <param name="context"></param>
+        /// <param name="entity">实体</param>
+        /// <returns>实体Id</returns>
+        public static async Task<int> InsertEntitiesAsync<TEntity>(this DbContext context, TEntity[] entities)
+            where TEntity : class, ICreatedTime, IDataState, new()
+        {
+            for (int i = 0; i < entities.Length; i++)
+            {
+                entities[i].CreateTime = DateTime.Now;
+                entities[i].DataState = DataState.Normal;
+            }
+            await context.Set<TEntity>().AddRangeAsync(entities);
+            return await context.SaveChangesAsync();
         }
     }
 }

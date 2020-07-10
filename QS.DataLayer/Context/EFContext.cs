@@ -19,7 +19,7 @@ namespace QS.DataLayer.Entities
             //    //数据库迁移
             //    Database.Migrate();
             //}
-
+            Database.Migrate();
         }
 
 

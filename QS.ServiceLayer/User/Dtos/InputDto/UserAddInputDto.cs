@@ -1,10 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using QS.Core.Attributes;
+using QS.DataLayer.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace QS.ServiceLayer.User.Dtos.InputDto
 {
     /// <summary>
     /// 添加
     /// </summary>
+    [MapTo(typeof(UserEntity))]
     public class UserAddInputDto
     {
         /// <summary>

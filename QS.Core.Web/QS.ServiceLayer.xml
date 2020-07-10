@@ -342,6 +342,13 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:QS.ServiceLayer.User.IUserService.AddAsync(QS.ServiceLayer.User.Dtos.InputDto.UserAddInputDto)">
+            <summary>
+            添加用户信息
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="T:QS.ServiceLayer.User.UserService">
             <summary>
             用户管理-
@@ -369,6 +376,20 @@
             <summary>
             获取权限信息
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QS.ServiceLayer.User.UserService.PageAsync(QS.Core.Data.PageInputDto)">
+            <summary>
+            获取数据
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QS.ServiceLayer.User.UserService.AddAsync(QS.ServiceLayer.User.Dtos.InputDto.UserAddInputDto)">
+            <summary>
+            添加
+            </summary>
+            <param name="input"></param>
             <returns></returns>
         </member>
     </members>

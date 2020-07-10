@@ -62,11 +62,6 @@ namespace QS.DataLayer.Entities
         public bool IsSuper { get; set; }
 
         /// <summary>
-        /// 创建时间
-        /// </summary>
-        public DateTime CreateDateTime { get; set; }
-
-        /// <summary>
         /// 更新时间
         /// </summary>
         public DateTime? UpdateDateTime { get; set; }
