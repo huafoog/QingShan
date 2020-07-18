@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ServiceLayer\Include\IServerTemplate.tt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ServiceLayer\Include\IServerTemplate.tt">
+      <Generator></Generator>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ServiceLayer\Automation.ServiceLayer.Script.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Automation.ServiceLayer.Script.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+</Project>

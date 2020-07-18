@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using QS.DataLayer.Entities.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace QS.DataLayer.Entities
@@ -24,7 +26,7 @@ namespace QS.DataLayer.Entities
 
 
         public DbSet<Product> Products { get; set; }
-        public DbSet<Function> Functions { get; set; }
+        public DbSet<FunctionEntity> Functions { get; set; }
 
         public DbSet<Module> Modules { get; set; }
 
@@ -50,6 +52,32 @@ namespace QS.DataLayer.Entities
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
+        }
+
+        /// <summary>
+        /// 重写添加方法
+        /// </summary>
+        /// <param name="entity">实体</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public override ValueTask<EntityEntry> AddAsync(object entity, CancellationToken cancellationToken = default)
+        {
+            return base.AddAsync(entity, cancellationToken);
+        }
+
+        public override ValueTask<EntityEntry<TEntity>> AddAsync<TEntity>(TEntity entity, CancellationToken cancellationToken = default)
+        {
+
+
+
+
+            return base.AddAsync(entity, cancellationToken);
+        }
+
+
+        public override EntityEntry<TEntity> Remove<TEntity>(TEntity entity)
+        {
+            return base.Remove(entity);
         }
     }
 }

@@ -12,27 +12,27 @@ namespace QS.Permission
     public class ModuleInfoAttribute : Attribute
     {
         /// <summary>
-        /// 获取或设置 模块名称，为空则取功能名称
+        /// 模块名称，为空则取功能名称
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// 获取或设置 模块代码，为空则取功能Action名
+        /// 模块代码，为空则取功能Action名
         /// </summary>
         public string Code { get; set; }
 
         /// <summary>
-        /// 获取或设置 层次序号
+        /// 层次序号
         /// </summary>
         public double Order { get; set; }
 
         /// <summary>
-        /// 获取或设置 模块位置，父级模块，模块在树节点的位置，默认取所在类的位置，需要在命名空间与当前类之间加模块，才设置此值
+        /// 父级位置模块模块标识 需要在命名空间与当前类之间加模块，才设置此值
         /// </summary>
         public string Position { get; set; }
 
         /// <summary>
-        /// 获取或设置 父级位置模块名称，需要在命名空间与当前类之间加模块，才设置此值
+        /// 父级位置模块名称，需要在命名空间与当前类之间加模块，才设置此值
         /// </summary>
         public string PositionName { get; set; }
     }

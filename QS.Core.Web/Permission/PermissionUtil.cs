@@ -20,8 +20,8 @@ namespace QS.Core.Web.Permission
     {
         public static IApplicationBuilder UsePermission(this IApplicationBuilder app, IFunctionService functionService)
         {
-            var data  = functionService.PickupFunctions();
-
+            var data  = functionService.Pickup();
+            var datas = functionService.PickupFunctions();
 
             return app;
         }

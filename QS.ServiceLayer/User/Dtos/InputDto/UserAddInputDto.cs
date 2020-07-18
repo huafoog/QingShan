@@ -45,6 +45,6 @@ namespace QS.ServiceLayer.User.Dtos.InputDto
         /// <summary>
         /// 角色
         /// </summary>
-        public long[] RoleIds { get; set; }
+        public int[] RoleIds { get; set; }
     }
 }

@@ -34,13 +34,25 @@ namespace QS.Permission.Modules
         /// </summary>
         public string PositionName { get; set; }
 
-        ///// <summary>
-        ///// 获取或设置 依赖功能
-        ///// </summary>
-        //public IFunction[] DependOnFunctions { get; set; } = new IFunction[0];
-        //private string ToDebugDisplay()
-        //{
-        //    return $"{Name}[{Code}]({Position}),FunctionCount:{DependOnFunctions.Length}";
-        //}
+        /// <summary>
+        /// 模块类型
+        /// </summary>
+        public ModuleType ModuleType { get; set; }
+    }
+
+    public enum ModuleType
+    {
+        /// <summary>
+        /// 模块
+        /// </summary>
+        Module,
+        /// <summary>
+        /// 菜单
+        /// </summary>
+        Menu,
+        /// <summary>
+        /// 权限点
+        /// </summary>
+        Dot,
     }
 }

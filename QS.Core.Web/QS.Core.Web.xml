@@ -46,6 +46,11 @@
             <param name="dto"></param>
             <returns></returns>
         </member>
+        <member name="T:QS.Core.Web.Areas.Admin.Controllers.UserController">
+            <summary>
+            用户管理
+            </summary>
+        </member>
         <member name="M:QS.Core.Web.Areas.Admin.Controllers.UserController.Add(QS.ServiceLayer.User.Dtos.InputDto.UserAddInputDto)">
             <summary>
             新增用户

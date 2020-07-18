@@ -13,11 +13,11 @@ namespace QS.DataLayer.Entities
         /// <summary>
         /// 用户Id
         /// </summary>
-        public long UserId { get; set; }
+        public int UserId { get; set; }
 
         /// <summary>
         /// 角色Id
         /// </summary>
-        public long RoleId { get; set; }
+        public int RoleId { get; set; }
     }
 }

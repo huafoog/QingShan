@@ -79,7 +79,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:QS.ServiceLayer.Permission.PermissionService.SyncToDatabase(QS.DataLayer.Entities.Function[])">
+        <member name="M:QS.ServiceLayer.Permission.PermissionService.SyncToDatabase(QS.DataLayer.Entities.FunctionEntity[])">
             <summary>
             将从程序集获取的功能信息同步到数据库中
             </summary>

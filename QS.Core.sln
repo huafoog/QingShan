@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QS.DataLayer", "QS.DataLaye
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QS.Core", "QS.Core\QS.Core.csproj", "{DE5C1F1C-A9BC-412D-8C8F-5B3985F6BDD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QS.Permission", "QS.Permisson\QS.Permission.csproj", "{B88AF042-D1A1-43C4-98C9-BD8B8D03A056}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QS.Permission", "QS.Permisson\QS.Permission.csproj", "{B88AF042-D1A1-43C4-98C9-BD8B8D03A056}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QS.Core.Automation", "QS.Core.Automation\QS.Core.Automation.csproj", "{8F7F1039-5646-4056-9405-0AE33C577D0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{B88AF042-D1A1-43C4-98C9-BD8B8D03A056}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B88AF042-D1A1-43C4-98C9-BD8B8D03A056}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B88AF042-D1A1-43C4-98C9-BD8B8D03A056}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F7F1039-5646-4056-9405-0AE33C577D0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F7F1039-5646-4056-9405-0AE33C577D0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F7F1039-5646-4056-9405-0AE33C577D0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F7F1039-5646-4056-9405-0AE33C577D0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

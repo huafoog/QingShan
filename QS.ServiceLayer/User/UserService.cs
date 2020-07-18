@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using QS.Core.Data;
 using QS.Core.Dependency;
@@ -95,9 +96,8 @@ namespace QS.ServiceLayer.User
             var userPermissoins = await (from rp in _context.RolePermissions
                                          join ur in _context.UserRole on rp.RoleId equals ur.RoleId
                                          join p in _context.Permissions on rp.PermissionId equals p.Id
-                                         join a in _context.Apis on p.ApiId equals a.Id
                                          where p.Type == PermissionType.Api
-                                         select a.Path).ToListAsync();
+                                         select p.Code).ToListAsync();
             return userPermissoins;
         }
 
@@ -162,32 +162,30 @@ namespace QS.ServiceLayer.User
             }
         }
 
-    /*
-          public async Task<StatusResult> UpdateAsync(UserUpdateInput input)
+          public async Task<StatusResult> UpdateAsync(UserUpdateInputDto input)
           {
               if (!(input?.Id > 0))
               {
-                  return StatusResult.NotOk();
+                  return new StatusResult("未获取到用户信息");
               }
 
-              var user = await _userRepository.GetAsync(input.Id);
+              var user = await Users.FirstOrDefaultAsync(o=>o.Id == input.Id);
               if (!(user?.Id > 0))
               {
-                  return StatusResult.NotOk("用户不存在！");
+                  return new StatusResult("用户不存在！");
               }
 
-              _mapper.Map(input, user);
-              await _userRepository.UpdateAsync(user);
-              await _userRoleRepository.DeleteAsync(a => a.UserId == user.Id);
+              var users = _mapper.Map(input, user);
+              _context.Users.Update(users);
+              await _context.UserRole.Where(a => a.UserId == user.Id).BatchDeleteAsync();
               if (input.RoleIds != null && input.RoleIds.Any())
               {
                   var roles = input.RoleIds.Select(a => new UserRoleEntity { UserId = user.Id, RoleId = a });
-                  await _userRoleRepository.InsertAsync(roles);
+                  await _context.UserRole.AddRangeAsync(roles);
               }
-
-              return StatusResult.Ok();
+              return new StatusResult();
           }
-
+        /*
           public async Task<StatusResult> UpdateBasicAsync(UserUpdateBasicInput input)
           {
               var entity = await _userRepository.GetAsync(input.Id);
@@ -243,5 +241,5 @@ namespace QS.ServiceLayer.User
 
               return StatusResult.Result(result);
           }*/
-}
+    }
 }

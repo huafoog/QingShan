@@ -60,14 +60,6 @@ namespace QS.ServiceLayer.Permission
                        {
                            p.Id,
                            p.ParentId,
-                           p.Path,
-                           p.Label,
-                           p.Icon,
-                           p.Opened,
-                           p.Closable,
-                           p.Hidden,
-                           p.NewWindow,
-                           p.External
                        }).ToListAsync();
             //用户权限点
             var permissions = await (from p in permission
@@ -84,34 +76,34 @@ namespace QS.ServiceLayer.Permission
         /// 将从程序集获取的功能信息同步到数据库中
         /// </summary>
         /// <param name="functions">程序集获取的功能信息</param>
-        public void SyncToDatabase(Function[] functions)
+        public void SyncToDatabase(FunctionEntity[] functions)
         {
             if (functions.Length == 0)
             {
                 return;
             }
 
-            Function[] dbItems = _context.Functions.GetTrackEntities().ToList().ToArray();
+            FunctionEntity[] dbItems = _context.Functions.GetTrackEntities().ToList().ToArray();
 
             //删除的功能
-            Function[] removeItems = dbItems.Except(functions,
-                EqualityHelper<Function>.CreateComparer(m => m.Area + m.Controller + m.Action)).ToArray();
+            FunctionEntity[] removeItems = dbItems.Except(functions,
+                EqualityHelper<FunctionEntity>.CreateComparer(m => m.Area + m.Controller + m.Action)).ToArray();
             int removeCount = removeItems.Length;
             //todo：由于外键关联不能物理删除的实体，需要实现逻辑删除
             _context.Functions.RemoveRange(removeItems);
 
             //新增的功能
-            Function[] addItems = functions.Except(dbItems,
-                EqualityHelper<Function>.CreateComparer(m => m.Area + m.Controller + m.Action)).ToArray();
+            FunctionEntity[] addItems = functions.Except(dbItems,
+                EqualityHelper<FunctionEntity>.CreateComparer(m => m.Area + m.Controller + m.Action)).ToArray();
             int addCount = addItems.Length;
             _context.Functions.AddRange(addItems);
 
             //更新的功能信息
             int updateCount = 0;
-            foreach (Function item in dbItems.Except(removeItems))
+            foreach (FunctionEntity item in dbItems.Except(removeItems))
             {
                 bool isUpdate = false;
-                Function function;
+                FunctionEntity function;
                 try
                 {
                     function = functions.Single(m =>
@@ -141,11 +133,11 @@ namespace QS.ServiceLayer.Permission
                     isUpdate = true;
                 }
 
-                if (!item.IsAccessTypeChanged && item.AccessType != function.AccessType)
-                {
-                    item.AccessType = function.AccessType;
-                    isUpdate = true;
-                }
+                //if (!item.IsAccessTypeChanged && item.AccessType != function.AccessType)
+                //{
+                //    item.AccessType = function.AccessType;
+                //    isUpdate = true;
+                //}
 
                 if (isUpdate)
                 {

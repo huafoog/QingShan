@@ -19,7 +19,6 @@ namespace QS.Permission
         /// </summary>
         /// <param name="functionTypes">功能类型集合</param>
         /// <returns></returns>
-        Function[] PickupFunctions();
-        void InitPermission();
+        FunctionEntity[] PickupFunctions();
     }
 }
