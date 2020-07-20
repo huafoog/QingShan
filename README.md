@@ -21,10 +21,6 @@ public class ProductService:IProductService, IScopeDependency
 }
 ```
 
-#### 为什么直接使用EF Core而不再封装一次
-
-在这个框架里面，我觉得对于EF的封装完全没有必要。你说你要换数据库OK，我用EF可以平滑切换。你说你要换ORM，拜托 EF Core不香吗
-
 #### 关于EF Core上下文问题 
 
 通过依赖关系注入在多个线程之间隐式共享 `DbContext` 实例

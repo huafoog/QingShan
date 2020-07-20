@@ -23,7 +23,7 @@ namespace QS.Core.Web.Permission
             var data  = functionService.Pickup();
             var datas = functionService.PickupFunctions();
 
-            return app;
+            return app ;
         }
     }
 }

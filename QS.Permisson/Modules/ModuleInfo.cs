@@ -38,6 +38,15 @@ namespace QS.Permission.Modules
         /// 模块类型
         /// </summary>
         public ModuleType ModuleType { get; set; }
+
+        public string CodePath
+        {
+            get
+            {
+                var position = string.IsNullOrEmpty(Position) ? "" : Position + ".";
+                return $"{position}{Code}";
+            }
+        }
     }
 
     public enum ModuleType

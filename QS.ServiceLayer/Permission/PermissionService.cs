@@ -65,7 +65,7 @@ namespace QS.ServiceLayer.Permission
             var permissions = await (from p in permission
                                      join rp in rolePermission on p.Id equals rp.PermissionId
                                      join ur in userRole on rp.RoleId equals ur.RoleId
-                                     where ur.UserId == _user.Id && new[] { PermissionType.Api, PermissionType.Dot }.Contains(p.Type)
+                                     where ur.UserId == _user.Id && new[] { PermissionType.Dot }.Contains(p.Type)
                                      select p.Code).ToListAsync();
             var data = new { user, menus, permissions };
             return new StatusResult<object>(data);

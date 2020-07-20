@@ -96,7 +96,6 @@ namespace QS.ServiceLayer.User
             var userPermissoins = await (from rp in _context.RolePermissions
                                          join ur in _context.UserRole on rp.RoleId equals ur.RoleId
                                          join p in _context.Permissions on rp.PermissionId equals p.Id
-                                         where p.Type == PermissionType.Api
                                          select p.Code).ToListAsync();
             return userPermissoins;
         }

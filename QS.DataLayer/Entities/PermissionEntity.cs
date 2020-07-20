@@ -52,12 +52,8 @@ namespace QS.DataLayer.Entities
         /// </summary>
         Menu = 2,
         /// <summary>
-        /// 接口
-        /// </summary>
-        Api = 3,
-        /// <summary>
         /// 权限点
         /// </summary>
-        Dot = 4
+        Dot = 3
     }
 }
