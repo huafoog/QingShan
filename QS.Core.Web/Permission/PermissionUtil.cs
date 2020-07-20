@@ -18,12 +18,14 @@ namespace QS.Core.Web.Permission
 
     public static class Permission
     {
-        public static IApplicationBuilder UsePermission(this IApplicationBuilder app, IFunctionService functionService)
+        /// <summary>
+        /// 使用权限收集
+        /// </summary>
+        /// <param name="app"></param>
+        /// <returns></returns>
+        public static IApplicationBuilder UsePermission(this IApplicationBuilder app)
         {
-            var data  = functionService.Pickup();
-            var datas = functionService.PickupFunctions();
-
-            return app ;
+            return app.UseMiddleware<PermissionMiddleware>();
         }
     }
 }

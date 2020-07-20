@@ -34,13 +34,34 @@ namespace QS.Core.Data.Modules
         /// </summary>
         public string PositionName { get; set; }
 
-        ///// <summary>
-        ///// 获取或设置 依赖功能
-        ///// </summary>
-        //public IFunction[] DependOnFunctions { get; set; } = new IFunction[0];
-        //private string ToDebugDisplay()
-        //{
-        //    return $"{Name}[{Code}]({Position}),FunctionCount:{DependOnFunctions.Length}";
-        //}
+        /// <summary>
+        /// 模块类型
+        /// </summary>
+        public ModuleType ModuleType { get; set; }
+
+        public string CodePath
+        {
+            get
+            {
+                var position = string.IsNullOrEmpty(Position) ? "" : Position + ".";
+                return $"{position}{Code}";
+            }
+        }
+    }
+
+    public enum ModuleType
+    {
+        /// <summary>
+        /// 模块
+        /// </summary>
+        Module,
+        /// <summary>
+        /// 菜单
+        /// </summary>
+        Menu,
+        /// <summary>
+        /// 权限点
+        /// </summary>
+        Dot,
     }
 }

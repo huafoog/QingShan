@@ -1,5 +1,5 @@
-﻿using QS.DataLayer.Entities;
-using QS.Permission.Modules;
+﻿using QS.Core.Data.Modules;
+using QS.DataLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -13,3 +13,39 @@
 2020-07-20 15:51:32,041 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
 2020-07-20 15:51:32,096 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
 2020-07-20 15:51:32,097 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core.Web
+2020-07-20 17:24:23,251 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-20 17:24:23,287 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-20 17:24:23,287 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core.Web
+2020-07-20 17:24:23,996 [4] ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware [(null)] - An unhandled exception has occurred while executing the request.
+System.ArgumentOutOfRangeException: Length cannot be less than zero. (Parameter 'length')
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at QS.ServiceLayer.Permission.PermissionService.UpdatePermissionAsync(ModuleInfo[] moduleInfos) in C:\Users\QS\source\repos\QS.Core\QS.ServiceLayer\Permission\PermissionService.cs:line 105
+   at QS.Core.Web.Permission.PermissionMiddleware.Invoke(HttpContext httpContext) in C:\Users\QS\source\repos\QS.Core\QS.Core.Web\Permission\PermissionMiddleware.cs:line 33
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-07-20 17:24:24,376 [10] ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware [(null)] - An unhandled exception has occurred while executing the request.
+System.ArgumentOutOfRangeException: Length cannot be less than zero. (Parameter 'length')
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at QS.ServiceLayer.Permission.PermissionService.UpdatePermissionAsync(ModuleInfo[] moduleInfos) in C:\Users\QS\source\repos\QS.Core\QS.ServiceLayer\Permission\PermissionService.cs:line 105
+   at QS.Core.Web.Permission.PermissionMiddleware.Invoke(HttpContext httpContext) in C:\Users\QS\source\repos\QS.Core\QS.Core.Web\Permission\PermissionMiddleware.cs:line 33
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-07-20 17:24:45,394 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-20 17:24:45,423 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-20 17:24:45,424 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core.Web
+2020-07-20 17:24:45,883 [7] ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware [(null)] - An unhandled exception has occurred while executing the request.
+System.ArgumentOutOfRangeException: Length cannot be less than zero. (Parameter 'length')
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at QS.ServiceLayer.Permission.PermissionService.UpdatePermissionAsync(ModuleInfo[] moduleInfos) in C:\Users\QS\source\repos\QS.Core\QS.ServiceLayer\Permission\PermissionService.cs:line 105
+   at QS.Core.Web.Permission.PermissionMiddleware.Invoke(HttpContext httpContext) in C:\Users\QS\source\repos\QS.Core\QS.Core.Web\Permission\PermissionMiddleware.cs:line 33
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-07-20 17:24:46,264 [10] ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware [(null)] - An unhandled exception has occurred while executing the request.
+System.ArgumentOutOfRangeException: Length cannot be less than zero. (Parameter 'length')
+   at System.String.Substring(Int32 startIndex, Int32 length)
+   at QS.ServiceLayer.Permission.PermissionService.UpdatePermissionAsync(ModuleInfo[] moduleInfos) in C:\Users\QS\source\repos\QS.Core\QS.ServiceLayer\Permission\PermissionService.cs:line 105
+   at QS.Core.Web.Permission.PermissionMiddleware.Invoke(HttpContext httpContext) in C:\Users\QS\source\repos\QS.Core\QS.Core.Web\Permission\PermissionMiddleware.cs:line 33
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-07-20 17:25:28,346 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-20 17:25:28,376 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-20 17:25:28,379 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core.Web
+2020-07-20 17:26:35,225 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-20 17:26:35,266 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-20 17:26:35,270 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: C:\Users\QS\source\repos\QS.Core\QS.Core.Web

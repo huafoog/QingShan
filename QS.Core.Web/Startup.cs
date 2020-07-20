@@ -200,7 +200,11 @@ namespace QS.Core.Web
            
             app.UseCors();
             app.UseHttpsRedirection();
-            app.UsePermission(functionService);
+            app.UsePermission();
+
+
+
+
             app.UseRouting();
             //ÃÌº”jwt—È÷§
             app.UseAuthentication();

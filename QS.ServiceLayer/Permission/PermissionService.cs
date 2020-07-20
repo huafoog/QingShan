@@ -71,6 +71,93 @@ namespace QS.ServiceLayer.Permission
             return new StatusResult<object>(data);
         }
 
+        /// <summary>
+        /// 更新权限信息
+        /// </summary>
+        /// <param name="moduleInfos">权限信息</param>
+        /// <returns></returns>
+        public async Task UpdatePermissionAsync(ModuleInfo[] moduleInfos)
+        {
+            //_context.Functions.AddRange(function);
+
+            ////删除数据库中多余的模块
+            Module[] modules = _context.Modules.ToArray();
+            var positionModules = modules.Select(m => new { m.Id, Position = GeModulePosition(modules, m) })
+                .OrderByDescending(m => m.Position.Length).ToArray();
+            string[] deletePositions = positionModules.Select(m => m.Position)
+                .Except(moduleInfos.Select(n => $"{n.Position}.{n.Code}"))
+                .Except(new[] { "Root" })
+                .ToArray();
+            int[] deleteModuleIds = positionModules.Where(m => deletePositions.Contains(m.Position)).Select(m => m.Id).ToArray();
+            foreach (int id in deleteModuleIds)
+            {
+                await _context.Modules.Where(o => o.Id == id).BatchDeleteAsync();
+            }
+
+            ////新增或更新传入的模块
+            foreach (ModuleInfo info in moduleInfos)
+            {
+                Module parent = GeModule(info.Position);
+                //插入父级分类
+                if (parent == null)
+                {
+                    int lastIndex = info.Position.LastIndexOf('.');
+                    string parent1Position = info.Position;
+                    Module parent1 = GeModule(parent1Position);
+                    if (parent1 == null)
+                    {
+                        throw new Exception($"路径为“{parent1Position}”的模块信息无法找到");
+                    }
+                    string parentCode = info.Position.Substring(lastIndex + 1, info.Position.Length - lastIndex - 1);
+                    ModuleInfo parentInfo = new ModuleInfo() { Code = parentCode, Name = info.PositionName ?? parentCode, Position = parent1Position };
+                    Module dto = GetDto(parentInfo, parent1, null);
+                    await _context.AddAsync(dto);
+                    parent = _context.Modules.First(m => m.ParentId.Equals(parent1.Id) && m.Code == parentCode);
+                }
+                Module module = _context.Modules.FirstOrDefault(m => m.ParentId.Equals(parent.Id) && m.Code == info.Code);
+                //新建模块
+                if (module == null)
+                {
+                    Module dto = GetDto(info, parent, null);
+                    await _context.Modules.AddAsync(dto);
+                    module = _context.Modules.First(m => m.ParentId.Equals(parent.Id) && m.Code == info.Code);
+                }
+                else //更新模块
+                {
+                    Module dto = GetDto(info, parent, module);
+                    _context.Update(dto);
+                }
+                //if (info.DependOnFunctions.Length > 0)
+                //{
+                //    Guid[] functionIds = info.DependOnFunctions.Select(m => m.Id).ToArray();
+                //    OperationResult result = moduleFunctionStore.SeModuleFunctions(module.Id, functionIds).GetAwaiter().GetResult();
+                //    if (result.Error)
+                //    {
+                //        throw new OsharpException(result.Message);
+                //    }
+                //}
+            }
+            _context.SaveChanges();
+        }
+
+        private static Module GetDto(ModuleInfo info, Module parent, Module existsModule)
+        {
+            return new Module()
+            {
+                Id = existsModule?.Id ?? default(int),
+                Name = info.Name,
+                Code = info.Code,
+                OrderCode = info.Order,
+                Remark = $"{parent.Name}-{info.Name}",
+                ParentId = parent.Id
+            };
+        }
+
+        private static string GeModulePosition(Module[] source, Module module)
+        {
+            string[] codes = module.TreePathIds.Select(id => source.First(n => n.Id.Equals(id)).Code).ToArray();
+            return codes.ExpandAndToString(".");
+        }
         #region 待考虑
         /// <summary>
         /// 将从程序集获取的功能信息同步到数据库中
@@ -151,8 +238,8 @@ namespace QS.ServiceLayer.Permission
         /// 重写以实现将提取到的模块信息同步到数据库中
         /// </summary>
         /// <param name="moduleInfos">从程序集中提取到的模块信息</param>
-        protected virtual void SyncToDatabase(ModuleInfo[] moduleInfos)
-        {
+        //protected virtual void SyncToDatabase(ModuleInfo[] moduleInfos)
+        //{
             //if (moduleInfos.Length == 0)
             //{
             //    return;
@@ -217,7 +304,7 @@ namespace QS.ServiceLayer.Permission
             //    //}
             //}
             //_context.SaveChanges();
-        }
+        //}
 
         private readonly IDictionary<string, Module> _positionDictionary = new Dictionary<string, Module>();
         private Module GeModule(string position)

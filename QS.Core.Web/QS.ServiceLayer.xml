@@ -68,6 +68,13 @@
             权限服务
             </summary>
         </member>
+        <member name="M:QS.ServiceLayer.Permission.IPermissionService.UpdatePermissionAsync(QS.Core.Data.Modules.ModuleInfo[])">
+            <summary>
+            修改权限信息
+            </summary>
+            <param name="moduleInfos"></param>
+            <returns></returns>
+        </member>
         <member name="T:QS.ServiceLayer.Permission.PermissionService">
             <summary>
             权限服务实现
@@ -79,13 +86,20 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:QS.ServiceLayer.Permission.PermissionService.UpdatePermissionAsync(QS.Core.Data.Modules.ModuleInfo[])">
+            <summary>
+            更新权限信息
+            </summary>
+            <param name="moduleInfos">权限信息</param>
+            <returns></returns>
+        </member>
         <member name="M:QS.ServiceLayer.Permission.PermissionService.SyncToDatabase(QS.DataLayer.Entities.FunctionEntity[])">
             <summary>
             将从程序集获取的功能信息同步到数据库中
             </summary>
             <param name="functions">程序集获取的功能信息</param>
         </member>
-        <member name="M:QS.ServiceLayer.Permission.PermissionService.SyncToDatabase(QS.Core.Data.Modules.ModuleInfo[])">
+        <member name="F:QS.ServiceLayer.Permission.PermissionService._positionDictionary">
             <summary>
             重写以实现将提取到的模块信息同步到数据库中
             </summary>
