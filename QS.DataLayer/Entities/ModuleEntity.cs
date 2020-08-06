@@ -1,5 +1,6 @@
 ﻿using QS.Core.Entity;
 using QS.Core.Extensions;
+using QS.Core.Permission.Authorization.Modules;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +11,10 @@ using System.Text;
 
 namespace QS.DataLayer.Entities
 {
-    public class Module:EntityBaseById<int>
+    /// <summary>
+    /// 模型实体
+    /// </summary>
+    public class ModuleEntity:EntityBaseById<int>, IDataState
     {
         /// <summary>
         /// 获取或设置 模块名称
@@ -38,28 +42,21 @@ namespace QS.DataLayer.Entities
         public double OrderCode { get; set; }
 
         /// <summary>
-        /// 获取或设置 父节点树形路径，父级树链Id根据一定格式构建的字符串，形如："$1$,$3$,$4$,$7$"，编辑时更新
+        /// 获取或设置 权限路径 形如："code.code.code"，
         /// </summary>
-        [DisplayName("父节点树形路径")]
-        public string TreePathString { get; set; }
-
-        /// <summary>
-        /// 获取 从根结点到当前结点的树形路径编号数组，由<see cref="TreePathString"/>属性转换，此属性仅支持在内存中使用
-        /// </summary>
-        [NotMapped]
-        public int[] TreePathIds
-        {
-            get
-            {
-                return TreePathString?.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                    .Select(m => m.Trim('$').CastTo<int>()).ToArray() ?? new int[0];
-            }
-        }
+        [DisplayName("权限路径")]
+        public string CodePath { get; set; }
 
         /// <summary>
         /// 获取或设置 父模块编号
         /// </summary>
         [DisplayName("父模块编号")]
         public int? ParentId { get; set; }
+        public DataState DataState { get; set; }
+
+        /// <summary>
+        /// 模块类型 模块类型可能为模块、菜单、权限点
+        /// </summary>
+        public ModuleType ModuleType { get; set; }
     }
 }

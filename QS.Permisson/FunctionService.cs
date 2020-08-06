@@ -11,9 +11,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QS.Core.Attributes;
 using QS.Core.Data.Enums;
-using QS.Core.Data.Modules;
 using QS.Core.Dependency;
 using QS.Core.Extensions;
+using QS.Core.Permission.Authorization.Functions;
+using QS.Core.Permission.Authorization.Modules;
 using QS.Core.Reflection;
 using QS.DataLayer.Entities;
 using QS.ServiceLayer.Permission;
@@ -32,7 +33,7 @@ namespace QS.Permission
     /// </summary>
     public class FunctionService:IFunctionService,IScopeDependency
     {
-        private readonly List<FunctionEntity> _functions = new List<FunctionEntity>();
+        private readonly List<IFunction> _functions = new List<IFunction>();
 
         private readonly IPermissionService _permissionService;
         private readonly IAssemblyFinder _assemblyFinder;
@@ -45,13 +46,14 @@ namespace QS.Permission
             _methods = _assemblyFinder.Find(o => o.FullName.Contains("QS.Core.Web")).FirstOrDefault()
                     .GetTypes().SelectMany(m => m.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly))
                     .Where(type => type.HasAttribute<ModuleInfoAttribute>()).ToArray();
+            _functions = PickupFunctions().ToList();
         }
 
         #region 方法
-        public FunctionEntity[] PickupFunctions()
+        public IFunction[] PickupFunctions()
         {
             var types = _assemblyFinder.Find(o => o.FullName.Contains("QS.Core.Web")).FirstOrDefault()
-                    .GetTypes().Where(m => m.HasAttribute<ControllerAttribute>() && m.HasAttribute<ModuleInfoAttribute>()).ToArray();
+                    .GetTypes().Where(m => m.HasAttribute<ControllerAttribute>()).ToArray();
             return GetFunctions(types);
         }
 
@@ -60,12 +62,12 @@ namespace QS.Permission
         /// </summary>
         /// <param name="functionTypes">功能类型集合</param>
         /// <returns></returns>
-        protected FunctionEntity[] GetFunctions(Type[] functionTypes)
+        protected IFunction[] GetFunctions(Type[] functionTypes)
         {
-            List<FunctionEntity> functions = new List<FunctionEntity>();
+            List<IFunction> functions = new List<IFunction>();
             foreach (Type type in functionTypes.OrderBy(m => m.FullName))
             {
-                FunctionEntity controller = GetFunction(type);
+                IFunction controller = GetFunction(type);
                 if (controller == null || type.HasAttribute<NonFunctionAttribute>())
                 {
                     continue;
@@ -86,7 +88,7 @@ namespace QS.Permission
 
                 foreach (MethodInfo method in methods)
                 {
-                    FunctionEntity action = GetFunction(controller, method);
+                    IFunction action = GetFunction(controller, method);
                     if (action == null)
                     {
                         continue;
@@ -113,7 +115,7 @@ namespace QS.Permission
         /// </summary>
         /// <param name="controllerType">功能类型</param>
         /// <returns></returns>
-        protected FunctionEntity GetFunction(Type controllerType)
+        protected IFunction GetFunction(Type controllerType)
         {
             if (!controllerType.IsController())
             {
@@ -122,7 +124,7 @@ namespace QS.Permission
             FunctionAccessType accessType = controllerType.HasAttribute<LoggedInAttribute>()
                 ? FunctionAccessType.LoggedIn
                 : FunctionAccessType.RoleLimit;
-            FunctionEntity function = new FunctionEntity()
+            IFunction function = new FunctionEntity()
             {
                 Name = controllerType.GetDescription(),
                 Area = GetArea(controllerType),
@@ -132,6 +134,23 @@ namespace QS.Permission
             };
             return function;
         }
+        /// <summary>
+        /// 功能信息查找
+        /// </summary>
+        /// <param name="functions">功能信息集合</param>
+        /// <param name="area">区域名称</param>
+        /// <param name="controller">类型名称</param>
+        /// <param name="action">方法名称</param>
+        /// <param name="name">功能名称</param>
+        /// <returns></returns>
+        protected IFunction GetFunction(string area, string controller, string action, string name)
+        {
+            return _functions.FirstOrDefault(m =>
+                string.Equals(m.Area, area, StringComparison.OrdinalIgnoreCase)
+                && string.Equals(m.Controller, controller, StringComparison.OrdinalIgnoreCase)
+                && string.Equals(m.Action, action, StringComparison.OrdinalIgnoreCase)
+                && string.Equals(m.Name, name, StringComparison.OrdinalIgnoreCase));
+        }
 
         /// <summary>
         /// 实现从方法信息中创建功能信息
@@ -139,12 +158,12 @@ namespace QS.Permission
         /// <param name="typeFunction">类功能信息</param>
         /// <param name="method">方法信息</param>
         /// <returns></returns>
-        protected FunctionEntity GetFunction(FunctionEntity typeFunction, MethodInfo method)
+        protected IFunction GetFunction(IFunction typeFunction, MethodInfo method)
         {
             FunctionAccessType accessType = method.HasAttribute<LoggedInAttribute>()
                 ? FunctionAccessType.LoggedIn
                 : FunctionAccessType.RoleLimit;
-            FunctionEntity function = new FunctionEntity()
+            IFunction function = new FunctionEntity()
             {
                 Name = $"{typeFunction.Name}-{method.GetDescription()}",
                 Area = typeFunction.Area,
@@ -164,32 +183,31 @@ namespace QS.Permission
         /// <param name="method">功能相关的方法信息</param>
         /// <param name="functions">已存在的功能信息集合</param>
         /// <returns></returns>
-        protected bool IsIgnoreMethod(FunctionEntity action, MethodInfo method, IEnumerable<FunctionEntity> functions)
+        protected bool IsIgnoreMethod(IFunction action, MethodInfo method, IEnumerable<IFunction> functions)
         {
             if (method.HasAttribute<NonActionAttribute>() || method.HasAttribute<NonFunctionAttribute>())
             {
                 return true;
             }
 
-            FunctionEntity existing = GetFunction(functions, action.Area, action.Controller, action.Action, action.Name);
+            IFunction existing = GetFunction(action.Area, action.Controller, action.Action, action.Name);
             return existing != null && method.HasAttribute<HttpPostAttribute>();
         }
+       
+
         /// <summary>
-        /// 重写以实现功能信息查找
+        /// 查找指定条件的功能信息
         /// </summary>
-        /// <param name="functions">功能信息集合</param>
-        /// <param name="area">区域名称</param>
-        /// <param name="controller">类型名称</param>
-        /// <param name="action">方法名称</param>
-        /// <param name="name">功能名称</param>
-        /// <returns></returns>
-        protected FunctionEntity GetFunction(IEnumerable<FunctionEntity> functions, string area, string controller, string action, string name)
+        /// <param name="area">区域</param>
+        /// <param name="controller">控制器</param>
+        /// <param name="action">功能方法</param>
+        /// <returns>功能信息</returns>
+        public IFunction GetFunction(string area, string controller, string action)
         {
-            return functions.FirstOrDefault(m =>
+            return _functions.FirstOrDefault(m =>
                 string.Equals(m.Area, area, StringComparison.OrdinalIgnoreCase)
                 && string.Equals(m.Controller, controller, StringComparison.OrdinalIgnoreCase)
-                && string.Equals(m.Action, action, StringComparison.OrdinalIgnoreCase)
-                && string.Equals(m.Name, name, StringComparison.OrdinalIgnoreCase));
+                && string.Equals(m.Action, action, StringComparison.OrdinalIgnoreCase));
         }
         /// <summary>
         /// 从类型中获取功能的区域信息
@@ -206,7 +224,7 @@ namespace QS.Permission
         /// <param name="functions">已提取功能信息集合</param>
         /// <param name="function">要判断的功能信息</param>
         /// <returns></returns>
-        protected bool HasPickup(List<FunctionEntity> functions, FunctionEntity function)
+        protected bool HasPickup(List<IFunction> functions, IFunction function)
         {
             return functions.Any(m =>
                 string.Equals(m.Area, function.Area, StringComparison.OrdinalIgnoreCase)
@@ -232,6 +250,18 @@ namespace QS.Permission
         public ModuleInfo[] GetModules(Type[] moduleTypes)
         {
             List<ModuleInfo> infos = new List<ModuleInfo>();
+            //if (moduleTypes != null && moduleTypes.Length > 0)
+            //{
+            //    string infoAttr = moduleTypes.FirstOrDefault().GetAttribute<AreaAttribute>()?.RouteValue;
+            //    ModuleInfo info = new ModuleInfo()
+            //    {
+            //        Name = infoAttr,
+            //        Code = infoAttr,
+            //        Order = 1,
+            //        ModuleType = ModuleType.Module
+            //    };
+            //    infos.AddIfNotExist(info);
+            //}
             foreach (Type moduleType in moduleTypes)
             {
                 string[] existPaths = infos.Select(m => $"{m.Position}.{m.Code}").ToArray();
@@ -297,31 +327,30 @@ namespace QS.Permission
                 }
             }
             //获取区域模块
-            //string area, name;
-            //AreaInfoAttribute areaInfo = type.GetAttribute<AreaInfoAttribute>();
-            //if (areaInfo != null)
-            //{
-            //    area = areaInfo.RouteValue;
-            //    name = areaInfo.Display ?? area;
-            //}
-            //else
-            //{
-            //    AreaAttribute areaAttr = type.GetAttribute<AreaAttribute>();
-            //    area = areaAttr?.RouteValue ?? "Site";
-            //    DisplayNameAttribute display = type.GetAttribute<DisplayNameAttribute>();
-            //    name = display?.DisplayName ?? area;
-            //}
-            //info = new ModuleInfo()
-            //{
-            //    Name = name,
-            //    Code = area,
-            //    Position = "Root",
-            //    PositionName = name
-            //};
-            //if (!existPaths.Contains($"{info.Position}.{info.Code}"))
-            //{
-            //    infos.Insert(0, info);
-            //}
+            string area, name;
+            AreaInfoAttribute areaInfo = type.GetAttribute<AreaInfoAttribute>();
+            if (areaInfo != null)
+            {
+                area = areaInfo.RouteValue;
+                name = areaInfo.Display ?? area;
+            }
+            else
+            {
+                AreaAttribute areaAttr = type.GetAttribute<AreaAttribute>();
+                area = areaAttr?.RouteValue ?? "Site";
+                DisplayNameAttribute display = type.GetAttribute<DisplayNameAttribute>();
+                name = display?.DisplayName ?? area;
+            }
+            info = new ModuleInfo()
+            {
+                Name = name,
+                Code = area,
+                Position = "",
+            };
+            if (!existPaths.Contains($"{info.Position}.{info.Code}"))
+            {
+                infos.Insert(0, info);
+            }
 
             return infos.ToArray();
         }
@@ -349,6 +378,13 @@ namespace QS.Permission
             };
             string controller = method.DeclaringType?.Name.Replace("ControllerBase", string.Empty).Replace("Controller", string.Empty);
             info.Position = $"{typeInfo.Position}.{controller}";
+            //依赖的功能
+            string area = method.DeclaringType.GetAttribute<AreaAttribute>()?.RouteValue;
+            List<IFunction> dependOnFunctions = new List<IFunction>()
+            {
+                GetFunction(area, controller, method.Name)
+            };
+            info.DependOnFunctions = dependOnFunctions.ToArray();
             return info;
         }
 

@@ -122,7 +122,34 @@ namespace QS.Core.Extensions
             }
             return false;
         }
-
+        /// <summary>
+        /// 判断当前类型的对象能分配于指定泛型类型
+        /// </summary>
+        /// <param name="givenType">给定类型</param>
+        /// <param name="genericType">泛型类型</param>
+        /// <returns></returns>
+        public static bool IsAssignableToGenericType(this Type givenType, Type genericType)
+        {
+            if (!genericType.IsGenericType)
+            {
+                return false;
+            }
+            var interfaceTypes = givenType.GetInterfaces();
+            if (interfaceTypes.Any(interfaceType => interfaceType.IsGenericType && interfaceType.GetGenericTypeDefinition() == genericType))
+            {
+                return true;
+            }
+            if (givenType.IsGenericType && givenType.GetGenericTypeDefinition() == genericType)
+            {
+                return true;
+            }
+            Type baseType = givenType.BaseType;
+            if (baseType == null)
+            {
+                return false;
+            }
+            return IsAssignableToGenericType(baseType, genericType);
+        }
         /// <summary>
         /// 获取实现类型的所有可注册服务接口
         /// </summary>

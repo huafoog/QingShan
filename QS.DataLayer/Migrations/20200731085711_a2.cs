@@ -3,57 +3,46 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QS.DataLayer.Migrations
 {
-    public partial class create : Migration
+    public partial class a2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Apis",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreateTime = table.Column<DateTime>(nullable: false),
-                    DataState = table.Column<int>(nullable: false),
-                    ParentId = table.Column<long>(nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    Label = table.Column<string>(type: "nvarchar(500)", nullable: true),
-                    Path = table.Column<string>(type: "nvarchar(500)", nullable: true),
-                    HttpMethods = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(500)", nullable: true),
-                    Sort = table.Column<int>(nullable: false),
-                    Enabled = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Apis", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Functions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreateTime = table.Column<DateTime>(nullable: false),
-                    DataState = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    Area = table.Column<string>(nullable: true),
-                    Controller = table.Column<string>(nullable: true),
-                    Action = table.Column<string>(nullable: true),
+                    Id = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    Area = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    Controller = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    Action = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    FunctionCode = table.Column<string>(nullable: true),
                     IsController = table.Column<bool>(nullable: false),
                     IsAjax = table.Column<bool>(nullable: false),
+                    Icon = table.Column<string>(type: "nvarchar(100)", nullable: true),
                     AccessType = table.Column<int>(nullable: false),
-                    IsAccessTypeChanged = table.Column<bool>(nullable: false),
-                    AuditOperationEnabled = table.Column<bool>(nullable: false),
-                    AuditEntityEnabled = table.Column<bool>(nullable: false),
-                    CacheExpirationSeconds = table.Column<int>(nullable: false),
-                    IsCacheSliding = table.Column<bool>(nullable: false),
-                    IsLocked = table.Column<bool>(nullable: false)
+                    IsLocked = table.Column<bool>(nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    DataState = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Functions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ModuleFunction",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    CreateTime = table.Column<DateTime>(nullable: false),
+                    DataState = table.Column<int>(nullable: false),
+                    ModuleId = table.Column<int>(nullable: false),
+                    FunctionId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ModuleFunction", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -66,42 +55,14 @@ namespace QS.DataLayer.Migrations
                     Remark = table.Column<string>(nullable: true),
                     Code = table.Column<string>(nullable: false),
                     OrderCode = table.Column<double>(nullable: false),
-                    TreePathString = table.Column<string>(nullable: true),
-                    ParentId = table.Column<int>(nullable: true)
+                    CodePath = table.Column<string>(nullable: true),
+                    ParentId = table.Column<int>(nullable: true),
+                    DataState = table.Column<int>(nullable: false),
+                    ModuleType = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Modules", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Permissions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreateTime = table.Column<DateTime>(nullable: false),
-                    DataState = table.Column<int>(nullable: false),
-                    ParentId = table.Column<long>(nullable: false),
-                    Label = table.Column<string>(type: "nvarchar(50)", nullable: true),
-                    Code = table.Column<string>(type: "nvarchar(500)", nullable: true),
-                    Type = table.Column<int>(nullable: false),
-                    ViewId = table.Column<long>(nullable: true),
-                    ApiId = table.Column<long>(nullable: true),
-                    Path = table.Column<string>(type: "nvarchar(500)", nullable: true),
-                    Icon = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    Hidden = table.Column<bool>(nullable: false),
-                    Enabled = table.Column<bool>(nullable: false),
-                    Closable = table.Column<bool>(nullable: true),
-                    Opened = table.Column<bool>(nullable: true),
-                    NewWindow = table.Column<bool>(nullable: true),
-                    External = table.Column<bool>(nullable: true),
-                    Sort = table.Column<int>(nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(100)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Permissions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -163,8 +124,8 @@ namespace QS.DataLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreateTime = table.Column<DateTime>(nullable: false),
                     DataState = table.Column<int>(nullable: false),
-                    UserId = table.Column<long>(nullable: false),
-                    RoleId = table.Column<long>(nullable: false)
+                    UserId = table.Column<int>(nullable: false),
+                    RoleId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -199,16 +160,13 @@ namespace QS.DataLayer.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Apis");
-
-            migrationBuilder.DropTable(
                 name: "Functions");
 
             migrationBuilder.DropTable(
-                name: "Modules");
+                name: "ModuleFunction");
 
             migrationBuilder.DropTable(
-                name: "Permissions");
+                name: "Modules");
 
             migrationBuilder.DropTable(
                 name: "Products");

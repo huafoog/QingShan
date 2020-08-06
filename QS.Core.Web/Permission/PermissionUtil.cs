@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Extensions;
-using QS.Permission;
 using QS.ServiceLayer.Permission;
 using QS.ServiceLayer.Permission.Dto;
 using QS.ServiceLayer.ProductService;

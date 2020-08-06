@@ -19,89 +19,37 @@ namespace QS.DataLayer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("QS.DataLayer.Entities.ApiEntity", b =>
+            modelBuilder.Entity("QS.DataLayer.Entities.FunctionEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DataState")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<bool>("Enabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("HttpMethods")
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Label")
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<long>("ParentId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Path")
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<int>("Sort")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Apis");
-                });
-
-            modelBuilder.Entity("QS.DataLayer.Entities.Function", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("AccessType")
                         .HasColumnType("int");
 
                     b.Property<string>("Action")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Area")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("AuditEntityEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("AuditOperationEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("CacheExpirationSeconds")
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Controller")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreateTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("DataState")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsAccessTypeChanged")
-                        .HasColumnType("bit");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("FunctionCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Icon")
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<bool>("IsAjax")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsCacheSliding")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsController")
@@ -111,14 +59,14 @@ namespace QS.DataLayer.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Functions");
                 });
 
-            modelBuilder.Entity("QS.DataLayer.Entities.Module", b =>
+            modelBuilder.Entity("QS.DataLayer.Entities.ModuleEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -128,6 +76,15 @@ namespace QS.DataLayer.Migrations
                     b.Property<string>("Code")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CodePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DataState")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ModuleType")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -142,29 +99,16 @@ namespace QS.DataLayer.Migrations
                     b.Property<string>("Remark")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TreePathString")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Modules");
                 });
 
-            modelBuilder.Entity("QS.DataLayer.Entities.PermissionEntity", b =>
+            modelBuilder.Entity("QS.DataLayer.Entities.ModuleFunctionEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<long?>("ApiId")
-                        .HasColumnType("bigint");
-
-                    b.Property<bool?>("Closable")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Code")
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
@@ -172,48 +116,15 @@ namespace QS.DataLayer.Migrations
                     b.Property<int>("DataState")
                         .HasColumnType("int");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<Guid>("FunctionId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("Enabled")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("External")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Hidden")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Icon")
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Label")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<bool?>("NewWindow")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("Opened")
-                        .HasColumnType("bit");
-
-                    b.Property<long>("ParentId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Path")
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<int?>("Sort")
+                    b.Property<int>("ModuleId")
                         .HasColumnType("int");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.Property<long?>("ViewId")
-                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Permissions");
+                    b.ToTable("ModuleFunction");
                 });
 
             modelBuilder.Entity("QS.DataLayer.Entities.Product", b =>
@@ -358,11 +269,11 @@ namespace QS.DataLayer.Migrations
                     b.Property<int>("DataState")
                         .HasColumnType("int");
 
-                    b.Property<long>("RoleId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

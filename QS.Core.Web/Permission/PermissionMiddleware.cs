@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using QS.Permission;
 using QS.ServiceLayer.Permission;
 using System;
 using System.Collections.Generic;
@@ -24,13 +23,13 @@ namespace QS.Core.Web.Permission
         // IMyScopedService is injected into Invoke
         public async Task Invoke(HttpContext httpContext)
         {
-            var functionService = httpContext.RequestServices.GetService<IFunctionService>();
-            var permissionService = httpContext.RequestServices.GetService<IPermissionService>();
+            //var functionService = httpContext.RequestServices.GetService<IFunctionService>();
+            //var permissionService = httpContext.RequestServices.GetService<IPermissionService>();
 
 
-            var moduleInfos = functionService.Pickup();
-            var functions = functionService.PickupFunctions();
-            await permissionService.UpdatePermissionAsync(moduleInfos);
+            //var functions = functionService.PickupFunctions();
+            //var moduleInfos = functionService.Pickup();
+            //await permissionService.UpdatePermissionAsync(moduleInfos);
             await _next(httpContext);
         }
     }

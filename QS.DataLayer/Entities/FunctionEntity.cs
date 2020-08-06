@@ -1,5 +1,6 @@
 ﻿using QS.Core.Data.Enums;
 using QS.Core.Entity;
+using QS.Core.Permission.Authorization.Functions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,9 +11,11 @@ namespace QS.DataLayer.Entities
 {
     /// <summary>
     /// 功能信息
+    /// <para>这里主键使用Guid</para>
     /// </summary>
-    public class FunctionEntity:EntityBase<Guid>
+    public class FunctionEntity:IFunction,IDataState
     {
+
         public FunctionEntity()
         {
             Id = Guid.NewGuid();
@@ -87,5 +90,7 @@ namespace QS.DataLayer.Entities
         /// </summary>
         [Column(TypeName = "nvarchar(100)")]
         public string Description { get; set; }
+        public Guid Id { get; set; }
+        public DataState DataState { get; set; }
     }
 }

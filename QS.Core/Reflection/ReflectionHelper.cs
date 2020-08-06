@@ -49,7 +49,7 @@ namespace QS.Core.Reflection
         /// 获取所有的程序集
         /// </summary>
         /// <returns>程序集集合</returns>
-        private static List<Assembly> GetAllAssemblies()
+        public static List<Assembly> GetAllAssemblies()
         {
             var list = new List<Assembly>();
             var deps = DependencyContext.Default;

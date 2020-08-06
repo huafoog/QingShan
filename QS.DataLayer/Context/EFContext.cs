@@ -28,9 +28,7 @@ namespace QS.DataLayer.Entities
         public DbSet<Product> Products { get; set; }
         public DbSet<FunctionEntity> Functions { get; set; }
 
-        public DbSet<Module> Modules { get; set; }
-
-        public DbSet<PermissionEntity> Permissions { get; set; }
+        public DbSet<ModuleEntity> Modules { get; set; }
 
         public DbSet<RolePermissionEntity> RolePermissions { get; set; }
 
@@ -39,9 +37,12 @@ namespace QS.DataLayer.Entities
         /// </summary>
         public DbSet<UserRoleEntity> UserRole { get; set; }
 
-        public DbSet<ApiEntity> Apis { get; set; }
-
         public DbSet<RoleEntity> Roles { get; set; }
+
+        /// <summary>
+        /// 功能权限
+        /// </summary>
+        public DbSet<ModuleFunctionEntity> ModuleFunction { get; set; }
 
 
         /// <summary>

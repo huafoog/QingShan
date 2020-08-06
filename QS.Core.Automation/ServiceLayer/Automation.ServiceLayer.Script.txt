@@ -1,0 +1,7 @@
+﻿//hostspecific 默认为false 将hostspecific设置为true才能使用Host.TemplateFile
+//加载依赖
+
+//导入命名空间
+
+
+

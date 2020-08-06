@@ -1,29 +1,31 @@
 ﻿//hostspecific 默认为false 将hostspecific设置为true才能使用Host.TemplateFile
 <#@ template debug="true" hostspecific="true" language="C#" #>
-<#@ output extension="cs" #>
-
-<#@ assembly name="System.dll" #>
-<#@ assembly name="System.Core.dll" #>
-//加载依赖
+<#@ output extension=".txt" #>
+<#@ assembly name="System"#>
+<#@ assembly name="System.Linq"#>
+<#@ assembly name="System.Runtime"#>
 <#@ Assembly Name="$(SolutionDir)\QS.Core.Web\bin\Debug\netcoreapp3.1\QS.Core.dll" #>
 <#@ Assembly Name="$(SolutionDir)\QS.Core.Web\bin\Debug\netcoreapp3.1\QS.ServiceLayer.dll" #>
 <#@ Assembly Name="$(SolutionDir)\QS.Core.Web\bin\Debug\netcoreapp3.1\QS.DataLayer.dll" #>
-//导入命名空间
-
+<#@ Assembly Name="$(SolutionDir)\QS.Core.Web\bin\Debug\netcoreapp3.1\QS.Permission.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="System.IO" #>
 <#@ import namespace="System.Linq" #>
-<#@ import namespace="System.Text" #>
-<#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.ComponentModel" #>
+<#@ import namespace="System.Runtime" #>
 <#@ import namespace="System.Reflection" #>
+//加载依赖
+
+//导入命名空间
+
+
+<#@ import namespace="QS.Permission" #>
 <#@ import namespace="QS.Core.Entity" #>
 <#@ import namespace="QS.Core.Data.T4" #>
 <#@ import namespace="QS.Core.Extensions" #>
 
-//加载模板
-
 <#
+    
     //当前文件夹路径 D:\code\.net core\QS.Core\QS.Core.Automation\ServiceLayer
     string currentPath = Path.GetDirectoryName(Host.TemplateFile);
     string projectPath =currentPath.Substring(0, currentPath.IndexOf(@"\QS.Core.Automation\ServiceLayer"));
@@ -32,18 +34,6 @@
     string modelFile= Path.Combine(projectPath, @"QS.Core.Web\bin\Debug\netcoreapp3.1\QS.DataLayer.dll");
     byte[] fileData= File.ReadAllBytes(modelFile);
     Assembly assembly = Assembly.Load(fileData);
-    var baseType = typeof(IEntity<>);
-     IEnumerable<Type> modelTypes = assembly.GetTypes().Where(m => m.IsAssignableToGenericType(baseType) && !m.IsAbstract);
-    foreach(Type modelType in modelTypes)
-    {
-        //T4ModelInfo model = new T4ModelInfo(modelType,true);
-        //实体映射类
-        //IServerTemplate config = new IServerTemplate(model);
-        //var path = model.UseModuleDir 
-        //? string.Format(@"{0}\ModelConfigurations\{1}\Generated", projectPath, model.ModuleName)
-        //: string.Format(@"{0}\ModelConfigurations", projectPath);
-        //config.Output.Encoding = Encoding.UTF8;
-        //config.RenderToFile(Path.Combine(path, config.FileName));
-    }
+    var a = assembly.GetTypes();
 #>
 

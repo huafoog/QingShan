@@ -1,0 +1,219 @@
+2020-07-31 15:42:42,056 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Now listening on: https://localhost:5001
+2020-07-31 15:42:42,071 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Now listening on: http://localhost:5000
+2020-07-31 15:42:42,073 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-31 15:42:42,075 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-31 15:42:42,077 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: D:\code\.net core\QS.Core\QS.Core.Web
+2020-07-31 15:58:32,907 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-31 15:58:32,932 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-31 15:58:34,353 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: D:\code\.net core\QS.Core\QS.Core.Web
+2020-07-31 16:32:32,167 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-31 16:32:33,171 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-31 16:32:34,545 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: D:\code\.net core\QS.Core\QS.Core.Web
+2020-07-31 16:55:10,615 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-31 16:55:10,642 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-31 16:55:10,644 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: D:\code\.net core\QS.Core\QS.Core.Web
+2020-07-31 16:55:23,881 [4] ERROR Microsoft.EntityFrameworkCore.Database.Command [(null)] - Failed executing DbCommand (14ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [m].[Id], [m].[Code], [m].[CodePath], [m].[DataState], [m].[ModuleType], [m].[Name], [m].[OrderCode], [m].[ParentId], [m].[Remark]
+FROM [Modules] AS [m]
+2020-07-31 16:55:23,923 [4] ERROR Microsoft.EntityFrameworkCore.Query [(null)] - An exception occurred while iterating over the results of a query for context type 'QS.DataLayer.Entities.EFContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): 列名 'CodePath' 无效。
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+ClientConnectionId:3dd958b8-ade7-4e52-a909-91449cde5b7c
+Error Number:207,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): 列名 'CodePath' 无效。
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+ClientConnectionId:3dd958b8-ade7-4e52-a909-91449cde5b7c
+Error Number:207,State:1,Class:16
+2020-07-31 16:55:24,002 [4] ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware [(null)] - An unhandled exception has occurred while executing the request.
+Microsoft.Data.SqlClient.SqlException (0x80131904): 列名 'CodePath' 无效。
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.InitializeReader(DbContext _, Boolean result)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Collections.Generic.LargeArrayBuilder`1.AddRange(IEnumerable`1 items)
+   at System.Collections.Generic.EnumerableHelpers.ToArray[T](IEnumerable`1 source)
+   at QS.ServiceLayer.Permission.PermissionService.UpdatePermissionAsync(ModuleInfo[] moduleInfos) in D:\code\.net core\QS.Core\QS.ServiceLayer\Permission\PermissionService.cs:line 89
+   at QS.Core.Web.Permission.PermissionMiddleware.Invoke(HttpContext httpContext) in D:\code\.net core\QS.Core\QS.Core.Web\Permission\PermissionMiddleware.cs:line 33
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+ClientConnectionId:3dd958b8-ade7-4e52-a909-91449cde5b7c
+Error Number:207,State:1,Class:16
+2020-07-31 16:57:17,114 [1] ERROR Microsoft.EntityFrameworkCore.Database.Command [(null)] - Failed executing DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Functions] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(100) NULL,
+    [Area] nvarchar(100) NULL,
+    [Controller] nvarchar(100) NULL,
+    [Action] nvarchar(100) NULL,
+    [FunctionCode] nvarchar(max) NULL,
+    [IsController] bit NOT NULL,
+    [IsAjax] bit NOT NULL,
+    [Icon] nvarchar(100) NULL,
+    [AccessType] int NOT NULL,
+    [IsLocked] bit NOT NULL,
+    [Description] nvarchar(100) NULL,
+    [DataState] int NOT NULL,
+    CONSTRAINT [PK_Functions] PRIMARY KEY ([Id])
+);
+2020-07-31 16:57:32,164 [1] ERROR Microsoft.EntityFrameworkCore.Database.Command [(null)] - Failed executing DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [Functions] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(100) NULL,
+    [Area] nvarchar(100) NULL,
+    [Controller] nvarchar(100) NULL,
+    [Action] nvarchar(100) NULL,
+    [FunctionCode] nvarchar(max) NULL,
+    [IsController] bit NOT NULL,
+    [IsAjax] bit NOT NULL,
+    [Icon] nvarchar(100) NULL,
+    [AccessType] int NOT NULL,
+    [IsLocked] bit NOT NULL,
+    [Description] nvarchar(100) NULL,
+    [DataState] int NOT NULL,
+    CONSTRAINT [PK_Functions] PRIMARY KEY ([Id])
+);
+2020-07-31 16:58:41,738 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-31 16:58:41,765 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-31 16:58:41,766 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: D:\code\.net core\QS.Core\QS.Core.Web
+2020-07-31 16:59:44,874 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-31 16:59:44,898 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-31 16:59:44,900 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: D:\code\.net core\QS.Core\QS.Core.Web
+2020-07-31 17:00:42,225 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-31 17:00:42,259 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-31 17:00:42,261 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: D:\code\.net core\QS.Core\QS.Core.Web
+2020-07-31 17:01:06,797 [5] ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware [(null)] - An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.ThrowHelper.ThrowNoElementsException()
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.First[TSource](IQueryable`1 source, Expression`1 predicate)
+   at QS.ServiceLayer.Permission.PermissionService.UpdatePermissionAsync(ModuleInfo[] moduleInfos) in D:\code\.net core\QS.Core\QS.ServiceLayer\Permission\PermissionService.cs:line 128
+   at QS.Core.Web.Permission.PermissionMiddleware.Invoke(HttpContext httpContext) in D:\code\.net core\QS.Core\QS.Core.Web\Permission\PermissionMiddleware.cs:line 33
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-07-31 17:01:27,446 [13] ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware [(null)] - An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.ThrowHelper.ThrowNoElementsException()
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.First[TSource](IQueryable`1 source, Expression`1 predicate)
+   at QS.ServiceLayer.Permission.PermissionService.UpdatePermissionAsync(ModuleInfo[] moduleInfos) in D:\code\.net core\QS.Core\QS.ServiceLayer\Permission\PermissionService.cs:line 128
+   at QS.Core.Web.Permission.PermissionMiddleware.Invoke(HttpContext httpContext) in D:\code\.net core\QS.Core\QS.Core.Web\Permission\PermissionMiddleware.cs:line 33
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-07-31 17:02:53,016 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-31 17:02:53,041 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-31 17:02:53,043 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: D:\code\.net core\QS.Core\QS.Core.Web
+2020-07-31 17:05:30,552 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-31 17:05:30,579 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-31 17:05:30,581 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: D:\code\.net core\QS.Core\QS.Core.Web
+2020-07-31 17:05:45,200 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-31 17:05:45,217 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-31 17:05:45,217 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: D:\code\.net core\QS.Core\QS.Core.Web
+2020-07-31 17:07:13,141 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-31 17:07:13,166 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-31 17:07:13,168 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: D:\code\.net core\QS.Core\QS.Core.Web
+2020-07-31 17:10:01,054 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-31 17:10:04,905 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-31 17:10:04,907 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: D:\code\.net core\QS.Core\QS.Core.Web
+2020-07-31 17:16:26,718 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-31 17:16:26,734 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-31 17:16:26,734 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: D:\code\.net core\QS.Core\QS.Core.Web
+2020-07-31 17:16:26,988 [9] ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware [(null)] - An unhandled exception has occurred while executing the request.
+System.ArgumentNullException: Value cannot be null. (Parameter 'key')
+   at System.Collections.Generic.Dictionary`2.FindEntry(TKey key)
+   at System.Collections.Generic.Dictionary`2.ContainsKey(TKey key)
+   at QS.ServiceLayer.Permission.PermissionService.GeModule(ModuleInfo modelInfo, String position) in D:\code\.net core\QS.Core\QS.ServiceLayer\Permission\PermissionService.cs:line 317
+   at QS.ServiceLayer.Permission.PermissionService.UpdatePermissionAsync(ModuleInfo[] moduleInfos) in D:\code\.net core\QS.Core\QS.ServiceLayer\Permission\PermissionService.cs:line 105
+   at QS.Core.Web.Permission.PermissionMiddleware.Invoke(HttpContext httpContext) in D:\code\.net core\QS.Core\QS.Core.Web\Permission\PermissionMiddleware.cs:line 33
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-07-31 17:16:27,286 [10] ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware [(null)] - An unhandled exception has occurred while executing the request.
+System.ArgumentNullException: Value cannot be null. (Parameter 'key')
+   at System.Collections.Generic.Dictionary`2.FindEntry(TKey key)
+   at System.Collections.Generic.Dictionary`2.ContainsKey(TKey key)
+   at QS.ServiceLayer.Permission.PermissionService.GeModule(ModuleInfo modelInfo, String position) in D:\code\.net core\QS.Core\QS.ServiceLayer\Permission\PermissionService.cs:line 317
+   at QS.ServiceLayer.Permission.PermissionService.UpdatePermissionAsync(ModuleInfo[] moduleInfos) in D:\code\.net core\QS.Core\QS.ServiceLayer\Permission\PermissionService.cs:line 105
+   at QS.Core.Web.Permission.PermissionMiddleware.Invoke(HttpContext httpContext) in D:\code\.net core\QS.Core\QS.Core.Web\Permission\PermissionMiddleware.cs:line 33
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-07-31 17:16:58,155 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-31 17:16:58,184 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-31 17:16:58,186 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: D:\code\.net core\QS.Core\QS.Core.Web
+2020-07-31 17:17:58,672 [4] ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware [(null)] - An unhandled exception has occurred while executing the request.
+System.ArgumentNullException: Value cannot be null. (Parameter 'key')
+   at System.Collections.Generic.Dictionary`2.FindEntry(TKey key)
+   at System.Collections.Generic.Dictionary`2.ContainsKey(TKey key)
+   at QS.ServiceLayer.Permission.PermissionService.GeModule(ModuleInfo modelInfo, String position) in D:\code\.net core\QS.Core\QS.ServiceLayer\Permission\PermissionService.cs:line 317
+   at QS.ServiceLayer.Permission.PermissionService.UpdatePermissionAsync(ModuleInfo[] moduleInfos) in D:\code\.net core\QS.Core\QS.ServiceLayer\Permission\PermissionService.cs:line 105
+   at QS.Core.Web.Permission.PermissionMiddleware.Invoke(HttpContext httpContext) in D:\code\.net core\QS.Core\QS.Core.Web\Permission\PermissionMiddleware.cs:line 33
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-07-31 17:18:16,796 [9] ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware [(null)] - An unhandled exception has occurred while executing the request.
+System.ArgumentNullException: Value cannot be null. (Parameter 'key')
+   at System.Collections.Generic.Dictionary`2.FindEntry(TKey key)
+   at System.Collections.Generic.Dictionary`2.ContainsKey(TKey key)
+   at QS.ServiceLayer.Permission.PermissionService.GeModule(ModuleInfo modelInfo, String position) in D:\code\.net core\QS.Core\QS.ServiceLayer\Permission\PermissionService.cs:line 317
+   at QS.ServiceLayer.Permission.PermissionService.UpdatePermissionAsync(ModuleInfo[] moduleInfos) in D:\code\.net core\QS.Core\QS.ServiceLayer\Permission\PermissionService.cs:line 105
+   at QS.Core.Web.Permission.PermissionMiddleware.Invoke(HttpContext httpContext) in D:\code\.net core\QS.Core\QS.Core.Web\Permission\PermissionMiddleware.cs:line 33
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-07-31 17:18:56,880 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-07-31 17:18:56,894 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-07-31 17:18:56,894 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: D:\code\.net core\QS.Core\QS.Core.Web
+2020-07-31 17:18:57,222 [9] ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware [(null)] - An unhandled exception has occurred while executing the request.
+System.ArgumentNullException: Value cannot be null. (Parameter 'key')
+   at System.Collections.Generic.Dictionary`2.FindEntry(TKey key)
+   at System.Collections.Generic.Dictionary`2.ContainsKey(TKey key)
+   at QS.ServiceLayer.Permission.PermissionService.GeModule(ModuleInfo modelInfo, String position) in D:\code\.net core\QS.Core\QS.ServiceLayer\Permission\PermissionService.cs:line 317
+   at QS.ServiceLayer.Permission.PermissionService.UpdatePermissionAsync(ModuleInfo[] moduleInfos) in D:\code\.net core\QS.Core\QS.ServiceLayer\Permission\PermissionService.cs:line 105
+   at QS.Core.Web.Permission.PermissionMiddleware.Invoke(HttpContext httpContext) in D:\code\.net core\QS.Core\QS.Core.Web\Permission\PermissionMiddleware.cs:line 33
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-07-31 17:18:57,654 [10] ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware [(null)] - An unhandled exception has occurred while executing the request.
+System.ArgumentNullException: Value cannot be null. (Parameter 'key')
+   at System.Collections.Generic.Dictionary`2.FindEntry(TKey key)
+   at System.Collections.Generic.Dictionary`2.ContainsKey(TKey key)
+   at QS.ServiceLayer.Permission.PermissionService.GeModule(ModuleInfo modelInfo, String position) in D:\code\.net core\QS.Core\QS.ServiceLayer\Permission\PermissionService.cs:line 317
+   at QS.ServiceLayer.Permission.PermissionService.UpdatePermissionAsync(ModuleInfo[] moduleInfos) in D:\code\.net core\QS.Core\QS.ServiceLayer\Permission\PermissionService.cs:line 105
+   at QS.Core.Web.Permission.PermissionMiddleware.Invoke(HttpContext httpContext) in D:\code\.net core\QS.Core\QS.Core.Web\Permission\PermissionMiddleware.cs:line 33
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)

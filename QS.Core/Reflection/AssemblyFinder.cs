@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyModel;
+using QS.Core.Helper;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,30 +30,7 @@ namespace QS.Core.Reflection
         /// <returns></returns>
         protected Assembly[] FindAllItems()
         {
-            string[] filters =
-                {
-                    "mscorlib",
-                    "netstandard",
-                    "dotnet",
-                    "api-ms-win-core",
-                    "runtime.",
-                    "System",
-                    "Microsoft",
-                    "Window",
-                    "Swashbuckle"
-                };
-            List<string> names = new List<string>();
-            string[] dllNames = DependencyContext.Default.CompileLibraries.SelectMany(m => m.Assemblies).Distinct().Select(m => m.Replace(".dll", ""))
-               .OrderBy(m => m).ToArray();
-            if (dllNames.Length > 0)
-            {
-                names = (from name in dllNames
-                         let i = name.LastIndexOf('/') + 1
-                         select name.Substring(i, name.Length - i)).Distinct()
-                    .Where(name => !filters.Any(name.StartsWith))
-                    .OrderBy(m => m).ToList();
-            }
-            return LoadFiles(names);
+            return RuntimeHelper.GetAllAssemblies().ToArray();
         }
         private static Assembly[] LoadFiles(IEnumerable<string> files)
         {

@@ -1,4 +1,4 @@
-﻿using QS.Core.Data.Modules;
+﻿using QS.Core.Permission.Authorization.Modules;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,11 +11,5 @@ namespace QS.ServiceLayer.Permission
     /// </summary>
     public interface  IPermissionService
     {
-        /// <summary>
-        /// 修改权限信息
-        /// </summary>
-        /// <param name="moduleInfos"></param>
-        /// <returns></returns>
-        Task UpdatePermissionAsync(ModuleInfo[] moduleInfos);
     }
 }

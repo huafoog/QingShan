@@ -69,11 +69,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:QS.Core.Web.Permission.PermCode">
-            <summary>
-            权限值枚举
-            </summary>
-        </member>
         <member name="T:QS.Core.Web.Permission.PermissionMiddleware">
             <summary>
             权限中间件
@@ -121,6 +116,26 @@
             <summary>
             请求Url
             </summary>
+        </member>
+        <member name="M:QS.Core.Web.Services.AuthorizationService.AddAuthorizationService(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            添加授权
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:QS.Core.Web.Services.CorsService.AddCorsService(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            跨域
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:QS.Core.Web.Services.EFService.AddEFService(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            添加EF服务
+            </summary>
+            <param name="services"></param>
+            <param name="Configuration"></param>
         </member>
     </members>
 </doc>

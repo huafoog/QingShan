@@ -34,7 +34,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\QS.DataLayer\QS.DataLayer.csproj" />
-    <ProjectReference Include="..\QS.Permisson\QS.Permission.csproj" />
     <ProjectReference Include="..\QS.ServiceLayer\QS.ServiceLayer.csproj" />
   </ItemGroup>
 

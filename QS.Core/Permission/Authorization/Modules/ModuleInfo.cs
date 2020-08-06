@@ -1,8 +1,9 @@
-﻿using System;
+﻿using QS.Core.Permission.Authorization.Functions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace QS.Core.Data.Modules
+namespace QS.Core.Permission.Authorization.Modules
 {
     /// <summary>
     /// 从程序集中提取的模块信息载体，包含模块基本信息和模块依赖的功能信息集合
@@ -39,6 +40,11 @@ namespace QS.Core.Data.Modules
         /// </summary>
         public ModuleType ModuleType { get; set; }
 
+        /// <summary>
+        /// 获取或设置 依赖功能
+        /// </summary>
+        public IFunction[] DependOnFunctions { get; set; } = new IFunction[0];
+
         public string CodePath
         {
             get
@@ -49,6 +55,9 @@ namespace QS.Core.Data.Modules
         }
     }
 
+    /// <summary>
+    /// 模块类型
+    /// </summary>
     public enum ModuleType
     {
         /// <summary>

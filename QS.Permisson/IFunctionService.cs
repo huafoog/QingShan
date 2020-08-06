@@ -1,4 +1,5 @@
-﻿using QS.Core.Data.Modules;
+﻿using QS.Core.Permission.Authorization.Functions;
+using QS.Core.Permission.Authorization.Modules;
 using QS.DataLayer.Entities;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,6 @@ namespace QS.Permission
         /// </summary>
         /// <param name="functionTypes">功能类型集合</param>
         /// <returns></returns>
-        FunctionEntity[] PickupFunctions();
+        IFunction[] PickupFunctions();
     }
 }
