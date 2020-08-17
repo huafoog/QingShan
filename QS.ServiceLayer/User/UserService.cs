@@ -93,10 +93,10 @@ namespace QS.ServiceLayer.User
             //}
             //这里加缓存
 
-            var userPermissoins = await (from rp in _context.RolePermissions
+            var userPermissoins = await (from rp in _context.RoleModules
                                          join ur in _context.UserRole on rp.RoleId equals ur.RoleId
-                                         join p in _context.Modules on rp.PermissionId equals p.Id
-                                         select p.Code).ToListAsync();
+                                         join p in _context.Modules on rp.ModuleId equals p.Id
+                                         select p.Id.ToString()).ToListAsync();
             return userPermissoins;
         }
 

@@ -3,9 +3,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace QS.Core.Web.Services
 {
@@ -13,7 +11,9 @@ namespace QS.Core.Web.Services
     {
         public static void AddSwaggerService(this IServiceCollection services)
         {
-            services.AddSwaggerGen(c => {
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerGeneratorOptions.DescribeAllParametersInCamelCase = true;
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",

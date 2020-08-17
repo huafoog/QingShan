@@ -1,0 +1,29 @@
+2020-08-06 09:32:16,345 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-08-06 09:32:16,371 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-08-06 09:32:16,373 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: D:\code\.net core\QS.Core\QS.Core.Web
+2020-08-06 09:37:55,182 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-08-06 09:37:55,209 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-08-06 09:37:55,212 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: D:\code\.net core\QS.Core\QS.Core.Web
+2020-08-06 09:40:07,375 [4] ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware [(null)] - An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.ThrowHelper.ThrowNoElementsException()
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.First[TSource](IQueryable`1 source, Expression`1 predicate)
+   at QS.ServiceLayer.Permission.PermissionService.UpdatePermissionAsync(ModuleInfo[] moduleInfos) in D:\code\.net core\QS.Core\QS.ServiceLayer\Permission\PermissionService.cs:line 128
+   at QS.Core.Web.Permission.PermissionMiddleware.Invoke(HttpContext httpContext) in D:\code\.net core\QS.Core\QS.Core.Web\Permission\PermissionMiddleware.cs:line 33
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-08-06 09:40:25,552 [14] ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware [(null)] - An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Sequence contains no elements
+   at System.Linq.ThrowHelper.ThrowNoElementsException()
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.First[TSource](IQueryable`1 source, Expression`1 predicate)
+   at QS.ServiceLayer.Permission.PermissionService.UpdatePermissionAsync(ModuleInfo[] moduleInfos) in D:\code\.net core\QS.Core\QS.ServiceLayer\Permission\PermissionService.cs:line 128
+   at QS.Core.Web.Permission.PermissionMiddleware.Invoke(HttpContext httpContext) in D:\code\.net core\QS.Core\QS.Core.Web\Permission\PermissionMiddleware.cs:line 33
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-08-06 11:03:11,702 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Application started. Press Ctrl+C to shut down.
+2020-08-06 11:03:11,714 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Hosting environment: Development
+2020-08-06 11:03:11,714 [1] INFO  Microsoft.Hosting.Lifetime [(null)] - Content root path: D:\code\.net core\QS.Core\QS.Core.Web

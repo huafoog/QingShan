@@ -110,14 +110,14 @@ namespace Microsoft.EntityFrameworkCore
         }
 
         /// <summary>
-        /// 添加实体信息
+        /// 添加实体信息 返回主键Id
         /// </summary>
         /// <typeparam name="TEntity">实体模型</typeparam>
         /// <typeparam name="Tkey">主键</typeparam>
         /// <param name="context"></param>
         /// <param name="entity">实体</param>
         /// <returns>实体Id</returns>
-        public static async Task<TKey> InsertEntityAsync<TEntity, TKey>(this DbContext context, TEntity entity)
+        public static async Task<TKey> InsertEntityReIdAsync<TEntity, TKey>(this DbContext context, TEntity entity)
             where TEntity : class, ICreatedTime, IDataState, IEntity<TKey>, new()
             where TKey : struct
         {
@@ -126,6 +126,24 @@ namespace Microsoft.EntityFrameworkCore
             var res = await context.Set<TEntity>().AddAsync(entity);
             await context.SaveChangesAsync();
             return entity.Id;
+        }
+
+        /// <summary>
+        /// 添加实体信息
+        /// </summary>
+        /// <typeparam name="TEntity">实体模型</typeparam>
+        /// <typeparam name="Tkey">主键</typeparam>
+        /// <param name="context"></param>
+        /// <param name="entity">实体</param>
+        /// <returns>实体Id</returns>
+        public static async Task<int> InsertEntityAsync<TEntity, TKey>(this DbContext context, TEntity entity)
+            where TEntity : class, ICreatedTime, IDataState, IEntity<TKey>, new()
+            where TKey : struct
+        {
+            entity.CreateTime = DateTime.Now;
+            entity.DataState = DataState.Normal;
+            var res = await context.Set<TEntity>().AddAsync(entity);
+            return await context.SaveChangesAsync();
         }
 
         /// <summary>
@@ -145,6 +163,20 @@ namespace Microsoft.EntityFrameworkCore
                 entities[i].DataState = DataState.Normal;
             }
             await context.Set<TEntity>().AddRangeAsync(entities);
+            return await context.SaveChangesAsync();
+        }
+
+        /// <summary>
+        /// 修改实体信息
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="context"></param>
+        /// <param name="entities"></param>
+        /// <returns></returns>
+        public static async Task<int> UpdateEntitiesAsync<TEntity>(this DbContext context, TEntity entities)
+            where TEntity : class, ICreatedTime, IDataState, new()
+        {
+             context.Set<TEntity>().Update(entities);
             return await context.SaveChangesAsync();
         }
     }

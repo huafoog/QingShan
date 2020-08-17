@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
 using QS.Core.Attributes;
 using QS.Core.AutoMapper;
 using QS.Core.Extensions;
@@ -42,7 +43,12 @@ namespace QS.Core.Web
             services.AddControllers(o=> {
                 //注册模型验证过滤器到全局
                 o.Filters.Add<ApiResponseFilterAttribute>();
-            }).ConfigureApiBehaviorOptions(option =>
+            }).AddNewtonsoftJson(
+                options => options.SerializerSettings.ContractResolver = new DefaultContractResolver()
+                {
+                    NamingStrategy = new CamelCaseNamingStrategy()
+                }
+            ).ConfigureApiBehaviorOptions(option =>
             {
                 //关闭默认模型验证
                 option.SuppressModelStateInvalidFilter = true;
@@ -59,7 +65,7 @@ namespace QS.Core.Web
             }
             
            
-            app.UseCors();
+            app.UseCors("LimitRequests");
             app.UseHttpsRedirection();
             app.UsePermission();
             app.UseRouting();
@@ -80,7 +86,7 @@ namespace QS.Core.Web
                     pattern: "{controller=Test}/{action=Get}/{id?}");
             });
 
-
+            app.UsePermission();
             #region Swagger
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();

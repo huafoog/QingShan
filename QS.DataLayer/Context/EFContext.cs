@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using QS.Core.Attributes;
 using QS.DataLayer.Entities.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -26,24 +28,20 @@ namespace QS.DataLayer.Entities
 
 
         public DbSet<Product> Products { get; set; }
-        public DbSet<FunctionEntity> Functions { get; set; }
 
         public DbSet<ModuleEntity> Modules { get; set; }
 
-        public DbSet<RolePermissionEntity> RolePermissions { get; set; }
+        public DbSet<RoleModuleEntity> RoleModules { get; set; }
 
         /// <summary>
         /// 用户角色
         /// </summary>
         public DbSet<UserRoleEntity> UserRole { get; set; }
 
-        public DbSet<RoleEntity> Roles { get; set; }
-
         /// <summary>
-        /// 功能权限
+        /// 角色
         /// </summary>
-        public DbSet<ModuleFunctionEntity> ModuleFunction { get; set; }
-
+        public DbSet<RoleEntity> Roles { get; set; }
 
         /// <summary>
         /// 用户表
@@ -55,30 +53,9 @@ namespace QS.DataLayer.Entities
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
         }
 
-        /// <summary>
-        /// 重写添加方法
-        /// </summary>
-        /// <param name="entity">实体</param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        public override ValueTask<EntityEntry> AddAsync(object entity, CancellationToken cancellationToken = default)
-        {
-            return base.AddAsync(entity, cancellationToken);
-        }
-
-        public override ValueTask<EntityEntry<TEntity>> AddAsync<TEntity>(TEntity entity, CancellationToken cancellationToken = default)
-        {
-
-
-
-
-            return base.AddAsync(entity, cancellationToken);
-        }
-
-
-        public override EntityEntry<TEntity> Remove<TEntity>(TEntity entity)
-        {
-            return base.Remove(entity);
-        }
+        #region 异步方法
+        #endregion
     }
+
+
 }

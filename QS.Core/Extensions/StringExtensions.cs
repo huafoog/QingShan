@@ -13,7 +13,7 @@ namespace QS.Core.Extensions
         /// <returns></returns>
         public static bool IsNull(this string s)
         {
-            return string.IsNullOrWhiteSpace(s);
+            return string.IsNullOrEmpty(s);
         }
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace QS.Core.Extensions
         /// <returns></returns>
         public static bool NotNull(this string s)
         {
-            return !string.IsNullOrWhiteSpace(s);
+            return !string.IsNullOrEmpty(s);
         }
     }
 }

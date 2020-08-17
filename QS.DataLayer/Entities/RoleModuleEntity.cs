@@ -6,18 +6,18 @@ using System.Text;
 namespace QS.DataLayer.Entities
 {
     /// <summary>
-    /// 角色权限
+    /// 角色模块
     /// </summary>
-    public class RolePermissionEntity:EntityBase<int>
+    public class RoleModuleEntity:EntityBaseById<int>
     {
         /// <summary>
         /// 角色Id
         /// </summary>
-		public int RoleId { get; set; }
+        public int RoleId { get; set; }
 
         /// <summary>
-        /// 权限Id
+        /// 模块id
         /// </summary>
-		public int PermissionId { get; set; }
+        public Guid ModuleId { get; set; }
     }
 }

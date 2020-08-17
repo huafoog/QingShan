@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QS.Core.Data;
+using QS.Core.Permission.Authorization;
 using QS.ServiceLayer.User;
 using QS.ServiceLayer.User.Dtos.InputDto;
 using System;
@@ -14,6 +15,7 @@ namespace QS.Core.Web.Areas.Admin.Controllers
     /// 用户管理
     /// </summary>
     [Description("用户管理")]
+    [ModuleInfo(URL = "/Admin/Url/Index",Module = Data.Enums.ModuleEnum.System,Sort = 0)]
     public class UserController:AdminBaseController
     {
         private readonly IUserService _userService;
@@ -29,6 +31,7 @@ namespace QS.Core.Web.Areas.Admin.Controllers
         /// <returns></returns>
         [HttpPost]
         [Description("新增用户")]
+        [ModuleInfo]
         public async Task<StatusResult> Add(UserAddInputDto input)
         {
             return await _userService.AddAsync(input);

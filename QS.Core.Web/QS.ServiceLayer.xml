@@ -63,9 +63,190 @@
             权限值
             </summary>
         </member>
+        <member name="T:QS.ServiceLayer.Permission.Dto.ModuleInfo">
+            <summary>
+            模型详情
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.ModuleInfo.Code">
+            <summary>
+             模块代码
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.ModuleInfo.Area">
+            <summary>
+            区域
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.ModuleInfo.Controller">
+            <summary>
+            控制器
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.ModuleInfo.Action">
+            <summary>
+            操作
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.ModuleInfo.Name">
+            <summary>
+            模块名称
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.ModuleInfo.Path">
+            <summary>
+            路径
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.ModuleInfo.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.ModuleInfo.Remark">
+            <summary>
+            备注信息
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.ModuleInfo.Sort">
+            <summary>
+            排序值
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.ModuleInfo.Pid">
+            <summary>
+            父节点Id
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.ModuleInfo.PCode">
+            <summary>
+            上级code
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.ModuleInfo.Level">
+            <summary>
+            节点
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.ModuleInputDto.Area">
+            <summary>
+            区域
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.ModuleInputDto.Controller">
+            <summary>
+            控制器
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.ModuleInputDto.Action">
+            <summary>
+            操作
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.ModuleInputDto.Name">
+            <summary>
+            模块名称
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.ModuleInputDto.Path">
+            <summary>
+            路径
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.ModuleInputDto.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.ModuleInputDto.Remark">
+            <summary>
+            备注信息
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.ModuleInputDto.Sort">
+            <summary>
+            排序值
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.ModuleInputDto.Pid">
+            <summary>
+            父节点Id
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.Permission.Dto.ModuleInputDto.Level">
+            <summary>
+            节点
+            </summary>
+        </member>
+        <member name="M:QS.ServiceLayer.Permission.IModuleService.InsertModules(QS.ServiceLayer.Permission.Dto.ModuleInputDto)">
+            <summary>
+            添加模块
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QS.ServiceLayer.Permission.IModuleService.UpdateModules(QS.ServiceLayer.Permission.Dto.ModuleInputDto)">
+            <summary>
+            修改模块
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QS.ServiceLayer.Permission.IModuleService.InsertModules(QS.DataLayer.Entities.ModuleEntity[])">
+            <summary>
+            添加模块集合
+            </summary>
+            <param name="models"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QS.ServiceLayer.Permission.IModuleService.DeleteModule(System.Guid)">
+            <summary>
+            逻辑删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:QS.ServiceLayer.Permission.IPermissionService">
             <summary>
             权限服务
+            </summary>
+        </member>
+        <member name="T:QS.ServiceLayer.Permission.ModuleService">
+            <summary>
+            模块服务
+            </summary>
+        </member>
+        <member name="M:QS.ServiceLayer.Permission.ModuleService.InsertModules(QS.ServiceLayer.Permission.Dto.ModuleInputDto)">
+            <summary>
+            添加模块
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QS.ServiceLayer.Permission.ModuleService.UpdateModules(QS.ServiceLayer.Permission.Dto.ModuleInputDto)">
+            <summary>
+            修改模块
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QS.ServiceLayer.Permission.ModuleService.InsertModules(QS.DataLayer.Entities.ModuleEntity[])">
+            <summary>
+            添加模块集合
+            </summary>
+            <param name="models"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QS.ServiceLayer.Permission.ModuleService.DeleteModule(System.Guid)">
+            <summary>
+            逻辑删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QS.ServiceLayer.Permission.ModuleService.CreateModules(System.Collections.Generic.List{QS.ServiceLayer.Permission.Dto.ModuleInfo})">
+            <summary>
+            创建模块信息 
             </summary>
         </member>
         <member name="T:QS.ServiceLayer.Permission.PermissionService">

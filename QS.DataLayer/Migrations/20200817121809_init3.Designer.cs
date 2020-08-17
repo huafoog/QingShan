@@ -10,8 +10,8 @@ using QS.DataLayer.Entities;
 namespace QS.DataLayer.Migrations
 {
     [DbContext(typeof(EFContext))]
-    [Migration("20200731085711_a2")]
-    partial class a2
+    [Migration("20200817121809_init3")]
+    partial class init3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,96 +21,26 @@ namespace QS.DataLayer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("QS.DataLayer.Entities.FunctionEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("AccessType")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Action")
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Area")
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Controller")
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("DataState")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("FunctionCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Icon")
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<bool>("IsAjax")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsController")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsLocked")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Functions");
-                });
-
             modelBuilder.Entity("QS.DataLayer.Entities.ModuleEntity", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CodePath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("DataState")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ModuleType")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("OrderCode")
-                        .HasColumnType("float");
-
-                    b.Property<int?>("ParentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Remark")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Modules");
-                });
-
-            modelBuilder.Entity("QS.DataLayer.Entities.ModuleFunctionEntity", b =>
-                {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Action")
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Area")
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Controller")
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
@@ -118,15 +48,34 @@ namespace QS.DataLayer.Migrations
                     b.Property<int>("DataState")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("FunctionId")
+                    b.Property<string>("Icon")
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Path")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<Guid>("Pid")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("ModuleId")
+                    b.Property<string>("Remark")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int>("Sort")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ModuleFunction");
+                    b.ToTable("Modules");
                 });
 
             modelBuilder.Entity("QS.DataLayer.Entities.Product", b =>
@@ -186,28 +135,22 @@ namespace QS.DataLayer.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("QS.DataLayer.Entities.RolePermissionEntity", b =>
+            modelBuilder.Entity("QS.DataLayer.Entities.RoleModuleEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DataState")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PermissionId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ModuleId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("RolePermissions");
+                    b.ToTable("RoleModules");
                 });
 
             modelBuilder.Entity("QS.DataLayer.Entities.UserEntity", b =>

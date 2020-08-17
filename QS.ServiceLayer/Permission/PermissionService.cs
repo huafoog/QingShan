@@ -4,7 +4,6 @@ using QS.Core.Collections;
 using QS.Core.Data;
 using QS.Core.Dependency;
 using QS.Core.Permission;
-using QS.Core.Permission.Authorization.Modules;
 using QS.DataLayer.Entities;
 using System;
 using System.Collections.Generic;
