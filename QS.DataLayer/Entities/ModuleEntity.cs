@@ -25,7 +25,7 @@ namespace QS.DataLayer.Entities
         /// 区域
         /// </summary>
         [MaxLength(200)]
-        [Column( = "区域")]
+        [Column("区域")]
         [Description("区域")]
         public string Area { get; set; }
 

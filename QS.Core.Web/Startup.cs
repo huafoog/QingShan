@@ -11,6 +11,7 @@ using QS.Core.Attributes;
 using QS.Core.AutoMapper;
 using QS.Core.Extensions;
 using QS.Core.Reflection;
+using QS.Core.Web.Filter;
 using QS.Core.Web.Permission;
 using QS.Core.Web.Services;
 
@@ -34,6 +35,7 @@ namespace QS.Core.Web
 
             services.AddSingleton<IAssemblyFinder, AssemblyFinder>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();//注入Http请求上下文
+            services.AddCacheService(Configuration);
             services.AddAutoMapper(typeof(AutoMapperConfig));
             services.AddToServices();
             services.AddEFService(Configuration);
@@ -41,6 +43,8 @@ namespace QS.Core.Web
             services.AddAuthorizationService(Configuration);
             services.AddCorsService();
             services.AddControllers(o=> {
+                //全局异常
+                o.Filters.Add<GlobalExceptionFilter>();
                 //注册模型验证过滤器到全局
                 o.Filters.Add<ApiResponseFilterAttribute>();
             }).AddNewtonsoftJson(
@@ -53,7 +57,6 @@ namespace QS.Core.Web
                 //关闭默认模型验证
                 option.SuppressModelStateInvalidFilter = true;
             });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -85,7 +88,6 @@ namespace QS.Core.Web
                     name: "default",
                     pattern: "{controller=Test}/{action=Get}/{id?}");
             });
-
             app.UsePermission();
             #region Swagger
             // Enable middleware to serve generated Swagger as a JSON endpoint.

@@ -23,8 +23,7 @@ namespace QS.Core.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-
-            return Ok("Hello World!!！");
+            throw new Exception("出现错误");
         }
         
     }

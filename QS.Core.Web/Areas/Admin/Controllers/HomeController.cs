@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using QS.Core.Attributes.Permission;
 using QS.ServiceLayer.ProductService;
 using QS.ServiceLayer.ProductService.Dtos;
@@ -18,10 +20,14 @@ namespace QS.Core.Web.Areas.Admin.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IProductService _productService;
-        public HomeController(ILogger<HomeController> logger, IProductService productService)
+
+        private readonly IDistributedCache _cache;
+
+        public HomeController(ILogger<HomeController> logger, IProductService productService, IDistributedCache cache)
         {
             _logger = logger;
             _productService = productService;
+            _cache = cache;
         }
 
         /// <summary>
@@ -31,10 +37,14 @@ namespace QS.Core.Web.Areas.Admin.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(List<ProductOutputDto>), 200)]
         [Description("获取")]
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
+            _logger.LogInformation("这是Info等级的信息");
             var data = await _productService.Get();
-            return Ok(data);
+            await _cache.SetStringAsync("str","123456789");
+            var res = await _cache.GetStringAsync("str");
+            return Ok(res);
         }
 
         /// <summary>

@@ -100,6 +100,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:QS.Core.Web.Filter.InternalServerErrorObjectResult">
+            <summary>
+            服务器异常返回
+            </summary>
+        </member>
         <member name="T:QS.Core.Web.Permission.PermissionMiddleware">
             <summary>
             权限中间件
@@ -151,6 +156,18 @@
         <member name="M:QS.Core.Web.Services.AuthorizationService.AddAuthorizationService(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             添加授权
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="T:QS.Core.Web.Services.CacheService">
+            <summary>
+            缓存服务
+            </summary>
+        </member>
+        <member name="M:QS.Core.Web.Services.CacheService.AddCacheService(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            添加缓存服务
             </summary>
             <param name="services"></param>
             <param name="configuration"></param>

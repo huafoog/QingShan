@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using QS.ServiceLayer.Permission;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using QS.Core.Web.Authorization;
+using Microsoft.Extensions.Configuration;
 
 namespace QS.Core.Web.Permission
 {
@@ -16,21 +14,24 @@ namespace QS.Core.Web.Permission
     {
         private readonly RequestDelegate _next;
 
-        public PermissionMiddleware(RequestDelegate next)
+        private readonly IConfiguration _configuration;
+
+        public PermissionMiddleware(RequestDelegate next, IConfiguration configuration)
         {
             _next = next;
+            _configuration = configuration;
         }
 
         // IMyScopedService is injected into Invoke
         public async Task Invoke(HttpContext httpContext)
         {
-            var moduleService = httpContext.RequestServices.GetService<IModuleService>();
-            var moduleManager = httpContext.RequestServices.GetService<IModuleManager>();
+            if (_configuration["Config:InitModule"] == "1")
+            {
+                var moduleService = httpContext.RequestServices.GetService<IModuleService>();
+                var moduleManager = httpContext.RequestServices.GetService<IModuleManager>();
 
-            await moduleService.CreateModules(moduleManager.GetModules());
-
-            //var functions = functionService.PickupFunctions();
-            //await permissionService.UpdatePermissionAsync(moduleInfos);
+                await moduleService.CreateModules(moduleManager.GetModules());
+            }
             await _next(httpContext);
         }
     }
