@@ -58,6 +58,18 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.UserController.GetUserInfo">
+            <summary>
+            获取用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.UserController.GetUserPage(QS.Core.Data.PageInputDto)">
+            <summary>
+            获取用户列表
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:QS.Core.Web.Authorization.IModuleManager.GetModules">
             <summary>
             收集模块信息

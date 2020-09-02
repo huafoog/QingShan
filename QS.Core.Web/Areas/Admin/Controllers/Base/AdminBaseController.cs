@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using QS.Core.Attributes;
 using QS.Core.Attributes.Permission;
+using QS.Core.Permission;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,5 @@ namespace QS.Core.Web.Areas.Admin.Controllers
     [Permission]
     public class AdminBaseController:ControllerBase
     {
-
     }
 }

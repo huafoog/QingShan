@@ -4,6 +4,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using QS.Core.Attributes.Permission;
+using QS.Core.Permission;
 using QS.ServiceLayer.ProductService;
 using QS.ServiceLayer.ProductService.Dtos;
 using System.Collections.Generic;
@@ -23,11 +24,17 @@ namespace QS.Core.Web.Areas.Admin.Controllers
 
         private readonly IDistributedCache _cache;
 
-        public HomeController(ILogger<HomeController> logger, IProductService productService, IDistributedCache cache)
+        private readonly IUserInfo _user;
+
+        public HomeController(ILogger<HomeController> logger, 
+            IProductService productService, 
+            IDistributedCache cache, 
+            IUserInfo user)
         {
             _logger = logger;
             _productService = productService;
             _cache = cache;
+            _user = user;
         }
 
         /// <summary>
@@ -40,6 +47,7 @@ namespace QS.Core.Web.Areas.Admin.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
+            var id = _user.Id;
             _logger.LogInformation("这是Info等级的信息");
             var data = await _productService.Get();
             await _cache.SetStringAsync("str","123456789");

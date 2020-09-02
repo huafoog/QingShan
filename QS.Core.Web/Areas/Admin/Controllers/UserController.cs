@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using QS.Core.Data;
+using QS.Core.Permission;
 using QS.Core.Permission.Authorization;
 using QS.ServiceLayer.User;
 using QS.ServiceLayer.User.Dtos.InputDto;
+using QS.ServiceLayer.User.Dtos.OutputDto;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,9 +22,11 @@ namespace QS.Core.Web.Areas.Admin.Controllers
     public class UserController:AdminBaseController
     {
         private readonly IUserService _userService;
-        public UserController(IUserService userService)
+        public readonly IUserInfo _userInfo;
+        public UserController(IUserService userService, IUserInfo userInfo)
         {
             _userService = userService;
+            _userInfo = userInfo;
         }
 
         /// <summary>
@@ -32,9 +37,34 @@ namespace QS.Core.Web.Areas.Admin.Controllers
         [HttpPost]
         [Description("新增用户")]
         [ModuleInfo]
+        [AllowAnonymous]
         public async Task<StatusResult> Add(UserAddInputDto input)
         {
             return await _userService.AddAsync(input);
+        }
+
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Description("获取用户信息")]
+        [ModuleInfo]
+        public async Task<StatusResult<UserGetOutputDto>> GetUserInfo()
+        {
+            return await _userService.GetAsync(_userInfo.Id);
+        }
+
+        /// <summary>
+        /// 获取用户列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Description("获取用户信息")]
+        [ModuleInfo]
+        public async Task<PageOutputDto<UserListOutputDto>> GetUserPage([FromQuery]PageInputDto dto)
+        {
+            return await _userService.PageAsync(dto);
         }
     }
 }

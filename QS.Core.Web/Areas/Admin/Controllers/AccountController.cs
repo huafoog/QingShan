@@ -50,17 +50,7 @@ namespace QS.Core.Web.Areas.Admin.Controllers
         [AllowAnonymous]
         public async Task<StatusResult<string>> Login(LoginInputDto dto)
         {
-            //var result = await _accountService.LoginAsync(dto);
-            var result = new StatusResult<AuthLoginOutputDto>()
-            {
-                IsSuccess = true,
-                Data = new AuthLoginOutputDto()
-                {
-                    Id = 1,
-                    NickName = "123",
-                    UserName = "345"
-                }
-            };
+            var result = await _accountService.LoginAsync(dto);
             #region 添加登录日志
 
             #endregion

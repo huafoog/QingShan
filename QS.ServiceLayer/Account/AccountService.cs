@@ -42,7 +42,7 @@ namespace QS.ServiceLayer.Account
             var user = await _context.Users.GetTrackEntities(o => o.UserName == dto.Account).Select(o=>new { 
                 o.Id,
                 o.NickName,
-                o.UserName,
+                o.UserName,  
                 o.Password,
                 o.Status,
                 o.IsSuper
@@ -57,7 +57,7 @@ namespace QS.ServiceLayer.Account
             }
 
             var password = MD5Encrypt.Encrypt32(dto.Password);
-            if (dto.Password != password)
+            if (user.Password != password)
             {
                 return new StatusResult<AuthLoginOutputDto>("账号或密码错误");
             }

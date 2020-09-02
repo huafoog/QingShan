@@ -23,5 +23,13 @@ namespace QS.ServiceLayer.User
         /// <param name="input"></param>
         /// <returns></returns>
         Task<StatusResult> AddAsync(UserAddInputDto input);
+
+
+        /// <summary>
+        /// 获取数据
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        Task<PageOutputDto<UserListOutputDto>> PageAsync(PageInputDto dto);
     }
 }

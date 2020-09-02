@@ -48,9 +48,13 @@ namespace QS.Core.Web
                 //注册模型验证过滤器到全局
                 o.Filters.Add<ApiResponseFilterAttribute>();
             }).AddNewtonsoftJson(
-                options => options.SerializerSettings.ContractResolver = new DefaultContractResolver()
+                options =>
                 {
-                    NamingStrategy = new CamelCaseNamingStrategy()
+                    options.SerializerSettings.ContractResolver = new DefaultContractResolver()
+                    {
+                        NamingStrategy = new CamelCaseNamingStrategy()
+                    };
+                    options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
                 }
             ).ConfigureApiBehaviorOptions(option =>
             {
@@ -69,7 +73,7 @@ namespace QS.Core.Web
             
            
             app.UseCors("LimitRequests");
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UsePermission();
             app.UseRouting();
             //添加jwt验证

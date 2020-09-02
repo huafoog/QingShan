@@ -1,4 +1,5 @@
 ﻿using QS.Core.Entity;
+using QS.DataLayer.Entities;
 using System;
 
 namespace QS.ServiceLayer.User.Dtos.OutputDto
@@ -28,7 +29,7 @@ namespace QS.ServiceLayer.User.Dtos.OutputDto
         /// <summary>
         /// 状态
         /// </summary>
-        public int Status { get; set; }
+        public EAdministratorStatus Status { get; set; }
 
         /// <summary>
         /// 角色

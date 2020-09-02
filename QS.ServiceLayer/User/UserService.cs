@@ -105,21 +105,19 @@ namespace QS.ServiceLayer.User
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public async Task<StatusResult<PageOutputDto<UserListOutputDto>>> PageAsync(PageInputDto dto)
+        public async Task<PageOutputDto<UserListOutputDto>> PageAsync(PageInputDto dto)
         {
-            var data = await (from u in Users
-                       select new UserListOutputDto
-                       {
-                           CreatedTime = u.CreateTime,
-                           Id = u.Id,
-                           Name = u.RealName,
-                           NickName = u.NickName,
-                           RoleNames = (from ur in _context.UserRole
-                                        join r in _context.Roles on ur.RoleId equals r.Id
-                                        where ur.UserId == u.Id
-                                        select r.Name).ToArray(),
-                       }).LoadPageListAsync(dto);
-            return new StatusResult<PageOutputDto<UserListOutputDto>>(data);
+
+            var data = await Users.LoadPageListAsync(dto, u => new UserListOutputDto
+            {
+                CreatedTime = u.CreateTime,
+                Id = u.Id,
+                Name = u.RealName,
+                NickName = u.NickName,
+                UserName = u.UserName,
+                Status = u.Status
+            });
+            return data;
         }
         /// <summary>
         /// 添加
@@ -133,7 +131,10 @@ namespace QS.ServiceLayer.User
                 //初始密码 123456
                 input.Password = "123456";
             }
-
+            if (Users.Any(o=>o.UserName == input.UserName))
+            {
+                return new StatusResult("账号已存在");
+            }
             input.Password = MD5Encrypt.Encrypt32(input.Password);
             var tran = await _context.Database.BeginTransactionAsync();
             try
@@ -161,29 +162,29 @@ namespace QS.ServiceLayer.User
             }
         }
 
-          public async Task<StatusResult> UpdateAsync(UserUpdateInputDto input)
-          {
-              if (!(input?.Id > 0))
-              {
-                  return new StatusResult("未获取到用户信息");
-              }
+        public async Task<StatusResult> UpdateAsync(UserUpdateInputDto input)
+        {
+            if (!(input?.Id > 0))
+            {
+                return new StatusResult("未获取到用户信息");
+            }
 
-              var user = await Users.FirstOrDefaultAsync(o=>o.Id == input.Id);
-              if (!(user?.Id > 0))
-              {
-                  return new StatusResult("用户不存在！");
-              }
+            var user = await Users.FirstOrDefaultAsync(o => o.Id == input.Id);
+            if (!(user?.Id > 0))
+            {
+                return new StatusResult("用户不存在！");
+            }
 
-              var users = _mapper.Map(input, user);
-              _context.Users.Update(users);
-              await _context.UserRole.Where(a => a.UserId == user.Id).BatchDeleteAsync();
-              if (input.RoleIds != null && input.RoleIds.Any())
-              {
-                  var roles = input.RoleIds.Select(a => new UserRoleEntity { UserId = user.Id, RoleId = a });
-                  await _context.UserRole.AddRangeAsync(roles);
-              }
-              return new StatusResult();
-          }
+            var users = _mapper.Map(input, user);
+            _context.Users.Update(users);
+            await _context.UserRole.Where(a => a.UserId == user.Id).BatchDeleteAsync();
+            if (input.RoleIds != null && input.RoleIds.Any())
+            {
+                var roles = input.RoleIds.Select(a => new UserRoleEntity { UserId = user.Id, RoleId = a });
+                await _context.UserRole.AddRangeAsync(roles);
+            }
+            return new StatusResult();
+        }
         /*
           public async Task<StatusResult> UpdateBasicAsync(UserUpdateBasicInput input)
           {

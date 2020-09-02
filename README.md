@@ -36,3 +36,24 @@ public class ProductService:IProductService, IScopeDependency
 [官方文档](https://docs.microsoft.com/zh-cn/ef/core/miscellaneous/configuring-dbcontext)
 
 可以理解为：注入的DbContext生命周期为单次HTTP请求唯一
+
+#### 缓存
+#### redis缓存
+
+appsettings.json 文件中写入如下 
+```
+{
+  "Cache": {
+    "Redis": {
+      "ConnectionString": "127.0.0.1:6379"
+    }
+  }
+}
+
+```
+
+若不填写配置文件就缓存在内存中
+
+#### 日志
+
+使用NLog记录日志

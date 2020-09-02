@@ -26,7 +26,7 @@ namespace Microsoft.EntityFrameworkCore
         /// <param name="where">条件</param>
         /// <param name="order">排序</param>
         /// <returns></returns>
-        public static async Task<PageOutputDto<TSoure>> LoadPageListAsync<TSoure>(this IQueryable<TSoure> soures, PageInputDto pageInputDto, Expression<Func<TSoure, bool>> where = null, Expression<Func<TSoure, object>> order = null)
+        public static async Task<PageOutputDto<TResult>> LoadPageListAsync<TSoure, TResult>(this IQueryable<TSoure> soures, PageInputDto pageInputDto,Expression<Func<TSoure,TResult>> map, Expression<Func<TSoure, bool>> where = null, Expression<Func<TSoure, object>> order = null)
             where TSoure : IEntity<int>
         {
             var result = from p in soures
@@ -38,8 +38,8 @@ namespace Microsoft.EntityFrameworkCore
             else
                 result = result.OrderBy(m => m.Id);
             int rowCount = result.Count();
-            var data = await result.Skip((pageInputDto.PageIndex - 1) * pageInputDto.PageSize).Take(pageInputDto.PageSize).ToListAsync();
-            return new PageOutputDto<TSoure>()
+            var data = await result.Skip((pageInputDto.PageIndex - 1) * pageInputDto.PageSize).Take(pageInputDto.PageSize).Select(map).ToListAsync();
+            return new PageOutputDto<TResult>()
             {
                 PageIndex = pageInputDto.PageIndex,
                 PageSize = pageInputDto.PageSize,
@@ -62,7 +62,7 @@ namespace Microsoft.EntityFrameworkCore
             source = source.Where(o => o.DataState == DataState.Normal);
             if (expression != null)
             {
-                source.Where(expression);
+                source = source.Where(expression);
             }
             return source.AsNoTracking();
         }

@@ -512,6 +512,13 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="M:QS.ServiceLayer.User.IUserService.PageAsync(QS.Core.Data.PageInputDto)">
+            <summary>
+            获取数据
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
         <member name="T:QS.ServiceLayer.User.UserService">
             <summary>
             用户管理-
