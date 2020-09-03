@@ -17,4 +17,8 @@
     <ProjectReference Include="..\QS.DataLayer\QS.DataLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="System\Role\Dto\OutputDto\" />
+  </ItemGroup>
+
 </Project>

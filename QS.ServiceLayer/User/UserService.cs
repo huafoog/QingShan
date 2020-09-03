@@ -116,7 +116,7 @@ namespace QS.ServiceLayer.User
                 NickName = u.NickName,
                 UserName = u.UserName,
                 Status = u.Status
-            });
+            }, o => dto.Search.IsNull() || o.UserName.Contains(dto.Search)|| o.NickName.Contains(dto.Search));
             return data;
         }
         /// <summary>
@@ -136,30 +136,16 @@ namespace QS.ServiceLayer.User
                 return new StatusResult("账号已存在");
             }
             input.Password = MD5Encrypt.Encrypt32(input.Password);
-            var tran = await _context.Database.BeginTransactionAsync();
-            try
+            var entity = _mapper.Map<UserEntity>(input);
+            var id = await _context.InsertEntityAsync<UserEntity, int>(entity);
+            if (id == 0)
+                return new StatusResult("添加失败");
+            if (input.RoleIds != null && input.RoleIds.Any())
             {
-
-                var entity = _mapper.Map<UserEntity>(input);
-                var id = await _context.InsertEntityAsync<UserEntity, int>(entity);
-                if (id == 0)
-                {
-                    return new StatusResult("添加失败");
-                }
-
-                if (input.RoleIds != null && input.RoleIds.Any())
-                {
-                    var roles = input.RoleIds.Select(a => new UserRoleEntity { UserId = _user.Id, RoleId = a });
-                    await _context.InsertEntitiesAsync(roles.ToArray());
-                }
-                await tran.CommitAsync();
-                return new StatusResult();
+                var roles = input.RoleIds.Select(a => new UserRoleEntity { UserId = _user.Id, RoleId = a });
+                await _context.InsertEntitiesAsync(roles.ToArray());
             }
-            catch (Exception)
-            {
-                await tran.RollbackAsync();
-                throw;
-            }
+            return new StatusResult();
         }
 
         public async Task<StatusResult> UpdateAsync(UserUpdateInputDto input)

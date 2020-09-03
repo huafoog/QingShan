@@ -12,6 +12,7 @@ using QS.Core.AutoMapper;
 using QS.Core.Extensions;
 using QS.Core.Reflection;
 using QS.Core.Web.Filter;
+using QS.Core.Web.Filter.Transaction;
 using QS.Core.Web.Permission;
 using QS.Core.Web.Services;
 
@@ -36,6 +37,8 @@ namespace QS.Core.Web
             services.AddSingleton<IAssemblyFinder, AssemblyFinder>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();//注入Http请求上下文
             services.AddCacheService(Configuration);
+            services.AddScoped<TransactionInterceptorAttribute>();
+            services.AddScoped<TransactionInterceptorFilterImpl>();
             services.AddAutoMapper(typeof(AutoMapperConfig));
             services.AddToServices();
             services.AddEFService(Configuration);

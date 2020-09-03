@@ -1,3 +1,6 @@
+# 前端
+使用`vue-element-admin-template`
+[点击跳转](https://github.com/qingshan315/QS.Admin)
 ### 基于EF Core的Code First模式 正在完善
 #### 整体框架设计
 - QS.Core.Web：这是表示层，提供HTML页面和/或Web API。这没有数据库访问代码，但依赖于ServiceLayer。
@@ -57,3 +60,16 @@ appsettings.json 文件中写入如下
 #### 日志
 
 使用NLog记录日志
+#### AOP事务
+在控制器上打上标记`TransactionInterceptor` 例如
+```
+[HttpPost]
+[TransactionInterceptor]
+public async Task<StatusResult> Add(UserAddInputDto input)
+{
+    return await _userService.AddAsync(input);
+}
+```
+若出现以下问题请检查 方法内是否开启了事务 
+> The connection is already in a transaction and cannot participate in another transaction.
+如需手动添加事务就不需要打上该标记

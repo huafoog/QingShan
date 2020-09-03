@@ -318,6 +318,11 @@
             <param name="dto"></param>
             <returns></returns>
         </member>
+        <member name="T:QS.ServiceLayer.System.Role.Dto.InputDto.RoleInputDto">
+            <summary>
+            角色
+            </summary>
+        </member>
         <member name="T:QS.ServiceLayer.User.Dtos.InputDto.UserAddInputDto">
             <summary>
             添加

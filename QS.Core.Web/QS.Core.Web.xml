@@ -117,6 +117,40 @@
             服务器异常返回
             </summary>
         </member>
+        <member name="T:QS.Core.Web.Filter.Transaction.TransactionInterceptorAttribute">
+            <summary>
+            自动事务提交过滤器，在<see cref="M:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute.OnResultExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext,Microsoft.AspNetCore.Mvc.Filters.ResultExecutionDelegate)"/>方法中执行<see cref="!:EFContext.Database.BeginTransactionAsync()"/>进行事务提交
+            <para>继承自<see cref="T:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute"/>在过滤器<see cref="T:Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter"/>中使用依赖注入</para>
+            </summary>
+        </member>
+        <member name="T:QS.Core.Web.Filter.Transaction.TransactionInterceptorFilterImpl">
+            <summary>
+            事务拦截注入
+            </summary>
+        </member>
+        <member name="M:QS.Core.Web.Filter.Transaction.TransactionInterceptorFilterImpl.#ctor(System.IServiceProvider)">
+            <summary>
+            初始化一个<see cref="T:QS.Core.Web.Filter.Transaction.TransactionInterceptorFilterImpl"/>类型的新实例
+            </summary>
+        </member>
+        <member name="M:QS.Core.Web.Filter.Transaction.TransactionInterceptorFilterImpl.OnActionExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext,Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate)">
+            <summary>
+            在操作之前和模型绑定完成之后异步调用。
+            <parm>在这里开启事务</parm>
+            </summary>
+            <param name="context"></param>
+            <param name="next"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QS.Core.Web.Filter.Transaction.TransactionInterceptorFilterImpl.OnResultExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext,Microsoft.AspNetCore.Mvc.Filters.ResultExecutionDelegate)">
+            <summary>
+            在操作结果之前异步调用。
+            <para>在这里执行事务提交操作</para>
+            </summary>
+            <param name="context"></param>
+            <param name="next"></param>
+            <returns></returns>
+        </member>
         <member name="T:QS.Core.Web.Permission.PermissionMiddleware">
             <summary>
             权限中间件
