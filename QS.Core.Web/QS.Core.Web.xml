@@ -58,6 +58,13 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.UserController.UpdateAsync(QS.ServiceLayer.User.Dtos.InputDto.UserUpdateInputDto)">
+            <summary>
+            修改用户
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:QS.Core.Web.Areas.Admin.Controllers.UserController.GetUserInfo">
             <summary>
             获取用户信息
@@ -101,15 +108,16 @@
             <param name="index">序号</param>
             <returns>提取到的模块信息</returns>
         </member>
-        <member name="T:QS.Core.Web.Controllers.TestController">
+        <member name="F:QS.Core.Web.Controllers.UploadController._env">
             <summary>
-            测试控制器
+            
             </summary>
         </member>
-        <member name="M:QS.Core.Web.Controllers.TestController.Index">
+        <member name="M:QS.Core.Web.Controllers.UploadController.UploadFile(Microsoft.AspNetCore.Http.IFormFile)">
             <summary>
-            首页
+            上传文件
             </summary>
+            <param name="file"></param>
             <returns></returns>
         </member>
         <member name="T:QS.Core.Web.Filter.InternalServerErrorObjectResult">

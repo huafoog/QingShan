@@ -1,9 +1,12 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
@@ -15,6 +18,7 @@ using QS.Core.Web.Filter;
 using QS.Core.Web.Filter.Transaction;
 using QS.Core.Web.Permission;
 using QS.Core.Web.Services;
+using System.IO;
 
 namespace QS.Core.Web
 {
@@ -73,8 +77,24 @@ namespace QS.Core.Web
             {
                 app.UseDeveloperExceptionPage();
             }
-            
-           
+            #region 静态文件
+            FileExtensionContentTypeProvider provider = new FileExtensionContentTypeProvider();
+            provider.Mappings[".jpg"] = "image/jpeg";
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Uploads")),
+                ServeUnknownFileTypes = true,
+                ContentTypeProvider = provider,
+                RequestPath = new PathString("/Uploads"),
+                DefaultContentType = "application/x-msdownload", // 设置未识别的MIME类型一个默认z值
+            });
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Uploads")), // 制定目录
+                RequestPath = new PathString("/Uploads")
+            });
+            #endregion
+
             app.UseCors("LimitRequests");
             //app.UseHttpsRedirection();
             app.UsePermission();

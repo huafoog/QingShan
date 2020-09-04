@@ -13,6 +13,7 @@ using QS.ServiceLayer.User.Dtos.OutputDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -148,28 +149,29 @@ namespace QS.ServiceLayer.User
             return new StatusResult();
         }
 
+        /// <summary>
+        /// 修改用户
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task<StatusResult> UpdateAsync(UserUpdateInputDto input)
         {
             if (!(input?.Id > 0))
-            {
                 return new StatusResult("未获取到用户信息");
-            }
-
             var user = await Users.FirstOrDefaultAsync(o => o.Id == input.Id);
             if (!(user?.Id > 0))
-            {
                 return new StatusResult("用户不存在！");
-            }
-
             var users = _mapper.Map(input, user);
-            _context.Users.Update(users);
-            await _context.UserRole.Where(a => a.UserId == user.Id).BatchDeleteAsync();
-            if (input.RoleIds != null && input.RoleIds.Any())
-            {
-                var roles = input.RoleIds.Select(a => new UserRoleEntity { UserId = user.Id, RoleId = a });
-                await _context.UserRole.AddRangeAsync(roles);
-            }
-            return new StatusResult();
+
+            Expression<Func<UserEntity, object>>[] updatedProperties = {
+                    p => p.Avatar,
+                    p => p.NickName,
+                    p => p.Phone,
+                    p => p.RealName,
+                    p => p.UserName,
+                };
+            int res =  await _context.UpdateEntity<UserEntity,int>(users, updatedProperties);
+            return new StatusResult(res>0,"修改失败");
         }
         /*
           public async Task<StatusResult> UpdateBasicAsync(UserUpdateBasicInput input)

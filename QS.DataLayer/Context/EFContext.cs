@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using QS.Core.Attributes;
+using QS.Core.Entity;
 using QS.DataLayer.Entities.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -54,6 +56,24 @@ namespace QS.DataLayer.Entities
         }
 
         #region 异步方法
+
+
+        /// <summary>
+        /// 更新部分字段
+        /// </summary>
+        public virtual async Task<int> UpdateEntity<T,TKey>(T entity, Expression<Func<T, object>>[] updatedProperties)
+            where T: class,IEntity<TKey>
+        {
+            Set<T>().Attach(entity);
+            if (updatedProperties.Any())
+            {
+                foreach (var property in updatedProperties)
+                {
+                    Entry(entity).Property(property).IsModified = true;
+                }
+            }
+            return await SaveChangesAsync();
+        }
         #endregion
     }
 

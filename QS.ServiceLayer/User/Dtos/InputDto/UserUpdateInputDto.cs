@@ -1,4 +1,5 @@
-﻿using QS.DataLayer.Entities;
+﻿using QS.Core.Attributes;
+using QS.DataLayer.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace QS.ServiceLayer.User.Dtos.InputDto
@@ -6,7 +7,8 @@ namespace QS.ServiceLayer.User.Dtos.InputDto
     /// <summary>
     /// 修改
     /// </summary>
-    public partial class UserUpdateInputDto
+    [MapTo(typeof(UserEntity))]
+    public class UserUpdateInputDto
     {
         /// <summary>
         /// 主键Id
@@ -20,14 +22,19 @@ namespace QS.ServiceLayer.User.Dtos.InputDto
         public string UserName { get; set; }
 
         /// <summary>
+        /// 手机号
+        /// </summary>
+        public string Phone { get; set; }
+
+        /// <summary>
         /// 昵称
         /// </summary>
         public string NickName { get; set; }
 
-        ///// <summary>
-        ///// 头像
-        ///// </summary>
-        //public string Avatar { get; set; }
+        /// <summary>
+        /// 头像
+        /// </summary>
+        public string Avatar { get; set; }
 
         /// <summary>
         /// 状态

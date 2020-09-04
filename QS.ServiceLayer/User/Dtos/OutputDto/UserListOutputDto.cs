@@ -1,4 +1,5 @@
-﻿using QS.Core.Entity;
+﻿using QS.Core.Attributes;
+using QS.Core.Entity;
 using QS.DataLayer.Entities;
 using System;
 

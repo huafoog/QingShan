@@ -438,9 +438,19 @@
             账号
             </summary>
         </member>
+        <member name="P:QS.ServiceLayer.User.Dtos.InputDto.UserUpdateInputDto.Phone">
+            <summary>
+            手机号
+            </summary>
+        </member>
         <member name="P:QS.ServiceLayer.User.Dtos.InputDto.UserUpdateInputDto.NickName">
             <summary>
             昵称
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.User.Dtos.InputDto.UserUpdateInputDto.Avatar">
+            <summary>
+            头像
             </summary>
         </member>
         <member name="P:QS.ServiceLayer.User.Dtos.InputDto.UserUpdateInputDto.Status">
@@ -459,6 +469,51 @@
             </summary>
         </member>
         <member name="P:QS.ServiceLayer.User.Dtos.InputDto.UserUpdateInputDto.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.User.Dtos.OutputDto.UserGetOutputDto.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.User.Dtos.OutputDto.UserGetOutputDto.UserName">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.User.Dtos.OutputDto.UserGetOutputDto.Phone">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.User.Dtos.OutputDto.UserGetOutputDto.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.User.Dtos.OutputDto.UserGetOutputDto.Avatar">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.User.Dtos.OutputDto.UserGetOutputDto.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.User.Dtos.OutputDto.UserGetOutputDto.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.User.Dtos.OutputDto.UserGetOutputDto.RoleIds">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.User.Dtos.OutputDto.UserGetOutputDto.Version">
             <summary>
             版本
             </summary>
@@ -517,6 +572,13 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="M:QS.ServiceLayer.User.IUserService.UpdateAsync(QS.ServiceLayer.User.Dtos.InputDto.UserUpdateInputDto)">
+            <summary>
+            修改用户信息
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:QS.ServiceLayer.User.IUserService.PageAsync(QS.Core.Data.PageInputDto)">
             <summary>
             获取数据
@@ -563,6 +625,13 @@
         <member name="M:QS.ServiceLayer.User.UserService.AddAsync(QS.ServiceLayer.User.Dtos.InputDto.UserAddInputDto)">
             <summary>
             添加
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QS.ServiceLayer.User.UserService.UpdateAsync(QS.ServiceLayer.User.Dtos.InputDto.UserUpdateInputDto)">
+            <summary>
+            修改用户
             </summary>
             <param name="input"></param>
             <returns></returns>

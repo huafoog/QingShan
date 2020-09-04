@@ -45,6 +45,20 @@ namespace QS.Core.Web.Areas.Admin.Controllers
         }
 
         /// <summary>
+        /// 修改用户
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Description("修改用户")]
+        [ModuleInfo]
+        [TransactionInterceptor]
+        public async Task<StatusResult> UpdateAsync(UserUpdateInputDto input)
+        {
+            return await _userService.UpdateAsync(input);
+        }
+
+        /// <summary>
         /// 获取用户信息
         /// </summary>
         /// <returns></returns>
