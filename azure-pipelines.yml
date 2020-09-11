@@ -24,7 +24,7 @@ stages:
       displayName: Build an image
       inputs:
         command: build
-        dockerfile: '$(Build.SourcesDirectory)/Qs.Core/QS.Core.Web/Dockerfile'
+        dockerfile: 'QS.Core.Web/Dockerfile'
         tags: |
           $(tag)
     - task: Docker@2
