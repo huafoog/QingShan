@@ -53,21 +53,33 @@ namespace QS.Core.Web.Areas.Admin.Controllers
         [Description("修改用户")]
         [ModuleInfo]
         [TransactionInterceptor]
-        public async Task<StatusResult> UpdateAsync(UserUpdateInputDto input)
+        public async Task<StatusResult> Update(UserUpdateInputDto input)
         {
             return await _userService.UpdateAsync(input);
         }
 
         /// <summary>
-        /// 获取用户信息
+        /// 获取当前登录用户信息
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [Description("获取用户信息")]
+        [Description("获取当前登录用户信息")]
         [ModuleInfo]
         public async Task<StatusResult<UserGetOutputDto>> GetUserInfo()
         {
             return await _userService.GetAsync(_userInfo.Id);
+        }
+
+        /// <summary>
+        /// 获取用户详情信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Description("获取用户详情信息")]
+        [ModuleInfo]
+        public async Task<StatusResult<UserGetOutputDto>> GetInfo(CommonIdInputDto dto)
+        {
+            return await _userService.GetAsync(dto.Id);
         }
 
         /// <summary>
@@ -80,6 +92,18 @@ namespace QS.Core.Web.Areas.Admin.Controllers
         public async Task<PageOutputDto<UserListOutputDto>> GetUserPage([FromQuery]PageInputDto dto)
         {
             return await _userService.PageAsync(dto);
+        }
+
+        /// <summary>
+        /// 删除用户信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Description("删除用户信息")]
+        [ModuleInfo]
+        public async Task<StatusResult> Delete(CommonIdInputDto dto)
+        {
+            return await _userService.DeleteAsync(dto.Id);
         }
     }
 }

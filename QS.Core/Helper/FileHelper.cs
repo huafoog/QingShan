@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using QS.Core.Data.Constants;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -314,7 +315,7 @@ namespace QS.Core.Helper
         /// <returns></returns>
         public static string GetDirectory(string folder = default)
         {
-            var path = $"/{folder??"Uploads"}/{DateTime.Now:yyyy/MM/dd}";
+            var path = $"/{SystemConst.SYS_FILE_FOLDER_ROOT}/{folder??"Uploads"}/{DateTime.Now:yyyy/MM/dd}";
             CreateDirectory(MapPath(path));
             return path;
         }

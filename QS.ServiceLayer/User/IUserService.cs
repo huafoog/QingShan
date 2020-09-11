@@ -38,5 +38,12 @@ namespace QS.ServiceLayer.User
         /// <param name="dto"></param>
         /// <returns></returns>
         Task<PageOutputDto<UserListOutputDto>> PageAsync(PageInputDto dto);
+
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<StatusResult> DeleteAsync(int id);
     }
 }

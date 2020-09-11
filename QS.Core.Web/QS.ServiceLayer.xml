@@ -586,6 +586,13 @@
             <param name="dto"></param>
             <returns></returns>
         </member>
+        <member name="M:QS.ServiceLayer.User.IUserService.DeleteAsync(System.Int32)">
+            <summary>
+            删除用户
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:QS.ServiceLayer.User.UserService">
             <summary>
             用户管理-
@@ -634,6 +641,13 @@
             修改用户
             </summary>
             <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QS.ServiceLayer.User.UserService.DeleteAsync(System.Int32)">
+            <summary>
+            删除用户
+            </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
     </members>

@@ -167,11 +167,22 @@ namespace QS.ServiceLayer.User
                     p => p.Avatar,
                     p => p.NickName,
                     p => p.Phone,
-                    p => p.RealName,
-                    p => p.UserName,
+                    p => p.RealName
                 };
             int res =  await _context.UpdateEntity<UserEntity,int>(users, updatedProperties);
             return new StatusResult(res>0,"修改失败");
+        }
+
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<StatusResult> DeleteAsync(int id)
+        {
+            var res  =await _context.Set<UserEntity>().DeleteByIdAsync(id);
+
+            return new StatusResult(res > 0,"删除失败");
         }
         /*
           public async Task<StatusResult> UpdateBasicAsync(UserUpdateBasicInput input)
@@ -201,17 +212,6 @@ namespace QS.ServiceLayer.User
 
               entity = _mapper.Map(input, entity);
               var result = (await _userRepository.UpdateAsync(entity)) > 0;
-
-              return StatusResult.Result(result);
-          }
-
-          public async Task<StatusResult> DeleteAsync(long id)
-          {
-              var result = false;
-              if (id > 0)
-              {
-                  result = (await _userRepository.DeleteAsync(m => m.Id == id)) > 0;
-              }
 
               return StatusResult.Result(result);
           }

@@ -82,16 +82,16 @@ namespace QS.Core.Web
             provider.Mappings[".jpg"] = "image/jpeg";
             app.UseStaticFiles(new StaticFileOptions
             {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Uploads")),
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "www")),
                 ServeUnknownFileTypes = true,
                 ContentTypeProvider = provider,
-                RequestPath = new PathString("/Uploads"),
+                RequestPath = new PathString("/www"),
                 DefaultContentType = "application/x-msdownload", // 设置未识别的MIME类型一个默认z值
             });
             app.UseDirectoryBrowser(new DirectoryBrowserOptions()
             {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Uploads")), // 制定目录
-                RequestPath = new PathString("/Uploads")
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "www")), // 制定目录
+                RequestPath = new PathString("/www")
             });
             #endregion
 

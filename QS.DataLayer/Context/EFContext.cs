@@ -1,8 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Debug;
+using MySqlConnector.Logging;
 using QS.Core.Attributes;
 using QS.Core.Entity;
 using QS.DataLayer.Entities.Configuration;
+using QS.DataLayer.Logs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +53,18 @@ namespace QS.DataLayer.Entities
         /// 用户表
         /// </summary>
         public DbSet<UserEntity> Users { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            #if Debug
+            var loggerFactory = new LoggerFactory();
+            loggerFactory.AddProvider(new EFLoggerProvider());
+            optionsBuilder.EnableSensitiveDataLogging(true);
+            optionsBuilder.UseLoggerFactory(loggerFactory);
+            #endif
 
+
+            base.OnConfiguring(optionsBuilder);
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
@@ -57,10 +72,22 @@ namespace QS.DataLayer.Entities
 
         #region 异步方法
 
+        /// <summary>
+        /// 获取DbSet
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TKey"></typeparam>
+        /// <returns></returns>
+        public virtual DbSet<T> GetDbSet<T, TKey>() where T:class,IEntity<TKey> => Set<T>();
 
         /// <summary>
         /// 更新部分字段
         /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TKey"></typeparam>
+        /// <param name="entity"></param>
+        /// <param name="updatedProperties"></param>
+        /// <returns></returns>
         public virtual async Task<int> UpdateEntity<T,TKey>(T entity, Expression<Func<T, object>>[] updatedProperties)
             where T: class,IEntity<TKey>
         {

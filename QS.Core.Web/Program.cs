@@ -52,7 +52,7 @@ namespace QS.Core.Web
         //   CreateDefaultBuilder(args)
         //   .UseStartup<Startup>()
         //   .UseKestrel()
-        //   .UseUrls("http://localhost:5000", "https://localhost:5001")
+        //   .UseUrls("http://localhost:6001", "https://localhost:44338")
         //   .ConfigureLogging(logging =>
         //   {
         //       logging.ClearProviders();

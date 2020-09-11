@@ -120,7 +120,7 @@ public class EnumHelper
 
 例如当前使用到的程序集名称为`EnumList`
 
-当前使到的命名空间为`EnumList.Enums`
+当前使到的命名空间为`EnumList.Enums` 
 
 当前需要获取的枚举类型为`UserType`
 

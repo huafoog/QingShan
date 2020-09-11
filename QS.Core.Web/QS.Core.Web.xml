@@ -58,7 +58,7 @@
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:QS.Core.Web.Areas.Admin.Controllers.UserController.UpdateAsync(QS.ServiceLayer.User.Dtos.InputDto.UserUpdateInputDto)">
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.UserController.Update(QS.ServiceLayer.User.Dtos.InputDto.UserUpdateInputDto)">
             <summary>
             修改用户
             </summary>
@@ -67,13 +67,25 @@
         </member>
         <member name="M:QS.Core.Web.Areas.Admin.Controllers.UserController.GetUserInfo">
             <summary>
-            获取用户信息
+            获取当前登录用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.UserController.GetInfo(QS.Core.Data.CommonIdInputDto)">
+            <summary>
+            获取用户详情信息
             </summary>
             <returns></returns>
         </member>
         <member name="M:QS.Core.Web.Areas.Admin.Controllers.UserController.GetUserPage(QS.Core.Data.PageInputDto)">
             <summary>
             获取用户列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.UserController.Delete(QS.Core.Data.CommonIdInputDto)">
+            <summary>
+            删除用户信息
             </summary>
             <returns></returns>
         </member>
