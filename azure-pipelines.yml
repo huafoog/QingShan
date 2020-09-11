@@ -29,6 +29,6 @@ stages:
           $(tag)
     - task: Docker@2
       inputs:
-        containerRegistry: 'registry'
+        containerRegistry: 'TestDocker'
         repository: 'QSWeb'
         command: 'push'
