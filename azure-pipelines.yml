@@ -30,5 +30,4 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'docker 镜像生成'
-        repository: 'QSWeb'
         command: 'push'
