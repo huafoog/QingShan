@@ -24,6 +24,7 @@ stages:
       displayName: Build an image
       inputs:
         command: build
+        repository: '$(Build.Repository.Name)'
         dockerfile: 'QS.Core.Web/Dockerfile'
         tags: |
           $(tag)
