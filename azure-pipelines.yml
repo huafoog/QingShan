@@ -18,7 +18,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      vmImage: 'ubuntu-latest'
+      vmImage: 'QSPool'
     steps:
     - task: Docker@2
       displayName: Build an image
@@ -29,6 +29,6 @@ stages:
           $(tag)
     - task: Docker@2
       inputs:
-        containerRegistry: 'docker 镜像生成'
+        containerRegistry: 'registry'
         repository: 'QSWeb'
         command: 'push'
