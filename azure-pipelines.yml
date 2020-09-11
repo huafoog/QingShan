@@ -23,8 +23,9 @@ stages:
     - task: Docker@2
       displayName: Build an image
       inputs:
+        repository: $(imageName)
         command: build
-        dockerfile: 'QS.Core/QS.Core.Web/Dockerfile'
+        dockerfile: 'QS.Core.Web/Dockerfile'
         tags: |
           $(tag)
     - task: Docker@2
