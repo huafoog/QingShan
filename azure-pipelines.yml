@@ -1,28 +1,33 @@
-
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+# Docker
+# Build a Docker image 
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
 - master
 
-pool:
-  vmImage: 'ubuntu-latest'
-
+resources:
+- repo: self
 
 variables:
-  dockerId: zhangyaxing521@qq.com                  # 阿里云 login username
-  namespace: qs315                              # 阿里云 命名空间
-  imageName: qscore                        # 阿里云 仓库名称
-  registry: registry.cn-hangzhou.aliyuncs.com   # 阿里云 公网地址
-  dockerfilepath:  QS.Core/Dockerfile       # Github Dockerfile相对路径
+  tag: '$(Build.BuildId)'
 
-
-steps:
-- script: |
-    docker build -f $(dockerfilepath) -t $(imageName) .
-    docker login -u $(dockerId) -p $(pwd) $(registry)
-    docker tag $(imageName) $(registry)/$(namespace)/$(imageName)
-    docker push $(registry)/$(namespace)/$(imageName)
-  displayName: push to aliyun
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        command: build
+        dockerfile: '$(Build.SourcesDirectory)/Qs.Core/QS.Core.Web/Dockerfile'
+        tags: |
+          $(tag)
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'docker 镜像生成'
+        command: 'push'
