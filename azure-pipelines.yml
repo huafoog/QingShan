@@ -24,10 +24,9 @@ stages:
       displayName: Build an image
       inputs:
         command: build
+        containerRegistry: 'docker 镜像生成'
         repository: '$(Build.Repository.Name)'
         dockerfile: 'QS.Core.Web/Dockerfile'
-        tags: |
-          $(tag)
     - task: Docker@2
       inputs:
         containerRegistry: 'docker 镜像生成'
