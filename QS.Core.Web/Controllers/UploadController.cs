@@ -12,6 +12,9 @@ using QS.Core.Helper;
 
 namespace QS.Core.Web.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class UploadController : ControllerBase
