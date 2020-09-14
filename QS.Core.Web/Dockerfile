@@ -7,4 +7,4 @@ COPY . .
 # 暴露80端口
 EXPOSE 80
 # 运行镜像入口命令和可执行文件名称
-ENTRYPOINT ["dotnet", "QS.Core.Web.dll"]
+ENTRYPOINT ["dotnet","QS.Core.Web.dll"]
