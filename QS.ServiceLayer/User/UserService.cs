@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using QS.Core.Data;
 using QS.Core.Dependency;
 using QS.Core.Encryption;
-using QS.Core.Extensions;
 using QS.Core.Permission;
 using QS.DataLayer.Entities;
 using QS.ServiceLayer.User.Dtos.InputDto;
@@ -14,7 +12,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace QS.ServiceLayer.User
@@ -117,7 +114,7 @@ namespace QS.ServiceLayer.User
                 NickName = u.NickName,
                 UserName = u.UserName,
                 Status = u.Status
-            }, o => dto.Search.IsNull() || o.UserName.Contains(dto.Search)|| o.NickName.Contains(dto.Search));
+            }, o => dto.Search.IsNull() || o.UserName.Contains(dto.Search) || o.NickName.Contains(dto.Search));
             return data;
         }
         /// <summary>
@@ -129,24 +126,18 @@ namespace QS.ServiceLayer.User
         {
             if (input.Password.IsNull())
             {
-                //初始密码 123456
-                input.Password = "123456";
+                input.Password = "123456"; //初始密码 123456
             }
-            if (Users.Any(o=>o.UserName == input.UserName))
+
+            if (Users.Any(o => o.UserName == input.UserName))
             {
                 return new StatusResult("账号已存在");
             }
+
             input.Password = MD5Encrypt.Encrypt32(input.Password);
             var entity = _mapper.Map<UserEntity>(input);
-            var id = await _context.InsertEntityAsync<UserEntity, int>(entity);
-            if (id == 0)
-                return new StatusResult("添加失败");
-            if (input.RoleIds != null && input.RoleIds.Any())
-            {
-                var roles = input.RoleIds.Select(a => new UserRoleEntity { UserId = _user.Id, RoleId = a });
-                await _context.InsertEntitiesAsync(roles.ToArray());
-            }
-            return new StatusResult();
+            var res = await _context.InsertEntityAsync<UserEntity, int>(entity);
+            return new StatusResult(res > 0, "添加失败");
         }
 
         /// <summary>
@@ -157,10 +148,16 @@ namespace QS.ServiceLayer.User
         public async Task<StatusResult> UpdateAsync(UserUpdateInputDto input)
         {
             if (!(input?.Id > 0))
+            {
                 return new StatusResult("未获取到用户信息");
+            }
+
             var user = await Users.FirstOrDefaultAsync(o => o.Id == input.Id);
             if (!(user?.Id > 0))
+            {
                 return new StatusResult("用户不存在！");
+            }
+
             var users = _mapper.Map(input, user);
 
             Expression<Func<UserEntity, object>>[] updatedProperties = {
@@ -169,8 +166,8 @@ namespace QS.ServiceLayer.User
                     p => p.Phone,
                     p => p.RealName
                 };
-            int res =  await _context.UpdateEntity<UserEntity,int>(users, updatedProperties);
-            return new StatusResult(res>0,"修改失败");
+            int res = await _context.UpdateEntity<UserEntity, int>(users, updatedProperties);
+            return new StatusResult(res > 0, "修改失败");
         }
 
         /// <summary>
@@ -180,54 +177,9 @@ namespace QS.ServiceLayer.User
         /// <returns></returns>
         public async Task<StatusResult> DeleteAsync(int id)
         {
-            var res  =await _context.Set<UserEntity>().DeleteByIdAsync(id);
+            var res = await _context.Set<UserEntity>().DeleteByIdAsync(id);
 
-            return new StatusResult(res > 0,"删除失败");
+            return new StatusResult(res > 0, "删除失败");
         }
-        /*
-          public async Task<StatusResult> UpdateBasicAsync(UserUpdateBasicInput input)
-          {
-              var entity = await _userRepository.GetAsync(input.Id);
-              entity = _mapper.Map(input, entity);
-              var result = (await _userRepository.UpdateAsync(entity)) > 0;
-
-              return StatusResult.Result(result);
-          }
-
-          public async Task<StatusResult> ChangePasswordAsync(UserChangePasswordInput input)
-          {
-              if (input.ConfirmPassword != input.NewPassword)
-              {
-                  return StatusResult.NotOk("新密码和确认密码不一致！");
-              }
-
-              var entity = await _userRepository.GetAsync(input.Id);
-              var oldPassword = MD5Encrypt.Encrypt32(input.OldPassword);
-              if (oldPassword != entity.Password)
-              {
-                  return StatusResult.NotOk("旧密码不正确！");
-              }
-
-              input.Password = MD5Encrypt.Encrypt32(input.NewPassword);
-
-              entity = _mapper.Map(input, entity);
-              var result = (await _userRepository.UpdateAsync(entity)) > 0;
-
-              return StatusResult.Result(result);
-          }
-
-          public async Task<StatusResult> SoftDeleteAsync(long id)
-          {
-              var result = await _userRepository.SoftDeleteAsync(id);
-
-              return StatusResult.Result(result);
-          }
-
-          public async Task<StatusResult> BatchSoftDeleteAsync(long[] ids)
-          {
-              var result = await _userRepository.SoftDeleteAsync(ids);
-
-              return StatusResult.Result(result);
-          }*/
     }
 }

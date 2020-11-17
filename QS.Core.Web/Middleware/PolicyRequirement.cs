@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace QS.Core.Web.Permission
 {
@@ -11,7 +8,7 @@ namespace QS.Core.Web.Permission
     /// 权限承载实体
     /// <para>该类主要用于获取所有权限</para>
     /// </summary>
-    public class PolicyRequirement:IAuthorizationRequirement
+    public class PolicyRequirement : IAuthorizationRequirement
     {
         /// <summary>
         /// 用户权限集合

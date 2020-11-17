@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using QS.Core.Data;
@@ -35,6 +29,6 @@ namespace QS.Core.Web.Controllers
         /// <param name="file"></param>
         /// <returns></returns>
         [HttpPost]
-        public StatusResult<string> UploadFile(IFormFile file)=> new StatusResult<string>() { Data = FileHelper.CreateFile(file) };
+        public StatusResult<string> UploadFile(IFormFile file) => new StatusResult<string>() { Data = FileHelper.CreateFile(file) };
     }
 }

@@ -4,7 +4,6 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace QS.Core.Helper
 {
@@ -60,7 +59,10 @@ namespace QS.Core.Helper
             namespaces = namespaces.Distinct();
             var Inexistentassembly = assemblys.Except(AssemblyList?.Select(o => o.Key));
             foreach (var assembly in Inexistentassembly)
+            {
                 AssemblyList.TryAdd(assembly, System.Reflection.Assembly.Load(assembly));
+            }
+
             List<Type> enumlist = new List<Type>();
             List<string> enumNamespanList = new List<string>();
             foreach (var enumNamespace in namespaces)
@@ -75,9 +77,16 @@ namespace QS.Core.Helper
                     }
                 }
             }
-            if (enumlist.Count == 0) return default;
+            if (enumlist.Count == 0)
+            {
+                return default;
+            }
+
             if (enumlist.Count > 1)
+            {
                 throw new EnumException($"枚举【{EnumCode}】存在多个，请检查命名空间【{string.Join(",", enumNamespanList)}】");
+            }
+
             var enums = Enum.GetValues(enumlist.FirstOrDefault());
             List<EnumDto> enumDic = new List<EnumDto>();
             foreach (Enum item in enums)

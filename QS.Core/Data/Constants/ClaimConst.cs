@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace QS.Core.Data.Constants
+﻿namespace QS.Core.Data.Constants
 {
     /// <summary>
     /// 用户标识常量
     /// </summary>
-    public  static class ClaimConst
+    public static class ClaimConst
     {
         /// <summary>
         /// 用户id

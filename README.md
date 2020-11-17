@@ -40,6 +40,25 @@ public class ProductService:IProductService, IScopeDependency
 
 可以理解为：注入的DbContext生命周期为单次HTTP请求唯一
 
+关于仓储    来自百小僧
+```
+第一、EF Core自带的是DbContext，还不能说是仓储。
+
+第二、DbContext很容易导致每一个层都依赖。
+
+第三、有些时候我们需要拿一个数据，但是这个数据可能是数据库给的，也可能是Redis或者Xml给的。这个时候DbContext就难了。
+
+而有了仓储，我们直接一个接口就可以了，业务层不关心数据的来源。如果直接DbContext，本身就说明了依赖。
+
+第四、项目的Orm可能不一定是EFCore，有可能是其他ORM，如果强烈依赖了EFCore，那么以后是灾难，所以我们必须抽象出更上一层规范，也就是接口。
+
+第五、通过仓储方式可以实现多EF Core同时存在
+仓储是EF Core中的“仓储”的另一个抽象接口。可以实现任意更换数据库，任意更换表
+如果你的DbContext是Mysql的，那你只能操作Mysql。
+而通过仓储抽象之后，DbContext是动态创建的。
+
+```
+
 #### 缓存
 #### redis缓存
 

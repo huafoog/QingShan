@@ -16,7 +16,7 @@ namespace QS.Core.Web.Services
         /// </summary>
         /// <param name="services"></param>
         /// <param name="configuration"></param>
-        public static void AddAuthorizationService(this IServiceCollection services,IConfiguration configuration)
+        public static void AddAuthorizationService(this IServiceCollection services, IConfiguration configuration)
         {
             //添加jwt验证：
             services.AddAuthorization(options =>

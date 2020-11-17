@@ -3,7 +3,6 @@ using Microsoft.IdentityModel.Tokens;
 using QS.Core.Dependency;
 using QS.Core.Helper;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -11,7 +10,7 @@ using System.Text;
 
 namespace QS.Core.Permission
 {
-    public class JwtFactory : IJwtFactory,ITransientDependency
+    public class JwtFactory : IJwtFactory, ITransientDependency
     {
 
         private readonly IConfiguration _config;

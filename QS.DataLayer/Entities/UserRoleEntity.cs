@@ -1,14 +1,11 @@
 ﻿using QS.Core.Entity;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace QS.DataLayer.Entities
 {
     /// <summary>
     /// 用户角色实体
     /// </summary>
-    public class UserRoleEntity:EntityBase<int>
+    public class UserRoleEntity : EntityBase<int>
     {
         /// <summary>
         /// 用户Id

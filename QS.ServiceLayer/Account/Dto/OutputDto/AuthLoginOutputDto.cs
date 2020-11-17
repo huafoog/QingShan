@@ -1,9 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace QS.ServiceLayer.Account.Dto.OutputDto
+﻿namespace QS.ServiceLayer.Account.Dto.OutputDto
 {
     public class AuthLoginOutputDto
     {

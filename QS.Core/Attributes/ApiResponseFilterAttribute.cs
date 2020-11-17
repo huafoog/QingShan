@@ -2,17 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using QS.Core.Data;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace QS.Core.Attributes
 {
     /// <summary>
     /// Api action统一处理过滤器
     /// </summary>
-    public class ApiResponseFilterAttribute: ActionFilterAttribute
+    public class ApiResponseFilterAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {

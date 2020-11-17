@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace QS.DataLayer.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +16,7 @@ namespace QS.DataLayer.Migrations
                     CreateTime = table.Column<DateTime>(nullable: false),
                     DataState = table.Column<int>(nullable: false),
                     Code = table.Column<string>(nullable: true),
-                    Area = table.Column<string>(maxLength: 200, nullable: true),
+                    区域 = table.Column<string>(maxLength: 200, nullable: true),
                     Controller = table.Column<string>(maxLength: 200, nullable: true),
                     Action = table.Column<string>(maxLength: 200, nullable: true),
                     Name = table.Column<string>(maxLength: 50, nullable: true),
@@ -36,7 +37,7 @@ namespace QS.DataLayer.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CreateTime = table.Column<DateTime>(nullable: false),
                     DataState = table.Column<int>(nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", nullable: true),
@@ -53,7 +54,7 @@ namespace QS.DataLayer.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     RoleId = table.Column<int>(nullable: false),
                     ModuleId = table.Column<Guid>(nullable: false)
                 },
@@ -67,7 +68,7 @@ namespace QS.DataLayer.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CreateTime = table.Column<DateTime>(nullable: false),
                     DataState = table.Column<int>(nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", nullable: true),
@@ -85,7 +86,7 @@ namespace QS.DataLayer.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CreateTime = table.Column<DateTime>(nullable: false),
                     DataState = table.Column<int>(nullable: false),
                     UserId = table.Column<int>(nullable: false),
@@ -101,7 +102,7 @@ namespace QS.DataLayer.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CreateTime = table.Column<DateTime>(nullable: false),
                     DataState = table.Column<int>(nullable: false),
                     RealName = table.Column<string>(type: "nvarchar(50)", nullable: true),

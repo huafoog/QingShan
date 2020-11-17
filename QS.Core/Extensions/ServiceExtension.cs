@@ -2,10 +2,7 @@
 using QS.Core.Dependency;
 using QS.Core.Reflection;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 
 namespace QS.Core.Extensions
 {
@@ -28,8 +25,8 @@ namespace QS.Core.Extensions
 
             var container = services.BuildServiceProvider();
             var _assemblyFinder = container.GetService<IAssemblyFinder>();
-            var types = _assemblyFinder.FindAll().SelectMany(o=>o.DefinedTypes).Select(type=>type.AsType())
-                .Where(type=> baseTypes.Any(b => b.IsAssignableFrom(type)) 
+            var types = _assemblyFinder.FindAll().SelectMany(o => o.DefinedTypes).Select(type => type.AsType())
+                .Where(type => baseTypes.Any(b => b.IsAssignableFrom(type))
                 && type.IsClass && !type.IsInterface && !type.IsAbstract);
             foreach (var implementType in types)
             {
@@ -38,7 +35,7 @@ namespace QS.Core.Extensions
                 {
                     if (implementType.IsDeriveClassFrom<ITransientDependency>())
                     {
-                        services.AddTransient(serviceType[0], implementType) ;
+                        services.AddTransient(serviceType[0], implementType);
                     }
 
                     if (implementType.IsDeriveClassFrom<IScopeDependency>())

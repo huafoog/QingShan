@@ -10,14 +10,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace QS.Core.Web.Authorization
 {
     /// <summary>
     /// 模块管理
     /// </summary>
-    public class ModuleManager: IModuleManager, ISingletonDependency
+    public class ModuleManager : IModuleManager, ISingletonDependency
     {
         private readonly IAssemblyFinder _assemblyFinder;
         public ModuleManager(IAssemblyFinder assemblyFinder)
@@ -34,7 +33,7 @@ namespace QS.Core.Web.Authorization
             //当前所有权限
             var types = RuntimeHelper.GetAllTypes();
             //获取需要模块信息
-            var typeInfos = types.Where(o => o.IsClass &&  o.GetCustomAttributes(false).Any(p => p is ModuleInfoAttribute));
+            var typeInfos = types.Where(o => o.IsClass && o.GetCustomAttributes(false).Any(p => p is ModuleInfoAttribute));
             List<ModuleInfo> infos = new List<ModuleInfo>();
             //循环类
             foreach (var moduleType in typeInfos)
@@ -46,7 +45,7 @@ namespace QS.Core.Web.Authorization
                 List<MethodInfo> methods = moduleType.GetMethods().Where(type => type.HasAttribute<ModuleInfoAttribute>()).ToList();
                 for (int index = 0; index < methods.Count; index++)
                 {
-                    ModuleInfo methodInfo = GetModule(methods[index], module.Last(),moduleType, index);
+                    ModuleInfo methodInfo = GetModule(methods[index], module.Last(), moduleType, index);
                     infos.Add(methodInfo);
                 }
             }
@@ -111,8 +110,9 @@ namespace QS.Core.Web.Authorization
         /// <param name="method">方法信息</param>
         /// <param name="moduleInfo">所在类型模块信息</param>
         /// <param name="index">序号</param>
+        /// <param name="type"></param>
         /// <returns>提取到的模块信息</returns>
-        protected ModuleInfo GetModule(MethodInfo method, ModuleInfo moduleInfo,Type type, int index)
+        protected ModuleInfo GetModule(MethodInfo method, ModuleInfo moduleInfo, Type type, int index)
         {
             ModuleInfoAttribute infoAttr = method.GetAttribute<ModuleInfoAttribute>();
             if (infoAttr == null)

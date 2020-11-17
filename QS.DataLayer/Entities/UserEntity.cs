@@ -1,21 +1,19 @@
 ﻿using QS.Core.Entity;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace QS.DataLayer.Entities
 {
     /// <summary>
     /// 用户表
     /// </summary>
-    public class UserEntity:EntityBase<int>
+    public class UserEntity : EntityBase<int>
     {
         /// <summary>
         /// 真实姓名
         /// </summary>
-        [Column(TypeName ="nvarchar(50)")]
+        [Column(TypeName = "nvarchar(50)")]
         public string RealName { get; set; }
 
         /// <summary>

@@ -1,5 +1,4 @@
 using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -49,7 +48,8 @@ namespace QS.Core.Web
             services.AddSwaggerService();
             services.AddAuthorizationService(Configuration);
             services.AddCorsService();
-            services.AddControllers(o=> {
+            services.AddControllers(o =>
+            {
                 //全局异常
                 o.Filters.Add<GlobalExceptionFilter>();
                 //注册模型验证过滤器到全局
@@ -110,7 +110,7 @@ namespace QS.Core.Web
             {
                 //exists 应用了路由必须与区域匹配的约束。 使用 {area:...} 是将路由添加到区域的最简单的机制。
                 //添加到启动的区域路由：
-                endpoints.MapAreaControllerRoute(name: "areas", "area",pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapAreaControllerRoute(name: "areas", "area", pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Test}/{action=Get}/{id?}");

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace QS.Core.Data.Constants
+﻿namespace QS.Core.Data.Constants
 {
     /// <summary>
     /// 系统常量

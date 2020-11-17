@@ -1,7 +1,5 @@
-﻿using QS.Core.Extensions;
-using QS.Core.Helper;
+﻿using QS.Core.Helper;
 using System;
-using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -20,7 +18,9 @@ namespace QS.Core.Encryption
         public static string Encrypt16(string password)
         {
             if (password.IsNull())
+            {
                 return null;
+            }
 
             using (var md5 = MD5.Create())
             {
@@ -36,7 +36,9 @@ namespace QS.Core.Encryption
         public static string Encrypt32(string password = "")
         {
             if (password.IsNull())
+            {
                 return null;
+            }
 
             using (var md5 = MD5.Create())
             {
@@ -58,7 +60,9 @@ namespace QS.Core.Encryption
         public static string Encrypt64(string password)
         {
             if (password.IsNull())
+            {
                 return null;
+            }
 
             using (var md5 = MD5.Create())
             {

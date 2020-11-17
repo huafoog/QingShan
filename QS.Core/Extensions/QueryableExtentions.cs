@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Collections.Generic;
 using static System.Linq.Expressions.Expression;
 namespace QS.Core.Extensions
 {
@@ -43,7 +43,9 @@ namespace QS.Core.Extensions
                 sourceType = type;
             }
             else
+            {
                 propertyParameter = parameter;
+            }
 
             return Lambda<Func<TSource, TTarget>>(GetExpression(propertyParameter, sourceType, targetType), parameter);
         }
@@ -58,7 +60,10 @@ namespace QS.Core.Extensions
                 {
                     var property = GetFromEntityExpression(parameter, sourceType, fromEntityAttr);
                     if (property != null)
+                    {
                         memberBindings.Add(Bind(targetItem, property));
+                    }
+
                     continue;
                 }
 
@@ -67,17 +72,24 @@ namespace QS.Core.Extensions
                 {
                     var complexSourceItemProperty = GetCombinationExpression(parameter, sourceType, targetItem);
                     if (complexSourceItemProperty != null)
+                    {
                         memberBindings.Add(Bind(targetItem, complexSourceItemProperty));
+                    }
+
                     continue;
                 }
 
                 //判断实体的读写权限
                 if (sourceItem == null || !sourceItem.CanRead)
+                {
                     continue;
+                }
 
                 //标注NotMapped特性的属性忽略转换
                 if (sourceItem.GetCustomAttribute<NotMappedAttribute>() != null)
+                {
                     continue;
+                }
 
                 var sourceProperty = Property(parameter, sourceItem);
 
@@ -96,7 +108,9 @@ namespace QS.Core.Extensions
                 }
 
                 if (targetItem.PropertyType != sourceItem.PropertyType)
+                {
                     continue;
+                }
 
                 memberBindings.Add(Bind(targetItem, sourceProperty));
             }
@@ -120,16 +134,22 @@ namespace QS.Core.Extensions
             {
                 var columnProperty = findType.GetProperty(fromEntityAttribute.EntityColuum);
                 if (columnProperty == null)
+                {
                     return null;
+                }
                 else
+                {
                     return Property(resultProperty, columnProperty);
+                }
             }
 
             for (int i = tableNames.Length - 1; i >= 0; i--)
             {
                 var tableProperty = findType.GetProperty(tableNames[i]);
                 if (tableProperty == null)
+                {
                     return null;
+                }
 
                 findType = tableProperty.PropertyType;
                 resultProperty = Property(resultProperty, tableProperty);
@@ -137,9 +157,13 @@ namespace QS.Core.Extensions
 
             var property = findType.GetProperty(fromEntityAttribute.EntityColuum);
             if (property == null)
+            {
                 return null;
+            }
             else
+            {
                 return Property(resultProperty, property);
+            }
         }
 
         /// <summary>
@@ -161,7 +185,9 @@ namespace QS.Core.Extensions
 
                         var complexSourceItem = item.PropertyType.GetProperty(rightName);
                         if (complexSourceItem != null && complexSourceItem.CanRead)
+                        {
                             return Property(Property(sourceProperty, item), complexSourceItem);
+                        }
                     }
                 }
             }

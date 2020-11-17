@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace QS.Core.Entity
 {
@@ -9,7 +7,7 @@ namespace QS.Core.Entity
     /// </summary>
     public interface IExpirable
     {
-         /// <summary>
+        /// <summary>
         /// 获取或设置 生效时间
         /// </summary>
         DateTime? BeginTime { get; set; }

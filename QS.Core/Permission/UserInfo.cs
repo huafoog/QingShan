@@ -2,18 +2,15 @@
 using Microsoft.Extensions.Configuration;
 using QS.Core.Data.Constants;
 using QS.Core.Dependency;
-using QS.Core.Extensions;
 using QS.Core.Helper;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace QS.Core.Permission
 {
     /// <summary>
     /// 用户信息接口
     /// </summary>
-    public class UserInfo:IUserInfo,ITransientDependency
+    public class UserInfo : IUserInfo, ITransientDependency
     {
         private readonly IHttpContextAccessor _accessor;
 

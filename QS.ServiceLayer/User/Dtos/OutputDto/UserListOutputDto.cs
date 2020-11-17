@@ -1,11 +1,10 @@
-﻿using QS.Core.Attributes;
-using QS.Core.Entity;
+﻿using QS.Core.Entity;
 using QS.DataLayer.Entities;
 using System;
 
 namespace QS.ServiceLayer.User.Dtos.OutputDto
 {
-    public class UserListOutputDto:IEntity<int>
+    public class UserListOutputDto : IEntity<int>
     {
         /// <summary>
         /// 主键Id

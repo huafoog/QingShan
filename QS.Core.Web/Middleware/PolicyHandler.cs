@@ -1,14 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace QS.Core.Web.Permission
 {
-    public class PolicyHandler:AuthorizationHandler<PolicyRequirement>
+    public class PolicyHandler : AuthorizationHandler<PolicyRequirement>
     {
 
         private readonly IHttpContextAccessor _httpContext;

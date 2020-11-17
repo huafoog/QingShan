@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace QS.Core.Data
+﻿namespace QS.Core.Data
 {
     /// <summary>
     /// 分页输入参数
     /// </summary>
-    public class PageInputDto:PageBaseInputDto
+    public class PageInputDto : PageBaseInputDto
     {
         /// <summary>
         /// 关键字

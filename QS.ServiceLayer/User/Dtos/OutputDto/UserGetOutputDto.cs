@@ -1,6 +1,5 @@
 ﻿using QS.Core.Attributes;
 using QS.DataLayer.Entities;
-using QS.ServiceLayer.User.Dtos.InputDto;
 using System.ComponentModel.DataAnnotations;
 
 namespace QS.ServiceLayer.User.Dtos.OutputDto

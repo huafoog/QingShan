@@ -4,15 +4,12 @@ using QS.Core.Data;
 using QS.Core.Dependency;
 using QS.DataLayer.Entities;
 using QS.ServiceLayer.ProductService.Dtos;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace QS.ServiceLayer.ProductService
 {
-    public class ProductService:IProductService, IScopeDependency
+    public class ProductService : IProductService, IScopeDependency
     {
         private readonly EFContext _context;
         private readonly IMapper _mapper;
@@ -25,7 +22,7 @@ namespace QS.ServiceLayer.ProductService
         public async Task<List<ProductOutputDto>> Get()
         {
             var data = await _context.Products.GetTrackEntities().ToListAsync();
-                
+
             return _mapper.Map<List<ProductOutputDto>>(data);
         }
 
@@ -33,7 +30,7 @@ namespace QS.ServiceLayer.ProductService
         {
             var res = await _context.Products.DeleteByIdAsync(id);
             var result = await _context.SaveChangesAsync();
-            return new StatusResult(result > 0,"删除失败");
+            return new StatusResult(result > 0, "删除失败");
         }
 
         ///// <summary>
@@ -58,7 +55,7 @@ namespace QS.ServiceLayer.ProductService
         public async Task<StatusResult> Add(ProductInputDto dto)
         {
             var model = _mapper.Map<Product>(dto);
-            var id = await _context.InsertEntityAsync<Product,int>(model);
+            var id = await _context.InsertEntityAsync<Product, int>(model);
             return new StatusResult(id > 0, "添加失败");
         }
     }

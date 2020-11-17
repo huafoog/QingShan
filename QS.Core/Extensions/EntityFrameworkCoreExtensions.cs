@@ -1,12 +1,9 @@
 ﻿using EFCore.BulkExtensions;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using QS.Core.Data;
 using QS.Core.Entity;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Microsoft.EntityFrameworkCore
@@ -26,17 +23,25 @@ namespace Microsoft.EntityFrameworkCore
         /// <param name="where">条件</param>
         /// <param name="order">排序</param>
         /// <returns></returns>
-        public static async Task<PageOutputDto<TResult>> LoadPageListAsync<TSoure, TResult>(this IQueryable<TSoure> soures, PageInputDto pageInputDto,Expression<Func<TSoure,TResult>> map, Expression<Func<TSoure, bool>> where = null, Expression<Func<TSoure, object>> order = null)
+        public static async Task<PageOutputDto<TResult>> LoadPageListAsync<TSoure, TResult>(this IQueryable<TSoure> soures, PageInputDto pageInputDto, Expression<Func<TSoure, TResult>> map, Expression<Func<TSoure, bool>> where = null, Expression<Func<TSoure, object>> order = null)
             where TSoure : IEntity<int>
         {
             var result = from p in soures
                          select p;
             if (where != null)
+            {
                 result = result.Where(where);
+            }
+
             if (order != null)
+            {
                 result = result.OrderBy(order);
+            }
             else
+            {
                 result = result.OrderBy(m => m.Id);
+            }
+
             int rowCount = result.Count();
             var data = await result.Skip((pageInputDto.PageIndex - 1) * pageInputDto.PageSize).Take(pageInputDto.PageSize).Select(map).ToListAsync();
             return new PageOutputDto<TResult>()
@@ -176,7 +181,7 @@ namespace Microsoft.EntityFrameworkCore
         public static async Task<int> UpdateEntitiesAsync<TEntity>(this DbContext context, TEntity entities)
             where TEntity : class, ICreatedTime, IDataState, new()
         {
-             context.Set<TEntity>().Update(entities);
+            context.Set<TEntity>().Update(entities);
             return await context.SaveChangesAsync();
         }
     }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace QS.Core.Entity
+﻿namespace QS.Core.Entity
 {
     /// <summary>
     /// 定义创建审计信息

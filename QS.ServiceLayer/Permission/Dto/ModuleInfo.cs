@@ -2,8 +2,6 @@
 using QS.Core.Data.Enums;
 using QS.DataLayer.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace QS.ServiceLayer.Permission.Dto
 {

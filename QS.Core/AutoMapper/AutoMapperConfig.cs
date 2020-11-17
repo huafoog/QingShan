@@ -2,11 +2,8 @@
 using QS.Core.Attributes;
 using QS.Core.Extensions;
 using QS.Core.Helper;
-using QS.Core.Reflection;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace QS.Core.AutoMapper
 {

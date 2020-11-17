@@ -1,14 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NLog.Web;
+using System;
 
 namespace QS.Core.Web
 {
@@ -19,7 +13,6 @@ namespace QS.Core.Web
             var logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
             try
             {
-                logger.Debug("init main");
                 CreateHostBuilder(args).Build().Run();
             }
             catch (Exception exception)
@@ -52,7 +45,7 @@ namespace QS.Core.Web
         //   CreateDefaultBuilder(args)
         //   .UseStartup<Startup>()
         //   .UseKestrel()
-        //   .UseUrls("http://localhost:6001", "https://localhost:44338")
+        //   .UseUrls("http://*:9999")
         //   .ConfigureLogging(logging =>
         //   {
         //       logging.ClearProviders();

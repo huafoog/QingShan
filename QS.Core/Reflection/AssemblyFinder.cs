@@ -1,11 +1,9 @@
-﻿using Microsoft.Extensions.DependencyModel;
-using QS.Core.Helper;
+﻿using QS.Core.Helper;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace QS.Core.Reflection
 {

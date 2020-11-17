@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using QS.Core.Extensions;
 using System;
 
 namespace QS.Core.Web.Services

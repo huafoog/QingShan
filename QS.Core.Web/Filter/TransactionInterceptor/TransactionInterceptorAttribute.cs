@@ -1,13 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.Extensions.DependencyInjection;
 using QS.DataLayer.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace QS.Core.Web.Filter.Transaction
 {
@@ -17,7 +10,7 @@ namespace QS.Core.Web.Filter.Transaction
     /// </summary>
     public class TransactionInterceptorAttribute : ServiceFilterAttribute
     {
-        public TransactionInterceptorAttribute():base(typeof(TransactionInterceptorFilterImpl))
+        public TransactionInterceptorAttribute() : base(typeof(TransactionInterceptorFilterImpl))
         {
 
         }

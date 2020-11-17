@@ -1,16 +1,12 @@
 ﻿using QS.Core.Entity;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace QS.DataLayer.Entities
 {
     /// <summary>
     /// 商品
     /// </summary>
-    public class Product: EntityBase<int>
+    public class Product : EntityBase<int>
     {
         /// <summary>
         /// 名称

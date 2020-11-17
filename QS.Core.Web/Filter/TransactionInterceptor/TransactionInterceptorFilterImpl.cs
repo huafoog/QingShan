@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using QS.DataLayer.Entities;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace QS.Core.Web.Filter.Transaction
 {
@@ -62,7 +61,7 @@ namespace QS.Core.Web.Filter.Transaction
                 //先判断是否已经启用了事务
                 if (_context.Database.CurrentTransaction != null)
                 {
-                     var trans = _context.Database.CurrentTransaction;
+                    var trans = _context.Database.CurrentTransaction;
                     try
                     {
                         _logger.LogInformation("提交事务");
@@ -71,8 +70,8 @@ namespace QS.Core.Web.Filter.Transaction
                     catch (Exception ex)
                     {
                         await trans.RollbackAsync();
-                        _logger.LogError(ex,"提交事务出错");
-                        throw ex;
+                        _logger.LogError(ex, "提交事务出错");
+                        throw ex.InnerException;
                     }
                 }
             }

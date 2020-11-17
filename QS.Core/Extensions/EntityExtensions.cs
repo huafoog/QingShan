@@ -10,9 +10,6 @@
 using QS.Core.Entity;
 using QS.Core.Permission;
 using System;
-using System.Collections.Generic;
-using System.Security.Principal;
-using System.Text;
 
 namespace QS.Core.Extensions
 {
@@ -52,7 +49,7 @@ namespace QS.Core.Extensions
             {
                 return entity;
             }
-            ICreatedTime entity1 = (ICreatedTime)entity;
+            ICreatedTime entity1 = entity;
             if (entity1.CreateTime == default(DateTime))
             {
                 entity1.CreateTime = DateTime.Now;

@@ -1,12 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 
 namespace System
 {
     public static class StringExtensions
     {
+        /// <summary>
+        /// 根据条件展示数据
+        /// </summary>
+        /// <param name="val"></param>
+        /// <param name="condition"></param>
+        /// <returns></returns>
+        public static string IF(this string val, bool condition)
+        {
+            if (condition)
+            {
+                return val;
+            }
+            return "";
+        }
 
         #region 空值转换
         /// <summary>

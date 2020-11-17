@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace QS.Core.Data
 {
     /// <summary>
     /// 响应数据输出接口
     /// </summary>
-    public interface IResponseOutput: IResponseOutput<object>
+    public interface IResponseOutput : IResponseOutput<object>
     {
     }
 

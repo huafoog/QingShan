@@ -6,9 +6,7 @@ using QS.Core.Data;
 using QS.Core.Web.Filter.Transaction;
 using QS.DataLayer.Entities;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace QS.Core.Web.Filter
 {

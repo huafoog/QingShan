@@ -1,21 +1,15 @@
 ﻿using AutoMapper;
 using EFCore.BulkExtensions;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QS.Core.Data;
-using QS.Core.Data.Enums;
 using QS.Core.Dependency;
 using QS.Core.Extensions;
-using QS.Core.Helper;
-using QS.Core.Permission.Authorization;
 using QS.Core.Reflection;
 using QS.DataLayer.Entities;
 using QS.ServiceLayer.Permission.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace QS.ServiceLayer.Permission
@@ -23,12 +17,12 @@ namespace QS.ServiceLayer.Permission
     /// <summary>
     /// 模块服务
     /// </summary>
-    public class ModuleService: IModuleService,IScopeDependency
+    public class ModuleService : IModuleService, IScopeDependency
     {
         private readonly IAssemblyFinder _assemblyFinder;
         private readonly EFContext _context;
         private readonly IMapper _mapper;
-        public ModuleService(IAssemblyFinder assemblyFinder, 
+        public ModuleService(IAssemblyFinder assemblyFinder,
             EFContext context,
             IMapper mapper)
         {
@@ -48,8 +42,8 @@ namespace QS.ServiceLayer.Permission
         public async Task<StatusResult> InsertModules(ModuleInputDto dto)
         {
             var model = _mapper.Map<ModuleEntity>(dto);
-            var res = await _context.InsertEntityAsync<ModuleEntity,Guid>(model);
-            return new StatusResult(res > 0,"操作失败");
+            var res = await _context.InsertEntityAsync<ModuleEntity, Guid>(model);
+            return new StatusResult(res > 0, "操作失败");
         }
 
         /// <summary>
@@ -66,7 +60,7 @@ namespace QS.ServiceLayer.Permission
             var model = _mapper.Map<ModuleEntity>(dto);
             var data = await _context.UpdateEntitiesAsync(model);
 
-            return new StatusResult(data>0, "修改失败");
+            return new StatusResult(data > 0, "修改失败");
         }
 
         /// <summary>
@@ -107,7 +101,7 @@ namespace QS.ServiceLayer.Permission
                 .ToArray();
             Guid[] deleteModuleIds = positionModules.Where(m => deletePositions.Contains(m.Code)).Select(m => m.Id).ToArray();
 
-            _context.Modules.Where(o=>deleteModuleIds.Any(a=>a == o.Id)).BatchDelete<ModuleEntity>();
+            _context.Modules.Where(o => deleteModuleIds.Any(a => a == o.Id)).BatchDelete<ModuleEntity>();
 
             var models = _mapper.Map<List<ModuleEntity>>(modules);
             //新增或更新传入的模块
@@ -127,7 +121,7 @@ namespace QS.ServiceLayer.Permission
                             info.Id = pModule.Id;
                         }
                     }
-                    await _context.InsertEntityAsync<ModuleEntity,Guid>(_mapper.Map<ModuleEntity>(info));
+                    await _context.InsertEntityAsync<ModuleEntity, Guid>(_mapper.Map<ModuleEntity>(info));
                 }
                 //else //更新
                 //{

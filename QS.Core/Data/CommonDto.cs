@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace QS.Core.Data
+﻿namespace QS.Core.Data
 {
     public class CommonDto
     {

@@ -1,15 +1,12 @@
 ﻿using QS.Core.Entity;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace QS.DataLayer.Entities
 {
     /// <summary>
     /// 角色模型
     /// </summary>
-    public class RoleEntity:EntityBase<int>
+    public class RoleEntity : EntityBase<int>
     {
         /// <summary>
         /// 角色名
@@ -19,7 +16,7 @@ namespace QS.DataLayer.Entities
         /// <summary>
         ///描述
         /// </summary>
-        [Column(TypeName  = "nvarchar(100)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string Description { get; set; }
         /// <summary>
         ///排序

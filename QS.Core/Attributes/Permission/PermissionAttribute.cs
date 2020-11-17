@@ -4,9 +4,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
 using QS.Core.Permission;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace QS.Core.Attributes.Permission
@@ -25,7 +23,9 @@ namespace QS.Core.Attributes.Permission
         {
             //排除匿名访问
             if (context.ActionDescriptor.EndpointMetadata.Any(m => m.GetType() == typeof(AllowAnonymousAttribute)))
+            {
                 return;
+            }
             //登录验证
             var user = context.HttpContext.RequestServices.GetService<IUserInfo>();
             if (user == null || !(user?.Id > 0))
@@ -35,7 +35,9 @@ namespace QS.Core.Attributes.Permission
             }
             //排除登录接口
             if (context.ActionDescriptor.EndpointMetadata.Any(m => m.GetType() == typeof(LoggedInAttribute)))
+            {
                 return;
+            }
 
             //权限验证
             var httpMethod = context.HttpContext.Request.Method;

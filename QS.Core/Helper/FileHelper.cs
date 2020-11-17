@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using QS.Core.Data.Constants;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Text;
@@ -207,9 +206,15 @@ namespace QS.Core.Helper
         /// <param name="dir">要创建的目录路径包括目录名</param>
         public static void CreateDir(string dir)
         {
-            if (dir.Length == 0) return;
+            if (dir.Length == 0)
+            {
+                return;
+            }
+
             if (!Directory.Exists(Directory.GetCurrentDirectory() + "\\" + dir))
+            {
                 Directory.CreateDirectory(Directory.GetCurrentDirectory() + "\\" + dir);
+            }
         }
         #endregion
 
@@ -220,9 +225,15 @@ namespace QS.Core.Helper
         /// <param name="dir">要删除的目录路径和名称</param>
         public static void DeleteDir(string dir)
         {
-            if (dir.Length == 0) return;
+            if (dir.Length == 0)
+            {
+                return;
+            }
+
             if (Directory.Exists(Directory.GetCurrentDirectory() + "\\" + dir))
+            {
                 Directory.Delete(Directory.GetCurrentDirectory() + "\\" + dir);
+            }
         }
         #endregion
 
@@ -250,7 +261,10 @@ namespace QS.Core.Helper
         {
             dir = dir.Replace("/", "\\");
             if (dir.IndexOf("\\") > -1)
+            {
                 CreateDir(dir.Substring(0, dir.LastIndexOf("\\")));
+            }
+
             StreamWriter sw = new StreamWriter(Directory.GetCurrentDirectory() + "\\" + dir, false, System.Text.Encoding.GetEncoding("GB2312"));
             sw.Write(pagestr);
             sw.Close();
@@ -285,7 +299,9 @@ namespace QS.Core.Helper
             dir1 = dir1.Replace("/", "\\");
             dir2 = dir2.Replace("/", "\\");
             if (File.Exists(Directory.GetCurrentDirectory() + "\\" + dir1))
+            {
                 File.Move(Directory.GetCurrentDirectory() + "\\" + dir1, Directory.GetCurrentDirectory() + "\\" + dir2);
+            }
         }
         #endregion
 
@@ -315,7 +331,7 @@ namespace QS.Core.Helper
         /// <returns></returns>
         public static string GetDirectory(string folder = default)
         {
-            var path = $"/{SystemConst.SYS_FILE_FOLDER_ROOT}/{folder??"Uploads"}/{DateTime.Now:yyyy/MM/dd}";
+            var path = $"{SystemConst.SYS_FILE_FOLDER_ROOT}/{folder ?? "Uploads"}/{DateTime.Now:yyyy/MM/dd}";
             CreateDirectory(MapPath(path));
             return path;
         }
@@ -382,7 +398,10 @@ namespace QS.Core.Helper
         {
             Directory.CreateDirectory(varToDirectory);
 
-            if (!Directory.Exists(varFromDirectory)) return;
+            if (!Directory.Exists(varFromDirectory))
+            {
+                return;
+            }
 
             string[] directories = Directory.GetDirectories(varFromDirectory);
 
@@ -432,7 +451,10 @@ namespace QS.Core.Helper
         {
             Directory.CreateDirectory(varToDirectory);
 
-            if (!Directory.Exists(varFromDirectory)) return;
+            if (!Directory.Exists(varFromDirectory))
+            {
+                return;
+            }
 
             string[] directories = Directory.GetDirectories(varFromDirectory);
 
@@ -474,7 +496,10 @@ namespace QS.Core.Helper
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        public static string GetFileName(IFormFile file) => Guid.NewGuid().ToString() + GetExtension(file.FileName);
+        public static string GetFileName(IFormFile file)
+        {
+            return Guid.NewGuid().ToString() + GetExtension(file.FileName);
+        }
         #endregion
 
         #region 复制文件参考方法,页面中引用
@@ -584,7 +609,7 @@ namespace QS.Core.Helper
 
             var folder = GetDirectory();
 
-            var filePath = $"{folder}/{fileName}";
+            var filePath = Path.Combine(folder, fileName);
             using (FileStream fs = System.IO.File.Create(filePath.ToLocalDirectory()))
             {
                 file.CopyTo(fs);
@@ -697,13 +722,22 @@ namespace QS.Core.Helper
             long FactSize = 0;
             FactSize = size;
             if (FactSize < 1024.00)
+            {
                 m_strSize = FactSize.ToString("F2") + " 字节";
+            }
             else if (FactSize >= 1024.00 && FactSize < 1048576)
+            {
                 m_strSize = (FactSize / 1024.00).ToString("F2") + " KB";
+            }
             else if (FactSize >= 1048576 && FactSize < 1073741824)
+            {
                 m_strSize = (FactSize / 1024.00 / 1024.00).ToString("F2") + " MB";
+            }
             else if (FactSize >= 1073741824)
+            {
                 m_strSize = (FactSize / 1024.00 / 1024.00 / 1024.00).ToString("F2") + " GB";
+            }
+
             return m_strSize;
         }
         #endregion

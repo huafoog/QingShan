@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace QS.Core.Permission
+﻿namespace QS.Core.Permission
 {
     /// <summary>
     /// 用户信息接口服务

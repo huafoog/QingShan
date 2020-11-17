@@ -1,5 +1,4 @@
-﻿using QS.Core.Entity;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace QS.ServiceLayer.User.Dtos.InputDto
 {

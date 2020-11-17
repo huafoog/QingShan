@@ -1,9 +1,6 @@
 ﻿using QS.Core.Data;
 using QS.ServiceLayer.User.Dtos.InputDto;
 using QS.ServiceLayer.User.Dtos.OutputDto;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace QS.ServiceLayer.User

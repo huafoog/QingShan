@@ -5,11 +5,7 @@ using QS.Core.Data.Constants;
 using QS.Core.Permission;
 using QS.ServiceLayer.Account;
 using QS.ServiceLayer.Account.Dto;
-using QS.ServiceLayer.Account.Dto.OutputDto;
 using QS.ServiceLayer.User;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -19,7 +15,7 @@ namespace QS.Core.Web.Areas.Admin.Controllers
     /// <summary>
     /// 用户授权控制器
     /// </summary>
-    public class AccountController:AdminBaseController
+    public class AccountController : AdminBaseController
     {
 
         private readonly IAccountService _accountService;
@@ -28,7 +24,7 @@ namespace QS.Core.Web.Areas.Admin.Controllers
 
         private readonly IUserService _userService;
 
-        public AccountController(IAccountService accountService,IJwtFactory userToken,IUserService userService)
+        public AccountController(IAccountService accountService, IJwtFactory userToken, IUserService userService)
         {
             _accountService = accountService;
             _userToken = userToken;
@@ -54,8 +50,12 @@ namespace QS.Core.Web.Areas.Admin.Controllers
             #region 添加登录日志
 
             #endregion
-            if (!result.IsSuccess) return new StatusResult<string>(result.Message);
-            var token = _userToken.Create(new Claim[] { 
+            if (!result.IsSuccess)
+            {
+                return new StatusResult<string>(result.Message);
+            }
+
+            var token = _userToken.Create(new Claim[] {
                 new Claim(ClaimConst.USERID,result.Data.Id.ToString()),
                 new Claim(ClaimConst.USERNAME,result.Data.UserName),
                 new Claim(ClaimConst.USERNICKNAME,result.Data.NickName)

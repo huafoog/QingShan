@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace QS.Core.Data
+﻿namespace QS.Core.Data
 {
     /// <summary>
     /// 业务操作信息信息类
     /// </summary>
-    public class StatusResult:StatusResult<object>
+    public class StatusResult : StatusResult<object>
     {
         public StatusResult()
         {
 
         }
 
-        public StatusResult(bool isSuccess, string message):base(isSuccess,message)
+        public StatusResult(bool isSuccess, string message) : base(isSuccess, message)
         {
 
         }
@@ -34,24 +30,24 @@ namespace QS.Core.Data
             IsSuccess = true;
         }
 
-        public StatusResult(bool isSuccess,string message)
+        public StatusResult(bool isSuccess, string message)
         {
             IsSuccess = isSuccess;
             ResultType = isSuccess ? StatusResultType.Success : StatusResultType.Error;
             Message = isSuccess ? "" : message;
         }
 
-        public StatusResult(string message):this(StatusResultType.Error, message)
+        public StatusResult(string message) : this(StatusResultType.Error, message)
         {
         }
 
-        public StatusResult(TData data):this(StatusResultType.Success,"",data)
+        public StatusResult(TData data) : this(StatusResultType.Success, "", data)
         {
         }
 
-        public StatusResult(StatusResultType resultType,string message = "",TData data = default(TData))
+        public StatusResult(StatusResultType resultType, string message = "", TData data = default(TData))
         {
-            IsSuccess = resultType == StatusResultType.Success ? true :false;
+            IsSuccess = resultType == StatusResultType.Success ? true : false;
             Data = data;
             ResultType = resultType;
             Message = message;

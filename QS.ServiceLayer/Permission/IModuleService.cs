@@ -3,7 +3,6 @@ using QS.DataLayer.Entities;
 using QS.ServiceLayer.Permission.Dto;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace QS.ServiceLayer.Permission
@@ -36,8 +35,8 @@ namespace QS.ServiceLayer.Permission
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-         Task<StatusResult> DeleteModule(Guid id);
+        Task<StatusResult> DeleteModule(Guid id);
 
-         Task CreateModules(List<ModuleInfo> moduleInfos);
+        Task CreateModules(List<ModuleInfo> moduleInfos);
     }
 }

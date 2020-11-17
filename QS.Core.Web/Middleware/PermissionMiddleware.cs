@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
-using QS.ServiceLayer.Permission;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using QS.Core.Web.Authorization;
-using Microsoft.Extensions.Configuration;
+using QS.ServiceLayer.Permission;
+using System.Threading.Tasks;
 
 namespace QS.Core.Web.Permission
 {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
-
-namespace QS.Core.Entity
+﻿namespace QS.Core.Entity
 {
     /// <summary>
     /// 实体基类

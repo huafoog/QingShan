@@ -323,6 +323,126 @@
             角色
             </summary>
         </member>
+        <member name="P:QS.ServiceLayer.System.Role.Dto.InputDto.RoleInputDto.Name">
+            <summary>
+            角色名
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.System.Role.Dto.InputDto.RoleInputDto.Description">
+             <summary>
+            描述
+             </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.System.Role.Dto.InputDto.RoleInputDto.OrderSort">
+             <summary>
+            排序
+             </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.System.Role.Dto.InputDto.RoleInputDto.Enabled">
+            <summary>
+            是否激活
+            </summary>
+        </member>
+        <member name="T:QS.ServiceLayer.System.Role.Dto.OutputDto.RoleOutputDto">
+            <summary>
+            角色输出参数
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.System.Role.Dto.OutputDto.RoleOutputDto.Name">
+            <summary>
+            角色名
+            </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.System.Role.Dto.OutputDto.RoleOutputDto.Description">
+             <summary>
+            描述
+             </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.System.Role.Dto.OutputDto.RoleOutputDto.OrderSort">
+             <summary>
+            排序
+             </summary>
+        </member>
+        <member name="P:QS.ServiceLayer.System.Role.Dto.OutputDto.RoleOutputDto.Enabled">
+            <summary>
+            是否激活
+            </summary>
+        </member>
+        <member name="M:QS.ServiceLayer.System.Role.IRoleService.GetAsync(System.Int32)">
+            <summary>
+            获取用户信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QS.ServiceLayer.System.Role.IRoleService.AddAsync(QS.ServiceLayer.System.Role.Dto.InputDto.RoleInputDto)">
+            <summary>
+            添加用户信息
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QS.ServiceLayer.System.Role.IRoleService.UpdateAsync(QS.ServiceLayer.System.Role.Dto.InputDto.RoleInputDto)">
+            <summary>
+            修改用户信息
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QS.ServiceLayer.System.Role.IRoleService.PageAsync(QS.Core.Data.PageInputDto)">
+            <summary>
+            获取数据
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QS.ServiceLayer.System.Role.IRoleService.DeleteAsync(System.Int32)">
+            <summary>
+            删除用户
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="P:QS.ServiceLayer.System.Role.RoleService.Roles">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="M:QS.ServiceLayer.System.Role.RoleService.GetAsync(System.Int32)">
+            <summary>
+            获取角色信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QS.ServiceLayer.System.Role.RoleService.PageAsync(QS.Core.Data.PageInputDto)">
+            <summary>
+            获取数据
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QS.ServiceLayer.System.Role.RoleService.AddAsync(QS.ServiceLayer.System.Role.Dto.InputDto.RoleInputDto)">
+            <summary>
+            添加
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QS.ServiceLayer.System.Role.RoleService.UpdateAsync(QS.ServiceLayer.System.Role.Dto.InputDto.RoleInputDto)">
+            <summary>
+            修改用户
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QS.ServiceLayer.System.Role.RoleService.DeleteAsync(System.Int32)">
+            <summary>
+            删除用户
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:QS.ServiceLayer.User.Dtos.InputDto.UserAddInputDto">
             <summary>
             添加

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
-using System.Text;
 
 namespace QS.Core.Helper
 {
@@ -26,7 +25,7 @@ namespace QS.Core.Helper
                     var assembly = AssemblyLoadContext.Default.LoadFromAssemblyName(new AssemblyName(lib.Name));
                     list.Add(assembly);
                 }
-                catch (Exception ex)
+                catch
                 {
                     // ignored
                 }

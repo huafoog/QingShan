@@ -1,7 +1,5 @@
 ﻿using QS.Core.Data.Enums;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace QS.Core.Permission.Authorization
 {

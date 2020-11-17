@@ -1,18 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Debug;
-using MySqlConnector.Logging;
-using QS.Core.Attributes;
 using QS.Core.Entity;
 using QS.DataLayer.Entities.Configuration;
-using QS.DataLayer.Logs;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace QS.DataLayer.Entities
@@ -55,12 +46,12 @@ namespace QS.DataLayer.Entities
         public DbSet<UserEntity> Users { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            #if Debug
+#if Debug
             var loggerFactory = new LoggerFactory();
             loggerFactory.AddProvider(new EFLoggerProvider());
             optionsBuilder.EnableSensitiveDataLogging(true);
             optionsBuilder.UseLoggerFactory(loggerFactory);
-            #endif
+#endif
 
 
             base.OnConfiguring(optionsBuilder);
@@ -78,7 +69,7 @@ namespace QS.DataLayer.Entities
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TKey"></typeparam>
         /// <returns></returns>
-        public virtual DbSet<T> GetDbSet<T, TKey>() where T:class,IEntity<TKey> => Set<T>();
+        public virtual DbSet<T> GetDbSet<T, TKey>() where T : class, IEntity<TKey> => Set<T>();
 
         /// <summary>
         /// 更新部分字段
@@ -88,8 +79,8 @@ namespace QS.DataLayer.Entities
         /// <param name="entity"></param>
         /// <param name="updatedProperties"></param>
         /// <returns></returns>
-        public virtual async Task<int> UpdateEntity<T,TKey>(T entity, Expression<Func<T, object>>[] updatedProperties)
-            where T: class,IEntity<TKey>
+        public virtual async Task<int> UpdateEntity<T, TKey>(T entity, Expression<Func<T, object>>[] updatedProperties)
+            where T : class, IEntity<TKey>
         {
             Set<T>().Attach(entity);
             if (updatedProperties.Any())
