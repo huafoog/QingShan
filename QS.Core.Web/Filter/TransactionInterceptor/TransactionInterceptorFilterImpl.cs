@@ -11,7 +11,7 @@ namespace QS.Core.Web.Filter.Transaction
     /// <summary>
     /// 事务拦截注入
     /// </summary>
-    internal class TransactionInterceptorFilterImpl : IAsyncActionFilter, IAsyncResultFilter
+    internal class TransactionInterceptorFilterImpl : IAsyncActionFilter,IOrderedFilter
     {
         private readonly EFContext _context;
         private readonly ILogger _logger;
@@ -24,6 +24,13 @@ namespace QS.Core.Web.Filter.Transaction
             _context = serviceProvider.GetService<EFContext>();
             _logger = serviceProvider.GetService<ILogger<TransactionInterceptorFilterImpl>>();
         }
+
+        /// <summary>
+        /// 过滤器执行的顺序是由Microsoft.AspNetCore.Mvc.Filters.IOrderedFilter.Order的升序排序决定的
+        /// <para>该值越低执行越靠前</para>
+        /// </summary>
+        public int Order => -100;
+
         /// <summary>
         /// 在操作之前和模型绑定完成之后异步调用。
         /// <parm>在这里开启事务</parm>
@@ -33,49 +40,43 @@ namespace QS.Core.Web.Filter.Transaction
         /// <returns></returns>
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            // 开启事务提交
-            if (context.ActionDescriptor.EndpointMetadata.Any(m => m.GetType() == typeof(TransactionInterceptorAttribute)))
+            // 是否开启事务提交
+            var checkHasTransaction = context.ActionDescriptor.EndpointMetadata.Any(m => m.GetType() == typeof(TransactionInterceptorAttribute));
+            if (!checkHasTransaction)
             {
-                //先判断是否已经启用了事务
-                if (_context.Database.CurrentTransaction == null)
-                {
-                    _logger.LogInformation("开启事务");
-                    await _context.Database.BeginTransactionAsync();
-                }
+                await next();
+                return;
             }
-            await next();
-        }
 
-        /// <summary>
-        /// 在操作结果之前异步调用。
-        /// <para>在这里执行事务提交操作</para>
-        /// </summary>
-        /// <param name="context"></param>
-        /// <param name="next"></param>
-        /// <returns></returns>
-        public async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
-        {
-            // 开启事务提交
-            if (context.ActionDescriptor.EndpointMetadata.Any(m => m.GetType() == typeof(TransactionInterceptorAttribute)))
+            //先判断是否已经启用了事务
+            if (_context.Database.CurrentTransaction == null)
             {
+                _logger.LogInformation("开启事务");
+                await _context.Database.BeginTransactionAsync();
+            }
+            // 继续执行
+            var resultContext = await next();
+            // 判断是否出现异常
+            if (resultContext.Exception == null)
+            {
+                var trans = _context.Database.CurrentTransaction;
                 //先判断是否已经启用了事务
-                if (_context.Database.CurrentTransaction != null)
+                if (trans != null)
                 {
-                    var trans = _context.Database.CurrentTransaction;
-                    try
-                    {
-                        _logger.LogInformation("提交事务");
-                        await trans.CommitAsync();
-                    }
-                    catch (Exception ex)
-                    {
-                        await trans.RollbackAsync();
-                        _logger.LogError(ex, "提交事务出错");
-                        throw ex.InnerException;
-                    }
+                    await trans.CommitAsync();
                 }
             }
-            await next();
+            else
+            {
+                var trans = _context.Database.CurrentTransaction;
+                //先判断是否已经启用了事务
+                if (trans != null)
+                {
+                    await trans.RollbackAsync();
+                    _logger.LogError(resultContext.Exception, "提交事务出错");
+                    throw resultContext.Exception;
+                }
+            }
         }
     }
 }
