@@ -1,35 +1,38 @@
-﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using QS.Core.Data;
 using QS.Core.Dependency;
 using QS.DataLayer.Entities;
 using QS.ServiceLayer.ProductService.Dtos;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using QS.Core.DatabaseAccessor;
 
 namespace QS.ServiceLayer.ProductService
 {
     public class ProductService : IProductService, IScopeDependency
     {
+
+        public readonly IRepository<Product, int> _productRepository;
+
         private readonly EFContext _context;
-        private readonly IMapper _mapper;
-        public ProductService(EFContext context, IMapper mapper)
+        public ProductService(IRepository<Product, int> productRepository)
         {
-            _context = context;
-            _mapper = mapper;
+            _productRepository = productRepository;
         }
 
         public async Task<List<ProductOutputDto>> Get()
         {
-            var data = await _context.Products.GetTrackEntities().ToListAsync();
-
-            return _mapper.Map<List<ProductOutputDto>>(data);
+            return await _productRepository.Select.ToListAsync<ProductOutputDto>();
         }
 
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<StatusResult> Delete(int id)
         {
-            var res = await _context.Products.DeleteByIdAsync(id);
-            var result = await _context.SaveChangesAsync();
+            var result = await _productRepository.DeleteAsync(id);
             return new StatusResult(result > 0, "删除失败");
         }
 
@@ -54,6 +57,9 @@ namespace QS.ServiceLayer.ProductService
         /// <returns></returns>
         public async Task<StatusResult> Add(ProductInputDto dto)
         {
+
+
+
             var model = _mapper.Map<Product>(dto);
             var id = await _context.InsertEntityAsync<Product, int>(model);
             return new StatusResult(id > 0, "添加失败");

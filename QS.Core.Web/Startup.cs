@@ -42,7 +42,7 @@ namespace QS.Core.Web
             services.AddCacheService(Configuration);
             services.AddScoped<TransactionInterceptorAttribute>();
             services.AddScoped<TransactionInterceptorFilterImpl>();
-            services.AddAutoMapper(typeof(AutoMapperConfig));
+            //services.AddAutoMapper(typeof(AutoMapperConfig));
             services.AddToServices();
             services.AddEFService(Configuration);
             services.AddSwaggerService();

@@ -1,7 +1,8 @@
-﻿using AutoMapper;
-using EFCore.BulkExtensions;
+﻿using EFCore.BulkExtensions;
+using Mapster;
 using Microsoft.EntityFrameworkCore;
 using QS.Core.Data;
+using QS.Core.DatabaseAccessor;
 using QS.Core.Dependency;
 using QS.Core.Extensions;
 using QS.Core.Reflection;
@@ -19,19 +20,13 @@ namespace QS.ServiceLayer.Permission
     /// </summary>
     public class ModuleService : IModuleService, IScopeDependency
     {
-        private readonly IAssemblyFinder _assemblyFinder;
-        private readonly EFContext _context;
-        private readonly IMapper _mapper;
-        public ModuleService(IAssemblyFinder assemblyFinder,
-            EFContext context,
-            IMapper mapper)
+        private readonly IRepository<ModuleEntity, Guid> _modelRepository;
+        public ModuleService(
+            IRepository<ModuleEntity, Guid> modelRepository
+            )
         {
-            _assemblyFinder = assemblyFinder;
-            _context = context;
-            _mapper = mapper;
+            _modelRepository = modelRepository;
         }
-
-        private IQueryable<ModuleEntity> Modules => _context.Modules;
 
         #region 模块操作
         /// <summary>
@@ -41,9 +36,9 @@ namespace QS.ServiceLayer.Permission
         /// <returns></returns>
         public async Task<StatusResult> InsertModules(ModuleInputDto dto)
         {
-            var model = _mapper.Map<ModuleEntity>(dto);
-            var res = await _context.InsertEntityAsync<ModuleEntity, Guid>(model);
-            return new StatusResult(res > 0, "操作失败");
+            var model = dto.Adapt<ModuleEntity>(); ;
+            var res = await _modelRepository.InsertOrUpdateAsync(model);
+            return new StatusResult(res == null, "操作失败");
         }
 
         /// <summary>
@@ -57,10 +52,9 @@ namespace QS.ServiceLayer.Permission
             {
                 return new StatusResult("未获取到模块信息");
             }
-            var model = _mapper.Map<ModuleEntity>(dto);
-            var data = await _context.UpdateEntitiesAsync(model);
-
-            return new StatusResult(data > 0, "修改失败");
+            var model = dto.Adapt<ModuleEntity>(); ;
+            var res = await _modelRepository.InsertOrUpdateAsync(model);
+            return new StatusResult(res == null, "操作失败");
         }
 
         /// <summary>
@@ -70,8 +64,9 @@ namespace QS.ServiceLayer.Permission
         /// <returns></returns>
         public async Task<StatusResult> InsertModules(ModuleEntity[] models)
         {
-            var res = await _context.InsertEntitiesAsync(models);
-            return new StatusResult(res > 0, "操作失败");
+            var model = models.Adapt<List<ModuleEntity>>(); ;
+            var res = await _modelRepository.InsertAsync(model);
+            return new StatusResult(res == null, "操作失败");
         }
 
         /// <summary>
@@ -81,7 +76,7 @@ namespace QS.ServiceLayer.Permission
         /// <returns></returns>
         public async Task<StatusResult> DeleteModule(Guid id)
         {
-            var res = await Modules.DeleteByIdAsync(id);
+            var res = await _modelRepository.DeleteAsync(id);
             return new StatusResult(res > 0, "操作失败");
         }
 
@@ -93,7 +88,7 @@ namespace QS.ServiceLayer.Permission
         public async Task CreateModules(List<ModuleInfo> moduleInfos)
         {
             //删除数据库中多余的模块
-            List<ModuleEntity> modules = Modules.ToList();
+            List<ModuleEntity> modules = _modelRepository.Select.ToList();
             var positionModules = modules.Select(m => new { m.Id, m.Code })
                 .OrderByDescending(m => m.Id).ToArray();
             string[] deletePositions = positionModules.Select(m => m.Code)
@@ -101,9 +96,9 @@ namespace QS.ServiceLayer.Permission
                 .ToArray();
             Guid[] deleteModuleIds = positionModules.Where(m => deletePositions.Contains(m.Code)).Select(m => m.Id).ToArray();
 
-            _context.Modules.Where(o => deleteModuleIds.Any(a => a == o.Id)).BatchDelete<ModuleEntity>();
+            await _modelRepository.DeleteAsync(o => deleteModuleIds.Any(a => a == o.Id));
 
-            var models = _mapper.Map<List<ModuleEntity>>(modules);
+            var models = modules.Adapt<List<ModuleEntity>>();
             //新增或更新传入的模块
             foreach (var info in moduleInfos)
             {
@@ -121,7 +116,7 @@ namespace QS.ServiceLayer.Permission
                             info.Id = pModule.Id;
                         }
                     }
-                    await _context.InsertEntityAsync<ModuleEntity, Guid>(_mapper.Map<ModuleEntity>(info));
+                    await _modelRepository.InsertAsync(info.Adapt<ModuleEntity>());
                 }
                 //else //更新
                 //{

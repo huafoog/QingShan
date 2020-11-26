@@ -1,5 +1,5 @@
 ﻿using QS.Core.Data.Enums;
-using QS.Core.Entity;
+using QS.Core.DatabaseAccessor;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;

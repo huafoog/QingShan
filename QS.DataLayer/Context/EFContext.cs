@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using QS.Core.Entity;
+using QS.Core.DatabaseAccessor;
 using QS.DataLayer.Entities.Configuration;
 using System;
 using System.Linq;

@@ -1,13 +1,4 @@
-﻿// -----------------------------------------------------------------------
-//  <copyright file="EntityExtensions.cs" company="OSharp开源团队">
-//      Copyright (c) 2014-2017 OSharp. All rights reserved.
-//  </copyright>
-//  <site>http://www.osharp.org</site>
-//  <last-editor>郭明锋</last-editor>
-//  <last-date>2017-08-19 22:15</last-date>
-// -----------------------------------------------------------------------
-
-using QS.Core.Entity;
+﻿using QS.Core.DatabaseAccessor;
 using QS.Core.Permission;
 using System;
 
@@ -43,13 +34,13 @@ namespace QS.Core.Extensions
         /// 检测并执行<see cref="ICreatedTime"/>接口的逻辑
         /// </summary>
         public static TEntity CheckICreatedTime<TEntity, TKey>(this TEntity entity)
-            where TEntity : ICreatedTime
+            where TEntity : IEntity
         {
             if (!(entity is ICreatedTime))
             {
                 return entity;
             }
-            ICreatedTime entity1 = entity;
+            ICreatedTime entity1 = (ICreatedTime)entity;
             if (entity1.CreateTime == default(DateTime))
             {
                 entity1.CreateTime = DateTime.Now;
@@ -57,6 +48,27 @@ namespace QS.Core.Extensions
 
             return (TEntity)entity1;
         }
+
+        /// <summary>
+        /// 检测并执行<see cref="IDateleTime"/>接口的逻辑
+        /// </summary>
+        public static TEntity CheckIDateleTime<TEntity, TKey>(this TEntity entity)
+            where TEntity : IEntity
+            where TKey : IEquatable<TKey>
+        {
+            if (!(entity is ISoftDeletable))
+            {
+                return entity;
+            }
+            ISoftDeletable entity1 = (ISoftDeletable)entity;
+            if (entity1.DeleteTime == default(DateTime))
+            {
+                entity1.DeleteTime = DateTime.Now;
+            }
+
+            return (TEntity)entity1;
+        }
+
 
         /// <summary>
         /// 检测并执行<see cref="ICreationAudited{TUserKey}"/>接口的处理

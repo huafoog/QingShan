@@ -1,4 +1,4 @@
-﻿namespace QS.Core.Entity
+﻿namespace QS.Core.DatabaseAccessor
 {
     /// <summary>
     /// 定义创建审计信息

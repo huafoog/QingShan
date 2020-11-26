@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace QS.Core.Entity
+namespace QS.Core.DatabaseAccessor
 {
     /// <summary>
     /// 实体类基类
@@ -22,7 +22,7 @@ namespace QS.Core.Entity
     /// <para>包含<see cref="IEntity{TKey}"/>|<see cref="ICreatedTime"/>|<see cref="IDataState"/>接口类</para>
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
-    public abstract class EntityBase<TKey> : IEntity<TKey>, ICreatedTime, IDataState
+    public abstract class EntityBase<TKey> : IEntity<TKey>, ICreatedTime, ISoftDeletable
     {
         /// <summary>
         /// 获取或设置 编号
@@ -39,6 +39,6 @@ namespace QS.Core.Entity
         /// 获取或设置 数据状态
         /// </summary>
         [DisplayName("数据状态")]
-        public DataState DataState { get; set; }
+        public DateTime? DeleteTime { get; set; }
     }
 }

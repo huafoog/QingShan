@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace QS.Core.Entity
+namespace QS.Core.DatabaseAccessor
 {
     /// <summary>
     /// 创建时间

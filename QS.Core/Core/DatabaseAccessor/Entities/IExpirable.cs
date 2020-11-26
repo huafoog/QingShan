@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QS.Core.Entity
+namespace QS.Core.DatabaseAccessor
 {
     /// <summary>
     /// 定义可过期性，包含生效时间和过期时间

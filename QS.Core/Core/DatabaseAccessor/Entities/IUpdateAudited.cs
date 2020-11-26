@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QS.Core.Entity
+namespace QS.Core.DatabaseAccessor
 {
     /// <summary>
     /// 定义更新审计的信息

@@ -104,9 +104,6 @@ namespace QS.Core.DependencyInjection.Extensions
                 TypeNamedCollection.TryAdd(typeNamed, type);
             }
 
-            // 注册外部服务（appsetting.json）
-            RegisterExternalServices(services);
-
             // 注册命名服务
             RegisterNamed(services);
 
@@ -395,31 +392,6 @@ namespace QS.Core.DependencyInjection.Extensions
                 }
                 return (Func<string, ISingleton, object>)ResolveService;
             });
-        }
-
-        /// <summary>
-        /// 注册外部服务
-        /// </summary>
-        /// <param name="services"></param>
-        private static void RegisterExternalServices(IServiceCollection services)
-        {
-            var externalServices = App.GetDuplicateOptions<DependencyInjectionSettingsOptions>();
-            if (externalServices is { Definitions: not null })
-            {
-                // 排序
-                var extServices = externalServices.Definitions.OrderBy(u => u.Order);
-                foreach (var externalService in extServices)
-                {
-                    var injectionAttribute = externalService.Adapt<InjectionAttribute>();
-                    // 加载代理拦截
-                    if (!string.IsNullOrEmpty(externalService.Proxy)) injectionAttribute.Proxy = LoadStringType(externalService.Proxy);
-
-                    RegisterService(services, externalService.RegisterType,
-                        LoadStringType(externalService.Service),
-                        injectionAttribute,
-                        new[] { LoadStringType(externalService.Interface) });
-                }
-            }
         }
 
         /// <summary>

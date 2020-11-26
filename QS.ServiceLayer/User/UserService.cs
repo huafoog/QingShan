@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using QS.Core.Data;
+using QS.Core.DatabaseAccessor;
 using QS.Core.Dependency;
 using QS.Core.Encryption;
 using QS.Core.Permission;
@@ -22,24 +23,21 @@ namespace QS.ServiceLayer.User
     public class UserService : IUserService, IScopeDependency
     {
         private readonly IUserInfo _user;
-        private readonly IMapper _mapper;
         private readonly EFContext _context;
-        private readonly IConfigurationProvider _configurationProvider;
+
         /// <summary>
-        /// 用户信息
+        /// 用户仓储
         /// </summary>
-        private IQueryable<UserEntity> Users => _context.Users.GetTrackEntities();
+        private readonly IRepository<UserEntity, int> _userRepository;
 
         public UserService(IUserInfo user,
-            IMapper mapper,
             EFContext context,
-            IConfigurationProvider configurationProvider
+            IRepository<UserEntity, int> userRepository
             )
         {
             _user = user;
-            _mapper = mapper;
+            _userRepository = userRepository;
             _context = context;
-            _configurationProvider = configurationProvider;
         }
         /// <summary>
         /// 获取用户信息
@@ -54,9 +52,9 @@ namespace QS.ServiceLayer.User
             //.IncludeMany(a => a.Roles.Select(b => new RoleEntity { Id = b.Id }))
             //.ToOneAsync();
 
-            var entityDto = await _context.Users.ProjectTo<UserGetOutputDto>(_configurationProvider).FirstOrDefaultAsync(o => o.Id == id);
+            //var entityDto = await _context.Users.ProjectTo<UserGetOutputDto>(_configurationProvider).FirstOrDefaultAsync(o => o.Id == id);
             //var entityDto = _mapper.Map<UserGetOutputDto>(entity);
-            return new StatusResult<UserGetOutputDto>(entityDto);
+            return new StatusResult<UserGetOutputDto>();
         }
         /// <summary>
         /// 获取用户基本信息
@@ -68,7 +66,7 @@ namespace QS.ServiceLayer.User
             {
                 return new StatusResult<UserGetOutputDto>("未登录！");
             }
-
+            _userRepository.Get
             var data = await Users.ProjectTo<UserGetOutputDto>(_configurationProvider).FirstOrDefaultAsync(o => o.Id == _user.Id);
 
             return new StatusResult<UserGetOutputDto>(data);

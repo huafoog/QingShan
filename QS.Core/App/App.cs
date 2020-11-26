@@ -12,6 +12,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.DependencyModel;
 using System.Runtime.Loader;
+using Microsoft.AspNetCore.Http;
+using QS.Core.DependencyInjection;
+using System.Threading;
+using StackExchange.Profiling;
 
 namespace QS.Core
 {
@@ -20,8 +24,6 @@ namespace QS.Core
     /// </summary>
     public static class App
     {
-
-
         /// <summary>
         /// 私有设置，避免重复解析
         /// </summary>
@@ -36,7 +38,7 @@ namespace QS.Core
             get
             {
                 if (_settings == null)
-                    _settings = GetDuplicateOptions<AppSettingsOptions>();
+                    _settings = TransientServiceProvider.GetService<IOptions<AppSettingsOptions>>().Value;
                 return _settings;
             }
         }
@@ -44,25 +46,12 @@ namespace QS.Core
         /// <summary>
         /// 全局配置选项
         /// </summary>
-        public static readonly IConfiguration Configuration;
+        public static IConfiguration Configuration => TransientServiceProvider.GetService<IConfiguration>();
 
         /// <summary>
-        /// 私有环境变量，避免重复解析
+        /// 应用环境
         /// </summary>
-        private static IWebHostEnvironment _webHostEnvironment;
-
-        /// <summary>
-        /// 应用环境，如，是否是开发环境，生产环境等
-        /// </summary>
-        public static IWebHostEnvironment WebHostEnvironment
-        {
-            get
-            {
-                if (_webHostEnvironment == null)
-                    _webHostEnvironment = GetDuplicateService<IWebHostEnvironment>();
-                return _webHostEnvironment;
-            }
-        }
+        public static IWebHostEnvironment HostEnvironment => TransientServiceProvider.GetService<IWebHostEnvironment>();
 
         /// <summary>
         /// 应用有效程序集
@@ -74,17 +63,31 @@ namespace QS.Core
         /// </summary>
         public static readonly IEnumerable<Type> CanBeScanTypes;
 
+        /// <summary>
+        /// 应用服务
+        /// </summary>
+        internal static IServiceCollection Services;
 
         /// <summary>
         /// 瞬时服务提供器，每次都是不一样的实例
         /// </summary>
-        public static IServiceProvider ServiceProvider => InternalApp.InternalServices.BuildServiceProvider();
+        public static IServiceProvider TransientServiceProvider => Services.BuildServiceProvider();
+
+        /// <summary>
+        /// 请求服务提供器，相当于使用构造函数注入方式
+        /// </summary>
+        /// <remarks>每一个请求一个作用域，由于基于请求，所以可能有空异常</remarks>
+        /// <exception cref="ArgumentNullException">空异常</exception>
+        public static IServiceProvider RequestServiceProvider => TransientServiceProvider.GetService<IHttpContextAccessor>()?.HttpContext?.RequestServices;
 
 
-
+        /// <summary>
+        /// 静态构造函数，只在程序启动时执行一次。
+        /// </summary>
         static App()
         {
             Assemblies = GetAssemblies();
+            CanBeScanTypes = Assemblies.SelectMany(u => u.GetTypes().Where(u => u.IsPublic && !u.IsDefined(typeof(SkipScanAttribute), false)));
         }
 
         #region 选项
@@ -101,72 +104,64 @@ namespace QS.Core
         }
 
         /// <summary>
-        /// 获取选项副本
+        /// 获取选项
         /// </summary>
-        /// <typeparam name="TOptions"></typeparam>
-        /// <returns></returns>
-        internal static TOptions GetDuplicateOptions<TOptions>()
+        /// <typeparam name="TOptions">强类型选项类</typeparam>
+        /// <returns>TOptions</returns>
+        public static TOptions GetOptions<TOptions>()
             where TOptions : class, new()
         {
-            return GetDuplicateService<IOptions<TOptions>>().Value;
+            return TransientServiceProvider.GetService<IOptions<TOptions>>().Value;
+        }
+
+        /// <summary>
+        /// 获取选项
+        /// </summary>
+        /// <typeparam name="TOptions">强类型选项类</typeparam>
+        /// <returns>TOptions</returns>
+        public static TOptions GetOptionsMonitor<TOptions>()
+            where TOptions : class, new()
+        {
+            return TransientServiceProvider.GetService<IOptionsMonitor<TOptions>>().CurrentValue;
+        }
+
+        /// <summary>
+        /// 获取选项
+        /// </summary>
+        /// <typeparam name="TOptions">强类型选项类</typeparam>
+        /// <returns>TOptions</returns>
+        public static TOptions GetOptionsSnapshot<TOptions>()
+            where TOptions : class, new()
+        {
+            return TransientServiceProvider.GetService<IOptionsSnapshot<TOptions>>().Value;
         }
         #endregion
 
         #region 服务
-        /// <summary>
-        /// 获取请求生命周期的服务
-        /// </summary>
-        /// <typeparam name="TService"></typeparam>
-        /// <returns></returns>
-        public static TService GetService<TService>()
-            where TService : class
-        {
-            return GetService(typeof(TService)) as TService;
-        }
 
-        /// <summary>
-        /// 获取请求生命周期的服务
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public static object GetService(Type type)
-        {
-            return HttpContextUtility.GetCurrentHttpContext()?.RequestServices?.GetService(type);
-        }
 
-        /// <summary>
-        /// 获取请求生命周期的服务
-        /// </summary>
-        /// <typeparam name="TService"></typeparam>
-        /// <returns></returns>
-        public static TService GetRequiredService<TService>()
-            where TService : class
-        {
-            return GetRequiredService(typeof(TService)) as TService;
-        }
 
-        /// <summary>
-        /// 获取请求生命周期的服务
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public static object GetRequiredService(Type type)
-        {
-            return HttpContextUtility.GetCurrentHttpContext()?.RequestServices?.GetRequiredService(type);
-        }
-        /// <summary>
-        /// 获取服务副本
-        /// </summary>
-        /// <typeparam name="TService"></typeparam>
-        /// <returns></returns>
-        internal static TService GetDuplicateService<TService>()
-            where TService : class
-        {
-            return ServiceProvider.GetService<TService>();
-        }
         #endregion
+        /// <summary>
+        /// 打印验证信息到 MiniProfiler
+        /// </summary>
+        /// <param name="category">分类</param>
+        /// <param name="state">状态</param>
+        /// <param name="message">消息</param>
+        /// <param name="isError">是否为警告消息</param>
+        public static void PrintToMiniProfiler(string category, string state, string message = null, bool isError = false)
+        {
+            // 判断是否注入 MiniProfiler 组件
+            if (Settings.InjectMiniProfiler != true) return;
 
-        
+            // 打印消息
+            var caseCategory = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(category);
+            var customTiming = MiniProfiler.Current.CustomTiming(category, string.IsNullOrEmpty(message) ? $"{caseCategory} {state}" : message, state);
+
+            // 判断是否是警告消息
+            if (isError) customTiming.Errored = true;
+        }
+
 
 
         /// <summary>
@@ -188,19 +183,9 @@ namespace QS.Core
             // 读取项目程序集或 Furion 官方发布的包，或手动添加引用的dll
             var scanAssemblies = dependencyContext.CompileLibraries
                 .Where(u => (u.Type == "project" && !excludeAssemblyNames.Any(j => u.Name.EndsWith(j)))
-                    || (u.Type == "package" && u.Name.StartsWith(nameof(QS)))
-                    || (settings.EnabledReferenceAssemblyScan == true && u.Type == "reference"))    // 判断是否启用引用程序集扫描
+                    || (u.Type == "package" && u.Name.StartsWith(nameof(QS))))    // 判断是否启用引用程序集扫描
                 .Select(u => AssemblyLoadContext.Default.LoadFromAssemblyName(new AssemblyName(u.Name)))
                 .ToList();
-
-            // 加载 `appsetting.json` 配置的外部程序集
-            if (settings.ExternalAssemblies != null && settings.ExternalAssemblies.Any())
-            {
-                foreach (var externalAssembly in settings.ExternalAssemblies)
-                {
-                    scanAssemblies.Add(Assembly.Load(externalAssembly));
-                }
-            }
 
             return scanAssemblies;
         }
