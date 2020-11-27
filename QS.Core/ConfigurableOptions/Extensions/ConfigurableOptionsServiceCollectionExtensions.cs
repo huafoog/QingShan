@@ -5,11 +5,8 @@ using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Primitives;
 using QS.Core.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QS.Core.ConfigurableOptions
 {
@@ -77,9 +74,13 @@ namespace QS.Core.ConfigurableOptions
                 if (postConfigureMethod != null)
                 {
                     if (optionsSettings?.PostConfigureAll != true)
+                    {
                         services.PostConfigure<TOptions>(options => postConfigureMethod.Invoke(options, new object[] { options, optionsConfiguration }));
+                    }
                     else
+                    {
                         services.PostConfigureAll<TOptions>(options => postConfigureMethod.Invoke(options, new object[] { options, optionsConfiguration }));
+                    }
                 }
             }
 

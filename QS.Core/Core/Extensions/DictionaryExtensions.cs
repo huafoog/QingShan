@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using QS.Core.DependencyInjection;
+﻿using QS.Core.DependencyInjection;
 
 namespace System.Collections.Generic
 {
@@ -24,9 +19,13 @@ namespace System.Collections.Generic
             foreach (var key in newDic.Keys)
             {
                 if (dic.ContainsKey(key))
+                {
                     dic[key] = newDic[key];
+                }
                 else
+                {
                     dic.Add(key, newDic[key]);
+                }
             }
             return dic;
         }

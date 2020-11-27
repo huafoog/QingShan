@@ -1,11 +1,4 @@
-﻿using EFCore.BulkExtensions;
-using QS.Core.Data;
-using System;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
-
-namespace Microsoft.EntityFrameworkCore
+﻿namespace Microsoft.EntityFrameworkCore
 {
     ///// <summary>
     ///// 实体框架LINQ相关的扩展方法

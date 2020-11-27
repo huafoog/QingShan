@@ -8,9 +8,15 @@ namespace QS.DataLayer.Logs
     {
         private readonly string categoryName;
 
-        public EFLogger(string categoryName) => this.categoryName = categoryName;
+        public EFLogger(string categoryName)
+        {
+            this.categoryName = categoryName;
+        }
 
-        public bool IsEnabled(LogLevel logLevel) => true;
+        public bool IsEnabled(LogLevel logLevel)
+        {
+            return true;
+        }
 
         public void Log<TState>(LogLevel logLevel,
             EventId eventId,
@@ -31,6 +37,9 @@ namespace QS.DataLayer.Logs
             }
         }
 
-        public IDisposable BeginScope<TState>(TState state) => null;
+        public IDisposable BeginScope<TState>(TState state)
+        {
+            return null;
+        }
     }
 }

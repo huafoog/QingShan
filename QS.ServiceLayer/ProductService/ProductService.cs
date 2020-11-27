@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Mapster;
 using QS.Core.Data;
+using QS.Core.DatabaseAccessor;
 using QS.Core.Dependency;
 using QS.DataLayer.Entities;
 using QS.ServiceLayer.ProductService.Dtos;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using QS.Core.DatabaseAccessor;
 
 namespace QS.ServiceLayer.ProductService
 {
@@ -57,12 +57,9 @@ namespace QS.ServiceLayer.ProductService
         /// <returns></returns>
         public async Task<StatusResult> Add(ProductInputDto dto)
         {
-
-
-
-            var model = _mapper.Map<Product>(dto);
-            var id = await _context.InsertEntityAsync<Product, int>(model);
-            return new StatusResult(id > 0, "添加失败");
+            var model = dto.Adapt<Product>();
+            var result = await _productRepository.InsertAsync(model);
+            return new StatusResult(result!=null, "添加失败");
         }
     }
 }

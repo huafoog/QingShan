@@ -9,11 +9,11 @@
 // 开源协议：Apache-2.0（http://www.apache.org/licenses/LICENSE-2.0）
 // -----------------------------------------------------------------------------
 
-using QS.Core.DependencyInjection;
-using QS.Core.FriendlyException;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using QS.Core.ConfigurableOptions;
+using QS.Core.DependencyInjection;
+using QS.Core.FriendlyException;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -59,7 +59,9 @@ namespace Microsoft.Extensions.DependencyInjection
 
             // 添加全局异常过滤器
             if (enabledGlobalExceptionFilter)
+            {
                 mvcBuilder.AddMvcOptions(options => options.Filters.Add<FriendlyExceptionFilter>());
+            }
 
             return mvcBuilder;
         }

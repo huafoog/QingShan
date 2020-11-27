@@ -1,6 +1,5 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Microsoft.EntityFrameworkCore;
+﻿using FreeSql;
+using Mapster;
 using QS.Core.Data;
 using QS.Core.DatabaseAccessor;
 using QS.Core.Dependency;
@@ -11,8 +10,6 @@ using QS.ServiceLayer.User.Dtos.InputDto;
 using QS.ServiceLayer.User.Dtos.OutputDto;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace QS.ServiceLayer.User
@@ -23,7 +20,6 @@ namespace QS.ServiceLayer.User
     public class UserService : IUserService, IScopeDependency
     {
         private readonly IUserInfo _user;
-        private readonly EFContext _context;
 
         /// <summary>
         /// 用户仓储
@@ -31,13 +27,11 @@ namespace QS.ServiceLayer.User
         private readonly IRepository<UserEntity, int> _userRepository;
 
         public UserService(IUserInfo user,
-            EFContext context,
             IRepository<UserEntity, int> userRepository
             )
         {
             _user = user;
             _userRepository = userRepository;
-            _context = context;
         }
         /// <summary>
         /// 获取用户信息
@@ -46,6 +40,12 @@ namespace QS.ServiceLayer.User
         /// <returns></returns>
         public async Task<StatusResult<UserGetOutputDto>> GetAsync(int id)
         {
+            var user = await _userRepository
+                .Select
+                .Where(o=>o.Id == id)
+                .FirstAsync<UserGetOutputDto>();
+
+
 
             //var entity = await _userRepository.Select
             //.WhereDynamic(id)
@@ -54,22 +54,7 @@ namespace QS.ServiceLayer.User
 
             //var entityDto = await _context.Users.ProjectTo<UserGetOutputDto>(_configurationProvider).FirstOrDefaultAsync(o => o.Id == id);
             //var entityDto = _mapper.Map<UserGetOutputDto>(entity);
-            return new StatusResult<UserGetOutputDto>();
-        }
-        /// <summary>
-        /// 获取用户基本信息
-        /// </summary>
-        /// <returns></returns>
-        public async Task<StatusResult<UserGetOutputDto>> GetBasicAsync()
-        {
-            if (!(_user?.Id > 0))
-            {
-                return new StatusResult<UserGetOutputDto>("未登录！");
-            }
-            _userRepository.Get
-            var data = await Users.ProjectTo<UserGetOutputDto>(_configurationProvider).FirstOrDefaultAsync(o => o.Id == _user.Id);
-
-            return new StatusResult<UserGetOutputDto>(data);
+            return new StatusResult<UserGetOutputDto>(user);
         }
 
         /// <summary>
@@ -89,11 +74,12 @@ namespace QS.ServiceLayer.User
             //}
             //这里加缓存
 
-            var userPermissoins = await (from rp in _context.RoleModules
-                                         join ur in _context.UserRole on rp.RoleId equals ur.RoleId
-                                         join p in _context.Modules on rp.ModuleId equals p.Id
-                                         select p.Id.ToString()).ToListAsync();
-            return userPermissoins;
+            //var userPermissoins = await (from rp in _userRepository.Select.RoleModules
+            //                             join ur in _context.UserRole on rp.RoleId equals ur.RoleId
+            //                             join p in _context.Modules on rp.ModuleId equals p.Id
+            //                             select p.Id.ToString()).ToListAsync();
+            //return userPermissoins;
+            return new List<string>();
         }
 
         /// <summary>
@@ -103,17 +89,15 @@ namespace QS.ServiceLayer.User
         /// <returns></returns>
         public async Task<PageOutputDto<UserListOutputDto>> PageAsync(PageInputDto dto)
         {
-
-            var data = await Users.LoadPageListAsync(dto, u => new UserListOutputDto
-            {
-                CreatedTime = u.CreateTime,
-                Id = u.Id,
-                Name = u.RealName,
-                NickName = u.NickName,
-                UserName = u.UserName,
-                Status = u.Status
-            }, o => dto.Search.IsNull() || o.UserName.Contains(dto.Search) || o.NickName.Contains(dto.Search));
+            var data = await _userRepository
+                .Select
+                .ToPageResultAsync<UserEntity,UserListOutputDto>(
+                    dto, 
+                    o => dto.Search.IsNull() || o.UserName.Contains(dto.Search) || o.NickName.Contains(dto.Search)
+                );
             return data;
+
+
         }
         /// <summary>
         /// 添加
@@ -127,15 +111,15 @@ namespace QS.ServiceLayer.User
                 input.Password = "123456"; //初始密码 123456
             }
 
-            if (Users.Any(o => o.UserName == input.UserName))
+            if (_userRepository.Select.Any(o => o.UserName == input.UserName))
             {
                 return new StatusResult("账号已存在");
             }
 
             input.Password = MD5Encrypt.Encrypt32(input.Password);
-            var entity = _mapper.Map<UserEntity>(input);
-            var res = await _context.InsertEntityAsync<UserEntity, int>(entity);
-            return new StatusResult(res > 0, "添加失败");
+            var entity = input.Adapt<UserEntity>();
+            var res = await _userRepository.InsertOrUpdateAsync(entity);
+            return new StatusResult(res != null, "添加失败");
         }
 
         /// <summary>
@@ -150,21 +134,21 @@ namespace QS.ServiceLayer.User
                 return new StatusResult("未获取到用户信息");
             }
 
-            var user = await Users.FirstOrDefaultAsync(o => o.Id == input.Id);
+            var user = await _userRepository.Select.Where(o => o.Id == input.Id).FirstAsync();
             if (!(user?.Id > 0))
             {
                 return new StatusResult("用户不存在！");
             }
-
-            var users = _mapper.Map(input, user);
-
-            Expression<Func<UserEntity, object>>[] updatedProperties = {
-                    p => p.Avatar,
-                    p => p.NickName,
-                    p => p.Phone,
-                    p => p.RealName
-                };
-            int res = await _context.UpdateEntity<UserEntity, int>(users, updatedProperties);
+            var thisUser = new UserEntity()
+            {
+                Id = input.Id
+            };
+            _userRepository.Attach(thisUser);
+            thisUser.Avatar = user.Avatar;
+            thisUser.NickName = user.NickName;
+            thisUser.Phone = user.Phone;
+            thisUser.RealName = user.RealName;
+            int res = await _userRepository.UpdateAsync(thisUser);
             return new StatusResult(res > 0, "修改失败");
         }
 
@@ -175,8 +159,7 @@ namespace QS.ServiceLayer.User
         /// <returns></returns>
         public async Task<StatusResult> DeleteAsync(int id)
         {
-            var res = await _context.Set<UserEntity>().DeleteByIdAsync(id);
-
+            var res = await _userRepository.DeleteAsync(id);
             return new StatusResult(res > 0, "删除失败");
         }
     }

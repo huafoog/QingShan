@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using QS.Core.Data;
+using QS.Core.DatabaseAccessor;
 using QS.Core.Dependency;
 using QS.Core.Encryption;
 using QS.Core.Extensions;
@@ -8,7 +8,6 @@ using QS.DataLayer.Entities;
 using QS.ServiceLayer.Account.Dto;
 using QS.ServiceLayer.Account.Dto.OutputDto;
 using QS.ServiceLayer.User;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace QS.ServiceLayer.Account
@@ -21,11 +20,13 @@ namespace QS.ServiceLayer.Account
         private readonly IConfiguration _config;
         private readonly IUserService _userService;
 
-        public AccountService(EFContext context, IConfiguration config, IUserService userService)
+        private readonly IRepository<UserEntity, int> _userRepository;
+
+        public AccountService(IConfiguration config, IUserService userService, IRepository<UserEntity, int> userRepository)
         {
-            _context = context;
             _config = config;
             _userService = userService;
+            _userRepository = userRepository;
         }
 
         /// <summary>
@@ -35,16 +36,9 @@ namespace QS.ServiceLayer.Account
         /// <returns></returns>
         public async Task<StatusResult<AuthLoginOutputDto>> LoginAsync(LoginInputDto dto)
         {
-
-            var user = await _context.Users.GetTrackEntities(o => o.UserName == dto.Account).Select(o => new
-            {
-                o.Id,
-                o.NickName,
-                o.UserName,
-                o.Password,
-                o.Status,
-                o.IsSuper
-            }).FirstOrDefaultAsync();
+            var user = await _userRepository
+                .Select
+                .Where(o => o.UserName == dto.Account).FirstAsync();
             if (user == null)
             {
                 return new StatusResult<AuthLoginOutputDto>("账号或密码错误");

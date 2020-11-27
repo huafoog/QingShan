@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QS.Core.Core.Entity
+﻿namespace QS.Core.Core.Entity
 {
     /// <summary>
     /// 定义输入DTO

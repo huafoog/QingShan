@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace QS.Core.Helper
 {
@@ -16,14 +14,21 @@ namespace QS.Core.Helper
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
         /// <returns></returns>
-        public static int GetDiffMonth(DateTime startDate, DateTime endDate) => Math.Abs((endDate.Year - startDate.Year) * 12 + (endDate.Month - startDate.Month));
-    
+        public static int GetDiffMonth(DateTime startDate, DateTime endDate)
+        {
+            return Math.Abs((endDate.Year - startDate.Year) * 12 + (endDate.Month - startDate.Month));
+        }
+
         /// <summary>
         /// 根据月份获取日期
         /// </summary>
         /// <param name="month">月份</param>
         /// <returns></returns>
-        public static DateTime GetDateTimeByMonth(int month)=> GetDateTime(DateTime.Now.Year, month);
+        public static DateTime GetDateTimeByMonth(int month)
+        {
+            return GetDateTime(DateTime.Now.Year, month);
+        }
+
         /// <summary>
         /// 根据年月日获取指定日期
         /// <para>默认1号</para>

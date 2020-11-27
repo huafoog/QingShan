@@ -1,4 +1,6 @@
-﻿using QS.Core.Data;
+﻿using FreeSql;
+using Mapster;
+using QS.Core.Data;
 using QS.Core.DatabaseAccessor;
 using QS.Core.Dependency;
 using QS.Core.Permission;
@@ -6,11 +8,7 @@ using QS.DataLayer.Entities;
 using QS.ServiceLayer.System.Role.Dto.InputDto;
 using QS.ServiceLayer.System.Role.Dto.OutputDto;
 using System;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
-using FreeSql;
-using Mapster;
 
 namespace QS.ServiceLayer.System.Role
 {

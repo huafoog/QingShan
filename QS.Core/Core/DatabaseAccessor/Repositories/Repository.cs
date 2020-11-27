@@ -1,12 +1,9 @@
 ﻿using FreeSql;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using QS.Core.Extensions;
-using System.Linq.Expressions;
 
 namespace QS.Core.DatabaseAccessor
 {

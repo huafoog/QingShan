@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QS.Core.DatabaseAccessor
+﻿namespace QS.Core.DatabaseAccessor
 {
     /// <summary>
     /// 无键实体基接口

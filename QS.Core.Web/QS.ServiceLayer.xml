@@ -311,6 +311,13 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:QS.ServiceLayer.ProductService.ProductService.Delete(System.Int32)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:QS.ServiceLayer.ProductService.ProductService.Add(QS.ServiceLayer.ProductService.Dtos.ProductInputDto)">
             <summary>
             添加
@@ -403,11 +410,6 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="P:QS.ServiceLayer.System.Role.RoleService.Roles">
-            <summary>
-            角色
-            </summary>
-        </member>
         <member name="M:QS.ServiceLayer.System.Role.RoleService.GetAsync(System.Int32)">
             <summary>
             获取角色信息
@@ -438,7 +440,7 @@
         </member>
         <member name="M:QS.ServiceLayer.System.Role.RoleService.DeleteAsync(System.Int32)">
             <summary>
-            删除用户
+            删除角色
             </summary>
             <param name="id"></param>
             <returns></returns>
@@ -718,9 +720,9 @@
             用户管理-
             </summary>
         </member>
-        <member name="P:QS.ServiceLayer.User.UserService.Users">
+        <member name="F:QS.ServiceLayer.User.UserService._userRepository">
             <summary>
-            用户信息
+            用户仓储
             </summary>
         </member>
         <member name="M:QS.ServiceLayer.User.UserService.GetAsync(System.Int32)">
@@ -728,12 +730,6 @@
             获取用户信息
             </summary>
             <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:QS.ServiceLayer.User.UserService.GetBasicAsync">
-            <summary>
-            获取用户基本信息
-            </summary>
             <returns></returns>
         </member>
         <member name="M:QS.ServiceLayer.User.UserService.GetPermissionsAsync">

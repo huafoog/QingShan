@@ -6,8 +6,6 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QS.Core.DependencyInjection.Extensions
 {
@@ -126,7 +124,10 @@ namespace QS.Core.DependencyInjection.Extensions
                 RegisterType(services, registerType, type, injectionAttribute);
             }
 
-            if (!canInjectInterfaces.Any()) return;
+            if (!canInjectInterfaces.Any())
+            {
+                return;
+            }
 
             // 只注册第一个接口
             if (injectionAttribute.Pattern is InjectionPatterns.FirstInterface or InjectionPatterns.SelfWithFirstInterface)
@@ -157,9 +158,20 @@ namespace QS.Core.DependencyInjection.Extensions
             var fixedType = FixedGenericType(type);
             var fixedInter = inter == null ? null : FixedGenericType(inter);
 
-            if (registerType == QS.Core.DependencyInjection.RegisterType.Transient) RegisterTransientType(services, fixedType, injectionAttribute, fixedInter);
-            if (registerType == QS.Core.DependencyInjection.RegisterType.Scoped) RegisterScopeType(services, fixedType, injectionAttribute, fixedInter);
-            if (registerType == QS.Core.DependencyInjection.RegisterType.Singleton) RegisterSingletonType(services, fixedType, injectionAttribute, fixedInter);
+            if (registerType == QS.Core.DependencyInjection.RegisterType.Transient)
+            {
+                RegisterTransientType(services, fixedType, injectionAttribute, fixedInter);
+            }
+
+            if (registerType == QS.Core.DependencyInjection.RegisterType.Scoped)
+            {
+                RegisterScopeType(services, fixedType, injectionAttribute, fixedInter);
+            }
+
+            if (registerType == QS.Core.DependencyInjection.RegisterType.Singleton)
+            {
+                RegisterSingletonType(services, fixedType, injectionAttribute, fixedInter);
+            }
         }
 
         /// <summary>
@@ -174,7 +186,10 @@ namespace QS.Core.DependencyInjection.Extensions
             switch (injectionAttribute.Action)
             {
                 case InjectionActions.Add:
-                    if (inter == null) services.AddTransient(type);
+                    if (inter == null)
+                    {
+                        services.AddTransient(type);
+                    }
                     else
                     {
                         services.AddTransient(inter, type);
@@ -183,8 +198,15 @@ namespace QS.Core.DependencyInjection.Extensions
                     break;
 
                 case InjectionActions.TryAdd:
-                    if (inter == null) services.TryAddTransient(type);
-                    else services.TryAddTransient(inter, type);
+                    if (inter == null)
+                    {
+                        services.TryAddTransient(type);
+                    }
+                    else
+                    {
+                        services.TryAddTransient(inter, type);
+                    }
+
                     break;
 
                 default: break;
@@ -203,7 +225,10 @@ namespace QS.Core.DependencyInjection.Extensions
             switch (injectionAttribute.Action)
             {
                 case InjectionActions.Add:
-                    if (inter == null) services.AddScoped(type);
+                    if (inter == null)
+                    {
+                        services.AddScoped(type);
+                    }
                     else
                     {
                         services.AddScoped(inter, type);
@@ -212,8 +237,15 @@ namespace QS.Core.DependencyInjection.Extensions
                     break;
 
                 case InjectionActions.TryAdd:
-                    if (inter == null) services.TryAddScoped(type);
-                    else services.TryAddScoped(inter, type);
+                    if (inter == null)
+                    {
+                        services.TryAddScoped(type);
+                    }
+                    else
+                    {
+                        services.TryAddScoped(inter, type);
+                    }
+
                     break;
 
                 default: break;
@@ -232,7 +264,10 @@ namespace QS.Core.DependencyInjection.Extensions
             switch (injectionAttribute.Action)
             {
                 case InjectionActions.Add:
-                    if (inter == null) services.AddSingleton(type);
+                    if (inter == null)
+                    {
+                        services.AddSingleton(type);
+                    }
                     else
                     {
                         services.AddSingleton(inter, type);
@@ -241,8 +276,15 @@ namespace QS.Core.DependencyInjection.Extensions
                     break;
 
                 case InjectionActions.TryAdd:
-                    if (inter == null) services.TryAddSingleton(type);
-                    else services.TryAddSingleton(inter, type);
+                    if (inter == null)
+                    {
+                        services.TryAddSingleton(type);
+                    }
+                    else
+                    {
+                        services.TryAddSingleton(inter, type);
+                    }
+
                     break;
 
                 default: break;
@@ -259,7 +301,10 @@ namespace QS.Core.DependencyInjection.Extensions
         /// <param name="hasTarget">是否有实现类</param>
         private static void AddTransientDispatchProxy(IServiceCollection services, Type type, Type proxyType, Type inter, bool hasTarget = true)
         {
-            if (proxyType == null) return;
+            if (proxyType == null)
+            {
+                return;
+            }
 
             RegisterDispatchProxy(services, typeof(ITransient), proxyType);
             services.AddTransient(inter, provider =>
@@ -285,7 +330,10 @@ namespace QS.Core.DependencyInjection.Extensions
         /// <param name="hasTarget">是否有实例</param>
         private static void AddScopedDispatchProxy(IServiceCollection services, Type type, Type proxyType, Type inter, bool hasTarget = true)
         {
-            if (proxyType == null) return;
+            if (proxyType == null)
+            {
+                return;
+            }
 
             RegisterDispatchProxy(services, typeof(IScoped), proxyType);
             services.AddScoped(inter, provider =>
@@ -311,7 +359,10 @@ namespace QS.Core.DependencyInjection.Extensions
         /// <param name="hasTarget">是否有实例</param>
         private static void AddSingletonDispatchProxy(IServiceCollection services, Type type, Type proxyType, Type inter, bool hasTarget = true)
         {
-            if (proxyType == null) return;
+            if (proxyType == null)
+            {
+                return;
+            }
 
             RegisterDispatchProxy(services, typeof(ISingleton), proxyType);
             services.AddSingleton(inter, provider =>
@@ -335,7 +386,10 @@ namespace QS.Core.DependencyInjection.Extensions
         /// <param name="proxyType"></param>
         private static void RegisterDispatchProxy(IServiceCollection services, Type lifetime, Type proxyType)
         {
-            if (RegisterDispatchProxies.Contains((lifetime, proxyType))) return;
+            if (RegisterDispatchProxies.Contains((lifetime, proxyType)))
+            {
+                return;
+            }
 
             if (lifetime == typeof(ITransient))
             {
@@ -401,7 +455,10 @@ namespace QS.Core.DependencyInjection.Extensions
         /// <returns></returns>
         private static Type FixedGenericType(Type type)
         {
-            if (!type.IsGenericType) return type;
+            if (!type.IsGenericType)
+            {
+                return type;
+            }
 
             return type.Assembly.GetType($"{type.Namespace}.{type.Name}", true, true);
         }

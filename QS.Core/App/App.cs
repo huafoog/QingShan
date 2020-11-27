@@ -1,21 +1,18 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyModel;
+using Microsoft.Extensions.Options;
+using QS.Core.DependencyInjection;
+using QS.Core.Options;
+using StackExchange.Profiling;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using QS.Core.Options;
-using QS.Core.Utility;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-using Microsoft.Extensions.DependencyModel;
 using System.Runtime.Loader;
-using Microsoft.AspNetCore.Http;
-using QS.Core.DependencyInjection;
 using System.Threading;
-using StackExchange.Profiling;
 
 namespace QS.Core
 {
@@ -38,7 +35,10 @@ namespace QS.Core
             get
             {
                 if (_settings == null)
+                {
                     _settings = TransientServiceProvider.GetService<IOptions<AppSettingsOptions>>().Value;
+                }
+
                 return _settings;
             }
         }
@@ -152,14 +152,20 @@ namespace QS.Core
         public static void PrintToMiniProfiler(string category, string state, string message = null, bool isError = false)
         {
             // 判断是否注入 MiniProfiler 组件
-            if (Settings.InjectMiniProfiler != true) return;
+            if (Settings.InjectMiniProfiler != true)
+            {
+                return;
+            }
 
             // 打印消息
             var caseCategory = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(category);
             var customTiming = MiniProfiler.Current.CustomTiming(category, string.IsNullOrEmpty(message) ? $"{caseCategory} {state}" : message, state);
 
             // 判断是否是警告消息
-            if (isError) customTiming.Errored = true;
+            if (isError)
+            {
+                customTiming.Errored = true;
+            }
         }
 
 

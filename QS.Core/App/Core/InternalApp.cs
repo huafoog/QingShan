@@ -6,8 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QS.Core
 {
@@ -55,7 +53,10 @@ namespace QS.Core
                 )
                 .Where(u => !excludeJsons.Contains(Path.GetFileName(u)) && !runtimeJsonSuffixs.Any(j => u.EndsWith(j)));
 
-            if (!jsonFiles.Any()) return;
+            if (!jsonFiles.Any())
+            {
+                return;
+            }
 
             // 获取环境变量名
             var envName = env.EnvironmentName;
@@ -92,7 +93,10 @@ namespace QS.Core
                 )
                 .Where(u => u.EndsWith(".config.xml", StringComparison.OrdinalIgnoreCase));
 
-            if (!xmlFiles.Any()) return;
+            if (!xmlFiles.Any())
+            {
+                return;
+            }
 
             // 获取环境变量名
             var envName = env.EnvironmentName;

@@ -48,6 +48,9 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<UnitOfWorkManager>();
             services.TryAddScoped(typeof(TransactionInterceptorFilterImpl));
             services.TryAddScoped(typeof(TransactionInterceptorAttribute));
+
+
+            configure?.Invoke(services);
             return services;
         }
     }

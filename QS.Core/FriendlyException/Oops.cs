@@ -9,16 +9,15 @@
 // 开源协议：Apache-2.0（http://www.apache.org/licenses/LICENSE-2.0）
 // -----------------------------------------------------------------------------
 
-using QS.Core.DependencyInjection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using QS.Core.DependencyInjection;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using QS.Core;
 
 namespace QS.Core.FriendlyException
 {
@@ -113,7 +112,10 @@ namespace QS.Core.FriendlyException
         internal static void PrintToMiniProfiler(Exception exception)
         {
             // 判断是否注入 MiniProfiler 组件
-            if (App.Settings.InjectMiniProfiler != true) return;
+            if (App.Settings.InjectMiniProfiler != true)
+            {
+                return;
+            }
 
             // 获取异常堆栈
             var traceFrame = new StackTrace(exception, true).GetFrame(0);
@@ -212,7 +214,10 @@ namespace QS.Core.FriendlyException
 
             // 获取错误代码提供器中定义的类型
             var errorCodeTypeProvider = App.TransientServiceProvider.GetService<IErrorCodeTypeProvider>();
-            if (errorCodeTypeProvider is { Definitions: not null }) errorCodeTypes.AddRange(errorCodeTypeProvider.Definitions);
+            if (errorCodeTypeProvider is { Definitions: not null })
+            {
+                errorCodeTypes.AddRange(errorCodeTypeProvider.Definitions);
+            }
 
             return errorCodeTypes.Distinct();
         }
@@ -275,7 +280,10 @@ namespace QS.Core.FriendlyException
 
             // 判断是否已经缓存过该方法，避免重复解析
             var isCached = ErrorMethods.TryGetValue(errorMethod, out var methodIfException);
-            if (isCached) return methodIfException;
+            if (isCached)
+            {
+                return methodIfException;
+            }
 
             // 组装方法异常对象
             methodIfException = new MethodIfException

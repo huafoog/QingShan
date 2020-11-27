@@ -11,8 +11,6 @@
 
 using QS.Core.DependencyInjection;
 using QS.Core.FriendlyException;
-using QS.Core.UnifyResult;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
 
@@ -52,8 +50,8 @@ namespace Microsoft.AspNetCore.Mvc.Filters
             var exception = context.Exception;
 
             // 处理规范化结果
-            var unifyResult = _serviceProvider.GetService<IUnifyResultProvider>();
-            context.Result = unifyResult == null ? new ContentResult { Content = exception.Message } : unifyResult.OnException(context);
+            //var unifyResult = _serviceProvider.GetService<IUnifyResultProvider>();
+            //context.Result = unifyResult == null ? new ContentResult { Content = exception.Message } : unifyResult.OnException(context);
 
             // 打印错误到 MiniProfiler 中
             Oops.PrintToMiniProfiler(context.Exception);

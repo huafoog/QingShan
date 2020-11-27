@@ -1,13 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using QS.Core.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace QS.Core.Utility
 {
@@ -28,10 +24,16 @@ namespace QS.Core.Utility
         public static HttpContext GetCurrentHttpContext()
         {
             var asyncLocal = (_asyncLocalAccessor ??= CreateAsyncLocalAccessor())();
-            if (asyncLocal == null) return null;
+            if (asyncLocal == null)
+            {
+                return null;
+            }
 
             var holder = (_holderAccessor ??= CreateHolderAccessor(asyncLocal))(asyncLocal);
-            if (holder == null) return null;
+            if (holder == null)
+            {
+                return null;
+            }
 
             return (_httpContextAccessor ??= CreateHttpContextAccessor(holder))(holder);
 

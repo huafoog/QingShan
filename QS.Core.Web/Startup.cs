@@ -1,4 +1,3 @@
-using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -10,7 +9,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
 using QS.Core.Attributes;
-using QS.Core.AutoMapper;
 using QS.Core.Extensions;
 using QS.Core.Reflection;
 using QS.Core.Web.Filter;
@@ -43,8 +41,9 @@ namespace QS.Core.Web
             services.AddScoped<TransactionInterceptorAttribute>();
             services.AddScoped<TransactionInterceptorFilterImpl>();
             //services.AddAutoMapper(typeof(AutoMapperConfig));
+            services.AddDatabaseAccessor();
             services.AddToServices();
-            services.AddEFService(Configuration);
+            //services.AddEFService(Configuration);
             services.AddSwaggerService();
             services.AddAuthorizationService(Configuration);
             services.AddCorsService();

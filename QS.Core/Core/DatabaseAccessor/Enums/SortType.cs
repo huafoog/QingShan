@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QS.Core.Core.DatabaseAccessor.Enums
+﻿namespace QS.Core.Core.DatabaseAccessor.Enums
 {
     /// <summary>
     /// 排序类型

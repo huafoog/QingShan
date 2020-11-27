@@ -69,7 +69,10 @@ namespace QS.DataLayer.Entities
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TKey"></typeparam>
         /// <returns></returns>
-        public virtual DbSet<T> GetDbSet<T, TKey>() where T : class, IEntity<TKey> => Set<T>();
+        public virtual DbSet<T> GetDbSet<T, TKey>() where T : class, IEntity<TKey>
+        {
+            return Set<T>();
+        }
 
         /// <summary>
         /// 更新部分字段
