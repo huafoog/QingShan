@@ -1,4 +1,4 @@
-﻿using QS.Core.Dependency;
+﻿using QS.Core.DependencyInjection;
 using QS.Core.Permission;
 using QS.DataLayer.Entities;
 
@@ -9,13 +9,11 @@ namespace QS.ServiceLayer.Permission
     /// </summary>
     public class PermissionService : IPermissionService, IScopeDependency
     {
-        private readonly EFContext _context;
 
         private readonly IUserInfo _user;
 
-        public PermissionService(EFContext context, IUserInfo user)
+        public PermissionService( IUserInfo user)
         {
-            _context = context;
             _user = user;
         }
     }

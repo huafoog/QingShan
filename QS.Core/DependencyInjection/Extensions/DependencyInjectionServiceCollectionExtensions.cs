@@ -82,17 +82,17 @@ namespace QS.Core.DependencyInjection.Extensions
                 var canInjectInterfaces = type.GetInterfaces().Where(u => !typeof(IPrivateDependency).IsAssignableFrom(u));
 
                 // 注册暂时服务
-                if (typeof(ITransient).IsAssignableFrom(type))
+                if (typeof(ITransientDependency).IsAssignableFrom(type))
                 {
                     RegisterService(services, QS.Core.DependencyInjection.RegisterType.Transient, type, injectionAttribute, canInjectInterfaces);
                 }
                 // 注册作用域服务
-                else if (typeof(IScoped).IsAssignableFrom(type))
+                else if (typeof(IScopeDependency).IsAssignableFrom(type))
                 {
                     RegisterService(services, QS.Core.DependencyInjection.RegisterType.Scoped, type, injectionAttribute, canInjectInterfaces);
                 }
                 // 注册单例服务
-                else if (typeof(ISingleton).IsAssignableFrom(type))
+                else if (typeof(ISingletonDependency).IsAssignableFrom(type))
                 {
                     RegisterService(services, QS.Core.DependencyInjection.RegisterType.Singleton, type, injectionAttribute, canInjectInterfaces);
                 }
@@ -306,7 +306,7 @@ namespace QS.Core.DependencyInjection.Extensions
                 return;
             }
 
-            RegisterDispatchProxy(services, typeof(ITransient), proxyType);
+            RegisterDispatchProxy(services, typeof(ITransientDependency), proxyType);
             services.AddTransient(inter, provider =>
             {
                 dynamic proxy = DispatchCreateMethod.MakeGenericMethod(inter, proxyType).Invoke(null, null);
@@ -335,7 +335,7 @@ namespace QS.Core.DependencyInjection.Extensions
                 return;
             }
 
-            RegisterDispatchProxy(services, typeof(IScoped), proxyType);
+            RegisterDispatchProxy(services, typeof(IScopeDependency), proxyType);
             services.AddScoped(inter, provider =>
             {
                 dynamic proxy = DispatchCreateMethod.MakeGenericMethod(inter, proxyType).Invoke(null, null);
@@ -364,7 +364,7 @@ namespace QS.Core.DependencyInjection.Extensions
                 return;
             }
 
-            RegisterDispatchProxy(services, typeof(ISingleton), proxyType);
+            RegisterDispatchProxy(services, typeof(ISingletonDependency), proxyType);
             services.AddSingleton(inter, provider =>
             {
                 dynamic proxy = DispatchCreateMethod.MakeGenericMethod(inter, proxyType).Invoke(null, null);
@@ -391,15 +391,15 @@ namespace QS.Core.DependencyInjection.Extensions
                 return;
             }
 
-            if (lifetime == typeof(ITransient))
+            if (lifetime == typeof(ITransientDependency))
             {
                 services.AddTransient(typeof(DispatchProxy), proxyType);
             }
-            else if (lifetime == typeof(IScoped))
+            else if (lifetime == typeof(IScopeDependency))
             {
                 services.AddScoped(typeof(DispatchProxy), proxyType);
             }
-            else if (lifetime == typeof(ISingleton))
+            else if (lifetime == typeof(ISingletonDependency))
             {
                 services.AddSingleton(typeof(DispatchProxy), proxyType);
             }
@@ -417,34 +417,34 @@ namespace QS.Core.DependencyInjection.Extensions
             // 注册暂时命名服务
             services.AddTransient(provider =>
             {
-                object ResolveService(string named, ITransient transient)
+                object ResolveService(string named, ITransientDependency transient)
                 {
                     var isRegister = TypeNamedCollection.TryGetValue(named, out var serviceType);
                     return isRegister ? provider.GetService(serviceType) : null;
                 }
-                return (Func<string, ITransient, object>)ResolveService;
+                return (Func<string, ITransientDependency, object>)ResolveService;
             });
 
             // 注册作用域命名服务
             services.AddScoped(provider =>
             {
-                object ResolveService(string named, IScoped scoped)
+                object ResolveService(string named, IScopeDependency scoped)
                 {
                     var isRegister = TypeNamedCollection.TryGetValue(named, out var serviceType);
                     return isRegister ? provider.GetService(serviceType) : null;
                 }
-                return (Func<string, IScoped, object>)ResolveService;
+                return (Func<string, IScopeDependency, object>)ResolveService;
             });
 
             // 注册单例命名服务
             services.AddSingleton(provider =>
             {
-                object ResolveService(string named, ISingleton singleton)
+                object ResolveService(string named, ISingletonDependency singleton)
                 {
                     var isRegister = TypeNamedCollection.TryGetValue(named, out var serviceType);
                     return isRegister ? provider.GetService(serviceType) : null;
                 }
-                return (Func<string, ISingleton, object>)ResolveService;
+                return (Func<string, ISingletonDependency, object>)ResolveService;
             });
         }
 

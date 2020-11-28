@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using QS.Core.Dependency;
+using QS.Core.DependencyInjection;
 using QS.Core.Helper;
 using System;
 using System.IdentityModel.Tokens.Jwt;

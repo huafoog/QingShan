@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QS.Core.Data.Enums;
-using QS.Core.Dependency;
+using QS.Core.DependencyInjection;
 using QS.Core.Extensions;
 using QS.Core.Helper;
 using QS.Core.Permission.Authorization;
@@ -18,10 +18,8 @@ namespace QS.Core.Web.Authorization
     /// </summary>
     public class ModuleManager : IModuleManager, ISingletonDependency
     {
-        private readonly IAssemblyFinder _assemblyFinder;
-        public ModuleManager(IAssemblyFinder assemblyFinder)
+        public ModuleManager()
         {
-            _assemblyFinder = assemblyFinder;
         }
 
         private List<ModuleInfo> moduleInfos = new List<ModuleInfo>();

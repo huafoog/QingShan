@@ -1,6 +1,7 @@
 ﻿using FreeSql;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using QS.Core;
+using QS.Core.ConfigurableOptions;
 using QS.Core.DatabaseAccessor;
 using QS.Core.DependencyInjection;
 using System;
@@ -21,7 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns>服务集合</returns>
         public static IServiceCollection AddDatabaseAccessor(this IServiceCollection services, Action<IServiceCollection> configure = null)
         {
-
+            services.AddConfigurableOptions<DatabaseAccessorSettingsOptions>();
             var dbConfig = App.GetOptions<DatabaseAccessorSettingsOptions>();
 
             var freeSqlBuilder = new FreeSqlBuilder()

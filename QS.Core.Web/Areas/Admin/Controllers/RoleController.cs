@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QS.Core.Data;
+using QS.Core.DatabaseAccessor;
 using QS.Core.Permission;
 using QS.Core.Permission.Authorization;
-using QS.Core.Web.Filter.Transaction;
 using QS.ServiceLayer.System.Role;
 using QS.ServiceLayer.System.Role.Dto.InputDto;
 using QS.ServiceLayer.System.Role.Dto.OutputDto;

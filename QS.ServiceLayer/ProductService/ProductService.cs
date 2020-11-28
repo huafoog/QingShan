@@ -1,7 +1,7 @@
 ﻿using Mapster;
 using QS.Core.Data;
 using QS.Core.DatabaseAccessor;
-using QS.Core.Dependency;
+using QS.Core.DependencyInjection;
 using QS.DataLayer.Entities;
 using QS.ServiceLayer.ProductService.Dtos;
 using System.Collections.Generic;
@@ -14,7 +14,6 @@ namespace QS.ServiceLayer.ProductService
 
         public readonly IRepository<Product, int> _productRepository;
 
-        private readonly EFContext _context;
         public ProductService(IRepository<Product, int> productRepository)
         {
             _productRepository = productRepository;

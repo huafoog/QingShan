@@ -15,6 +15,7 @@ namespace QS.Core.Web.Areas.Admin.Controllers
     /// <summary>
     /// 用户授权控制器
     /// </summary>
+    [ApiExplorerSettings]
     public class AccountController : AdminBaseController
     {
 

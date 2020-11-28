@@ -1,4 +1,6 @@
 ﻿using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace System
 {
@@ -67,6 +69,34 @@ namespace System
 
             }
             return path;
+        }
+        #endregion
+
+
+        #region 驼峰
+        /// <summary>
+        /// 切割骆驼命名式字符串
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string[] SplitCamelCase(this string str)
+        {
+            if (string.IsNullOrEmpty(str)) return new string[] { str };
+            if (str.Length == 1) return new string[] { str };
+
+            return Regex.Split(str, @"(?=\p{Lu}\p{Ll})|(?<=\p{Ll})(?=\p{Lu})")
+                .Where(u => u.Length > 0)
+                .ToArray();
+        }
+
+        /// <summary>
+        /// 获取骆驼命名第一个单词
+        /// </summary>
+        /// <param name="str">字符串</param>
+        /// <returns>首单词</returns>
+        public static string GetCamelCaseFirstWord(this string str)
+        {
+            return SplitCamelCase(str).First();
         }
         #endregion
     }

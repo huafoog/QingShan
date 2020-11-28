@@ -9,10 +9,12 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
 using QS.Core.Attributes;
+using QS.Core.ConfigurableOptions;
+using QS.Core.DatabaseAccessor;
 using QS.Core.Extensions;
+using QS.Core.Helper;
 using QS.Core.Reflection;
 using QS.Core.Web.Filter;
-using QS.Core.Web.Filter.Transaction;
 using QS.Core.Web.Permission;
 using QS.Core.Web.Services;
 using System.IO;
@@ -34,19 +36,10 @@ namespace QS.Core.Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddSingleton<IAssemblyFinder, AssemblyFinder>();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();//注入Http请求上下文
-            services.AddCacheService(Configuration);
-            services.AddScoped<TransactionInterceptorAttribute>();
-            services.AddScoped<TransactionInterceptorFilterImpl>();
-            //services.AddAutoMapper(typeof(AutoMapperConfig));
-            services.AddDatabaseAccessor();
-            services.AddToServices();
-            //services.AddEFService(Configuration);
-            services.AddSwaggerService();
-            services.AddAuthorizationService(Configuration);
-            services.AddCorsService();
+            services.AddInject();
+            services.AddConfigurableOptions<DatabaseAccessorSettingsOptions>();
+            //services.AddAuthorizationService(Configuration);
+            //services.AddCorsService();
             services.AddControllers(o =>
             {
                 //全局异常
@@ -77,6 +70,7 @@ namespace QS.Core.Web
                 app.UseDeveloperExceptionPage();
             }
             #region 静态文件
+            FileHelper.CreateDir("www");
             FileExtensionContentTypeProvider provider = new FileExtensionContentTypeProvider();
             provider.Mappings[".jpg"] = "image/jpeg";
             app.UseStaticFiles(new StaticFileOptions
@@ -114,19 +108,6 @@ namespace QS.Core.Web
                     name: "default",
                     pattern: "{controller=Test}/{action=Get}/{id?}");
             });
-            app.UsePermission();
-            #region Swagger
-            // Enable middleware to serve generated Swagger as a JSON endpoint.
-            app.UseSwagger();
-
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
-            // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-                c.RoutePrefix = string.Empty;
-            });
-            #endregion
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using QS.Core.Data;
 using QS.Core.DatabaseAccessor;
-using QS.Core.Dependency;
+using QS.Core.DependencyInjection;
 using QS.Core.Encryption;
 using QS.Core.Extensions;
 using QS.DataLayer.Entities;
@@ -14,9 +14,6 @@ namespace QS.ServiceLayer.Account
 {
     public class AccountService : IAccountService, IScopeDependency
     {
-
-        private readonly EFContext _context;
-
         private readonly IConfiguration _config;
         private readonly IUserService _userService;
 

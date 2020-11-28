@@ -8,6 +8,7 @@ using QS.Core.DependencyInjection;
 using QS.Core.Options;
 using StackExchange.Profiling;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -66,7 +67,7 @@ namespace QS.Core
         /// <summary>
         /// 应用服务
         /// </summary>
-        internal static IServiceCollection Services;
+        internal static IServiceCollection Services => InternalApp.InternalServices;
 
         /// <summary>
         /// 瞬时服务提供器，每次都是不一样的实例
@@ -88,7 +89,14 @@ namespace QS.Core
         {
             Assemblies = GetAssemblies();
             CanBeScanTypes = Assemblies.SelectMany(u => u.GetTypes().Where(u => u.IsPublic && !u.IsDefined(typeof(SkipScanAttribute), false)));
+            AppStartups = new ConcurrentBag<AppStartup>();
         }
+
+        /// <summary>
+        /// 应用所有启动配置对象
+        /// </summary>
+        internal static ConcurrentBag<AppStartup> AppStartups;
+
 
         #region 选项
         /// <summary>

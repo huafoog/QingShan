@@ -1,7 +1,7 @@
 ﻿using Mapster;
 using QS.Core.Data;
 using QS.Core.DatabaseAccessor;
-using QS.Core.Dependency;
+using QS.Core.DependencyInjection;
 using QS.Core.Extensions;
 using QS.DataLayer.Entities;
 using QS.ServiceLayer.Permission.Dto;

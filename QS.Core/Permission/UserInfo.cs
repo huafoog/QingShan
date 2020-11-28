@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using QS.Core.Data.Constants;
-using QS.Core.Dependency;
+using QS.Core.DependencyInjection;
 using QS.Core.Helper;
 using System;
 
