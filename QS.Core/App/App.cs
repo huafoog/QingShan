@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyModel;
 using Microsoft.Extensions.Options;
-using QS.Core.DependencyInjection;
+using QS.DependencyInjection;
 using QS.Core.Options;
 using StackExchange.Profiling;
 using System;

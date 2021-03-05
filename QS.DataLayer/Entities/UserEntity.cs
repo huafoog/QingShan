@@ -1,4 +1,4 @@
-﻿using QS.Core.DatabaseAccessor;
+﻿using QS.DatabaseAccessor;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;

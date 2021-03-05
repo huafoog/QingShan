@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using QS.Core.Web.Authorization;
-using QS.ServiceLayer.Permission;
+using QS.Services.Permission;
 using System.Threading.Tasks;
 
 namespace QS.Core.Web.Permission

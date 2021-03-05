@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QS.Core.Attributes
+namespace QS.Attributes
 {
     /// <summary>
     /// 标注当前Action不作为Function信息进行收集

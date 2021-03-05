@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using QS.Core.Data;
-using QS.Core.DatabaseAccessor;
-using QS.Core.Permission;
-using QS.Core.Permission.Authorization;
-using QS.ServiceLayer.User;
-using QS.ServiceLayer.User.Dtos.InputDto;
-using QS.ServiceLayer.User.Dtos.OutputDto;
+using QS.Data;
+using QS.DatabaseAccessor;
+using QS.Permission;
+using QS.Permission.Authorization;
+using QS.Services.User;
+using QS.Services.User.Dtos.InputDto;
+using QS.Services.User.Dtos.OutputDto;
 using System.ComponentModel;
 using System.Threading.Tasks;
 

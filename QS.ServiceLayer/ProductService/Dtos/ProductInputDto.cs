@@ -1,7 +1,7 @@
-﻿using QS.Core.Attributes;
+﻿using QS.Attributes;
 using QS.DataLayer.Entities;
 
-namespace QS.ServiceLayer.ProductService.Dtos
+namespace QS.Services.ProductService.Dtos
 {
     /// <summary>
     /// 商品输入参数

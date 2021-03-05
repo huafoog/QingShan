@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QS.Core.Attributes
+namespace QS.Attributes
 {
     /// <summary>
     /// 标注当前类型映射到目标类型的Mapping映射关系

@@ -1,4 +1,4 @@
-﻿using QS.Core.DependencyInjection;
+﻿using QS.DependencyInjection;
 using QS.Core.SpecificationDocument;
 
 namespace Microsoft.AspNetCore.Builder

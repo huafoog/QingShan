@@ -1,8 +1,8 @@
-﻿using QS.Core.Attributes;
+﻿using QS.Attributes;
 using QS.DataLayer.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace QS.ServiceLayer.System.Role.Dto.InputDto
+namespace QS.Services.System.Role.Dto.InputDto
 {
     /// <summary>
     /// 角色

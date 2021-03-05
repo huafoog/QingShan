@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
-using QS.Core.Permission;
-using QS.ServiceLayer.ProductService;
-using QS.ServiceLayer.ProductService.Dtos;
+using QS.Permission;
+using QS.Services.ProductService;
+using QS.Services.ProductService.Dtos;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;

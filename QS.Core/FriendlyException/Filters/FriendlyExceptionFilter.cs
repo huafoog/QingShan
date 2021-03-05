@@ -9,7 +9,7 @@
 // 开源协议：Apache-2.0（http://www.apache.org/licenses/LICENSE-2.0）
 // -----------------------------------------------------------------------------
 
-using QS.Core.DependencyInjection;
+using QS.DependencyInjection;
 using QS.Core.FriendlyException;
 using System;
 using System.Threading.Tasks;

@@ -1,16 +1,16 @@
 ﻿using Mapster;
-using QS.Core.Data;
-using QS.Core.DatabaseAccessor;
-using QS.Core.DependencyInjection;
-using QS.Core.Extensions;
+using QS.Data;
+using QS.DatabaseAccessor;
+using QS.DependencyInjection;
+using QS.Extensions;
 using QS.DataLayer.Entities;
-using QS.ServiceLayer.Permission.Dto;
+using QS.Services.Permission.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace QS.ServiceLayer.Permission
+namespace QS.Services.Permission
 {
     /// <summary>
     /// 模块服务

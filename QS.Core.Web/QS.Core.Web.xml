@@ -9,7 +9,7 @@
             用户授权控制器
             </summary>
         </member>
-        <member name="M:QS.Core.Web.Areas.Admin.Controllers.AccountController.Login(QS.ServiceLayer.Account.Dto.LoginInputDto)">
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.AccountController.Login(QS.Services.Account.Dto.LoginInputDto)">
             <summary>
             用户登录
             </summary>
@@ -32,14 +32,14 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:QS.Core.Web.Areas.Admin.Controllers.HomeController.Add(QS.ServiceLayer.ProductService.Dtos.ProductInputDto)">
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.HomeController.Add(QS.Services.ProductService.Dtos.ProductInputDto)">
             <summary>
             添加
             </summary>
             <param name="dto"></param>
             <returns></returns>
         </member>
-        <member name="M:QS.Core.Web.Areas.Admin.Controllers.HomeController.Delete(QS.ServiceLayer.ProductService.Dtos.IdDto)">
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.HomeController.Delete(QS.Services.ProductService.Dtos.IdDto)">
             <summary>
             删除
             </summary>
@@ -51,33 +51,33 @@
             角色管理
             </summary>
         </member>
-        <member name="M:QS.Core.Web.Areas.Admin.Controllers.RoleController.Add(QS.ServiceLayer.System.Role.Dto.InputDto.RoleInputDto)">
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.RoleController.Add(QS.Services.System.Role.Dto.InputDto.RoleInputDto)">
             <summary>
             新增角色
             </summary>
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:QS.Core.Web.Areas.Admin.Controllers.RoleController.Update(QS.ServiceLayer.System.Role.Dto.InputDto.RoleInputDto)">
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.RoleController.Update(QS.Services.System.Role.Dto.InputDto.RoleInputDto)">
             <summary>
             修改角色
             </summary>
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:QS.Core.Web.Areas.Admin.Controllers.RoleController.GetInfo(QS.Core.Data.CommonIdInputDto)">
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.RoleController.GetInfo(QS.Data.CommonIdInputDto)">
             <summary>
             获取角色详情信息
             </summary>
             <returns></returns>
         </member>
-        <member name="M:QS.Core.Web.Areas.Admin.Controllers.RoleController.GetPage(QS.Core.Data.PageInputDto)">
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.RoleController.GetPage(QS.Data.PageInputDto)">
             <summary>
             获取角色列表
             </summary>
             <returns></returns>
         </member>
-        <member name="M:QS.Core.Web.Areas.Admin.Controllers.RoleController.Delete(QS.Core.Data.CommonIdInputDto)">
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.RoleController.Delete(QS.Data.CommonIdInputDto)">
             <summary>
             删除角色信息
             </summary>
@@ -88,14 +88,14 @@
             用户管理
             </summary>
         </member>
-        <member name="M:QS.Core.Web.Areas.Admin.Controllers.UserController.Add(QS.ServiceLayer.User.Dtos.InputDto.UserAddInputDto)">
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.UserController.Add(QS.Services.User.Dtos.InputDto.UserAddInputDto)">
             <summary>
             新增用户
             </summary>
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:QS.Core.Web.Areas.Admin.Controllers.UserController.Update(QS.ServiceLayer.User.Dtos.InputDto.UserUpdateInputDto)">
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.UserController.Update(QS.Services.User.Dtos.InputDto.UserUpdateInputDto)">
             <summary>
             修改用户
             </summary>
@@ -108,19 +108,19 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:QS.Core.Web.Areas.Admin.Controllers.UserController.GetInfo(QS.Core.Data.CommonIdInputDto)">
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.UserController.GetInfo(QS.Data.CommonIdInputDto)">
             <summary>
             获取用户详情信息
             </summary>
             <returns></returns>
         </member>
-        <member name="M:QS.Core.Web.Areas.Admin.Controllers.UserController.GetUserPage(QS.Core.Data.PageInputDto)">
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.UserController.GetUserPage(QS.Data.PageInputDto)">
             <summary>
             获取用户列表
             </summary>
             <returns></returns>
         </member>
-        <member name="M:QS.Core.Web.Areas.Admin.Controllers.UserController.Delete(QS.Core.Data.CommonIdInputDto)">
+        <member name="M:QS.Core.Web.Areas.Admin.Controllers.UserController.Delete(QS.Data.CommonIdInputDto)">
             <summary>
             删除用户信息
             </summary>
@@ -148,7 +148,7 @@
             </summary>
             <param name="type"></param>
         </member>
-        <member name="M:QS.Core.Web.Authorization.ModuleManager.GetModule(System.Reflection.MethodInfo,QS.ServiceLayer.Permission.Dto.ModuleInfo,System.Type,System.Int32)">
+        <member name="M:QS.Core.Web.Authorization.ModuleManager.GetModule(System.Reflection.MethodInfo,QS.Services.Permission.Dto.ModuleInfo,System.Type,System.Int32)">
             <summary>
             重写以实现从方法信息中提取模块信息
             </summary>

@@ -1,11 +1,11 @@
-﻿using QS.Core.Data;
+﻿using QS.Data;
 using QS.DataLayer.Entities;
-using QS.ServiceLayer.Permission.Dto;
+using QS.Services.Permission.Dto;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace QS.ServiceLayer.Permission
+namespace QS.Services.Permission
 {
     public interface IModuleService
     {

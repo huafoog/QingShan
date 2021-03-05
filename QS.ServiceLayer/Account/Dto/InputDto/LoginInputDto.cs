@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace QS.ServiceLayer.Account.Dto
+namespace QS.Services.Account.Dto
 {
     /// <summary>
     /// 用户登录

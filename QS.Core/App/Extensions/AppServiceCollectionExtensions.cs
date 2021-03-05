@@ -1,7 +1,8 @@
-﻿using QS.Core;
+﻿using Panda.DynamicWebApi;
+using QS.Core;
 using QS.Core.ConfigurableOptions;
-using QS.Core.DependencyInjection;
-using QS.Core.DependencyInjection.Extensions;
+using QS.DependencyInjection;
+using QS.DependencyInjection.Extensions;
 using QS.Core.Options;
 using System;
 using System.Linq;
@@ -27,7 +28,8 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns>IMvcBuilder</returns>
         public static IServiceCollection AddInject(this IServiceCollection services)
         {
-            services.AddSpecificationDocuments()
+            services
+                //.AddSpecificationDocuments()
                 .AddDatabaseAccessor();
 
             return services;

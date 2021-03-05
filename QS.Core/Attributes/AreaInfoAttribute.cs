@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel;
 
 
-namespace QS.Core.Attributes
+namespace QS.Attributes
 {
     /// <summary>
     /// 区域信息特性，可配置区域显示名称，此属性与“<see cref="AreaAttribute"/>与<see cref="DisplayNameAttribute"/>”组合等效，在无Area的类型，推荐只使用<see cref="DisplayNameAttribute"/>

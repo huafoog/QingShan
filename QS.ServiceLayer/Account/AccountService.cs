@@ -1,16 +1,16 @@
 ﻿using Microsoft.Extensions.Configuration;
-using QS.Core.Data;
-using QS.Core.DatabaseAccessor;
-using QS.Core.DependencyInjection;
-using QS.Core.Encryption;
-using QS.Core.Extensions;
+using QS.Data;
+using QS.DatabaseAccessor;
+using QS.DependencyInjection;
+using QS.Encryption;
+using QS.Extensions;
 using QS.DataLayer.Entities;
-using QS.ServiceLayer.Account.Dto;
-using QS.ServiceLayer.Account.Dto.OutputDto;
-using QS.ServiceLayer.User;
+using QS.Services.Account.Dto;
+using QS.Services.Account.Dto.OutputDto;
+using QS.Services.User;
 using System.Threading.Tasks;
 
-namespace QS.ServiceLayer.Account
+namespace QS.Services.Account
 {
     public class AccountService : IAccountService, IScopeDependency
     {

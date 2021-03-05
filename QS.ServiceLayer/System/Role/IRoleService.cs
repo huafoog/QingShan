@@ -1,9 +1,9 @@
-﻿using QS.Core.Data;
-using QS.ServiceLayer.System.Role.Dto.InputDto;
-using QS.ServiceLayer.System.Role.Dto.OutputDto;
+﻿using QS.Data;
+using QS.Services.System.Role.Dto.InputDto;
+using QS.Services.System.Role.Dto.OutputDto;
 using System.Threading.Tasks;
 
-namespace QS.ServiceLayer.System.Role
+namespace QS.Services.System.Role
 {
     public interface IRoleService
     {

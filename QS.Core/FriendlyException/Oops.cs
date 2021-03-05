@@ -11,7 +11,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using QS.Core.DependencyInjection;
+using QS.DependencyInjection;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

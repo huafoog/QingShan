@@ -12,7 +12,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using QS.Core.ConfigurableOptions;
-using QS.Core.DependencyInjection;
+using QS.DependencyInjection;
 using QS.Core.FriendlyException;
 
 namespace Microsoft.Extensions.DependencyInjection

@@ -1,9 +1,9 @@
-﻿using QS.Core.Data;
-using QS.ServiceLayer.Account.Dto;
-using QS.ServiceLayer.Account.Dto.OutputDto;
+﻿using QS.Data;
+using QS.Services.Account.Dto;
+using QS.Services.Account.Dto.OutputDto;
 using System.Threading.Tasks;
 
-namespace QS.ServiceLayer.Account
+namespace QS.Services.Account
 {
     public interface IAccountService
     {

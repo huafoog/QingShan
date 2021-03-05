@@ -1,4 +1,4 @@
-﻿namespace QS.ServiceLayer.Permission
+﻿namespace QS.Services.Permission
 {
     /// <summary>
     /// 权限服务

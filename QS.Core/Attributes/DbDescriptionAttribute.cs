@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QS.Core.Attributes
+namespace QS.Attributes
 {
     public class DbDescriptionAttribute : Attribute
     {

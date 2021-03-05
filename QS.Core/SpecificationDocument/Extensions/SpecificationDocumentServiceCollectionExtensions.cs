@@ -1,5 +1,5 @@
 ﻿using QS.Core.ConfigurableOptions;
-using QS.Core.DependencyInjection;
+using QS.DependencyInjection;
 using QS.Core.SpecificationDocument;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;

@@ -1,9 +1,9 @@
-﻿using QS.Core.Attributes;
-using QS.Core.Data.Enums;
+﻿using QS.Attributes;
+using QS.Data.Enums;
 using QS.DataLayer.Entities;
 using System;
 
-namespace QS.ServiceLayer.Permission.Dto
+namespace QS.Services.Permission.Dto
 {
     [MapTo(typeof(ModuleEntity))]
     public class ModuleInputDto

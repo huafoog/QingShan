@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace QS.ServiceLayer.Permission.Dto
+namespace QS.Services.Permission.Dto
 {
     /// <summary>
     /// 菜单

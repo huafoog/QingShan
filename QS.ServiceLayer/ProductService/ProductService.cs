@@ -1,13 +1,13 @@
 ﻿using Mapster;
-using QS.Core.Data;
-using QS.Core.DatabaseAccessor;
-using QS.Core.DependencyInjection;
+using QS.Data;
+using QS.DatabaseAccessor;
+using QS.DependencyInjection;
 using QS.DataLayer.Entities;
-using QS.ServiceLayer.ProductService.Dtos;
+using QS.Services.ProductService.Dtos;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace QS.ServiceLayer.ProductService
+namespace QS.Services.ProductService
 {
     public class ProductService : IProductService, IScopeDependency
     {

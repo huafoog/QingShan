@@ -1,4 +1,4 @@
-﻿using QS.Core.DependencyInjection;
+﻿using QS.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
@@ -293,7 +293,7 @@ namespace QS.Core.SpecificationDocument
             // 启用 MiniProfiler 组件
             var thisType = typeof(SpecificationDocumentBuilder);
             var thisAssembly = thisType.Assembly;
-
+            var data = thisAssembly.GetManifestResourceNames();
             // 自定义 Swagger 首页
             swaggerUIOptions.IndexStream = () => thisAssembly.GetManifestResourceStream($"{thisType.Namespace}.Assets.index-mini-profiler.html");
         }

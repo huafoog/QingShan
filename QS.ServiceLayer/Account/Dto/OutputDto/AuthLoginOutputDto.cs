@@ -1,4 +1,4 @@
-﻿namespace QS.ServiceLayer.Account.Dto.OutputDto
+﻿namespace QS.Services.Account.Dto.OutputDto
 {
     public class AuthLoginOutputDto
     {

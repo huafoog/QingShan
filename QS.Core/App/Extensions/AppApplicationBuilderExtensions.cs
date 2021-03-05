@@ -1,5 +1,5 @@
 ﻿using QS.Core;
-using QS.Core.DependencyInjection;
+using QS.DependencyInjection;
 using System;
 
 namespace Microsoft.AspNetCore.Builder
@@ -18,7 +18,7 @@ namespace Microsoft.AspNetCore.Builder
         /// <returns></returns>
         public static IApplicationBuilder UseInject(this IApplicationBuilder app, string routePrefix = default)
         {
-            app.UseSpecificationDocuments(routePrefix);
+            //app.UseSpecificationDocuments(routePrefix);
             return app;
         }
 
@@ -38,7 +38,7 @@ namespace Microsoft.AspNetCore.Builder
         /// <param name="app">应用构建器</param>
         /// <param name="configure">应用配置</param>
         /// <returns>应用构建器</returns>
-        internal static IApplicationBuilder UseApp(this IApplicationBuilder app, Action<IApplicationBuilder> configure = null)
+        public static IApplicationBuilder UseApp(this IApplicationBuilder app, Action<IApplicationBuilder> configure = null)
         {
             // 启用 MiniProfiler组件
             if (App.Settings.InjectMiniProfiler == true)

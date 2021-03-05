@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using QS.Core.Data;
-using QS.Core.Data.Constants;
-using QS.Core.Permission;
-using QS.ServiceLayer.Account;
-using QS.ServiceLayer.Account.Dto;
-using QS.ServiceLayer.User;
+using QS.Data;
+using QS.Data.Constants;
+using QS.Permission;
+using QS.Services.Account;
+using QS.Services.Account.Dto;
+using QS.Services.User;
 using System.Security.Claims;
 using System.Threading.Tasks;
 

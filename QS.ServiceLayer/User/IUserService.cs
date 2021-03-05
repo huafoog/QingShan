@@ -1,9 +1,9 @@
-﻿using QS.Core.Data;
-using QS.ServiceLayer.User.Dtos.InputDto;
-using QS.ServiceLayer.User.Dtos.OutputDto;
+﻿using QS.Data;
+using QS.Services.User.Dtos.InputDto;
+using QS.Services.User.Dtos.OutputDto;
 using System.Threading.Tasks;
 
-namespace QS.ServiceLayer.User
+namespace QS.Services.User
 {
     public interface IUserService
     {

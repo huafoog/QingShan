@@ -35,7 +35,7 @@ namespace QS.Core.Web
             .ConfigureWebHostDefaults(webBuilder =>
             {
 
-                //增加外部启动项Fap.Core.DI.ServicesInjection，初始化所有service
+                //QS.Core基础功能注入
                 webBuilder.Inject()
                 .UseStartup<Startup>();
             });

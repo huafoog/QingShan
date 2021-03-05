@@ -1,9 +1,9 @@
-﻿using QS.Core.Data;
-using QS.ServiceLayer.ProductService.Dtos;
+﻿using QS.Data;
+using QS.Services.ProductService.Dtos;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace QS.ServiceLayer.ProductService
+namespace QS.Services.ProductService
 {
     public interface IProductService
     {

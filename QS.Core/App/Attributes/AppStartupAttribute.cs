@@ -1,4 +1,4 @@
-﻿using QS.Core.DependencyInjection;
+﻿using QS.DependencyInjection;
 using System;
 
 namespace QS.Core

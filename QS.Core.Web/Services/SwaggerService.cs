@@ -66,7 +66,7 @@ namespace QS.Core.Web.Services
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
-                var xmlPath2 = Path.Combine(AppContext.BaseDirectory, "QS.ServiceLayer.xml");
+                var xmlPath2 = Path.Combine(AppContext.BaseDirectory, "QS.Services.xml");
                 c.IncludeXmlComments(xmlPath2);
             });
         }

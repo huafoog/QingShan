@@ -1,4 +1,4 @@
-﻿using QS.ServiceLayer.Permission.Dto;
+﻿using QS.Services.Permission.Dto;
 using System.Collections.Generic;
 
 namespace QS.Core.Web.Authorization

@@ -1,18 +1,18 @@
 ﻿using FreeSql;
 using Mapster;
-using QS.Core.Data;
-using QS.Core.DatabaseAccessor;
-using QS.Core.DependencyInjection;
-using QS.Core.Encryption;
-using QS.Core.Permission;
+using QS.Data;
+using QS.DatabaseAccessor;
+using QS.DependencyInjection;
+using QS.Encryption;
+using QS.Permission;
 using QS.DataLayer.Entities;
-using QS.ServiceLayer.User.Dtos.InputDto;
-using QS.ServiceLayer.User.Dtos.OutputDto;
+using QS.Services.User.Dtos.InputDto;
+using QS.Services.User.Dtos.OutputDto;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace QS.ServiceLayer.User
+namespace QS.Services.User
 {
     /// <summary>
     /// 用户管理-

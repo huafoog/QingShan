@@ -79,7 +79,7 @@ namespace QS.Core.SpecificationDocument
             options.FormatAsV2 ??= false;
             //options.RoutePrefix ??= "api";
             options.DocExpansionState ??= DocExpansion.List;
-            XmlComments ??= App.Assemblies.Where(u => u.GetName().Name != "Furion").Select(t => t.GetName().Name).ToArray();
+            XmlComments ??= App.Assemblies.Where(u => u.GetName().Name != "QS").Select(t => t.GetName().Name).ToArray();
             GroupOpenApiInfos ??= new SpecificationOpenApiInfo[]
             {
                 new SpecificationOpenApiInfo()

@@ -1,8 +1,8 @@
-﻿using QS.Core.Attributes;
+﻿using QS.Attributes;
 using QS.DataLayer.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace QS.ServiceLayer.User.Dtos.InputDto
+namespace QS.Services.User.Dtos.InputDto
 {
     /// <summary>
     /// 修改

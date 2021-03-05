@@ -1,8 +1,8 @@
-﻿using QS.Core.DatabaseAccessor;
+﻿using QS.DatabaseAccessor;
 using QS.DataLayer.Entities;
 using System;
 
-namespace QS.ServiceLayer.User.Dtos.OutputDto
+namespace QS.Services.User.Dtos.OutputDto
 {
     public class UserListOutputDto : IEntity<int>
     {

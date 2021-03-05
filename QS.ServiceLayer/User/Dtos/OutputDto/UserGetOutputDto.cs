@@ -1,8 +1,8 @@
-﻿using QS.Core.Attributes;
+﻿using QS.Attributes;
 using QS.DataLayer.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace QS.ServiceLayer.User.Dtos.OutputDto
+namespace QS.Services.User.Dtos.OutputDto
 {
     [MapFrom(typeof(UserEntity))]
     public class UserGetOutputDto

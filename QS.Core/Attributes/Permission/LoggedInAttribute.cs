@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QS.Core.Attributes
+namespace QS.Attributes
 {
     /// <summary>
     /// 指定功能需要登录才能访问

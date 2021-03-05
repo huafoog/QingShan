@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace QS.ServiceLayer.User.Dtos.InputDto
+namespace QS.Services.User.Dtos.InputDto
 {
     /// <summary>
     /// 更新基本信息

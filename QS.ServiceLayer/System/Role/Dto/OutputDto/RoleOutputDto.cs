@@ -1,8 +1,8 @@
-﻿using QS.Core.Attributes;
+﻿using QS.Attributes;
 using QS.DataLayer.Entities;
 using System;
 
-namespace QS.ServiceLayer.System.Role.Dto.OutputDto
+namespace QS.Services.System.Role.Dto.OutputDto
 {
     /// <summary>
     /// 角色输出参数

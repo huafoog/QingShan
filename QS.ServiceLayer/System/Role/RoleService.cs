@@ -1,16 +1,16 @@
 ﻿using FreeSql;
 using Mapster;
-using QS.Core.Data;
-using QS.Core.DatabaseAccessor;
-using QS.Core.DependencyInjection;
-using QS.Core.Permission;
+using QS.Data;
+using QS.DatabaseAccessor;
+using QS.DependencyInjection;
+using QS.Permission;
 using QS.DataLayer.Entities;
-using QS.ServiceLayer.System.Role.Dto.InputDto;
-using QS.ServiceLayer.System.Role.Dto.OutputDto;
+using QS.Services.System.Role.Dto.InputDto;
+using QS.Services.System.Role.Dto.OutputDto;
 using System;
 using System.Threading.Tasks;
 
-namespace QS.ServiceLayer.System.Role
+namespace QS.Services.System.Role
 {
     public class RoleService : IRoleService, IScopeDependency
     {

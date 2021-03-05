@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using QS.Core.Attributes;
-using QS.Core.Attributes.Permission;
+using QS.Attributes;
+using QS.Attributes.Permission;
 
 namespace QS.Core.Web.Areas.Admin.Controllers
 {
@@ -9,7 +9,7 @@ namespace QS.Core.Web.Areas.Admin.Controllers
     /// </summary>
     [AreaInfo("Admin", Display = "后台管理")]
     [ApiController]
-    [Route("/Api/[area]/[controller]/[action]")]
+    [Route("/Api/[controller]/[action]")]
     [Permission]
     public class AdminBaseController : ControllerBase
     {

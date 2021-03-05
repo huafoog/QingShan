@@ -1,8 +1,8 @@
-﻿using QS.Core.DependencyInjection;
-using QS.Core.Permission;
+﻿using QS.DependencyInjection;
+using QS.Permission;
 using QS.DataLayer.Entities;
 
-namespace QS.ServiceLayer.Permission
+namespace QS.Services.Permission
 {
     /// <summary>
     /// 权限服务实现

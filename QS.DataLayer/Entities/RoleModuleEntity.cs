@@ -1,4 +1,4 @@
-﻿using QS.Core.DatabaseAccessor;
+﻿using QS.DatabaseAccessor;
 using System;
 
 namespace QS.DataLayer.Entities

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
-using QS.Core.Data;
-using QS.Core.Helper;
+using QS.Data;
+using QS.Helper;
 
 namespace QS.Core.Web.Controllers
 {

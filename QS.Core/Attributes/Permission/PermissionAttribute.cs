@@ -2,12 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
-using QS.Core.Permission;
+using QS.Permission;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace QS.Core.Attributes.Permission
+namespace QS.Attributes.Permission
 {
     /// <summary>
     /// 启用权限

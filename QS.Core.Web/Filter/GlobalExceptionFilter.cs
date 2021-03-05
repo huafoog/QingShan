@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
-using QS.Core.Data;
+using QS.Data;
 using QS.DataLayer.Entities;
 using System;
 using System.Linq;

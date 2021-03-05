@@ -1,5 +1,5 @@
 ﻿//using AutoMapper;
-//using QS.Core.Attributes;
+//using QS.Attributes;
 //using QS.Core.Extensions;
 //using QS.Core.Helper;
 //using System;
