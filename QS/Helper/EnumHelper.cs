@@ -1,5 +1,4 @@
-﻿using QS.Extensions;
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,6 +59,7 @@ namespace QS.Helper
             var Inexistentassembly = assemblys.Except(AssemblyList?.Select(o => o.Key));
             foreach (var assembly in Inexistentassembly)
             {
+                //AppAssembly.Assemblies.Where(o=>o.FullName == assembly);
                 AssemblyList.TryAdd(assembly, System.Reflection.Assembly.Load(assembly));
             }
 

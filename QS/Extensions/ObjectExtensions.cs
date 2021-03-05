@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace QS.Extensions
+namespace System
 {
     public static class ObjectExtensions
     {

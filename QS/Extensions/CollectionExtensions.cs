@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace QS.Extensions
+namespace System.Collections.Generic
 {
     /// <summary>
     /// 集合扩展方法

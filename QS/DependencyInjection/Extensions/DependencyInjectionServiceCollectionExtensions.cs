@@ -119,7 +119,7 @@ namespace QS.DependencyInjection.Extensions
         private static void RegisterService(IServiceCollection services, RegisterType registerType, Type type, InjectionAttribute injectionAttribute, IEnumerable<Type> canInjectInterfaces)
         {
             // 注册自己
-            if (injectionAttribute.Pattern is InjectionPatterns.Self or InjectionPatterns.All or InjectionPatterns.SelfWithFirstInterface)
+            if (injectionAttribute.Pattern == InjectionPatterns.Self || injectionAttribute.Pattern ==  InjectionPatterns.SelfWithFirstInterface)
             {
                 RegisterType(services, registerType, type, injectionAttribute);
             }
@@ -130,12 +130,12 @@ namespace QS.DependencyInjection.Extensions
             }
 
             // 只注册第一个接口
-            if (injectionAttribute.Pattern is InjectionPatterns.FirstInterface or InjectionPatterns.SelfWithFirstInterface)
+            if (injectionAttribute.Pattern == InjectionPatterns.FirstInterface || injectionAttribute.Pattern == InjectionPatterns.SelfWithFirstInterface)
             {
                 RegisterType(services, registerType, type, injectionAttribute, canInjectInterfaces.First());
             }
             // 注册多个接口
-            else if (injectionAttribute.Pattern is InjectionPatterns.ImplementedInterfaces or InjectionPatterns.All)
+            else if (injectionAttribute.Pattern == InjectionPatterns.ImplementedInterfaces || injectionAttribute.Pattern == InjectionPatterns.All)
             {
                 foreach (var inter in canInjectInterfaces)
                 {

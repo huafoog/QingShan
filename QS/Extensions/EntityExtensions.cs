@@ -2,7 +2,7 @@
 using QS.Permission;
 using System;
 
-namespace QS.Extensions
+namespace System
 {
     /// <summary>
     /// 实体接口扩展方法

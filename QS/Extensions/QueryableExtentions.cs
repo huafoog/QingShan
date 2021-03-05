@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using static System.Linq.Expressions.Expression;
-namespace QS.Extensions
+namespace System.Linq
 {
     public static class QueryableExtentions
     {

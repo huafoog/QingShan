@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 
-namespace QS.Extensions
+namespace System
 {
     /// <summary>
     /// 枚举拓展
