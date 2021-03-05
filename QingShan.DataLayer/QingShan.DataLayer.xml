@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QingShan.DataLayer</name>
+    </assembly>
+    <members>
+        <member name="T:QingShan.DataLayer.Entities.ModuleEntity">
+            <summary>
+            模块
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.ModuleEntity.Code">
+            <summary>
+            当前操作代码
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.ModuleEntity.Area">
+            <summary>
+            区域
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.ModuleEntity.Controller">
+            <summary>
+            控制器
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.ModuleEntity.Action">
+            <summary>
+            操作
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.ModuleEntity.Name">
+            <summary>
+            模块名称
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.ModuleEntity.Path">
+            <summary>
+            路径
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.ModuleEntity.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.ModuleEntity.Remark">
+            <summary>
+            备注信息
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.ModuleEntity.Sort">
+            <summary>
+            排序值
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.ModuleEntity.Pid">
+            <summary>
+            父节点Id
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.ModuleEntity.Level">
+            <summary>
+            节点
+            </summary>
+        </member>
+        <member name="T:QingShan.DataLayer.Entities.Product">
+            <summary>
+            商品
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.Product.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.Product.Price">
+            <summary>
+            价格
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.Product.Address">
+            <summary>
+            添加地址
+            </summary>
+        </member>
+        <member name="T:QingShan.DataLayer.Entities.RoleEntity">
+            <summary>
+            角色模型
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.RoleEntity.Name">
+            <summary>
+            角色名
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.RoleEntity.Description">
+             <summary>
+            描述
+             </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.RoleEntity.OrderSort">
+             <summary>
+            排序
+             </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.RoleEntity.Enabled">
+            <summary>
+            是否激活
+            </summary>
+        </member>
+        <member name="T:QingShan.DataLayer.Entities.RoleModuleEntity">
+            <summary>
+            角色模块
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.RoleModuleEntity.RoleId">
+            <summary>
+            角色Id
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.RoleModuleEntity.ModuleId">
+            <summary>
+            模块id
+            </summary>
+        </member>
+        <member name="T:QingShan.DataLayer.Entities.UserEntity">
+            <summary>
+            用户表
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.UserEntity.RealName">
+            <summary>
+            真实姓名
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.UserEntity.UserName">
+            <summary>
+            用户名称
+            <para>登录账号</para>
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.UserEntity.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.UserEntity.Avatar">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.UserEntity.DepartmentId">
+            <summary>
+            部门Id
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.UserEntity.Phone">
+            <summary>
+            手机号码
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.UserEntity.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.UserEntity.Status">
+            <summary>
+            账号状态
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.UserEntity.IsSuper">
+            <summary>
+            是否本系统超级管理员
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.UserEntity.UpdateDateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="T:QingShan.DataLayer.Entities.EAdministratorStatus">
+            <summary>
+            用户状态
+            </summary>
+        </member>
+        <member name="T:QingShan.DataLayer.Entities.UserRoleEntity">
+            <summary>
+            用户角色实体
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.UserRoleEntity.UserId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.UserRoleEntity.RoleId">
+            <summary>
+            角色Id
+            </summary>
+        </member>
+    </members>
+</doc>

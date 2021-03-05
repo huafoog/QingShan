@@ -207,3 +207,5 @@ dotnet_naming_style._fieldname.capitalization = camel_case
 
 # CS0168: 声明了变量，但从未使用过
 dotnet_diagnostic.CS0168.severity = none
+# CS1591: 缺少对公共可见类型或成员 的 XML 注释
+dotnet_diagnostic.CS1591.severity = none

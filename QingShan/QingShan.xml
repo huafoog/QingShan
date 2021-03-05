@@ -1,0 +1,2093 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QingShan</name>
+    </assembly>
+    <members>
+        <member name="T:QingShan.Collections.EnumerableExtensions">
+            <summary>
+            Enumerable集合扩展方法
+            </summary>
+        </member>
+        <member name="M:QingShan.Collections.EnumerableExtensions.Shuffle``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            打乱一个集合的项顺序
+            </summary>
+        </member>
+        <member name="M:QingShan.Collections.EnumerableExtensions.ExpandAndToString``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            将集合展开并分别转换成字符串，再以指定的分隔符衔接，拼成一个字符串返回。默认分隔符为逗号
+            </summary>
+            <param name="collection"> 要处理的集合 </param>
+            <param name="separator"> 分隔符，默认为逗号 </param>
+            <returns> 拼接后的字符串 </returns>
+        </member>
+        <member name="M:QingShan.Collections.EnumerableExtensions.ExpandAndToString``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String},System.String)">
+            <summary>
+            循环集合的每一项，调用委托生成字符串，返回合并后的字符串。默认分隔符为逗号
+            </summary>
+            <param name="collection">待处理的集合</param>
+            <param name="itemFormatFunc">单个集合项的转换委托</param>
+            <param name="separator">分隔符，默认为逗号</param>
+            <typeparam name="T">泛型类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Collections.EnumerableExtensions.IsEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            集合是否为空
+            </summary>
+            <param name="collection"> 要处理的集合 </param>
+            <typeparam name="T"> 动态类型 </typeparam>
+            <returns> 为空返回True，不为空返回False </returns>
+        </member>
+        <member name="M:QingShan.Collections.EnumerableExtensions.WhereIf``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean},System.Boolean)">
+            <summary>
+            根据第三方条件是否为真来决定是否执行指定条件的查询
+            </summary>
+            <param name="source"> 要查询的源 </param>
+            <param name="predicate"> 查询条件 </param>
+            <param name="condition"> 第三方条件 </param>
+            <typeparam name="T"> 动态类型 </typeparam>
+            <returns> 查询的结果 </returns>
+        </member>
+        <member name="M:QingShan.Collections.EnumerableExtensions.OrderByPrefixes``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String},System.String[])">
+            <summary>
+            将字符串集合按指定前缀排序
+            </summary>
+        </member>
+        <member name="M:QingShan.Collections.EnumerableExtensions.DistinctBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            根据指定条件返回集合中不重复的元素
+            </summary>
+            <typeparam name="T">动态类型</typeparam>
+            <typeparam name="TKey">动态筛选条件类型</typeparam>
+            <param name="source">要操作的源</param>
+            <param name="keySelector">重复数据筛选条件</param>
+            <returns>不重复元素的集合</returns>
+        </member>
+        <member name="T:QingShan.Collections.EqualityHelper`1">
+            <summary>
+            相等比较辅助类，用于快速创建<see cref="T:System.Collections.Generic.IEqualityComparer`1"/>的实例
+            </summary>
+            <example>
+            var equalityComparer1 = EqualityHelper[Person].CreateComparer(p => p.ID);
+            var equalityComparer2 = EqualityHelper[Person].CreateComparer(p => p.Name);
+            var equalityComparer3 = EqualityHelper[Person].CreateComparer(p => p.Birthday.Year);
+            </example>
+            <typeparam name="T"> </typeparam>
+        </member>
+        <member name="M:QingShan.Collections.EqualityHelper`1.CreateComparer``1(System.Func{`0,``0})">
+            <summary>
+            创建指定对比委托<paramref name="keySelector"/>的实例
+            </summary>
+        </member>
+        <member name="M:QingShan.Collections.EqualityHelper`1.CreateComparer``1(System.Func{`0,``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            创建指定对比委托<paramref name="keySelector"/>与结果二次比较器<paramref name="comparer"/>的实例
+            </summary>
+        </member>
+        <member name="T:QingShan.Core.ConfigurableOptions.OptionsSettingsAttribute">
+            <summary>
+            选项配置特性
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.ConfigurableOptions.OptionsSettingsAttribute.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.ConfigurableOptions.OptionsSettingsAttribute.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="jsonKey">appsetting.json 对应键</param>
+        </member>
+        <member name="M:QingShan.Core.ConfigurableOptions.OptionsSettingsAttribute.#ctor(System.Boolean)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="postConfigureAll">启动所有实例进行后期配置</param>
+        </member>
+        <member name="M:QingShan.Core.ConfigurableOptions.OptionsSettingsAttribute.#ctor(System.String,System.Boolean)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="jsonKey">appsetting.json 对应键</param>
+            <param name="postConfigureAll">启动所有实例进行后期配置</param>
+        </member>
+        <member name="P:QingShan.Core.ConfigurableOptions.OptionsSettingsAttribute.JsonKey">
+            <summary>
+            对应配置文件中的Key
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.ConfigurableOptions.OptionsSettingsAttribute.PostConfigureAll">
+            <summary>
+            对所有配置实例进行后期配置
+            </summary>
+        </member>
+        <member name="T:QingShan.Core.ConfigurableOptions.ConfigurableOptionsServiceCollectionExtensions">
+            <summary>
+            可变选项服务拓展类
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.ConfigurableOptions.ConfigurableOptionsServiceCollectionExtensions.AddConfigurableOptions``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加选项配置
+            </summary>
+            <typeparam name="TOptions">选项类型</typeparam>
+            <param name="services">服务集合</param>
+            <returns>服务集合</returns>
+        </member>
+        <member name="M:QingShan.Core.ConfigurableOptions.ConfigurableOptionsServiceCollectionExtensions.GetOptionsJsonKey(QingShan.Core.ConfigurableOptions.OptionsSettingsAttribute,System.Type)">
+            <summary>
+            获取选项键
+            </summary>
+            <param name="optionsSettings">选项配置特性</param>
+            <param name="optionsType">选项类型</param>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Core.ConfigurableOptions.IConfigurableOptions">
+            <summary>
+            应用选项依赖接口
+            </summary>
+        </member>
+        <member name="T:QingShan.Core.ConfigurableOptions.IConfigurableOptions`1">
+            <summary>
+            选项后期配置
+            </summary>
+            <typeparam name="TOptions"></typeparam>
+        </member>
+        <member name="M:QingShan.Core.ConfigurableOptions.IConfigurableOptions`1.PostConfigure(`0,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            选项后期配置
+            </summary>
+            <param name="options"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="T:QingShan.Core.ConfigurableOptions.IConfigurableOptions`2">
+            <summary>
+            带验证的应用选项依赖接口
+            </summary>
+            <typeparam name="TOptions"></typeparam>
+            <typeparam name="TOptionsValidation"></typeparam>
+        </member>
+        <member name="T:QingShan.Core.ConfigurableOptions.IConfigurableOptionsListener`1">
+            <summary>
+            带监听的应用选项依赖接口
+            </summary>
+            <typeparam name="TOptions"></typeparam>
+        </member>
+        <member name="M:QingShan.Core.ConfigurableOptions.IConfigurableOptionsListener`1.OnListener(`0,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            监听
+            </summary>
+            <param name="options"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="T:QingShan.Core.Core.DatabaseAccessor.Enums.SortType">
+            <summary>
+            排序类型
+            </summary>
+        </member>
+        <member name="F:QingShan.Core.Core.DatabaseAccessor.Enums.SortType.ASC">
+            <summary>
+            升序
+            </summary>
+        </member>
+        <member name="F:QingShan.Core.Core.DatabaseAccessor.Enums.SortType.DESC">
+            <summary>
+            降序
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.DataState">
+            <summary>
+            数据状态
+            </summary>
+        </member>
+        <member name="F:QingShan.DatabaseAccessor.DataState.Normal">
+            <summary>
+            正常
+            </summary>
+        </member>
+        <member name="F:QingShan.DatabaseAccessor.DataState.Abnormal">
+            <summary>
+            异常
+            </summary>
+        </member>
+        <member name="F:QingShan.DatabaseAccessor.DataState.Delete">
+            <summary>
+            删除
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.EntityBaseById`1">
+            <summary>
+            实体类基类
+            <para>只包含<see cref="T:QingShan.DatabaseAccessor.IEntity`1"/>接口类</para>
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.EntityBaseById`1.Id">
+            <summary>
+            获取或设置 编号
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.EntityBase`1">
+            <summary>
+            实体基类
+            <para>包含<see cref="T:QingShan.DatabaseAccessor.IEntity`1"/>|<see cref="T:QingShan.DatabaseAccessor.ICreatedTime"/>|<see cref="T:QingShan.DatabaseAccessor.IDataState"/>接口类</para>
+            </summary>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.EntityBase`1.Id">
+            <summary>
+            获取或设置 编号
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.EntityBase`1.CreateTime">
+            <summary>
+            获取或设置 创建时间
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.EntityBase`1.DeleteTime">
+            <summary>
+            获取或设置 数据状态
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.ICreatedTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.ICreatedTime.CreateTime">
+            <summary>
+            获取或设置 创建时间
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.ICreationAudited`1">
+            <summary>
+            定义创建审计信息
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.ICreationAudited`1.CreatorId">
+            <summary>
+            获取或设置 创建者编号
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.IDataState">
+            <summary>
+            数据状态
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.IDataState.DataState">
+            <summary>
+            数据状态
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.IEntity`1">
+            <summary>
+            实体基类
+            </summary>
+            <typeparam name="TKey">主键id</typeparam>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.IEntity`1.Id">
+            <summary>
+            获取或设置 编号
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.IEntityNotKey">
+            <summary>
+            无键实体基接口
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.IEntityNotKey.DEFINED_NAME">
+            <summary>
+            数据库中定义名
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.IExpirable">
+            <summary>
+            定义可过期性，包含生效时间和过期时间
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.IExpirable.BeginTime">
+            <summary>
+            获取或设置 生效时间
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.IExpirable.EndTime">
+            <summary>
+            获取或设置 过期时间
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.ILockable">
+            <summary>
+            定义可锁定功能
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.ILockable.IsLocked">
+            <summary>
+            获取或设置 是否锁定当前信息
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.ISoftDeletable">
+            <summary>
+            逻辑删除
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.ISoftDeletable.DeleteTime">
+            <summary>
+            删除时间
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.IUpdateAudited`1">
+            <summary>
+            定义更新审计的信息
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.IUpdateAudited`1.LastUpdaterId">
+            <summary>
+            获取或设置 更新者编号
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.IUpdateAudited`1.LastUpdatedTime">
+            <summary>
+            获取或设置 最后更新时间
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.DatabaseType">
+            <summary>
+            数据库类型
+            </summary>
+        </member>
+        <member name="F:QingShan.DatabaseAccessor.DatabaseType.SqlServer">
+            <summary>
+            SqlServer数据库类型
+            </summary>
+        </member>
+        <member name="F:QingShan.DatabaseAccessor.DatabaseType.Sqlite">
+            <summary>
+            Sqlite数据库类型
+            </summary>
+        </member>
+        <member name="F:QingShan.DatabaseAccessor.DatabaseType.MySql">
+            <summary>
+            MySql数据库类型
+            </summary>
+        </member>
+        <member name="F:QingShan.DatabaseAccessor.DatabaseType.PostgreSql">
+            <summary>
+            PostgreSql数据库类型
+            </summary>
+        </member>
+        <member name="F:QingShan.DatabaseAccessor.DatabaseType.Oracle">
+            <summary>
+            Oracle数据库类型
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.DbFunctionType">
+            <summary>
+            数据库函数类型
+            </summary>
+        </member>
+        <member name="F:QingShan.DatabaseAccessor.DbFunctionType.Scalar">
+            <summary>
+            标量函数
+            </summary>
+        </member>
+        <member name="F:QingShan.DatabaseAccessor.DbFunctionType.Table">
+            <summary>
+            表值函数
+            </summary>
+        </member>
+        <member name="T:QingShan.Entity.IInputDto`1">
+            <summary>
+            定义输入DTO
+            </summary>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="P:QingShan.Entity.IInputDto`1.Id">
+            <summary>
+            获取或设置 主键，唯一标识
+            </summary>
+        </member>
+        <member name="T:QingShan.Entity.IOutputDto">
+            <summary>
+            定义输出DTO
+            </summary>
+        </member>
+        <member name="T:QingShan.Entity.IDataAuthEnabled">
+            <summary>
+            定义数据权限的更新，删除状态
+            </summary>
+        </member>
+        <member name="P:QingShan.Entity.IDataAuthEnabled.Updatable">
+            <summary>
+            获取或设置 是否可更新的数据权限状态
+            </summary>
+        </member>
+        <member name="P:QingShan.Entity.IDataAuthEnabled.Deletable">
+            <summary>
+            获取或设置 是否可删除的数据权限状态
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.CommonIdInputDto">
+            <summary>
+            公共查询 Id
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.Constants.ClaimConst">
+            <summary>
+            用户标识常量
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Constants.ClaimConst.USERID">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Constants.ClaimConst.USERNAME">
+            <summary>
+            用户名
+            <para>登录账号</para>
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Constants.ClaimConst.USERNICKNAME">
+            <summary>
+            用户昵称
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.Constants.SystemConst">
+            <summary>
+            系统常量
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Constants.SystemConst.SYS_FILE_FOLDER_ROOT">
+            <summary>
+            系统文件根节点
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.Enums.FunctionAccessType">
+            <summary>
+            功能访问类型
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.FunctionAccessType.Anonymous">
+            <summary>
+            匿名用户可访问
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.FunctionAccessType.LoggedIn">
+            <summary>
+            登录用户可访问
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.FunctionAccessType.RoleLimit">
+            <summary>
+            指定角色可访问
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.Enums.ModuleEnum">
+            <summary>
+            模块
+            <para>该枚举值包含 Name,Code,Sort</para>
+            <para>其中 code为 枚举<see cref="T:System.String"/>值</para>
+            <para>Name为枚举的<see cref="T:System.ComponentModel.DescriptionAttribute"/></para>
+            <para>Sort为枚举<see cref="T:System.Int32"/>值</para>
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.ModuleEnum.System">
+            <summary>
+            系统管理
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.ModuleEnum.Null">
+            <summary>
+            默认值 空
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.Enums.ModuleLevel">
+            <summary>
+            模块节点
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.ModuleLevel.Module">
+            <summary>
+            模块
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.ModuleLevel.Menu">
+            <summary>
+            菜单
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.ModuleLevel.Function">
+            <summary>
+            方法
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.Enums.StatusCodes">
+            <summary>
+            状态码枚举
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.StatusCodes.Status0NotOk">
+            <summary>
+            操作失败
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.StatusCodes.Status1Ok">
+            <summary>
+            操作成功
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.StatusCodes.Status401Unauthorized">
+            <summary>
+            未登录（需要重新登录）
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.StatusCodes.Status403Forbidden">
+            <summary>
+            权限不足
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.StatusCodes.Status404NotFound">
+            <summary>
+            资源不存在
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.StatusCodes.Status500InternalServerError">
+            <summary>
+            系统内部错误（非业务代码里显式抛出的异常，例如由于数据不正确导致空指针异常、数据库异常等等）
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.IResponseOutput">
+            <summary>
+            响应数据输出接口
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.IResponseOutput`1">
+            <summary>
+            响应数据输出泛型接口
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:QingShan.Data.IResponseOutput`1.ResultType">
+            <summary>
+            结果状态
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.IResponseOutput`1.Data">
+            <summary>
+            返回数据
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.IResponseOutput`1.IsSuccess">
+            <summary>
+            是否成功
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.IResponseOutput`1.Message">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.PageInputDto">
+            <summary>
+            分页输入参数
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.PageInputDto.Search">
+            <summary>
+            关键字
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.PageBaseInputDto.PageIndex">
+            <summary>
+            当前页标
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.PageBaseInputDto.PageSize">
+            <summary>
+            每页大小
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.PageOutputDto`1">
+            <summary>
+            分页信息输出
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.PageOutputDto`1.Total">
+            <summary>
+            数据总数
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.PageOutputDto`1.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.StatusResult">
+            <summary>
+            业务操作信息信息类
+            </summary>
+        </member>
+        <member name="M:QingShan.Data.StatusResult.#ctor(System.String)">
+            <summary>
+            设置错误消息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="P:QingShan.Data.StatusResult`1.ResultType">
+            <summary>
+            获取或设置 结果类型
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.StatusResult`1.Message">
+            <summary>
+            获取或设置 返回消息
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.StatusResult`1.IsSuccess">
+            <summary>
+            是否成功    
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.StatusResult`1.Data">
+            <summary>
+            获取或设置 结果数据
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.StatusResultType">
+            <summary>
+            表示业务操作结果的枚举
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.StatusResultType.Success">
+            <summary>
+              操作成功
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.StatusResultType.Error">
+            <summary>
+              操作引发错误
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.StatusResultType.Warnning">
+            <summary>
+            警告
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.T4.T4ModelInfo">
+            <summary>
+            T4实体模型信息类
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.T4.T4ModelInfo.UseModuleDir">
+            <summary>
+            获取 是否使用模块文件夹
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.T4.T4ModelInfo.ModuleName">
+            <summary>
+            获取 模型所在模块名称
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.T4.T4ModelInfo.Name">
+            <summary>
+            获取 模型名称
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.T4.T4ModelInfo.Description">
+            <summary>
+            获取 模型描述
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.T4.T4ModelInfo.KeyType">
+            <summary>
+            主键类型
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.T4.T4ModelInfo.KeyTypeName">
+            <summary>
+            主键类型名称
+            </summary>
+        </member>
+        <member name="T:QingShan.DependencyInjection.InjectionAttribute">
+            <summary>
+            设置依赖注入方式
+            </summary>
+        </member>
+        <member name="M:QingShan.DependencyInjection.InjectionAttribute.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:QingShan.DependencyInjection.InjectionAttribute.#ctor(QingShan.DependencyInjection.InjectionActions)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="action">添加服务方式</param>
+        </member>
+        <member name="P:QingShan.DependencyInjection.InjectionAttribute.Action">
+            <summary>
+            添加服务方式，存在不添加，或继续添加
+            </summary>
+        </member>
+        <member name="P:QingShan.DependencyInjection.InjectionAttribute.Pattern">
+            <summary>
+            注册选项
+            </summary>
+        </member>
+        <member name="P:QingShan.DependencyInjection.InjectionAttribute.Named">
+            <summary>
+            注册别名
+            </summary>
+            <remarks>多服务时使用</remarks>
+        </member>
+        <member name="P:QingShan.DependencyInjection.InjectionAttribute.Order">
+            <summary>
+            排序，排序越大，则在后面注册
+            </summary>
+        </member>
+        <member name="P:QingShan.DependencyInjection.InjectionAttribute.Proxy">
+            <summary>
+            代理类型，必须继承 DispatchProxy、IDispatchProxy
+            </summary>
+        </member>
+        <member name="T:QingShan.DependencyInjection.SkipScanAttribute">
+            <summary>
+            不被扫描和发现的特性
+            </summary>
+            <remarks>用于程序集扫描类型或方法时候</remarks>
+        </member>
+        <member name="T:QingShan.DependencyInjection.ExternalService">
+            <summary>
+            外部注册类型模型
+            </summary>
+        </member>
+        <member name="P:QingShan.DependencyInjection.ExternalService.Interface">
+            <summary>
+            接口类型，格式："程序集名称;接口完整名称"
+            </summary>
+        </member>
+        <member name="P:QingShan.DependencyInjection.ExternalService.Service">
+            <summary>
+            实例类型，格式："程序集名称;接口完整名称"
+            </summary>
+        </member>
+        <member name="P:QingShan.DependencyInjection.ExternalService.RegisterType">
+            <summary>
+            注册类型
+            </summary>
+        </member>
+        <member name="P:QingShan.DependencyInjection.ExternalService.Action">
+            <summary>
+            添加服务方式，存在不添加，或继续添加
+            </summary>
+        </member>
+        <member name="P:QingShan.DependencyInjection.ExternalService.Pattern">
+            <summary>
+            注册选项
+            </summary>
+        </member>
+        <member name="P:QingShan.DependencyInjection.ExternalService.Named">
+            <summary>
+            注册别名
+            </summary>
+            <remarks>多服务时使用</remarks>
+        </member>
+        <member name="P:QingShan.DependencyInjection.ExternalService.Order">
+            <summary>
+            排序，排序越大，则在后面注册
+            </summary>
+        </member>
+        <member name="P:QingShan.DependencyInjection.ExternalService.Proxy">
+            <summary>
+            代理类型，格式："程序集名称;接口完整名称"
+            </summary>
+        </member>
+        <member name="T:QingShan.DependencyInjection.IPrivateDependency">
+            <summary>
+            依赖空接口（禁止外部继承）
+            </summary>
+        </member>
+        <member name="T:QingShan.DependencyInjection.IScopeDependency">
+            <summary>
+            作用域服务注册依赖
+            <para>实现此接口的类型将自动注册为<see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped"/>模式</para>
+            </summary>
+        </member>
+        <member name="T:QingShan.DependencyInjection.ISingletonDependency">
+            <summary>
+            单例服务注册依赖
+            <para>实现此接口的类型将自动注册为<see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton"/>模式</para>
+            </summary>
+        </member>
+        <member name="T:QingShan.DependencyInjection.ITransientDependency">
+            <summary>
+            暂时服务注册依赖
+            <para>实现此接口的类型将自动注册为<see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Transient"/>模式</para>
+            </summary>
+        </member>
+        <member name="T:QingShan.DependencyInjection.InjectionActions">
+            <summary>
+            服务注册方式
+            </summary>
+        </member>
+        <member name="F:QingShan.DependencyInjection.InjectionActions.Add">
+            <summary>
+            如果存在则覆盖
+            </summary>
+        </member>
+        <member name="F:QingShan.DependencyInjection.InjectionActions.TryAdd">
+            <summary>
+            如果存在则跳过，默认方式
+            </summary>
+        </member>
+        <member name="T:QingShan.DependencyInjection.InjectionPatterns">
+            <summary>
+            注册范围
+            </summary>
+        </member>
+        <member name="F:QingShan.DependencyInjection.InjectionPatterns.Self">
+            <summary>
+            只注册自己
+            </summary>
+        </member>
+        <member name="F:QingShan.DependencyInjection.InjectionPatterns.FirstInterface">
+            <summary>
+            第一个接口，默认值
+            </summary>
+        </member>
+        <member name="F:QingShan.DependencyInjection.InjectionPatterns.SelfWithFirstInterface">
+            <summary>
+            自己和第一个接口，默认值
+            </summary>
+        </member>
+        <member name="F:QingShan.DependencyInjection.InjectionPatterns.ImplementedInterfaces">
+            <summary>
+            所有接口
+            </summary>
+        </member>
+        <member name="F:QingShan.DependencyInjection.InjectionPatterns.All">
+            <summary>
+            注册自己包括所有接口
+            </summary>
+        </member>
+        <member name="T:QingShan.DependencyInjection.RegisterType">
+            <summary>
+            注册类型
+            </summary>
+        </member>
+        <member name="F:QingShan.DependencyInjection.RegisterType.Transient">
+            <summary>
+            瞬时
+            </summary>
+        </member>
+        <member name="F:QingShan.DependencyInjection.RegisterType.Scoped">
+            <summary>
+            作用域
+            </summary>
+        </member>
+        <member name="F:QingShan.DependencyInjection.RegisterType.Singleton">
+            <summary>
+            单例
+            </summary>
+        </member>
+        <member name="T:QingShan.DependencyInjection.DependencyInjectionExtensions">
+            <summary>
+            依赖注入拓展
+            </summary>
+        </member>
+        <member name="M:QingShan.DependencyInjection.DependencyInjectionExtensions.GetServiceByObj``1(System.Object)">
+            <summary>
+            解析服务
+            </summary>
+            <typeparam name="TService"></typeparam>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.DependencyInjection.DependencyInjectionExtensions.GetRequiredServiceByObj``1(System.Object)">
+            <summary>
+            解析服务
+            </summary>
+            <typeparam name="TService"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions">
+            <summary>
+            依赖注入拓展类
+            </summary>
+        </member>
+        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.AddDependencyInjection(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加依赖注入接口
+            </summary>
+            <param name="services">服务集合</param>
+            <returns>服务集合</returns>
+        </member>
+        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.AddScopedDispatchProxyForInterface``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加接口代理
+            </summary>
+            <typeparam name="TDispatchProxy">代理类</typeparam>
+            <typeparam name="TIDispatchProxy">被代理接口依赖</typeparam>
+            <param name="services">服务集合</param>
+            <returns>服务集合</returns>
+        </member>
+        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.AddAutoScanInjection(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加自动扫描注入
+            </summary>
+            <param name="services">服务集合</param>
+            <returns>服务集合</returns>
+        </member>
+        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterService(Microsoft.Extensions.DependencyInjection.IServiceCollection,QingShan.DependencyInjection.RegisterType,System.Type,QingShan.DependencyInjection.InjectionAttribute,System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            注册服务
+            </summary>
+            <param name="services">服务集合</param>
+            <param name="registerType">类型作用域</param>
+            <param name="type">类型</param>
+            <param name="injectionAttribute">注入特性</param>
+            <param name="canInjectInterfaces">能被注册的接口</param>
+        </member>
+        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterType(Microsoft.Extensions.DependencyInjection.IServiceCollection,QingShan.DependencyInjection.RegisterType,System.Type,QingShan.DependencyInjection.InjectionAttribute,System.Type)">
+            <summary>
+            注册类型
+            </summary>
+            <param name="services">服务</param>
+            <param name="registerType">注册类型</param>
+            <param name="type">类型</param>
+            <param name="injectionAttribute">注入特性</param>
+            <param name="inter">接口</param>
+        </member>
+        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterTransientType(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,QingShan.DependencyInjection.InjectionAttribute,System.Type)">
+            <summary>
+            注册瞬时接口实例类型
+            </summary>
+            <param name="services">服务</param>
+            <param name="type">类型</param>
+            <param name="injectionAttribute">注入特性</param>
+            <param name="inter">接口</param>
+        </member>
+        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterScopeType(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,QingShan.DependencyInjection.InjectionAttribute,System.Type)">
+            <summary>
+            注册作用域接口实例类型
+            </summary>
+            <param name="services">服务</param>
+            <param name="type">类型</param>
+            <param name="injectionAttribute">注入特性</param>
+            <param name="inter">接口</param>
+        </member>
+        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterSingletonType(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,QingShan.DependencyInjection.InjectionAttribute,System.Type)">
+            <summary>
+            注册单例接口实例类型
+            </summary>
+            <param name="services">服务</param>
+            <param name="type">类型</param>
+            <param name="injectionAttribute">注入特性</param>
+            <param name="inter">接口</param>
+        </member>
+        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.AddTransientDispatchProxy(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,System.Type,System.Type,System.Boolean)">
+            <summary>
+            创建暂时瞬时代理
+            </summary>
+            <param name="services">服务集合</param>
+            <param name="type">拦截的类型</param>
+            <param name="proxyType">代理类型</param>
+            <param name="inter">代理接口</param>
+            <param name="hasTarget">是否有实现类</param>
+        </member>
+        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.AddScopedDispatchProxy(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,System.Type,System.Type,System.Boolean)">
+            <summary>
+            创建作用域代理
+            </summary>
+            <param name="services">服务集合</param>
+            <param name="type">被代理类型</param>
+            <param name="proxyType">代理类型</param>
+            <param name="inter">拦截接口</param>
+            <param name="hasTarget">是否有实例</param>
+        </member>
+        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.AddSingletonDispatchProxy(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,System.Type,System.Type,System.Boolean)">
+            <summary>
+            创建作用域代理
+            </summary>
+            <param name="services">服务集合</param>
+            <param name="type">被代理类型</param>
+            <param name="proxyType">代理类型</param>
+            <param name="inter">拦截接口</param>
+            <param name="hasTarget">是否有实例</param>
+        </member>
+        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterDispatchProxy(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,System.Type)">
+            <summary>
+            注册代理类型
+            </summary>
+            <param name="services"></param>
+            <param name="lifetime"></param>
+            <param name="proxyType"></param>
+        </member>
+        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterNamed(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            注册命名服务
+            </summary>
+            <param name="services">服务集合</param>
+        </member>
+        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.FixedGenericType(System.Type)">
+            <summary>
+            修复泛型类型注册类型问题
+            </summary>
+            <param name="type">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.GetOrder(System.Type)">
+            <summary>
+            获取 注册 排序
+            </summary>
+            <param name="type">排序类型</param>
+            <returns>int</returns>
+        </member>
+        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.LoadStringType(System.String)">
+            <summary>
+            加载字符串类型
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="F:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.TypeNamedCollection">
+            <summary>
+            类型名称集合
+            </summary>
+        </member>
+        <member name="F:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterDispatchProxies">
+            <summary>
+            已经注册的代理类
+            </summary>
+        </member>
+        <member name="F:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.DispatchCreateMethod">
+            <summary>
+            创建代理方法
+            </summary>
+        </member>
+        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.#cctor">
+            <summary>
+            静态构造函数
+            </summary>
+        </member>
+        <member name="T:QingShan.DependencyInjection.DependencyInjectionSettingsOptions">
+            <summary>
+            依赖注入配置选项
+            </summary>
+        </member>
+        <member name="P:QingShan.DependencyInjection.DependencyInjectionSettingsOptions.Definitions">
+            <summary>
+            外部注册定义
+            </summary>
+        </member>
+        <member name="M:QingShan.DependencyInjection.DependencyInjectionSettingsOptions.PostConfigure(QingShan.DependencyInjection.DependencyInjectionSettingsOptions,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            后期配置
+            </summary>
+            <param name="options"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="T:QingShan.Encryption.MD5Encrypt">
+            <summary>
+            MD5加密
+            </summary>
+        </member>
+        <member name="M:QingShan.Encryption.MD5Encrypt.Encrypt16(System.String)">
+            <summary>
+            16位MD5加密
+            </summary>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Encryption.MD5Encrypt.Encrypt32(System.String)">
+            <summary>
+            32位MD5加密
+            </summary>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Encryption.MD5Encrypt.Encrypt64(System.String)">
+            <summary>
+            64位MD5加密
+            </summary>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Exceptions.QingShanException">
+            <summary>
+            框架异常类
+            </summary>
+        </member>
+        <member name="M:QingShan.Exceptions.QingShanException.#ctor">
+            <summary>
+            初始化<see cref="T:QingShan.Exceptions.QingShanException"/>类的新实例
+            </summary>
+        </member>
+        <member name="M:QingShan.Exceptions.QingShanException.#ctor(System.String)">
+            <summary>
+            使用指定错误消息初始化<see cref="T:QingShan.Exceptions.QingShanException"/>类的新实例。
+            </summary>
+            <param name="message">描述错误的消息</param>
+        </member>
+        <member name="M:QingShan.Exceptions.QingShanException.#ctor(System.String,System.Exception)">
+            <summary>
+            使用异常消息与一个内部异常实例化一个<see cref="T:QingShan.Exceptions.QingShanException"/>类的新实例
+            </summary>
+            <param name="message">异常消息</param>
+            <param name="inner">用于封装在<see cref="T:QingShan.Exceptions.QingShanException"/>内部的异常实例</param>
+        </member>
+        <member name="M:QingShan.Exceptions.QingShanException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            使用可序列化数据实例化一个<see cref="T:QingShan.Exceptions.QingShanException"/>类的新实例
+            </summary>
+            <param name="info">保存序列化对象数据的对象。</param>
+            <param name="context">有关源或目标的上下文信息。</param>
+        </member>
+        <member name="T:QingShan.Helper.DateHelper">
+            <summary>
+            日期帮助类
+            </summary>
+        </member>
+        <member name="M:QingShan.Helper.DateHelper.GetDiffMonth(System.DateTime,System.DateTime)">
+            <summary>
+            获取相差月份 正整数
+            </summary>
+            <param name="startDate"></param>
+            <param name="endDate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Helper.DateHelper.GetDateTimeByMonth(System.Int32)">
+            <summary>
+            根据月份获取日期
+            </summary>
+            <param name="month">月份</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Helper.DateHelper.GetDateTime(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            根据年月日获取指定日期
+            <para>默认1号</para>
+            </summary>
+            <param name="day">日</param>
+            <param name="month">月</param>
+            <param name="year">年</param>
+            <returns></returns>
+        </member>
+        <member name="P:QingShan.Helper.EnumDto.Code">
+            <summary>
+            枚举code
+            </summary>
+        </member>
+        <member name="P:QingShan.Helper.EnumDto.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="P:QingShan.Helper.EnumDto.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="T:QingShan.Helper.EnumHelper">
+            <summary>
+            枚举帮助类
+            </summary>
+        </member>
+        <member name="M:QingShan.Helper.EnumHelper.GetEnumListByCode(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>
+            根据枚举代码获取枚举列表
+            </summary>
+            <param name="assemblys">程序集名称集合</param>
+            <param name="namespaces">命名空间名称集合</param>
+            <param name="enumCode">枚举名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.IsExistDirectory(System.String)">
+            <summary>
+            检测指定目录是否存在
+            </summary>
+            <param name="directoryPath">目录的绝对路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.IsExistFile(System.String)">
+            <summary>
+            检测指定文件是否存在,如果存在则返回true。
+            </summary>
+            <param name="filePath">文件的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.GetFileNames(System.String)">
+            <summary>
+            获取指定目录中所有文件列表
+            </summary>
+            <param name="directoryPath">指定目录的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.GetDirectories(System.String)">
+            <summary>
+            获取指定目录中所有子目录列表,若要搜索嵌套的子目录列表,请使用重载方法.
+            </summary>
+            <param name="directoryPath">指定目录的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.GetFileNames(System.String,System.String,System.Boolean)">
+            <summary>
+            获取指定目录及子目录中所有文件列表
+            </summary>
+            <param name="directoryPath">指定目录的绝对路径</param>
+            <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
+            范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param>
+            <param name="isSearchChild">是否搜索子目录</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.IsEmptyDirectory(System.String)">
+            <summary>
+            检测指定目录是否为空
+            </summary>
+            <param name="directoryPath">指定目录的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.Contains(System.String,System.String)">
+            <summary>
+            检测指定目录中是否存在指定的文件,若要搜索子目录请使用重载方法.
+            </summary>
+            <param name="directoryPath">指定目录的绝对路径</param>
+            <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
+            范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param>        
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.Contains(System.String,System.String,System.Boolean)">
+            <summary>
+            检测指定目录中是否存在指定的文件
+            </summary>
+            <param name="directoryPath">指定目录的绝对路径</param>
+            <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
+            范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param> 
+            <param name="isSearchChild">是否搜索子目录</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.CreateDir(System.String)">
+            <summary>
+            创建目录
+            </summary>
+            <param name="dir">要创建的目录路径包括目录名</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.DeleteDir(System.String)">
+            <summary>
+            删除目录
+            </summary>
+            <param name="dir">要删除的目录路径和名称</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.DeleteFile(System.String)">
+            <summary>
+            删除文件
+            </summary>
+            <param name="file">要删除的文件路径和名称</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.CreateFile(System.String,System.String)">
+            <summary>
+            创建文件
+            </summary>
+            <param name="dir">带后缀的文件名</param>
+            <param name="pagestr">文件内容</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.CreateFileContent(System.String,System.String)">
+            <summary>
+            创建文件
+            </summary>
+            <param name="path">路径</param>
+            <param name="content">内容</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.MoveFile(System.String,System.String)">
+            <summary>
+            移动文件(剪贴--粘贴)
+            </summary>
+            <param name="dir1">要移动的文件的路径及全名(包括后缀)</param>
+            <param name="dir2">文件移动到新的位置,并指定新的文件名</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.CopyFile(System.String,System.String)">
+            <summary>
+            复制文件
+            </summary>
+            <param name="dir1">要复制的文件的路径已经全名(包括后缀)</param>
+            <param name="dir2">目标位置,并指定新的文件名</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.GetDirectory(System.String)">
+            <summary>
+            获取一个存在的文件夹
+            </summary>
+            <param name="folder">文件夹名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.GetDateDir">
+            <summary>
+            根据时间得到目录名yyyyMMdd
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.GetDateFile">
+            <summary>
+            根据时间得到文件名HHmmssff
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.GetFilesByTime(System.String,System.String)">
+            <summary>
+            根据时间获取指定路径的 后缀名的 的所有文件
+            </summary>
+            <param name="path">文件路径</param>
+            <param name="Extension">后缀名 比如.txt</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.CopyFolder(System.String,System.String)">
+            <summary>
+            复制文件夹(递归)
+            </summary>
+            <param name="varFromDirectory">源文件夹路径</param>
+            <param name="varToDirectory">目标文件夹路径</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.ExistsFile(System.String)">
+            <summary>
+            检查文件,如果文件不存在则创建  
+            </summary>
+            <param name="FilePath">路径,包括文件名</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.DeleteFolderFiles(System.String,System.String)">
+            <summary>
+            删除指定文件夹对应其他文件夹里的文件
+            </summary>
+            <param name="varFromDirectory">指定文件夹路径</param>
+            <param name="varToDirectory">对应其他文件夹路径</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.GetFileName(System.String)">
+            <summary>
+            从文件的绝对路径中获取文件名( 包含扩展名 )
+            </summary>
+            <param name="filePath">文件的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.GetFileName(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            获取文件名
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.CopyFiles(System.String,System.String)">
+            <summary>
+            复制文件参考方法,页面中引用
+            </summary>
+            <param name="cDir">新路径</param>
+            <param name="TempId">模板引擎替换编号</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.CreateDirectory(System.String)">
+            <summary>
+            创建一个目录
+            </summary>
+            <param name="directoryPath">目录的绝对路径</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.CreateFile(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            创建文件
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.CreateFile(System.String)">
+            <summary>
+            创建一个文件。
+            </summary>
+            <param name="filePath">文件的绝对路径</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.CreateFile(System.String,System.Byte[])">
+            <summary>
+            创建一个文件,并将字节流写入文件。
+            </summary>
+            <param name="filePath">文件的绝对路径</param>
+            <param name="buffer">二进制流数据</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.GetLineCount(System.String)">
+            <summary>
+            获取文本文件的行数
+            </summary>
+            <param name="filePath">文件的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.GetFileSize(System.String)">
+            <summary>
+            获取一个文件的长度,单位为Byte
+            </summary>
+            <param name="filePath">文件的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.ToFileSize(System.Int64)">
+            <summary>
+            计算文件大小函数(保留两位小数),Size为字节大小
+            </summary>
+            <param name="size">初始文件大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.GetDirectories(System.String,System.String,System.Boolean)">
+            <summary>
+            获取指定目录及子目录中所有子目录列表
+            </summary>
+            <param name="directoryPath">指定目录的绝对路径</param>
+            <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
+            范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param>
+            <param name="isSearchChild">是否搜索子目录</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.WriteText(System.String,System.String,System.Text.Encoding)">
+            <summary>
+            向文本文件中写入内容
+            </summary>
+            <param name="filePath">文件的绝对路径</param>
+            <param name="text">写入的内容</param>
+            <param name="encoding">编码</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.AppendText(System.String,System.String)">
+            <summary>
+            向文本文件的尾部追加内容
+            </summary>
+            <param name="filePath">文件的绝对路径</param>
+            <param name="content">写入的内容</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.Copy(System.String,System.String)">
+            <summary>
+            将源文件的内容复制到目标文件中
+            </summary>
+            <param name="sourceFilePath">源文件的绝对路径</param>
+            <param name="destFilePath">目标文件的绝对路径</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.Move(System.String,System.String)">
+            <summary>
+            将文件移动到指定目录
+            </summary>
+            <param name="sourceFilePath">需要移动的源文件的绝对路径</param>
+            <param name="descDirectoryPath">移动到的目录的绝对路径</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.GetFileNameNoExtension(System.String)">
+            <summary>
+            从文件的绝对路径中获取文件名( 不包含扩展名 )
+            </summary>
+            <param name="filePath">文件的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.GetExtension(System.String)">
+            <summary>
+            从文件的绝对路径中获取扩展名
+            </summary>
+            <param name="filePath">文件的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.ClearDirectory(System.String)">
+            <summary>
+            清空指定目录下所有文件及子目录,但该目录依然保存.
+            </summary>
+            <param name="directoryPath">指定目录的相对路径</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.ClearFile(System.String)">
+            <summary>
+            清空文件内容
+            </summary>
+            <param name="filePath">文件的绝对路径</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.DeleteDirectory(System.String)">
+            <summary>
+            删除指定目录及其所有子目录
+            </summary>
+            <param name="directoryPath">指定目录的相对路径</param>
+        </member>
+        <member name="M:QingShan.Helper.FileHelper.MapPath(System.String)">
+            <summary>
+            本地路径
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Helper.RuntimeHelper.GetAllAssemblies">
+            <summary>
+            获取项目程序集，排除所有的系统程序集(Microsoft.***、System.***等)、Nuget下载包
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Helper.UtilConvert">
+            <summary>
+            数据类型转换
+            </summary>
+        </member>
+        <member name="M:QingShan.Helper.UtilConvert.ToDouble(System.Object,System.Nullable{System.Int32})">
+            <summary>
+            转换成Double/Single
+            </summary>
+            <param name="s"></param>
+            <param name="digits">小数位数</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Helper.UtilConvert.ToHex(System.Byte[],System.Boolean)">
+            <summary>
+            转换为16进制
+            </summary>
+            <param name="bytes"></param>
+            <param name="lowerCase">是否小写</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Helper.UtilConvert.HexToBytes(System.String)">
+            <summary>
+            16进制转字节数组
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Helper.UtilConvert.ToBase64(System.Byte[])">
+            <summary>
+            转换为Base64
+            </summary>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Permission.Authorization.ModuleInfoAttribute">
+            <summary>
+            模型描述
+            </summary>
+        </member>
+        <member name="P:QingShan.Permission.Authorization.ModuleInfoAttribute.URL">
+            <summary>
+            当前URL路径 当前模块为菜单时需要填写url
+            <para>若不填写将选择以下方式</para>
+            <para>方式1：父级Code+当前code</para>
+            <para>方式2：类名+当前code</para>
+            <para>方式3：当前code</para>
+            </summary>
+        </member>
+        <member name="P:QingShan.Permission.Authorization.ModuleInfoAttribute.Module">
+            <summary>
+            当前模块
+            <para>该字段在菜单时使用</para>
+            </summary>
+        </member>
+        <member name="P:QingShan.Permission.Authorization.ModuleInfoAttribute.P_Code">
+            <summary>
+            上级代码
+            <para>模块类型为菜单时自动生成上级信息</para>
+            <para>模块类型为操作时若未填写上级代码则区当前方法的code</para>
+            <para>填写方法名称</para>
+            </summary>
+        </member>
+        <member name="P:QingShan.Permission.Authorization.ModuleInfoAttribute.P_Name">
+            <summary>
+            上级名称
+            </summary>
+        </member>
+        <member name="P:QingShan.Permission.Authorization.ModuleInfoAttribute.P_Url">
+            <summary>
+            上级跳转地址
+            </summary>
+        </member>
+        <member name="P:QingShan.Permission.Authorization.ModuleInfoAttribute.Code">
+            <summary>
+            方法代码
+            <para>若不填则取当前方法名称</para>
+            </summary>
+        </member>
+        <member name="P:QingShan.Permission.Authorization.ModuleInfoAttribute.Name">
+            <summary>
+            名称
+            <para>请使用<see cref="T:System.ComponentModel.DescriptionAttribute"/>特性 为空去功能名称</para>
+            </summary>
+        </member>
+        <member name="P:QingShan.Permission.Authorization.ModuleInfoAttribute.Sort">
+            <summary>
+            排序字段
+            </summary>
+        </member>
+        <member name="M:QingShan.Permission.IJwtFactory.Create(System.Security.Claims.Claim[])">
+            <summary>
+            创建用户jwt
+            </summary>
+            <param name="claims"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Permission.IJwtFactory.Decode(System.String)">
+            <summary>
+            获取jwt信息
+            </summary>
+            <param name="jwtToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Permission.IUserInfo">
+            <summary>
+            用户信息接口服务
+            </summary>
+        </member>
+        <member name="P:QingShan.Permission.IUserInfo.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:QingShan.Permission.IUserInfo.Name">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:QingShan.Permission.IUserInfo.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="M:QingShan.Permission.JwtFactory.Create(System.Security.Claims.Claim[])">
+            <summary>
+            创建jwt 授权 token
+            </summary>
+            <param name="claims">用户标识</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Permission.JwtFactory.Decode(System.String)">
+            <summary>
+            解析Jwt Token
+            </summary>
+            <param name="jwtToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Permission.ResponseAuthenticationHandler">
+            <summary>
+            响应认证处理器
+            </summary>
+        </member>
+        <member name="T:QingShan.Permission.UserInfo">
+            <summary>
+            用户信息接口
+            </summary>
+        </member>
+        <member name="P:QingShan.Permission.UserInfo.Id">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:QingShan.Permission.UserInfo.Name">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:QingShan.Permission.UserInfo.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="T:QingShan.AppAssembly">
+            <summary>
+            站点程序集
+            </summary>
+        </member>
+        <member name="F:QingShan.AppAssembly.Assemblies">
+            <summary>
+            应用有效程序集
+            </summary>
+        </member>
+        <member name="F:QingShan.AppAssembly.CanBeScanTypes">
+            <summary>
+            能够被扫描的类型
+            </summary>
+        </member>
+        <member name="M:QingShan.AppAssembly.#cctor">
+            <summary>
+            静态构造函数，只在程序启动时执行一次。
+            </summary>
+        </member>
+        <member name="M:QingShan.AppAssembly.GetAssemblies">
+            <summary>
+            获取应用有效程序集
+            </summary>
+            <returns>IEnumerable</returns>
+        </member>
+        <member name="T:QingShan.Reflection.AssemblyFinder">
+            <summary>
+            应用程序目录程序集查找
+            </summary>
+        </member>
+        <member name="M:QingShan.Reflection.AssemblyFinder.FindAllItems">
+            <summary>
+            重写以实现程序集的查找
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Reflection.IAssemblyFinder">
+            <summary>
+            定义程序集查找
+            </summary>
+        </member>
+        <member name="M:QingShan.Reflection.IAssemblyFinder.Find(System.Func{System.Reflection.Assembly,System.Boolean})">
+            <summary>
+            查找指定条件的项
+            </summary>
+            <param name="predicate">筛选条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Reflection.IAssemblyFinder.FindAll">
+            <summary>
+            查找所有项
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Reflection.ReflectionHelper">
+            <summary>
+            反射帮助类
+            </summary>
+        </member>
+        <member name="M:QingShan.Reflection.ReflectionHelper.GetClassInterfacePairs(System.String)">
+            <summary>
+            获取类以及类实现的接口键值对
+            </summary>
+            <param name="assemblyName">程序集名称</param>
+            <returns>类以及类实现的接口键值对</returns>
+        </member>
+        <member name="M:QingShan.Reflection.ReflectionHelper.GetAssembly(System.String)">
+            <summary>
+            获取指定的程序集
+            </summary>
+            <param name="assemblyName">程序集名称</param>
+            <returns>程序集</returns>
+        </member>
+        <member name="M:QingShan.Reflection.ReflectionHelper.GetAllAssemblies">
+            <summary>
+            获取所有的程序集
+            </summary>
+            <returns>程序集集合</returns>
+        </member>
+        <member name="T:QingShan.Utility.HttpContextUtility">
+            <summary>
+            HttpContext 上下文实用类
+            </summary>
+        </member>
+        <member name="M:QingShan.Utility.HttpContextUtility.GetCurrentHttpContext">
+            <summary>
+            获取当前 HttpContext 对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:System.Collections.Generic.CollectionExtensions">
+            <summary>
+            集合扩展方法
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.AddIf``1(System.Collections.Generic.ICollection{``0},``0,System.Boolean)">
+            <summary>
+            如果条件成立，添加项
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.AddIf``1(System.Collections.Generic.ICollection{``0},``0,System.Func{System.Boolean})">
+            <summary>
+            如果条件成立，添加项
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.AddIfNotExist``1(System.Collections.Generic.ICollection{``0},``0,System.Func{``0,System.Boolean})">
+            <summary>
+            如果不存在，添加项
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.AddIfNotNull``1(System.Collections.Generic.ICollection{``0},``0)">
+            <summary>
+            如果不为空，添加项
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.GetOrAdd``1(System.Collections.Generic.ICollection{``0},System.Func{``0,System.Boolean},System.Func{``0})">
+            <summary>
+            获取对象，不存在对使用委托添加对象
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.IsNullOrEmpty``1(System.Collections.Generic.ICollection{``0})">
+            <summary>
+            判断集合是否为null或空集合
+            </summary>
+        </member>
+        <member name="T:System.Collections.Generic.DictionaryExtensions">
+            <summary>
+            字典拓展类
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.DictionaryExtensions.AddOrUpdate(System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            合并两个字典
+            </summary>
+            <param name="dic">字典</param>
+            <param name="newDic">新字典</param>
+            <returns></returns>
+        </member>
+        <member name="T:System.EntityExtensions">
+            <summary>
+            实体接口扩展方法
+            </summary>
+        </member>
+        <member name="M:System.EntityExtensions.IsEntityType(System.Type)">
+            <summary>
+            检测指定类型是否为<see cref="T:QingShan.DatabaseAccessor.IEntity`1"/>实体类型
+            </summary>
+            <param name="type">要判断的类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.EntityExtensions.IsExpired(QingShan.DatabaseAccessor.IExpirable)">
+            <summary>
+            判断指定实体是否已过期
+            </summary>
+            <param name="entity">要检测的实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.EntityExtensions.CheckICreatedTime``2(``0)">
+            <summary>
+            检测并执行<see cref="T:QingShan.DatabaseAccessor.ICreatedTime"/>接口的逻辑
+            </summary>
+        </member>
+        <member name="M:System.EntityExtensions.CheckIDateleTime``2(``0)">
+            <summary>
+            检测并执行<see cref="T:QingShan.DatabaseAccessor.ISoftDeletable"/>接口的逻辑
+            </summary>
+        </member>
+        <member name="M:System.EntityExtensions.CheckICreationAudited``2(``0,QingShan.Permission.IUserInfo)">
+            <summary>
+            检测并执行<see cref="T:QingShan.DatabaseAccessor.ICreationAudited`1"/>接口的处理
+            </summary>
+        </member>
+        <member name="M:System.EntityExtensions.CheckIUpdateAudited``2(``0,QingShan.Permission.IUserInfo)">
+            <summary>
+            检测并执行<see cref="T:QingShan.DatabaseAccessor.IUpdateAudited`1"/>接口的处理
+            </summary>
+        </member>
+        <member name="T:System.EnumExtensions">
+            <summary>
+            枚举拓展
+            </summary>
+        </member>
+        <member name="M:System.EnumExtensions.ToDescription(System.Enum)">
+            <summary>
+            获取枚举项上的<see cref="T:System.ComponentModel.DescriptionAttribute"/>特性的文字描述
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:System.ObjectExtensions.CastTo(System.Object,System.Type)">
+            <summary>
+            把对象类型转换为指定类型
+            </summary>
+            <param name="value"></param>
+            <param name="conversionType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.ObjectExtensions.CastTo``1(System.Object)">
+            <summary>
+            把对象类型转化为指定类型
+            </summary>
+            <typeparam name="T"> 动态类型 </typeparam>
+            <param name="value"> 要转化的源对象 </param>
+            <returns> 转化后的指定类型的对象，转化失败引发异常。 </returns>
+        </member>
+        <member name="M:System.ObjectExtensions.ToDictionary(System.Object)">
+            <summary>
+            将对象属性转换为key-value对
+            </summary>
+            <param name="o"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Linq.QueryableExtentions.Select``1(System.Linq.IQueryable{System.Object})">
+            <summary>
+            动态映射字段
+            </summary>
+            <typeparam name="TTarget">目标源</typeparam>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Linq.QueryableExtentions.Select``2(System.Linq.IQueryable{``0})">
+            <summary>
+            动态映射字段
+            </summary>
+            <typeparam name="TSource">源</typeparam>
+            <typeparam name="TTarget">目标源</typeparam>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Linq.QueryableExtentions.GetFromEntityExpression(System.Linq.Expressions.Expression,System.Type,System.Linq.FromEntityAttribute)">
+            <summary>
+            根据FromEntityAttribute 的值获取属性对应的路径
+            </summary>
+            <param name="sourceProperty"></param>
+            <param name="sourceType"></param>
+            <param name="fromEntityAttribute"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Linq.QueryableExtentions.GetCombinationExpression(System.Linq.Expressions.Expression,System.Type,System.Reflection.PropertyInfo)">
+            <summary>
+            根据组合字段获取其属性路径
+            </summary>
+            <param name="sourceProperty"></param>
+            <param name="sourceType"></param>
+            <param name="targetItem"></param>
+            <returns></returns>
+        </member>
+        <member name="T:System.Linq.FromEntityAttribute">
+            <summary>
+            用于标注字段 来自哪个表的的哪一列(仅限于有关联的表中)
+            </summary>
+        </member>
+        <member name="P:System.Linq.FromEntityAttribute.EntityNames">
+            <summary>
+            类名(表名)
+            </summary>
+        </member>
+        <member name="P:System.Linq.FromEntityAttribute.EntityColuum">
+            <summary>
+            字段(列名)
+            </summary>
+        </member>
+        <member name="M:System.Linq.FromEntityAttribute.#ctor(System.String,System.String[])">
+            <summary>
+            列名 + 该列的表名 + 该列的表的上一级表名
+            </summary>
+            <param name="entityColuum"></param>
+            <param name="entityNames"></param>
+        </member>
+        <member name="M:System.StringExtensions.IF(System.String,System.Boolean)">
+            <summary>
+            根据条件展示数据
+            </summary>
+            <param name="val"></param>
+            <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.IsNull(System.String)">
+            <summary>
+            判断字符串是否为Null、空
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.NotNull(System.String)">
+            <summary>
+            判断字符串是否不为Null、空
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.ToLocalDirectory(System.String)">
+            <summary>
+            将相对路径转换成程序所在的绝对路径
+            </summary>
+            <param name="path">要进行转换的路径，可以是绝对路径，相以路径和URL地址</param>
+            <returns>转换后的全路径</returns>
+        </member>
+        <member name="M:System.StringExtensions.SplitCamelCase(System.String)">
+            <summary>
+            切割骆驼命名式字符串
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.GetCamelCaseFirstWord(System.String)">
+            <summary>
+            获取骆驼命名第一个单词
+            </summary>
+            <param name="str">字符串</param>
+            <returns>首单词</returns>
+        </member>
+        <member name="M:System.TypeExtensions.IsController(System.Type)">
+            <summary>
+            判断类型是否是Controller
+            </summary>
+        </member>
+        <member name="M:System.TypeExtensions.IsController(System.Reflection.TypeInfo)">
+            <summary>
+            判断类型是否是Controller
+            </summary>
+        </member>
+        <member name="M:System.TypeExtensions.HasAttribute``1(System.Reflection.MemberInfo,System.Boolean)">
+            <summary>
+            检查指定指定类型成员中是否存在指定的Attribute特性
+            </summary>
+            <typeparam name="T">要检查的Attribute特性类型</typeparam>
+            <param name="memberInfo">要检查的类型成员</param>
+            <param name="inherit">是否从继承中查找</param>
+            <returns>是否存在</returns>
+        </member>
+        <member name="M:System.TypeExtensions.GetAttribute``1(System.Reflection.MemberInfo,System.Boolean)">
+            <summary>
+            从类型成员获取指定Attribute特性
+            </summary>
+            <typeparam name="T">Attribute特性类型</typeparam>
+            <param name="memberInfo">类型类型成员</param>
+            <param name="inherit">是否从继承中查找</param>
+            <returns>存在返回第一个，不存在返回null</returns>
+        </member>
+        <member name="M:System.TypeExtensions.IsDeriveClassFrom``1(System.Type,System.Boolean)">
+            <summary>
+            判断当前类型是否可由指定类型派生
+            </summary>
+        </member>
+        <member name="M:System.TypeExtensions.IsDeriveClassFrom(System.Type,System.Type,System.Boolean)">
+            <summary>
+            判断当前类型是否可由指定类型派生
+            </summary>
+        </member>
+        <member name="M:System.TypeExtensions.IsBaseOn(System.Type,System.Type)">
+            <summary>
+            返回当前类型是否是指定基类的派生类
+            </summary>
+            <param name="type">当前类型</param>
+            <param name="baseType">要判断的基类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.TypeExtensions.IsGenericAssignableFrom(System.Type,System.Type)">
+            <summary>
+            判断当前泛型类型是否可由指定类型的实例填充
+            </summary>
+            <param name="genericType">泛型类型</param>
+            <param name="type">指定类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.TypeExtensions.IsAssignableToGenericType(System.Type,System.Type)">
+            <summary>
+            判断当前类型的对象能分配于指定泛型类型
+            </summary>
+            <param name="givenType">给定类型</param>
+            <param name="genericType">泛型类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.TypeExtensions.GetImplementedInterfaces(System.Type)">
+            <summary>
+            获取实现类型的所有可注册服务接口
+            </summary>
+            <param name="type"></param>
+            <returns>可注册的服务接口</returns>
+        </member>
+        <member name="M:System.TypeExtensions.GetDescription(System.Reflection.MemberInfo,System.Boolean)">
+            <summary>
+            获取成员元数据的Description特性描述信息
+            </summary>
+            <param name="member">成员元数据对象</param>
+            <param name="inherit">是否搜索成员的继承链以查找描述特性</param>
+            <returns>返回Description特性描述信息，如不存在则返回成员的名称</returns>
+        </member>
+        <member name="M:System.TypeExtensions.IsOverridden(System.Reflection.MethodInfo)">
+            <summary>
+            返回当前方法信息是否是重写方法
+            </summary>
+            <param name="method">要判断的方法信息</param>
+            <returns>是否是重写方法</returns>
+        </member>
+        <member name="M:System.TypeExtensions.IsNullableType(System.Type)">
+            <summary>
+            判断类型是否为Nullable类型
+            </summary>
+            <param name="type"> 要处理的类型 </param>
+            <returns> 是返回True，不是返回False </returns>
+        </member>
+        <member name="M:System.TypeExtensions.GetNonNullableType(System.Type)">
+            <summary>
+            由类型的Nullable类型返回实际类型
+            </summary>
+            <param name="type"> 要处理的类型对象 </param>
+            <returns> </returns>
+        </member>
+        <member name="M:System.TypeExtensions.GetUnNullableType(System.Type)">
+            <summary>
+            通过类型转换器获取Nullable类型的基础类型
+            </summary>
+            <param name="type"> 要处理的类型对象 </param>
+            <returns> </returns>
+        </member>
+        <member name="M:System.TypeExtensions.HasImplementedRawGeneric(System.Type,System.Type)">
+            <summary>
+            判断类型是否实现某个泛型
+            </summary>
+            <param name="type">类型</param>
+            <param name="generic">泛型类型</param>
+            <returns>bool</returns>
+        </member>
+    </members>
+</doc>

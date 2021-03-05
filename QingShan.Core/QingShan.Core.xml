@@ -1,0 +1,1083 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QingShan.Core</name>
+    </assembly>
+    <members>
+        <member name="T:QingShan.Core.App">
+            <summary>
+            全局应用类
+            </summary>
+        </member>
+        <member name="F:QingShan.Core.App._settings">
+            <summary>
+            私有设置，避免重复解析
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.App.Settings">
+            <summary>
+            应用全局配置
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.App.Configuration">
+            <summary>
+            全局配置选项
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.App.HostEnvironment">
+            <summary>
+            应用环境
+            </summary>
+        </member>
+        <member name="F:QingShan.Core.App.Assemblies">
+            <summary>
+            应用有效程序集
+            </summary>
+        </member>
+        <member name="F:QingShan.Core.App.CanBeScanTypes">
+            <summary>
+            能够被扫描的类型
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.App.Services">
+            <summary>
+            应用服务
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.App.TransientServiceProvider">
+            <summary>
+            瞬时服务提供器，每次都是不一样的实例
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.App.RequestServiceProvider">
+            <summary>
+            请求服务提供器，相当于使用构造函数注入方式
+            </summary>
+            <remarks>每一个请求一个作用域，由于基于请求，所以可能有空异常</remarks>
+            <exception cref="T:System.ArgumentNullException">空异常</exception>
+        </member>
+        <member name="M:QingShan.Core.App.#cctor">
+            <summary>
+            静态构造函数，只在程序启动时执行一次。
+            </summary>
+        </member>
+        <member name="F:QingShan.Core.App.AppStartups">
+            <summary>
+            应用所有启动配置对象
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.App.GetOptions``1(System.String)">
+            <summary>
+            获取选项
+            </summary>
+            <typeparam name="TOptions">强类型选项类</typeparam>
+            <param name="jsonKey">配置中对应的Key</param>
+            <returns>TOptions</returns>
+        </member>
+        <member name="M:QingShan.Core.App.GetOptions``1">
+            <summary>
+            获取选项
+            </summary>
+            <typeparam name="TOptions">强类型选项类</typeparam>
+            <returns>TOptions</returns>
+        </member>
+        <member name="M:QingShan.Core.App.GetOptionsMonitor``1">
+            <summary>
+            获取选项
+            </summary>
+            <typeparam name="TOptions">强类型选项类</typeparam>
+            <returns>TOptions</returns>
+        </member>
+        <member name="M:QingShan.Core.App.GetOptionsSnapshot``1">
+            <summary>
+            获取选项
+            </summary>
+            <typeparam name="TOptions">强类型选项类</typeparam>
+            <returns>TOptions</returns>
+        </member>
+        <member name="M:QingShan.Core.App.PrintToMiniProfiler(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            打印验证信息到 MiniProfiler
+            </summary>
+            <param name="category">分类</param>
+            <param name="state">状态</param>
+            <param name="message">消息</param>
+            <param name="isError">是否为警告消息</param>
+        </member>
+        <member name="M:QingShan.Core.App.GetAssemblies">
+            <summary>
+            获取应用有效程序集
+            </summary>
+            <returns>IEnumerable</returns>
+        </member>
+        <member name="T:QingShan.Core.AppStartupAttribute">
+            <summary>
+            注册服务启动配置
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.AppStartupAttribute.#ctor(System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="order"></param>
+        </member>
+        <member name="P:QingShan.Core.AppStartupAttribute.Order">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="T:QingShan.Core.MiniProfilerCategory">
+            <summary>
+            MiniProfiler分类
+            </summary>
+        </member>
+        <member name="F:QingShan.Core.MiniProfilerCategory.MINI_PROFILER_SQL">
+            <summary>
+            sql
+            </summary>
+        </member>
+        <member name="T:QingShan.Core.InternalApp">
+            <summary>
+            内部 App 副本
+            </summary>
+        </member>
+        <member name="F:QingShan.Core.InternalApp.InternalServices">
+            <summary>
+            应用服务
+            </summary>
+        </member>
+        <member name="F:QingShan.Core.InternalApp.ConfigurationBuilder">
+            <summary>
+            全局配置构建器
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.InternalApp.AddConfigureFiles(Microsoft.Extensions.Configuration.IConfigurationBuilder,Microsoft.Extensions.Hosting.IHostEnvironment)">
+            <summary>
+            添加配置文件
+            </summary>
+            <param name="config"></param>
+            <param name="env"></param>
+        </member>
+        <member name="M:QingShan.Core.InternalApp.AutoAddJsonFiles(Microsoft.Extensions.Configuration.IConfigurationBuilder,Microsoft.Extensions.Hosting.IHostEnvironment)">
+            <summary>
+            自动加载自定义 .json 配置文件
+            </summary>
+            <param name="config"></param>
+            <param name="env"></param>
+        </member>
+        <member name="M:QingShan.Core.InternalApp.AutoAddXmlFiles(Microsoft.Extensions.Configuration.IConfigurationBuilder,Microsoft.Extensions.Hosting.IHostEnvironment)">
+            <summary>
+            自动加载自定义 .xml 配置文件
+            </summary>
+            <param name="config"></param>
+            <param name="env"></param>
+        </member>
+        <member name="F:QingShan.Core.InternalApp.excludeJsons">
+            <summary>
+            默认排除配置项
+            </summary>
+        </member>
+        <member name="F:QingShan.Core.InternalApp.runtimeJsonSuffixs">
+            <summary>
+            运行时 Json 后缀
+            </summary>
+        </member>
+        <member name="T:QingShan.Core.StartupFilter">
+            <summary>
+            应用启动时自动注册中间件
+            </summary>
+            <remarks>
+            https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/startup?view=aspnetcore-3.1#add-configuration-at-startup-from-an-external-assembly
+            </remarks>
+        </member>
+        <member name="F:QingShan.Core.StartupFilter.DotNetFrameworkResponseHeader">
+            <summary>
+            dotnet 框架响应报文头
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.StartupFilter.Configure(System.Action{Microsoft.AspNetCore.Builder.IApplicationBuilder})">
+            <summary>
+            配置中间件
+            </summary>
+            <param name="next"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.StartupFilter.UseStartup(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.IServiceProvider)">
+            <summary>
+            配置 Startup 的 Configure
+            </summary>
+            <param name="app">应用构建器</param>
+            <param name="applicationServices">服务提供器</param>
+        </member>
+        <member name="M:QingShan.Core.StartupFilter.ResolveMethodParameterInstances(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.IServiceProvider,System.Reflection.MethodInfo)">
+            <summary>
+            解析方法参数实例
+            </summary>
+            <param name="app"></param>
+            <param name="applicationServices"></param>
+            <param name="method"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Core.Options.AppSettingsOptions">
+            <summary>
+            应用全局配置
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.Options.AppSettingsOptions.InjectMiniProfiler">
+            <summary>
+            集成 MiniProfiler 组件
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.Options.AppSettingsOptions.EnabledReferenceAssemblyScan">
+            <summary>
+            是否启用引用程序集扫描
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.Options.AppSettingsOptions.ExternalAssemblies">
+            <summary>
+            外部程序集
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.Options.AppSettingsOptions.PostConfigure(QingShan.Core.Options.AppSettingsOptions,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            后期配置
+            </summary>
+            <param name="options"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="T:QingShan.Core.IDispatchProxy">
+            <summary>
+            代理拦截依赖接口
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.IDispatchProxy.Target">
+            <summary>
+            实例
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.IDispatchProxy.Services">
+            <summary>
+            服务提供器
+            </summary>
+        </member>
+        <member name="T:QingShan.Core.AppStartup">
+            <summary>
+            依赖注入全局模块
+            </summary>
+        </member>
+        <member name="T:QingShan.Core.HostingStartup">
+            <summary>
+            配置程序启动时自动注入
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.HostingStartup.Configure(Microsoft.AspNetCore.Hosting.IWebHostBuilder)">
+            <summary>
+            配置应用启动
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="T:QingShan.Core.FriendlyException.ErrorCodeItemMetadataAttribute">
+            <summary>
+            异常元数据特性
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.FriendlyException.ErrorCodeItemMetadataAttribute.#ctor(System.String,System.Object[])">
+            <summary>
+            构造函数
+            </summary>
+            <param name="errorMessage">错误消息</param>
+            <param name="args">格式化参数</param>
+        </member>
+        <member name="P:QingShan.Core.FriendlyException.ErrorCodeItemMetadataAttribute.ErrorMessage">
+            <summary>
+            错误消息
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.FriendlyException.ErrorCodeItemMetadataAttribute.ErrorCode">
+            <summary>
+            错误码
+            </summary>
+        </member>
+        <member name="T:QingShan.Core.FriendlyException.ErrorCodeTypeAttribute">
+            <summary>
+            错误代码类型特性
+            </summary>
+        </member>
+        <member name="T:QingShan.Core.FriendlyException.IfExceptionAttribute">
+            <summary>
+            异常复写特性
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.FriendlyException.IfExceptionAttribute.#ctor(System.Object,System.Object[])">
+            <summary>
+            构造函数
+            </summary>
+            <param name="errorCode">错误编码</param>
+            <param name="args">格式化参数</param>
+        </member>
+        <member name="P:QingShan.Core.FriendlyException.IfExceptionAttribute.ErrorCode">
+            <summary>
+            错误编码
+            </summary>
+        </member>
+        <member name="F:QingShan.Core.FriendlyException.IfExceptionAttribute._errorMessage">
+            <summary>
+            私有异常消息
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.FriendlyException.IfExceptionAttribute.ErrorMessage">
+            <summary>
+            错误消息
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.FriendlyException.IfExceptionAttribute.Args">
+            <summary>
+            格式化参数
+            </summary>
+        </member>
+        <member name="T:QingShan.Core.FriendlyException.MethodIfException">
+            <summary>
+            方法异常类
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.FriendlyException.MethodIfException.ErrorMethod">
+            <summary>
+            出异常的方法
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.FriendlyException.MethodIfException.IfExceptionAttributes">
+            <summary>
+            异常特性
+            </summary>
+        </member>
+        <member name="T:QingShan.Core.FriendlyException.Oops">
+            <summary>
+            抛异常静态类
+            </summary>
+        </member>
+        <member name="F:QingShan.Core.FriendlyException.Oops.MiniProfilerCategory">
+            <summary>
+            MiniProfiler 分类名
+            </summary>
+        </member>
+        <member name="F:QingShan.Core.FriendlyException.Oops.ErrorMethods">
+            <summary>
+            方法错误异常特性
+            </summary>
+        </member>
+        <member name="F:QingShan.Core.FriendlyException.Oops.ErrorCodeTypes">
+            <summary>
+            错误代码类型
+            </summary>
+        </member>
+        <member name="F:QingShan.Core.FriendlyException.Oops.ErrorCodeMessages">
+            <summary>
+            错误消息字典
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.FriendlyException.Oops.#cctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.FriendlyException.Oops.Oh(System.String,System.Object[])">
+            <summary>
+            抛出字符串异常
+            </summary>
+            <param name="errorMessage">异常消息</param>
+            <param name="args">String.Format 参数</param>
+            <returns>异常实例</returns>
+        </member>
+        <member name="M:QingShan.Core.FriendlyException.Oops.Oh(System.String,System.Type,System.Object[])">
+            <summary>
+            抛出字符串异常
+            </summary>
+            <param name="errorMessage">异常消息</param>
+            <param name="exceptionType">具体异常类型</param>
+            <param name="args">String.Format 参数</param>
+            <returns>异常实例</returns>
+        </member>
+        <member name="M:QingShan.Core.FriendlyException.Oops.Oh(System.Object,System.Object[])">
+            <summary>
+            抛出错误码异常
+            </summary>
+            <param name="errorCode">错误码</param>
+            <param name="args">String.Format 参数</param>
+            <returns>异常实例</returns>
+        </member>
+        <member name="M:QingShan.Core.FriendlyException.Oops.Oh(System.Object,System.Type,System.Object[])">
+            <summary>
+            抛出错误码异常
+            </summary>
+            <param name="errorCode">错误码</param>
+            <param name="exceptionType">具体异常类型</param>
+            <param name="args">String.Format 参数</param>
+            <returns>异常实例</returns>
+        </member>
+        <member name="M:QingShan.Core.FriendlyException.Oops.PrintToMiniProfiler(System.Exception)">
+            <summary>
+            打印错误到 MiniProfiler 中
+            </summary>
+            <param name="exception"></param>
+        </member>
+        <member name="M:QingShan.Core.FriendlyException.Oops.FormatErrorMessage(System.String,System.Object[])">
+            <summary>
+            格式化错误消息
+            </summary>
+            <param name="errorMessage">错误消息</param>
+            <param name="args">格式化参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.FriendlyException.Oops.GetErrorCodeMessage(System.Object,System.Object[])">
+            <summary>
+            获取错误码消息
+            </summary>
+            <param name="errorCode"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.FriendlyException.Oops.HandleEnumErrorCode(System.Object)">
+            <summary>
+            处理枚举类型错误码
+            </summary>
+            <param name="errorCode">错误码</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.FriendlyException.Oops.GetErrorCodeTypes">
+            <summary>
+            获取错误代码类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.FriendlyException.Oops.GetErrorCodeMessages">
+            <summary>
+            获取所有错误消息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.FriendlyException.Oops.FixErrorCodeSettingMessage(System.Object[])">
+            <summary>
+            处理异常配置数据
+            </summary>
+            <param name="errorCodes">错误消息配置对象</param>
+            <remarks>
+            方式：数组第一个元素为错误码，第二个参数为错误消息，剩下的参数为错误码格式化字符串
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.FriendlyException.Oops.GetEndPointExceptionMethod">
+            <summary>
+            获取堆栈中顶部抛异常方法
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.FriendlyException.Oops.GetErrorCodeItemMessage(System.Reflection.FieldInfo)">
+            <summary>
+            获取错误代码消息实体
+            </summary>
+            <param name="fieldInfo">字段对象</param>
+            <returns>(object key, object value)</returns>
+        </member>
+        <member name="T:QingShan.Core.FriendlyException.ErrorCodeMessageSettingsOptions">
+            <summary>
+            异常配置选项，最优的方式是采用后期配置，也就是所有异常状态码先不设置（推荐）
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.FriendlyException.ErrorCodeMessageSettingsOptions.Definitions">
+            <summary>
+            异常状态码配置列表
+            </summary>
+        </member>
+        <member name="T:QingShan.Core.FriendlyException.IErrorCodeTypeProvider">
+            <summary>
+            异常错误代码提供器
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.FriendlyException.IErrorCodeTypeProvider.Definitions">
+            <summary>
+            错误代码定义类型
+            </summary>
+        </member>
+        <member name="T:QingShan.Core.SpecificationDocument.EnumSchemaFilter">
+            <summary>
+            修正 规范化文档 Enum 提示
+            </summary>
+            <remarks>
+            参考https://github.com/domaindrivendev/Swashbuckle.AspNetCore/issues/1269#issuecomment-577182931
+            </remarks>
+        </member>
+        <member name="M:QingShan.Core.SpecificationDocument.EnumSchemaFilter.Apply(Microsoft.OpenApi.Models.OpenApiSchema,Swashbuckle.AspNetCore.SwaggerGen.SchemaFilterContext)">
+            <summary>
+            实现过滤器方法
+            </summary>
+            <param name="model"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:QingShan.Core.SpecificationDocument.SpecificationDocumentSettingsOptions">
+            <summary>
+            规范化文档配置选项
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.SpecificationDocument.SpecificationDocumentSettingsOptions.DocumentTitle">
+            <summary>
+            文档标题
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.SpecificationDocument.SpecificationDocumentSettingsOptions.DefaultGroupName">
+            <summary>
+            默认分组名
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.SpecificationDocument.SpecificationDocumentSettingsOptions.EnableAuthorized">
+            <summary>
+            启用授权支持
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.SpecificationDocument.SpecificationDocumentSettingsOptions.FormatAsV2">
+            <summary>
+            格式化为V2版本
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.SpecificationDocument.SpecificationDocumentSettingsOptions.RoutePrefix">
+            <summary>
+            配置规范化文档地址
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.SpecificationDocument.SpecificationDocumentSettingsOptions.DocExpansionState">
+            <summary>
+            文档展开设置
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.SpecificationDocument.SpecificationDocumentSettingsOptions.XmlComments">
+            <summary>
+            XML 描述文件
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.SpecificationDocument.SpecificationDocumentSettingsOptions.Servers">
+            <summary>
+            配置 Servers
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.SpecificationDocument.SpecificationDocumentSettingsOptions.HideServers">
+            <summary>
+            隐藏 Servers
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.SpecificationDocument.SpecificationDocumentSettingsOptions.PostConfigure(QingShan.Core.SpecificationDocument.SpecificationDocumentSettingsOptions,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            后期配置
+            </summary>
+            <param name="options"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="T:QingShan.Attributes.ApiResponseFilterAttribute">
+            <summary>
+            Api action统一处理过滤器
+            </summary>
+        </member>
+        <member name="T:QingShan.Attributes.AreaInfoAttribute">
+            <summary>
+            区域信息特性，可配置区域显示名称，此属性与“<see cref="T:Microsoft.AspNetCore.Mvc.AreaAttribute"/>与<see cref="T:System.ComponentModel.DisplayNameAttribute"/>”组合等效，在无Area的类型，推荐只使用<see cref="T:System.ComponentModel.DisplayNameAttribute"/>
+            </summary>
+        </member>
+        <member name="M:QingShan.Attributes.AreaInfoAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new <see cref="T:Microsoft.AspNetCore.Mvc.AreaAttribute" /> instance.
+            </summary>
+            <param name="areaName">The area containing the controller or action.</param>
+        </member>
+        <member name="P:QingShan.Attributes.AreaInfoAttribute.Display">
+            <summary>
+            获取或设置 区域的显示名称
+            </summary>
+        </member>
+        <member name="M:QingShan.Attributes.DbDescriptionAttribute.#ctor(System.String)">
+            <summary>
+            初始化新的实例
+            </summary>
+            <param name="description">说明内容</param>
+        </member>
+        <member name="P:QingShan.Attributes.DbDescriptionAttribute.Description">
+            <summary>
+            说明
+            </summary>
+        </member>
+        <member name="T:QingShan.Attributes.MapFromAttribute">
+            <summary>
+            标注当前类型从源类型的Mapping映射关系
+            </summary>
+        </member>
+        <member name="P:QingShan.Attributes.MapFromAttribute.SourceTypes">
+            <summary>
+            源类型
+            </summary>
+        </member>
+        <member name="T:QingShan.Attributes.MapToAttribute">
+            <summary>
+            标注当前类型映射到目标类型的Mapping映射关系
+            </summary>
+        </member>
+        <member name="M:QingShan.Attributes.MapToAttribute.#ctor(System.Type[])">
+            <summary>
+            初始化一个<see cref="T:QingShan.Attributes.MapToAttribute"/>类型的新实例
+            </summary>
+        </member>
+        <member name="P:QingShan.Attributes.MapToAttribute.TargetTypes">
+            <summary>
+            目标类型
+            </summary>
+        </member>
+        <member name="T:QingShan.Attributes.LoggedInAttribute">
+            <summary>
+            指定功能需要登录才能访问
+            </summary>
+        </member>
+        <member name="T:QingShan.Attributes.NonFunctionAttribute">
+            <summary>
+            标注当前Action不作为Function信息进行收集
+            </summary>
+        </member>
+        <member name="T:QingShan.Attributes.Permission.PermissionAttribute">
+            <summary>
+            启用权限
+            </summary>
+        </member>
+        <member name="M:QingShan.Attributes.Permission.PermissionAttribute.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)">
+            <summary>
+            验证
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:QingShan.Attributes.RoleLimitAttribute">
+            <summary>
+            指定功能只允许特定角色可以访问
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.DatabaseAccessorSettingsOptions">
+            <summary>
+            数据库配置选项
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.DatabaseAccessorSettingsOptions.Type">
+            <summary>
+            数据库类型
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.DatabaseAccessorSettingsOptions.ConnectionString">
+            <summary>
+            连接字符串
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.DatabaseAccessorSettingsOptions.SyncStructure">
+            <summary>
+            【开发环境必备】自动同步实体结构到数据库，程序运行中检查实体表是否存在，然后创建或修改
+            <para>注意：生产环境中谨慎使用</para>
+            </summary>
+        </member>
+        <member name="M:QingShan.DatabaseAccessor.DatabaseAccessorSettingsOptions.PostConfigure(QingShan.DatabaseAccessor.DatabaseAccessorSettingsOptions,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            选项后期配置
+            </summary>
+            <param name="options"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.IRepository`2">
+            <summary>
+            仓储
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.Repository`2">
+            <summary>
+            仓储
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="M:QingShan.DatabaseAccessor.Repository`2.DeleteAsync(`1,System.Threading.CancellationToken)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.NonTransactAttribute">
+            <summary>
+            禁用工作单元特性
+            </summary>
+            <remarks>
+            <para>慎用！一旦贴了此特性，单次请求中有任何异常代码，对数据库的任何更改将不会回滚。</para>
+            <para>支持方法中贴此特性</para>
+            <para>注意：只对请求中的起始方法起作用</para>
+            </remarks>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.UnitOfWorkAttribute">
+            <summary>
+            工作单元配置特性
+            </summary>
+            <remarks>
+            <para>支持配置事务范围、隔离级别、跨线程异步流</para>
+            <para>只能在方法中贴此特性，通常贴在最外层的方法中，如果在子方法中贴该特性，将启用嵌套子事务</para>
+            <para>注意：只对请求中的起始方法起作用</para>
+            </remarks>
+        </member>
+        <member name="M:QingShan.DatabaseAccessor.UnitOfWorkAttribute.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:QingShan.DatabaseAccessor.UnitOfWorkAttribute.#ctor(System.Transactions.IsolationLevel)">
+            <summary>
+            构造函数
+            </summary>
+            <remarks>
+            <para>支持传入事务隔离级别 <see cref="P:QingShan.DatabaseAccessor.UnitOfWorkAttribute.IsolationLevel"/> 参数值</para>
+            </remarks>
+            <param name="isolationLevel">事务隔离级别</param>
+        </member>
+        <member name="M:QingShan.DatabaseAccessor.UnitOfWorkAttribute.#ctor(System.Transactions.TransactionScopeOption,System.Transactions.IsolationLevel)">
+            <summary>
+            构造函数
+            </summary>
+            <remarks>
+            <para>支持传入 事务范围 <see cref="T:System.Transactions.TransactionScope"/>，事务级别 <see cref="P:QingShan.DatabaseAccessor.UnitOfWorkAttribute.IsolationLevel"/> 参数值</para>
+            </remarks>
+            <param name="scopeOption">事务范围</param>
+            <param name="isolationLevel">事务隔离级别</param>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.UnitOfWorkAttribute.ScopeOption">
+            <summary>
+            事务范围
+            </summary>
+            <remarks>
+            <para>默认：<see cref="F:System.Transactions.TransactionScopeOption.Required"/>，参见：<see cref="T:System.Transactions.TransactionScope"/></para>
+            <para>说明：如果当前上下文已存在事务，那么这个事务范围将加入已有的事务。否则，它将创建自己的事务</para>
+            </remarks>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.UnitOfWorkAttribute.IsolationLevel">
+            <summary>
+            事务隔离级别
+            </summary>
+            <remarks>
+            <para>默认：<see cref="F:System.Transactions.IsolationLevel.ReadCommitted"/>，参见：<see cref="P:QingShan.DatabaseAccessor.UnitOfWorkAttribute.IsolationLevel"/></para>
+            <para>说明：当事务A更新某条数据的时候，不容许其他事务来更新该数据，但可以进行读取操作</para>
+            </remarks>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.UnitOfWorkAttribute.AsyncFlowOption">
+            <summary>
+            跨线程异步流
+            </summary>
+            <remarks>
+            <para>默认：<see cref="F:System.Transactions.TransactionScopeAsyncFlowOption.Enabled"/>，参见：<see cref="T:System.Transactions.TransactionScopeAsyncFlowOption"/></para>
+            <para>说明：允许跨线程连续任务的事务流，如有异步操作需开启该选项</para>
+            </remarks>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.TransactionInterceptorAttribute">
+            <summary>
+            自动事务提交过滤器，在<see cref="M:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute.OnResultExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext,Microsoft.AspNetCore.Mvc.Filters.ResultExecutionDelegate)"/>方法中执行拦截进行事务提交
+            <para>继承自<see cref="T:Microsoft.AspNetCore.Mvc.ServiceFilterAttribute"/>在过滤器<see cref="T:Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter"/>中使用依赖注入</para>
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.TransactionInterceptorAttribute.Propagation">
+            <summary>
+            事务传播方式
+            <para>默认方式为<see cref="F:FreeSql.Propagation.Required"/></para>
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.TransactionInterceptorAttribute.IsolationLevel">
+            <summary>
+            事务隔离级别
+            </summary>
+            <remarks>
+            <para>默认：<see cref="F:System.Data.IsolationLevel.ReadCommitted"/>，参见：<see cref="P:QingShan.DatabaseAccessor.TransactionInterceptorAttribute.IsolationLevel"/></para>
+            <para>说明：当事务A更新某条数据的时候，不容许其他事务来更新该数据，但可以进行读取操作</para>
+            </remarks>
+        </member>
+        <member name="M:QingShan.DatabaseAccessor.TransactionInterceptorAttribute.#ctor(System.Data.IsolationLevel)">
+            <summary>
+            构造函数
+            <para>支持传入 事务级别 <see cref="P:QingShan.DatabaseAccessor.TransactionInterceptorAttribute.IsolationLevel"/> 参数值</para>
+            </summary>
+            <param name="isolationLevel">事务隔离级别</param>
+        </member>
+        <member name="M:QingShan.DatabaseAccessor.TransactionInterceptorAttribute.#ctor(FreeSql.Propagation,System.Data.IsolationLevel)">
+            <summary>
+            <para>支持传入 事务范围 <see cref="!:TransactionScope"/>，事务级别 <see cref="P:QingShan.DatabaseAccessor.TransactionInterceptorAttribute.IsolationLevel"/> 参数值</para>
+            </summary>
+            <param name="scopeOption">事务范围</param>
+            <param name="isolationLevel">事务隔离级别</param>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.TransactionInterceptorFilterImpl">
+            <summary>
+            事务拦截注入
+            </summary>
+        </member>
+        <member name="M:QingShan.DatabaseAccessor.TransactionInterceptorFilterImpl.#ctor(System.IServiceProvider)">
+            <summary>
+            初始化一个<see cref="T:QingShan.DatabaseAccessor.TransactionInterceptorFilterImpl"/>类型的新实例
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.TransactionInterceptorFilterImpl.Order">
+            <summary>
+            过滤器执行的顺序是由Microsoft.AspNetCore.Mvc.Filters.IOrderedFilter.Order的升序排序决定的
+            <para>该值越低执行越靠前</para>
+            </summary>
+        </member>
+        <member name="M:QingShan.DatabaseAccessor.TransactionInterceptorFilterImpl.OnActionExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext,Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate)">
+            <summary>
+            在操作之前和模型绑定完成之后异步调用。
+            <parm>在这里开启事务</parm>
+            </summary>
+            <param name="context"></param>
+            <param name="next"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Builder.AppApplicationBuilderExtensions">
+            <summary>
+            应用中间件拓展类（由框架内部调用）
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.AppApplicationBuilderExtensions.UseInject(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)">
+            <summary>
+            注入基础中间件（带Swagger）
+            </summary>
+            <param name="app"></param>
+            <param name="routePrefix"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.AppApplicationBuilderExtensions.UseInjectBase(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            注入基础中间件
+            </summary>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.AppApplicationBuilderExtensions.UseApp(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{Microsoft.AspNetCore.Builder.IApplicationBuilder})">
+            <summary>
+            添加应用中间件
+            </summary>
+            <param name="app">应用构建器</param>
+            <param name="configure">应用配置</param>
+            <returns>应用构建器</returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Builder.SpecificationDocumentApplicationBuilderExtensions">
+            <summary>
+            规范化文档中间件拓展
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.SpecificationDocumentApplicationBuilderExtensions.UseSpecificationDocuments(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)">
+            <summary>
+            添加规范化文档中间件
+            </summary>
+            <param name="app"></param>
+            <param name="routePrefix"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Mvc.Filters.FriendlyExceptionFilter">
+            <summary>
+            友好异常拦截器
+            </summary>
+        </member>
+        <member name="F:Microsoft.AspNetCore.Mvc.Filters.FriendlyExceptionFilter._serviceProvider">
+            <summary>
+            服务提供器
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Mvc.Filters.FriendlyExceptionFilter.#ctor(System.IServiceProvider)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="serviceProvider">服务提供器</param>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Mvc.Filters.FriendlyExceptionFilter.OnExceptionAsync(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <summary>
+            异常拦截
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Mvc.ApiDescriptionSettingsAttribute">
+            <summary>
+            接口描述设置
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Mvc.ApiDescriptionSettingsAttribute.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Mvc.ApiDescriptionSettingsAttribute.#ctor(System.Boolean)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="enabled">是否启用</param>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Mvc.ApiDescriptionSettingsAttribute.#ctor(System.String[])">
+            <summary>
+            构造函数
+            </summary>
+            <param name="groups">分组列表</param>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Mvc.ApiDescriptionSettingsAttribute.Name">
+            <summary>
+            自定义名称
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Mvc.ApiDescriptionSettingsAttribute.KeepName">
+            <summary>
+            保留原有名称
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Mvc.ApiDescriptionSettingsAttribute.SplitCamelCase">
+            <summary>
+            切割骆驼命名
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Mvc.ApiDescriptionSettingsAttribute.KeepVerb">
+            <summary>
+            保留路由谓词
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Mvc.ApiDescriptionSettingsAttribute.Enabled">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Mvc.ApiDescriptionSettingsAttribute.Module">
+            <summary>
+            模块名
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Mvc.ApiDescriptionSettingsAttribute.Version">
+            <summary>
+            版本号
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Mvc.ApiDescriptionSettingsAttribute.Groups">
+            <summary>
+            分组
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Mvc.ApiDescriptionSettingsAttribute.Tag">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.AppServiceCollectionExtensions">
+            <summary>
+            应用服务集合拓展类（由框架内部调用）
+            </summary>
+        </member>
+        <member name="F:Microsoft.Extensions.DependencyInjection.AppServiceCollectionExtensions.MiniProfilerRouteBasePath">
+            <summary>
+            MiniProfiler 插件路径
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AppServiceCollectionExtensions.AddInject(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            服务注入基础配置
+            </summary>
+            <param name="services">服务集合</param>
+            <returns>IMvcBuilder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AppServiceCollectionExtensions.AddApp(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})">
+            <summary>
+            添加应用配置
+            </summary>
+            <param name="services">服务集合</param>
+            <param name="configure">服务配置</param>
+            <returns>服务集合</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AppServiceCollectionExtensions.AddStartup(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加 Startup 自动扫描
+            </summary>
+            <param name="services">服务集合</param>
+            <returns>服务集合</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AppServiceCollectionExtensions.GetOrder(System.Type)">
+            <summary>
+            获取 Startup 排序
+            </summary>
+            <param name="type">排序类型</param>
+            <returns>int</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.DatabaseAccessorServiceCollectionExtensions">
+            <summary>
+            数据库访问器服务拓展类
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.DatabaseAccessorServiceCollectionExtensions.AddDatabaseAccessor(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})">
+            <summary>
+            添加数据库上下文
+            </summary>
+            <param name="services">服务集合</param>
+            <param name="configure">配置</param>
+            <returns>服务集合</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.FriendlyExceptionServiceCollectionExtensions">
+            <summary>
+            友好异常服务拓展类
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.FriendlyExceptionServiceCollectionExtensions.AddFriendlyException``1(Microsoft.Extensions.DependencyInjection.IMvcBuilder,System.Boolean)">
+            <summary>
+            添加友好异常服务拓展服务
+            </summary>
+            <typeparam name="TErrorCodeTypeProvider">异常错误码提供器</typeparam>
+            <param name="mvcBuilder">Mvc构建器</param>
+            <param name="enabledGlobalExceptionFilter">是否启用全局异常过滤器</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.FriendlyExceptionServiceCollectionExtensions.AddFriendlyException(Microsoft.Extensions.DependencyInjection.IMvcBuilder,System.Boolean)">
+            <summary>
+            添加友好异常服务拓展服务
+            </summary>
+            <param name="mvcBuilder">Mvc构建器</param>
+            <param name="enabledGlobalExceptionFilter">是否启用全局异常过滤器</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.SpecificationDocumentServiceCollectionExtensions">
+            <summary>
+            规范化接口服务拓展类
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SpecificationDocumentServiceCollectionExtensions.AddSpecificationDocuments(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加规范化文档服务
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="T:Microsoft.Extensions.Hosting.HostBuilderExtensions">
+            <summary>
+            主机构建器拓展类
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Hosting.HostBuilderExtensions.Inject(Microsoft.AspNetCore.Hosting.IWebHostBuilder,System.String)">
+            <summary>
+            Web 主机注入
+            </summary>
+            <param name="hostBuilder">Web主机构建器</param>
+            <param name="assemblyName">外部程序集名称</param>
+            <returns>IWebHostBuilder</returns>
+        </member>
+        <member name="T:FreeSql.ISelectExtension">
+            <summary>
+            <see cref="T:FreeSql.ISelect0"/>拓展
+            </summary>
+        </member>
+        <member name="M:FreeSql.ISelectExtension.ToPageResultAsync``2(FreeSql.ISelect{``0},QingShan.Data.PageInputDto,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}},QingShan.Core.Core.DatabaseAccessor.Enums.SortType)">
+            <summary>
+            分页
+            </summary>
+            <typeparam name="TSoure">数据源</typeparam>
+            <typeparam name="TResult">映射Dto</typeparam>
+            <param name="select"></param>
+            <param name="pageInputDto"></param>
+            <param name="map"></param>
+            <param name="where"></param>
+            <param name="order"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

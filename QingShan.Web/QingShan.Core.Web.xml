@@ -1,0 +1,257 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QingShan.Web</name>
+    </assembly>
+    <members>
+        <member name="T:QingShan.Core.Web.Areas.Admin.Controllers.AccountController">
+            <summary>
+            用户授权控制器
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.Web.Areas.Admin.Controllers.AccountController.Login(QingShan.Services.Account.Dto.LoginInputDto)">
+            <summary>
+            用户登录
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Core.Web.Areas.Admin.Controllers.AdminBaseController">
+            <summary>
+            admin控制器基类
+            </summary>
+        </member>
+        <member name="T:QingShan.Core.Web.Areas.Admin.Controllers.HomeController">
+            <summary>
+            首页
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.Web.Areas.Admin.Controllers.HomeController.Index">
+            <summary>
+            获取
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.Web.Areas.Admin.Controllers.HomeController.Add(QingShan.Services.ProductService.Dtos.ProductInputDto)">
+            <summary>
+            添加
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.Web.Areas.Admin.Controllers.HomeController.Delete(QingShan.Services.ProductService.Dtos.IdDto)">
+            <summary>
+            删除
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Core.Web.Areas.Admin.Controllers.RoleController">
+            <summary>
+            角色管理
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.Web.Areas.Admin.Controllers.RoleController.Add(QingShan.Services.System.Role.Dto.InputDto.RoleInputDto)">
+            <summary>
+            新增角色
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.Web.Areas.Admin.Controllers.RoleController.Update(QingShan.Services.System.Role.Dto.InputDto.RoleInputDto)">
+            <summary>
+            修改角色
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.Web.Areas.Admin.Controllers.RoleController.GetInfo(QingShan.Data.CommonIdInputDto)">
+            <summary>
+            获取角色详情信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.Web.Areas.Admin.Controllers.RoleController.GetPage(QingShan.Data.PageInputDto)">
+            <summary>
+            获取角色列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.Web.Areas.Admin.Controllers.RoleController.Delete(QingShan.Data.CommonIdInputDto)">
+            <summary>
+            删除角色信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Core.Web.Areas.Admin.Controllers.UserController">
+            <summary>
+            用户管理
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.Web.Areas.Admin.Controllers.UserController.Add(QingShan.Services.User.Dtos.InputDto.UserAddInputDto)">
+            <summary>
+            新增用户
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.Web.Areas.Admin.Controllers.UserController.Update(QingShan.Services.User.Dtos.InputDto.UserUpdateInputDto)">
+            <summary>
+            修改用户
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.Web.Areas.Admin.Controllers.UserController.GetUserInfo">
+            <summary>
+            获取当前登录用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.Web.Areas.Admin.Controllers.UserController.GetInfo(QingShan.Data.CommonIdInputDto)">
+            <summary>
+            获取用户详情信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.Web.Areas.Admin.Controllers.UserController.GetUserPage(QingShan.Data.PageInputDto)">
+            <summary>
+            获取用户列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.Web.Areas.Admin.Controllers.UserController.Delete(QingShan.Data.CommonIdInputDto)">
+            <summary>
+            删除用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.Web.Authorization.IModuleManager.GetModules">
+            <summary>
+            收集模块信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Core.Web.Authorization.ModuleManager">
+            <summary>
+            模块管理
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.Web.Authorization.ModuleManager.GetModules">
+            <summary>
+            收集模块
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.Web.Authorization.ModuleManager.GetModule(System.Type)">
+            <summary>
+            获取当前类中所有数据
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="M:QingShan.Core.Web.Authorization.ModuleManager.GetModule(System.Reflection.MethodInfo,QingShan.Services.Permission.Dto.ModuleInfo,System.Type,System.Int32)">
+            <summary>
+            重写以实现从方法信息中提取模块信息
+            </summary>
+            <param name="method">方法信息</param>
+            <param name="moduleInfo">所在类型模块信息</param>
+            <param name="index">序号</param>
+            <param name="type"></param>
+            <returns>提取到的模块信息</returns>
+        </member>
+        <member name="T:QingShan.Core.Web.Controllers.UploadController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:QingShan.Core.Web.Controllers.UploadController._env">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.Web.Controllers.UploadController.UploadFile(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            上传文件
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Core.Web.Filter.InternalServerErrorObjectResult">
+            <summary>
+            服务器异常返回
+            </summary>
+        </member>
+        <member name="T:QingShan.Core.Web.Permission.PermissionMiddleware">
+            <summary>
+            权限中间件
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.Web.Permission.Permission.UsePermission(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            使用权限收集
+            </summary>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Core.Web.Permission.PolicyRequirement">
+            <summary>
+            权限承载实体
+            <para>该类主要用于获取所有权限</para>
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.Web.Permission.PolicyRequirement.UserPermissions">
+            <summary>
+            用户权限集合
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.Web.Permission.PolicyRequirement.DeniedAction">
+            <summary>
+            无权限action
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.Web.Permission.PolicyRequirement.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="T:QingShan.Core.Web.Permission.UserPermission">
+            <summary>
+            用户权限承载实体
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.Web.Permission.UserPermission.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.Web.Permission.UserPermission.Url">
+            <summary>
+            请求Url
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.Web.Services.AuthorizationService.AddAuthorizationService(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            添加授权
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="T:QingShan.Core.Web.Services.CacheService">
+            <summary>
+            缓存服务
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.Web.Services.CacheService.AddCacheService(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            添加缓存服务
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:QingShan.Core.Web.Services.CorsService.AddCorsService(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            跨域
+            </summary>
+            <param name="services"></param>
+        </member>
+    </members>
+</doc>

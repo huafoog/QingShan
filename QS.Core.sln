@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QS.Core.Web", "QS.Core.Web\QS.Core.Web.csproj", "{40A4C4D6-82E5-47FA-9C14-0B5901FC803A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QingShan.Web", "QingShan.Web\QingShan.Web.csproj", "{40A4C4D6-82E5-47FA-9C14-0B5901FC803A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QS.Services", "QS.ServiceLayer\QS.Services.csproj", "{E60C5416-9EF1-4638-BFB0-84CBA826FF7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QingShan.Services", "QingShan.ServiceLayer\QingShan.Services.csproj", "{E60C5416-9EF1-4638-BFB0-84CBA826FF7A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QS.DataLayer", "QS.DataLayer\QS.DataLayer.csproj", "{E676FCCB-A31A-4E96-A046-E425F08EC014}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QingShan.DataLayer", "QingShan.DataLayer\QingShan.DataLayer.csproj", "{E676FCCB-A31A-4E96-A046-E425F08EC014}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QS.Core", "QS.Core\QS.Core.csproj", "{DE5C1F1C-A9BC-412D-8C8F-5B3985F6BDD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QingShan.Core", "QingShan.Core\QingShan.Core.csproj", "{DE5C1F1C-A9BC-412D-8C8F-5B3985F6BDD0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QS.Test", "QS.Test\QS.Test.csproj", "{32761B72-E151-46B8-8C89-9F00CD11C67D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QingShan.Test", "QingShan.Test\QingShan.Test.csproj", "{32761B72-E151-46B8-8C89-9F00CD11C67D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{55BB3B32-FFCF-49C1-9F17-BFCC6F69CED0}"
 	ProjectSection(SolutionItems) = preProject
@@ -22,7 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D0775B8D-2B3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{9246273E-C1B9-4EC9-B8F9-9660F780C6E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QS", "QS\QS.csproj", "{A36AC3A7-C378-416B-A3D6-FEF0EFA00168}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QingShan", "QingShan\QingShan.csproj", "{A36AC3A7-C378-416B-A3D6-FEF0EFA00168}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
