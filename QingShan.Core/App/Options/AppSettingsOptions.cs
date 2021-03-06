@@ -10,11 +10,6 @@ namespace QingShan.Core.Options
     public sealed class AppSettingsOptions : IConfigurableOptions<AppSettingsOptions>
     {
         /// <summary>
-        /// 集成 MiniProfiler 组件
-        /// </summary>
-        public bool? InjectMiniProfiler { get; set; }
-
-        /// <summary>
         /// 是否启用引用程序集扫描
         /// </summary>
         public bool? EnabledReferenceAssemblyScan { get; set; }
@@ -31,7 +26,6 @@ namespace QingShan.Core.Options
         /// <param name="configuration"></param>
         public void PostConfigure(AppSettingsOptions options, IConfiguration configuration)
         {
-            options.InjectMiniProfiler ??= true;
             EnabledReferenceAssemblyScan ??= false;
             ExternalAssemblies ??= Array.Empty<string>();
         }

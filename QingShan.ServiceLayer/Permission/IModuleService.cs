@@ -19,7 +19,7 @@ namespace QingShan.Services.Permission
         /// <summary>
         /// 修改模块
         /// </summary>
-        /// <param name="model"></param>
+        /// <param name="dto"></param>
         /// <returns></returns>
         Task<StatusResult> UpdateModules(ModuleInputDto dto);
 

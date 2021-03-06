@@ -18,9 +18,9 @@ namespace FreeSql
         /// <typeparam name="TResult">映射Dto</typeparam>
         /// <param name="select"></param>
         /// <param name="pageInputDto"></param>
-        /// <param name="map"></param>
         /// <param name="where"></param>
         /// <param name="order"></param>
+        /// <param name="sortType"></param>
         /// <returns></returns>
         public static async Task<PageOutputDto<TResult>> ToPageResultAsync<TSoure, TResult>(this ISelect<TSoure> select
             , PageInputDto pageInputDto

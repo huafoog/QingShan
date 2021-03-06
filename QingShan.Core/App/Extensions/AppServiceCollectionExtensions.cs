@@ -17,11 +17,6 @@ namespace Microsoft.Extensions.DependencyInjection
     public static class AppServiceCollectionExtensions
     {
         /// <summary>
-        /// MiniProfiler 插件路径
-        /// </summary>
-        private const string MiniProfilerRouteBasePath = "/index-mini-profiler";
-
-        /// <summary>
         /// 服务注入基础配置
         /// </summary>
         /// <param name="services">服务集合</param>
@@ -57,15 +52,6 @@ namespace Microsoft.Extensions.DependencyInjection
 
             // 注册对象映射
             //services.AddObjectMapper();
-
-            // 注册MiniProfiler 组件
-            if (App.Settings.InjectMiniProfiler == true)
-            {
-                services.AddMiniProfiler(options =>
-                {
-                    options.RouteBasePath = MiniProfilerRouteBasePath;
-                });
-            }
 
             // 注册全局依赖注入
             services.AddDependencyInjection();

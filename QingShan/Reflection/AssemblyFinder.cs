@@ -28,7 +28,7 @@ namespace QingShan.Reflection
         /// <returns></returns>
         protected Assembly[] FindAllItems()
         {
-            return RuntimeHelper.GetAllAssemblies().ToArray();
+            return AppAssembly.Assemblies.ToArray();
         }
         private static Assembly[] LoadFiles(IEnumerable<string> files)
         {

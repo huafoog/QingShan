@@ -21,7 +21,7 @@ namespace Microsoft.AspNetCore.Builder
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Demo v1");
+                SpecificationDocumentBuilder.BuildUI(c, routePrefix);
             });
 
             return app;

@@ -28,11 +28,6 @@ namespace QingShan.Core.FriendlyException
     public static class Oops
     {
         /// <summary>
-        /// MiniProfiler 分类名
-        /// </summary>
-        private const string MiniProfilerCategory = "errors";
-
-        /// <summary>
         /// 方法错误异常特性
         /// </summary>
         internal static readonly ConcurrentDictionary<MethodInfo, MethodIfException> ErrorMethods;
@@ -103,37 +98,6 @@ namespace QingShan.Core.FriendlyException
         public static Exception Oh(object errorCode, Type exceptionType, params object[] args)
         {
             return Activator.CreateInstance(exceptionType, new object[] { GetErrorCodeMessage(errorCode, args) }) as Exception;
-        }
-
-        /// <summary>
-        /// 打印错误到 MiniProfiler 中
-        /// </summary>
-        /// <param name="exception"></param>
-        internal static void PrintToMiniProfiler(Exception exception)
-        {
-            // 判断是否注入 MiniProfiler 组件
-            if (App.Settings.InjectMiniProfiler != true)
-            {
-                return;
-            }
-
-            // 获取异常堆栈
-            var traceFrame = new StackTrace(exception, true).GetFrame(0);
-
-            // 获取出错的文件名
-            var exceptionFileName = traceFrame.GetFileName();
-
-            // 获取出错的行号
-            var exceptionFileLineNumber = traceFrame.GetFileLineNumber();
-
-            // 打印错误文件名和行号
-            if (!string.IsNullOrEmpty(exceptionFileName) && exceptionFileLineNumber > 0)
-            {
-                App.PrintToMiniProfiler(MiniProfilerCategory, "Locator", $"{exceptionFileName}:line {exceptionFileLineNumber}", true);
-            }
-
-            // 打印完整的堆栈信息
-            App.PrintToMiniProfiler(MiniProfilerCategory, "StackTrace", exception.ToString(), true);
         }
 
         /// <summary>

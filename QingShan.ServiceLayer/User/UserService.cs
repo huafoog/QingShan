@@ -63,6 +63,7 @@ namespace QingShan.Services.User
         /// <returns></returns>
         public async Task<IList<string>> GetPermissionsAsync()
         {
+            await Task.CompletedTask;
             //var key = string.Format(CacheKey.UserPermissions, _user.Id);
             //if (await _cache.ExistsAsync(key))
             //{

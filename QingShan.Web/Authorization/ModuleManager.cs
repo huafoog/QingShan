@@ -28,7 +28,7 @@ namespace QingShan.Core.Web.Authorization
         public List<ModuleInfo> GetModules()
         {
             //当前所有权限
-            var types = RuntimeHelper.GetAllTypes();
+            var types = AppAssembly.CanBeScanTypes;
             //获取需要模块信息
             var typeInfos = types.Where(o => o.IsClass && o.GetCustomAttributes(false).Any(p => p is ModuleInfoAttribute));
             List<ModuleInfo> infos = new List<ModuleInfo>();

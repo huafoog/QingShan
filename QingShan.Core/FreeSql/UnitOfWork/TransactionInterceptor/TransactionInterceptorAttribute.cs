@@ -40,9 +40,9 @@ namespace QingShan.DatabaseAccessor
             IsolationLevel = isolationLevel;
         }
         /// <summary>
-        /// <para>支持传入 事务范围 <see cref="TransactionScope"/>，事务级别 <see cref="IsolationLevel"/> 参数值</para>
+        /// <para>支持传入 事务传播方式 <see cref="Propagation"/>，事务级别 <see cref="IsolationLevel"/> 参数值</para>
         /// </summary>
-        /// <param name="scopeOption">事务范围</param>
+        /// <param name="propagation">事务传播方式</param>
         /// <param name="isolationLevel">事务隔离级别</param>
         public TransactionInterceptorAttribute(Propagation propagation, IsolationLevel isolationLevel) : this()
         {

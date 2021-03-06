@@ -37,7 +37,6 @@ namespace QingShan.Core.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddInject();
-            services.AddConfigurableOptions<DatabaseAccessorSettingsOptions>();
             services.AddControllers(o =>
             {
                 //全局异常
@@ -75,10 +74,10 @@ namespace QingShan.Core.Web
 
             app.UseApp(options =>
             {
-                //options.UseSpecificationDocuments();
+                app.UseSpecificationDocuments();
             });
 
-            app.UseSpecificationDocuments();
+            
             #region 静态文件
             //FileHelper.CreateDir("www");
             //FileExtensionContentTypeProvider provider = new FileExtensionContentTypeProvider();

@@ -10,6 +10,7 @@ namespace QingShan.Core.SpecificationDocument
     /// <summary>
     /// 规范化文档配置选项
     /// </summary>
+    [OptionsSettings("AppSettings:SpecificationDocumentSettings")]
     public sealed class SpecificationDocumentSettingsOptions : IConfigurableOptions<SpecificationDocumentSettingsOptions>
     {
         /// <summary>
@@ -54,6 +55,16 @@ namespace QingShan.Core.SpecificationDocument
         public OpenApiServer[] Servers { get; set; }
 
         /// <summary>
+        /// 分组信息
+        /// </summary>
+        public SpecificationOpenApiInfo[] GroupOpenApiInfos { get; set; }
+
+        /// <summary>
+        /// 安全定义
+        /// </summary>
+        public SpecificationOpenApiSecurityScheme[] SecurityDefinitions { get; set; }
+
+        /// <summary>
         /// 隐藏 Servers
         /// </summary>
         public bool? HideServers { get; set; }
@@ -68,7 +79,7 @@ namespace QingShan.Core.SpecificationDocument
             options.DocumentTitle ??= "Specification Api Document";
             options.DefaultGroupName ??= "Default";
             options.FormatAsV2 ??= false;
-            //options.RoutePrefix ??= "api";
+            options.RoutePrefix ??= "";
             options.DocExpansionState ??= DocExpansion.List;
             XmlComments ??= App.Assemblies.Where(u => u.GetName().Name != "QingShan").Select(t => t.GetName().Name).ToArray();
             Servers ??= Array.Empty<OpenApiServer>();
