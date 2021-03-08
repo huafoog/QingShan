@@ -15,7 +15,6 @@ namespace QingShan.Core.Web.Areas.Admin.Controllers
     /// <summary>
     /// 用户授权控制器
     /// </summary>
-    [ApiExplorerSettings]
     public class AccountController : AdminBaseController
     {
 
@@ -64,28 +63,5 @@ namespace QingShan.Core.Web.Areas.Admin.Controllers
             await Task.CompletedTask;
             return new StatusResult<string>() { Data = token };
         }
-
-        ///// <summary>
-        ///// 获得token
-        ///// </summary>
-        ///// <param name="output"></param>
-        ///// <returns></returns>
-        //private IResponseOutput GetToken(StatusResult<AuthLoginOutputDto> dto)
-        //{
-        //    if (!dto.IsSuccess)
-        //    {
-        //        return (IResponseOutput)dto;
-        //    }
-
-        //    var user = dto.Data;
-        //    var token = _userToken.Create(new[]
-        //    {
-        //        new Claim(ClaimAttributes.UserId, user.Id.ToString()),
-        //        new Claim(ClaimAttributes.UserName, user.UserName),
-        //        new Claim(ClaimAttributes.UserNickName, user.NickName)
-        //    });
-
-        //    return ResponseOutput.Ok(new { token });
-        //}
     }
 }

@@ -17,13 +17,10 @@ namespace Microsoft.AspNetCore.Builder
         /// <returns></returns>
         public static IApplicationBuilder UseSpecificationDocuments(this IApplicationBuilder app, string routePrefix = default)
         {
-            // 添加Swagger有关中间件
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                SpecificationDocumentBuilder.BuildUI(c, routePrefix);
-            });
-
+            // 配置 Swagger 全局参数
+            app.UseSwagger(options => SpecificationDocumentBuilder.Build(options));
+            // 配置 Swagger UI 参数
+            app.UseSwaggerUI(c => SpecificationDocumentBuilder.BuildUI(c, routePrefix));
             return app;
         }
     }

@@ -67,11 +67,13 @@ namespace QingShan.Core.SpecificationDocument
         internal static void BuildGen(SwaggerGenOptions swaggerOptions)
         {
             swaggerOptions.SwaggerGeneratorOptions.DescribeAllParametersInCamelCase = true;
-            CreateSwaggerDocs(swaggerOptions);
             LoadXmlComments(swaggerOptions);
-            //swaggerOptions.SwaggerDoc("v1", new OpenApiInfo
+            ConfigureSecurities(swaggerOptions);
+            CreateSwaggerDocs(swaggerOptions);
+
+            //swaggerOptions.SwaggerDoc("Default", new OpenApiInfo
             //{
-            //    Version = "v1",
+            //    Version = "v2",
             //    Title = "QingShan.Core API",
             //    Description = "一个简单框架的api",
             //    TermsOfService = new Uri("https://example.com/terms"),
@@ -87,49 +89,24 @@ namespace QingShan.Core.SpecificationDocument
             //        Url = new Uri("https://example.com/license"),
             //    }
             //});
-
-            ConfigureSecurities(swaggerOptions);
-
-            //添加设置Token的按钮
-            //swaggerOptions.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            //swaggerOptions.SwaggerDoc("Upload", new OpenApiInfo
             //{
-            //    Description = "JWT授权(数据将在请求头中进行传输) 直接在下框中输入Bearer {token}（注意两者之间是一个空格）",
-            //    Name = "Authorization",
-            //    In = ParameterLocation.Header,
-            //    Type = SecuritySchemeType.ApiKey,
-            //    Scheme = "Bearer"
+            //    Version = "v3",
+            //    Title = "QingShan.Core API",
+            //    Description = "一个简单框架的api",
+            //    TermsOfService = new Uri("https://example.com/terms"),
+            //    Contact = new OpenApiContact
+            //    {
+            //        Name = "Shayne Boyer",
+            //        Email = string.Empty,
+            //        Url = new Uri("https://twitter.com/spboyer"),
+            //    },
+            //    License = new OpenApiLicense
+            //    {
+            //        Name = "Use under LICX",
+            //        Url = new Uri("https://example.com/license"),
+            //    }
             //});
-
-            ////添加Jwt验证设置
-            //swaggerOptions.AddSecurityRequirement(new OpenApiSecurityRequirement()
-            //        {
-            //            {
-            //                new OpenApiSecurityScheme
-            //                {
-            //                    Reference = new OpenApiReference
-            //                    {
-            //                        Type = ReferenceType.SecurityScheme,
-            //                        Id = "Bearer"
-            //                    },
-            //                    Scheme = "oauth2",
-            //                    Name = "Bearer",
-            //                    In = ParameterLocation.Header,
-            //                },
-            //                new List<string>()
-            //            }
-            //        });
-            //var basePath = PlatformServices.Default.Application.ApplicationBasePath;
-
-
-
-            ////添加读取注释服务
-            //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-            //var xmlPath = Path.Combine(basePath, xmlFile);
-            //swaggerOptions.IncludeXmlComments(xmlPath);
-            ////添加注释服务
-
-            //var xmlPath2 = Path.Combine(basePath, "QingShan.Services.xml");
-            //swaggerOptions.IncludeXmlComments(xmlPath2);
         }
         #region 配置授权
         /// <summary>
@@ -340,7 +317,7 @@ namespace QingShan.Core.SpecificationDocument
             swaggerUIOptions.RoutePrefix = routePrefix ?? _specificationDocumentSettings.RoutePrefix;
 
             // 文档展开设置
-            //swaggerUIOptions.DocExpansion(_specificationDocumentSettings.DocExpansionState.Value);
+            swaggerUIOptions.DocExpansion(_specificationDocumentSettings.DocExpansionState.Value);
         }
         /// <summary>
         /// 配置分组终点路由
@@ -352,8 +329,18 @@ namespace QingShan.Core.SpecificationDocument
             {
                 var groupOpenApiInfo = GetGroupOpenApiInfo(group);
 
-                swaggerUIOptions.SwaggerEndpoint($"/swagger/{group}/swagger.json", groupOpenApiInfo?.Title ?? group);
+                swaggerUIOptions.SwaggerEndpoint($"/swagger/{group}/swagger.json", groupOpenApiInfo?.Group ?? group);
             }
+        }
+
+        /// <summary>
+        /// 构建Swagger全局配置
+        /// </summary>
+        /// <param name="swaggerOptions">Swagger 全局配置</param>
+        internal static void Build(SwaggerOptions swaggerOptions)
+        {
+            // 生成V2版本
+            swaggerOptions.SerializeAsV2 = _specificationDocumentSettings.FormatAsV2 == true;
         }
         #endregion
     }

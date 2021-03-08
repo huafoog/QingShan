@@ -569,6 +569,12 @@
             </summary>
             <param name="swaggerUIOptions"></param>
         </member>
+        <member name="M:QingShan.Core.SpecificationDocument.SpecificationDocumentBuilder.Build(Swashbuckle.AspNetCore.Swagger.SwaggerOptions)">
+            <summary>
+            构建Swagger全局配置
+            </summary>
+            <param name="swaggerOptions">Swagger 全局配置</param>
+        </member>
         <member name="T:QingShan.Core.SpecificationDocument.EnumSchemaFilter">
             <summary>
             修正 规范化文档 Enum 提示
@@ -699,11 +705,6 @@
             XML 描述文件
             </summary>
         </member>
-        <member name="P:QingShan.Core.SpecificationDocument.SpecificationDocumentSettingsOptions.Servers">
-            <summary>
-            配置 Servers
-            </summary>
-        </member>
         <member name="P:QingShan.Core.SpecificationDocument.SpecificationDocumentSettingsOptions.GroupOpenApiInfos">
             <summary>
             分组信息
@@ -712,11 +713,6 @@
         <member name="P:QingShan.Core.SpecificationDocument.SpecificationDocumentSettingsOptions.SecurityDefinitions">
             <summary>
             安全定义
-            </summary>
-        </member>
-        <member name="P:QingShan.Core.SpecificationDocument.SpecificationDocumentSettingsOptions.HideServers">
-            <summary>
-            隐藏 Servers
             </summary>
         </member>
         <member name="M:QingShan.Core.SpecificationDocument.SpecificationDocumentSettingsOptions.PostConfigure(QingShan.Core.SpecificationDocument.SpecificationDocumentSettingsOptions,Microsoft.Extensions.Configuration.IConfiguration)">

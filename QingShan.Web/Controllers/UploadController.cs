@@ -11,6 +11,7 @@ namespace QingShan.Core.Web.Controllers
     /// </summary>
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [ApiDescriptionSettings("Upload")]
     public class UploadController : ControllerBase
     {
         /// <summary>
