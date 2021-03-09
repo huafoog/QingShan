@@ -30,7 +30,7 @@ namespace System
         public static bool IsNull(this string s)
         {
             return string.IsNullOrEmpty(s);
-        }
+        }   
 
         /// <summary>
         /// 判断字符串是否不为Null、空

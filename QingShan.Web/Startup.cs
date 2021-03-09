@@ -37,6 +37,8 @@ namespace QingShan.Core.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddInject();
+            services.AddStaticFile();
+            services.AddJwt();
             services.AddControllers(o =>
             {
                 //全局异常
@@ -62,6 +64,7 @@ namespace QingShan.Core.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -69,42 +72,14 @@ namespace QingShan.Core.Web
 
             app.UseRouting();
 
-            //app.UseAuthentication();
-            //app.UseAuthorization();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseApp(options =>
             {
                 app.UseSpecificationDocuments();
             });
-
-            
-            #region 静态文件
-            //FileHelper.CreateDir("www");
-            //FileExtensionContentTypeProvider provider = new FileExtensionContentTypeProvider();
-            //provider.Mappings[".jpg"] = "image/jpeg";
-            //app.UseStaticFiles(new StaticFileOptions
-            //{
-            //    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "www")),
-            //    ServeUnknownFileTypes = true,
-            //    ContentTypeProvider = provider,
-            //    RequestPath = new PathString("/www"),
-            //    DefaultContentType = "application/x-msdownload", // 设置未识别的MIME类型一个默认z值
-            //});
-            //app.UseDirectoryBrowser(new DirectoryBrowserOptions()
-            //{
-            //    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "www")), // 制定目录
-            //    RequestPath = new PathString("/www")
-            //});
-            #endregion
-            //app.UseCors("LimitRequests");
-            ////app.UseHttpsRedirection();
-            //app.UsePermission();
-            //app.UseRouting();
-            ////添加jwt验证
-            //// UseAuthentication() 在 UseRouting之后调用，以便路由信息可用于身份验证决策,
-            //// 在 UseEndpoints 之前调用，以便用户在经过身份验证后才能访问终结点
-            //// 在依赖于要进行身份验证的用户的所有中间件之前调用 UseAuthentication
-            ////授权
+            app.UseStaticFile();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

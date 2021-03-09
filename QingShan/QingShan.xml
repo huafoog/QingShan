@@ -1262,11 +1262,12 @@
             范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param> 
             <param name="isSearchChild">是否搜索子目录</param>
         </member>
-        <member name="M:QingShan.Helper.FileHelper.CreateDir(System.String)">
+        <member name="M:QingShan.Helper.FileHelper.CreateDir(System.String,System.String)">
             <summary>
-            创建目录
+            创建目录 不存在才创建
             </summary>
             <param name="dir">要创建的目录路径包括目录名</param>
+            <param name="path">文件夹路径 默认使用<see cref="M:System.IO.Directory.GetCurrentDirectory"/></param>
         </member>
         <member name="M:QingShan.Helper.FileHelper.DeleteDir(System.String)">
             <summary>
@@ -1738,6 +1739,63 @@
             </summary>
             <returns>程序集集合</returns>
         </member>
+        <member name="P:QingShan.StaticFile.Models.StaticFileFolderModel.Folder">
+            <summary>
+            文件夹
+            </summary>
+        </member>
+        <member name="P:QingShan.StaticFile.Models.StaticFileFolderModel.DefaultContentType">
+            <summary>
+            设置未识别的MIME类型一个默认z值
+            </summary>
+        </member>
+        <member name="P:QingShan.StaticFile.Models.StaticFileFolderModel.ServeUnknownFileTypes">
+            <summary>
+            如果文件不是可识别的内容类型，是否应该提供该文件?默认值:false。
+            </summary>
+        </member>
+        <member name="P:QingShan.StaticFile.Models.StaticFileFolderModel.RequestPath">
+            <summary>
+            请求路径 默认文件夹路径
+            </summary>
+        </member>
+        <member name="T:QingShan.StaticFile.Models.StaticFileMapModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:QingShan.StaticFile.Models.StaticFileMapModel.Suffix">
+            <summary>
+            文件后缀名
+            </summary>
+        </member>
+        <member name="P:QingShan.StaticFile.Models.StaticFileMapModel.FileType">
+            <summary>
+            文件类型
+            </summary>
+        </member>
+        <member name="T:QingShan.StaticFile.StaticFileSettingsOption">
+            <summary>
+            静态文件配置类
+            </summary>
+        </member>
+        <member name="P:QingShan.StaticFile.StaticFileSettingsOption.StaticFileMap">
+            <summary>
+            映射
+            </summary>
+        </member>
+        <member name="P:QingShan.StaticFile.StaticFileSettingsOption.StaticFileFolder">
+            <summary>
+            文件夹
+            </summary>
+        </member>
+        <member name="M:QingShan.StaticFile.StaticFileSettingsOption.PostConfigure(QingShan.StaticFile.StaticFileSettingsOption,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            后期配置
+            </summary>
+            <param name="options"></param>
+            <param name="configuration"></param>
+        </member>
         <member name="T:QingShan.Utility.HttpContextUtility">
             <summary>
             HttpContext 上下文实用类
@@ -2082,6 +2140,20 @@
             <param name="type">类型</param>
             <param name="generic">泛型类型</param>
             <returns>bool</returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.StaticFileApplicationBuilderExtensions.UseStaticFile(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            添加静态文件
+            </summary>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.StaticFileServiceCollectionExtensions.AddStaticFile(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加静态文件资源
+            </summary>
+            <param name="service"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

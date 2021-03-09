@@ -201,19 +201,24 @@ namespace QingShan.Helper
 
         #region 创建目录
         /// <summary>
-        /// 创建目录
+        /// 创建目录 不存在才创建
         /// </summary>
         /// <param name="dir">要创建的目录路径包括目录名</param>
-        public static void CreateDir(string dir)
+        /// <param name="path">文件夹路径 默认使用<see cref="Directory.GetCurrentDirectory()"/></param>
+        public static void CreateDir(string dir,string path = null)
         {
             if (dir.Length == 0)
             {
                 return;
             }
-
-            if (!Directory.Exists(Directory.GetCurrentDirectory() + "\\" + dir))
+            if (path == null)
             {
-                Directory.CreateDirectory(Directory.GetCurrentDirectory() + "\\" + dir);
+                path = Directory.GetCurrentDirectory();
+            }
+           
+            if (!Directory.Exists(path + "\\" + dir))
+            {
+                Directory.CreateDirectory(path + "\\" + dir);
             }
         }
         #endregion

@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using QingShan.Core.JWT;
 using QingShan.Data;
 using QingShan.Data.Constants;
 using QingShan.Permission;
 using QingShan.Services.Account;
 using QingShan.Services.Account.Dto;
 using QingShan.Services.User;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -55,13 +57,23 @@ namespace QingShan.Core.Web.Areas.Admin.Controllers
                 return new StatusResult<string>(result.Message);
             }
 
-            var token = _userToken.Create(new Claim[] {
-                new Claim(ClaimConst.USERID,result.Data.Id.ToString()),
-                new Claim(ClaimConst.USERNAME,result.Data.UserName),
-                new Claim(ClaimConst.USERNICKNAME,result.Data.NickName)
+            // 生成 token
+            var accessToken = JWTEncryption.Encrypt(new Dictionary<string, object>()
+            {
+                { ClaimConst.USERID, result.Data.Id },  // 存储Id
+                { ClaimConst.USERNAME,result.Data.UserName }, // 存储用户名
+                { ClaimConst.USERNICKNAME,result.Data.NickName },
             });
-            await Task.CompletedTask;
-            return new StatusResult<string>() { Data = token };
+
+            // 获取刷新 token
+            //var refreshToken = JWTEncryption.GenerateRefreshToken(accessToken, 30); // 第二个参数是刷新 token 的有效期，默认三十天
+
+            //var token = _userToken.Create(new Claim[] {
+            //    new Claim(ClaimConst.USERID,result.Data.Id.ToString()),
+            //    new Claim(ClaimConst.USERNAME,result.Data.UserName),
+            //    new Claim(ClaimConst.USERNICKNAME,result.Data.NickName)
+            //});
+            return new StatusResult<string>() { Data = accessToken };
         }
     }
 }
