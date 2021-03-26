@@ -1,4 +1,4 @@
-﻿using QingShan.Helper;
+﻿using QingShan.Utilities;
 using System;
 using System.Security.Cryptography;
 using System.Text;

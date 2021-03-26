@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Text;
 
-namespace QingShan.Helper
+namespace QingShan.Utilities
 {
     /// <summary>
     /// 数据类型转换
     /// </summary>
     public static class UtilConvert
     {
+        /// <summary>
+        /// 转换为<see cref="Int32"/>
+        /// </summary>
+        /// <param name="thisValue"></param>
+        /// <returns></returns>
         public static int ToInt(this object thisValue)
         {
             int reval = 0;
@@ -23,6 +28,12 @@ namespace QingShan.Helper
             return reval;
         }
 
+        /// <summary>
+        /// 转换为<see cref="int"/>
+        /// </summary>
+        /// <param name="thisValue"></param>
+        /// <param name="errorValue"></param>
+        /// <returns></returns>
         public static int ToInt(this object thisValue, int errorValue)
         {
             if (thisValue != null && thisValue != DBNull.Value && int.TryParse(thisValue.ToString(), out int reval))
@@ -32,6 +43,11 @@ namespace QingShan.Helper
             return errorValue;
         }
 
+        /// <summary>
+        /// 转换为<see cref="long"/>
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static long ToLong(this object s)
         {
             if (s == null || s == DBNull.Value)
@@ -43,24 +59,42 @@ namespace QingShan.Helper
             return result;
         }
 
-        public static double ToMoney(this object thisValue)
+        /// <summary>
+        /// 四舍五入保留两位小数
+        /// </summary>
+        /// <param name="thisValue"></param>
+        /// <param name="decimals">小数位数</param>
+        /// <returns></returns>
+        public static decimal ToMoney(this object thisValue,int decimals = 2)
         {
-            if (thisValue != null && thisValue != DBNull.Value && double.TryParse(thisValue.ToString(), out double reval))
+            if (thisValue != null && thisValue != DBNull.Value && decimal.TryParse(thisValue.ToString(), out decimal reval))
             {
-                return reval;
+                return reval.ToRound(decimals);
             }
             return 0;
         }
 
-        public static double ToMoney(this object thisValue, double errorValue)
+        /// <summary>
+        /// 转换为decimal 四舍五入保留两位小数
+        /// </summary>
+        /// <param name="thisValue">当前值</param>
+        /// <param name="errorValue">转换异常返回的值</param>
+        /// <param name="decimals">小数位数</param>
+        /// <returns></returns>
+        public static decimal ToMoney(this object thisValue, decimal errorValue, int decimals = 2)
         {
-            if (thisValue != null && thisValue != DBNull.Value && double.TryParse(thisValue.ToString(), out double reval))
+            if (thisValue != null && thisValue != DBNull.Value && decimal.TryParse(thisValue.ToString(), out decimal reval))
             {
-                return reval;
+                return reval.ToRound(decimals);
             }
             return errorValue;
         }
 
+        /// <summary>
+        /// 转换为<see cref="String"/>
+        /// </summary>
+        /// <param name="thisValue"></param>
+        /// <returns></returns>
         public static string ToString(this object thisValue)
         {
             if (thisValue != null)
@@ -71,6 +105,12 @@ namespace QingShan.Helper
             return "";
         }
 
+        /// <summary>
+        /// 转换为<see cref="string"/>
+        /// </summary>
+        /// <param name="thisValue">当前值</param>
+        /// <param name="errorValue">转换异常返回的值</param>
+        /// <returns></returns>
         public static string ToString(this object thisValue, string errorValue)
         {
             if (thisValue != null)
@@ -104,6 +144,11 @@ namespace QingShan.Helper
             return Math.Round(result, digits.Value);
         }
 
+        /// <summary>
+        /// 转换为<see cref="decimal"/>
+        /// </summary>
+        /// <param name="thisValue"></param>
+        /// <returns></returns>
         public static decimal ToDecimal(this object thisValue)
         {
             if (thisValue != null && thisValue != DBNull.Value && decimal.TryParse(thisValue.ToString(), out decimal reval))
@@ -113,6 +158,12 @@ namespace QingShan.Helper
             return 0;
         }
 
+        /// <summary>
+        /// 转换为<see cref="decimal"/>
+        /// </summary>
+        /// <param name="thisValue"></param>
+        /// <param name="errorValue"></param>
+        /// <returns></returns>
         public static decimal ToDecimal(this object thisValue, decimal errorValue)
         {
             return thisValue != null && thisValue != DBNull.Value && decimal.TryParse(thisValue.ToString(), out decimal reval)
@@ -120,6 +171,11 @@ namespace QingShan.Helper
                 : errorValue;
         }
 
+        /// <summary>
+        /// 转换为<see cref="DateTime"/>
+        /// </summary>
+        /// <param name="thisValue"></param>
+        /// <returns></returns>
         public static DateTime ToDate(this object thisValue)
         {
             DateTime reval = DateTime.MinValue;
@@ -130,6 +186,12 @@ namespace QingShan.Helper
             return reval;
         }
 
+        /// <summary>
+        /// 转换为<see cref="DateTime"/>
+        /// </summary>
+        /// <param name="thisValue"></param>
+        /// <param name="errorValue"></param>
+        /// <returns></returns>
         public static DateTime ToDate(this object thisValue, DateTime errorValue)
         {
             if (thisValue != null && thisValue != DBNull.Value && DateTime.TryParse(thisValue.ToString(), out DateTime reval))
@@ -139,6 +201,11 @@ namespace QingShan.Helper
             return errorValue;
         }
 
+        /// <summary>
+        /// 转换为<see cref="bool"/>
+        /// </summary>
+        /// <param name="thisValue"></param>
+        /// <returns></returns>
         public static bool ToBool(this object thisValue)
         {
             bool reval = false;
@@ -149,6 +216,11 @@ namespace QingShan.Helper
             return reval;
         }
 
+        /// <summary>
+        /// 转换为<see cref="byte"/>
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static byte ToByte(this object s)
         {
             if (s == null || s == DBNull.Value)

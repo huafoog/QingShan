@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using QingShan.Data.Constants;
 using QingShan.DependencyInjection;
-using QingShan.Helper;
+using QingShan.Utilities;
 using System;
 
 namespace QingShan.Permission

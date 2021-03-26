@@ -1146,391 +1146,6 @@
             <param name="info">保存序列化对象数据的对象。</param>
             <param name="context">有关源或目标的上下文信息。</param>
         </member>
-        <member name="T:QingShan.Helper.DateHelper">
-            <summary>
-            日期帮助类
-            </summary>
-        </member>
-        <member name="M:QingShan.Helper.DateHelper.GetDiffMonth(System.DateTime,System.DateTime)">
-            <summary>
-            获取相差月份 正整数
-            </summary>
-            <param name="startDate"></param>
-            <param name="endDate"></param>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Helper.DateHelper.GetDateTimeByMonth(System.Int32)">
-            <summary>
-            根据月份获取日期
-            </summary>
-            <param name="month">月份</param>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Helper.DateHelper.GetDateTime(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            根据年月日获取指定日期
-            <para>默认1号</para>
-            </summary>
-            <param name="day">日</param>
-            <param name="month">月</param>
-            <param name="year">年</param>
-            <returns></returns>
-        </member>
-        <member name="P:QingShan.Helper.EnumDto.Code">
-            <summary>
-            枚举code
-            </summary>
-        </member>
-        <member name="P:QingShan.Helper.EnumDto.Value">
-            <summary>
-            值
-            </summary>
-        </member>
-        <member name="P:QingShan.Helper.EnumDto.Description">
-            <summary>
-            描述
-            </summary>
-        </member>
-        <member name="T:QingShan.Helper.EnumHelper">
-            <summary>
-            枚举帮助类
-            </summary>
-        </member>
-        <member name="M:QingShan.Helper.EnumHelper.GetEnumListByCode(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String)">
-            <summary>
-            根据枚举代码获取枚举列表
-            </summary>
-            <param name="assemblys">程序集名称集合</param>
-            <param name="namespaces">命名空间名称集合</param>
-            <param name="enumCode">枚举名称</param>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.IsExistDirectory(System.String)">
-            <summary>
-            检测指定目录是否存在
-            </summary>
-            <param name="directoryPath">目录的绝对路径</param>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.IsExistFile(System.String)">
-            <summary>
-            检测指定文件是否存在,如果存在则返回true。
-            </summary>
-            <param name="filePath">文件的绝对路径</param>        
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.GetFileNames(System.String)">
-            <summary>
-            获取指定目录中所有文件列表
-            </summary>
-            <param name="directoryPath">指定目录的绝对路径</param>        
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.GetDirectories(System.String)">
-            <summary>
-            获取指定目录中所有子目录列表,若要搜索嵌套的子目录列表,请使用重载方法.
-            </summary>
-            <param name="directoryPath">指定目录的绝对路径</param>        
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.GetFileNames(System.String,System.String,System.Boolean)">
-            <summary>
-            获取指定目录及子目录中所有文件列表
-            </summary>
-            <param name="directoryPath">指定目录的绝对路径</param>
-            <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
-            范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param>
-            <param name="isSearchChild">是否搜索子目录</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.IsEmptyDirectory(System.String)">
-            <summary>
-            检测指定目录是否为空
-            </summary>
-            <param name="directoryPath">指定目录的绝对路径</param>        
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.Contains(System.String,System.String)">
-            <summary>
-            检测指定目录中是否存在指定的文件,若要搜索子目录请使用重载方法.
-            </summary>
-            <param name="directoryPath">指定目录的绝对路径</param>
-            <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
-            范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param>        
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.Contains(System.String,System.String,System.Boolean)">
-            <summary>
-            检测指定目录中是否存在指定的文件
-            </summary>
-            <param name="directoryPath">指定目录的绝对路径</param>
-            <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
-            范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param> 
-            <param name="isSearchChild">是否搜索子目录</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.CreateDir(System.String,System.String)">
-            <summary>
-            创建目录 不存在才创建
-            </summary>
-            <param name="dir">要创建的目录路径包括目录名</param>
-            <param name="path">文件夹路径 默认使用<see cref="M:System.IO.Directory.GetCurrentDirectory"/></param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.DeleteDir(System.String)">
-            <summary>
-            删除目录
-            </summary>
-            <param name="dir">要删除的目录路径和名称</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.DeleteFile(System.String)">
-            <summary>
-            删除文件
-            </summary>
-            <param name="file">要删除的文件路径和名称</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.CreateFile(System.String,System.String)">
-            <summary>
-            创建文件
-            </summary>
-            <param name="dir">带后缀的文件名</param>
-            <param name="pagestr">文件内容</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.CreateFileContent(System.String,System.String)">
-            <summary>
-            创建文件
-            </summary>
-            <param name="path">路径</param>
-            <param name="content">内容</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.MoveFile(System.String,System.String)">
-            <summary>
-            移动文件(剪贴--粘贴)
-            </summary>
-            <param name="dir1">要移动的文件的路径及全名(包括后缀)</param>
-            <param name="dir2">文件移动到新的位置,并指定新的文件名</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.CopyFile(System.String,System.String)">
-            <summary>
-            复制文件
-            </summary>
-            <param name="dir1">要复制的文件的路径已经全名(包括后缀)</param>
-            <param name="dir2">目标位置,并指定新的文件名</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.GetDirectory(System.String)">
-            <summary>
-            获取一个存在的文件夹
-            </summary>
-            <param name="folder">文件夹名称</param>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.GetDateDir">
-            <summary>
-            根据时间得到目录名yyyyMMdd
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.GetDateFile">
-            <summary>
-            根据时间得到文件名HHmmssff
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.GetFilesByTime(System.String,System.String)">
-            <summary>
-            根据时间获取指定路径的 后缀名的 的所有文件
-            </summary>
-            <param name="path">文件路径</param>
-            <param name="Extension">后缀名 比如.txt</param>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.CopyFolder(System.String,System.String)">
-            <summary>
-            复制文件夹(递归)
-            </summary>
-            <param name="varFromDirectory">源文件夹路径</param>
-            <param name="varToDirectory">目标文件夹路径</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.ExistsFile(System.String)">
-            <summary>
-            检查文件,如果文件不存在则创建  
-            </summary>
-            <param name="FilePath">路径,包括文件名</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.DeleteFolderFiles(System.String,System.String)">
-            <summary>
-            删除指定文件夹对应其他文件夹里的文件
-            </summary>
-            <param name="varFromDirectory">指定文件夹路径</param>
-            <param name="varToDirectory">对应其他文件夹路径</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.GetFileName(System.String)">
-            <summary>
-            从文件的绝对路径中获取文件名( 包含扩展名 )
-            </summary>
-            <param name="filePath">文件的绝对路径</param>        
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.GetFileName(Microsoft.AspNetCore.Http.IFormFile)">
-            <summary>
-            获取文件名
-            </summary>
-            <param name="file"></param>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.CopyFiles(System.String,System.String)">
-            <summary>
-            复制文件参考方法,页面中引用
-            </summary>
-            <param name="cDir">新路径</param>
-            <param name="TempId">模板引擎替换编号</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.CreateDirectory(System.String)">
-            <summary>
-            创建一个目录
-            </summary>
-            <param name="directoryPath">目录的绝对路径</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.CreateFile(Microsoft.AspNetCore.Http.IFormFile)">
-            <summary>
-            创建文件
-            </summary>
-            <param name="file"></param>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.CreateFile(System.String)">
-            <summary>
-            创建一个文件。
-            </summary>
-            <param name="filePath">文件的绝对路径</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.CreateFile(System.String,System.Byte[])">
-            <summary>
-            创建一个文件,并将字节流写入文件。
-            </summary>
-            <param name="filePath">文件的绝对路径</param>
-            <param name="buffer">二进制流数据</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.GetLineCount(System.String)">
-            <summary>
-            获取文本文件的行数
-            </summary>
-            <param name="filePath">文件的绝对路径</param>        
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.GetFileSize(System.String)">
-            <summary>
-            获取一个文件的长度,单位为Byte
-            </summary>
-            <param name="filePath">文件的绝对路径</param>        
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.ToFileSize(System.Int64)">
-            <summary>
-            计算文件大小函数(保留两位小数),Size为字节大小
-            </summary>
-            <param name="size">初始文件大小</param>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.GetDirectories(System.String,System.String,System.Boolean)">
-            <summary>
-            获取指定目录及子目录中所有子目录列表
-            </summary>
-            <param name="directoryPath">指定目录的绝对路径</param>
-            <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
-            范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param>
-            <param name="isSearchChild">是否搜索子目录</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.WriteText(System.String,System.String,System.Text.Encoding)">
-            <summary>
-            向文本文件中写入内容
-            </summary>
-            <param name="filePath">文件的绝对路径</param>
-            <param name="text">写入的内容</param>
-            <param name="encoding">编码</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.AppendText(System.String,System.String)">
-            <summary>
-            向文本文件的尾部追加内容
-            </summary>
-            <param name="filePath">文件的绝对路径</param>
-            <param name="content">写入的内容</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.Copy(System.String,System.String)">
-            <summary>
-            将源文件的内容复制到目标文件中
-            </summary>
-            <param name="sourceFilePath">源文件的绝对路径</param>
-            <param name="destFilePath">目标文件的绝对路径</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.Move(System.String,System.String)">
-            <summary>
-            将文件移动到指定目录
-            </summary>
-            <param name="sourceFilePath">需要移动的源文件的绝对路径</param>
-            <param name="descDirectoryPath">移动到的目录的绝对路径</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.GetFileNameNoExtension(System.String)">
-            <summary>
-            从文件的绝对路径中获取文件名( 不包含扩展名 )
-            </summary>
-            <param name="filePath">文件的绝对路径</param>        
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.GetExtension(System.String)">
-            <summary>
-            从文件的绝对路径中获取扩展名
-            </summary>
-            <param name="filePath">文件的绝对路径</param>        
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.ClearDirectory(System.String)">
-            <summary>
-            清空指定目录下所有文件及子目录,但该目录依然保存.
-            </summary>
-            <param name="directoryPath">指定目录的相对路径</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.ClearFile(System.String)">
-            <summary>
-            清空文件内容
-            </summary>
-            <param name="filePath">文件的绝对路径</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.DeleteDirectory(System.String)">
-            <summary>
-            删除指定目录及其所有子目录
-            </summary>
-            <param name="directoryPath">指定目录的相对路径</param>
-        </member>
-        <member name="M:QingShan.Helper.FileHelper.MapPath(System.String)">
-            <summary>
-            本地路径
-            </summary>
-            <param name="path"></param>
-            <returns></returns>
-        </member>
-        <member name="T:QingShan.Helper.UtilConvert">
-            <summary>
-            数据类型转换
-            </summary>
-        </member>
-        <member name="M:QingShan.Helper.UtilConvert.ToDouble(System.Object,System.Nullable{System.Int32})">
-            <summary>
-            转换成Double/Single
-            </summary>
-            <param name="s"></param>
-            <param name="digits">小数位数</param>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Helper.UtilConvert.ToHex(System.Byte[],System.Boolean)">
-            <summary>
-            转换为16进制
-            </summary>
-            <param name="bytes"></param>
-            <param name="lowerCase">是否小写</param>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Helper.UtilConvert.HexToBytes(System.String)">
-            <summary>
-            16进制转字节数组
-            </summary>
-            <param name="s"></param>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Helper.UtilConvert.ToBase64(System.Byte[])">
-            <summary>
-            转换为Base64
-            </summary>
-            <param name="bytes"></param>
-            <returns></returns>
-        </member>
         <member name="T:QingShan.Permission.Authorization.ModuleInfoAttribute">
             <summary>
             模型描述
@@ -1685,35 +1300,6 @@
             </summary>
             <returns>IEnumerable</returns>
         </member>
-        <member name="T:QingShan.Reflection.AssemblyFinder">
-            <summary>
-            应用程序目录程序集查找
-            </summary>
-        </member>
-        <member name="M:QingShan.Reflection.AssemblyFinder.FindAllItems">
-            <summary>
-            重写以实现程序集的查找
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:QingShan.Reflection.IAssemblyFinder">
-            <summary>
-            定义程序集查找
-            </summary>
-        </member>
-        <member name="M:QingShan.Reflection.IAssemblyFinder.Find(System.Func{System.Reflection.Assembly,System.Boolean})">
-            <summary>
-            查找指定条件的项
-            </summary>
-            <param name="predicate">筛选条件</param>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Reflection.IAssemblyFinder.FindAll">
-            <summary>
-            查找所有项
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:QingShan.Reflection.ReflectionHelper">
             <summary>
             反射帮助类
@@ -1796,16 +1382,1314 @@
             <param name="options"></param>
             <param name="configuration"></param>
         </member>
-        <member name="T:QingShan.Utility.HttpContextUtility">
+        <member name="T:QingShan.Utilities.UtilConvert">
+            <summary>
+            数据类型转换
+            </summary>
+        </member>
+        <member name="M:QingShan.Utilities.UtilConvert.ToInt(System.Object)">
+            <summary>
+            转换为<see cref="T:System.Int32"/>
+            </summary>
+            <param name="thisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.UtilConvert.ToInt(System.Object,System.Int32)">
+            <summary>
+            转换为<see cref="T:System.Int32"/>
+            </summary>
+            <param name="thisValue"></param>
+            <param name="errorValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.UtilConvert.ToLong(System.Object)">
+            <summary>
+            转换为<see cref="T:System.Int64"/>
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.UtilConvert.ToMoney(System.Object,System.Int32)">
+            <summary>
+            四舍五入保留两位小数
+            </summary>
+            <param name="thisValue"></param>
+            <param name="decimals">小数位数</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.UtilConvert.ToMoney(System.Object,System.Decimal,System.Int32)">
+            <summary>
+            转换为decimal 四舍五入保留两位小数
+            </summary>
+            <param name="thisValue">当前值</param>
+            <param name="errorValue">转换异常返回的值</param>
+            <param name="decimals">小数位数</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.UtilConvert.ToString(System.Object)">
+            <summary>
+            转换为<see cref="T:System.String"/>
+            </summary>
+            <param name="thisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.UtilConvert.ToString(System.Object,System.String)">
+            <summary>
+            转换为<see cref="T:System.String"/>
+            </summary>
+            <param name="thisValue">当前值</param>
+            <param name="errorValue">转换异常返回的值</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.UtilConvert.ToDouble(System.Object,System.Nullable{System.Int32})">
+            <summary>
+            转换成Double/Single
+            </summary>
+            <param name="s"></param>
+            <param name="digits">小数位数</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.UtilConvert.ToDecimal(System.Object)">
+            <summary>
+            转换为<see cref="T:System.Decimal"/>
+            </summary>
+            <param name="thisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.UtilConvert.ToDecimal(System.Object,System.Decimal)">
+            <summary>
+            转换为<see cref="T:System.Decimal"/>
+            </summary>
+            <param name="thisValue"></param>
+            <param name="errorValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.UtilConvert.ToDate(System.Object)">
+            <summary>
+            转换为<see cref="T:System.DateTime"/>
+            </summary>
+            <param name="thisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.UtilConvert.ToDate(System.Object,System.DateTime)">
+            <summary>
+            转换为<see cref="T:System.DateTime"/>
+            </summary>
+            <param name="thisValue"></param>
+            <param name="errorValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.UtilConvert.ToBool(System.Object)">
+            <summary>
+            转换为<see cref="T:System.Boolean"/>
+            </summary>
+            <param name="thisValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.UtilConvert.ToByte(System.Object)">
+            <summary>
+            转换为<see cref="T:System.Byte"/>
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.UtilConvert.ToHex(System.Byte[],System.Boolean)">
+            <summary>
+            转换为16进制
+            </summary>
+            <param name="bytes"></param>
+            <param name="lowerCase">是否小写</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.UtilConvert.HexToBytes(System.String)">
+            <summary>
+            16进制转字节数组
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.UtilConvert.ToBase64(System.Byte[])">
+            <summary>
+            转换为Base64
+            </summary>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.ValidJson.IsJson(System.String)">
+            <summary>
+            判断一个字符串是不是合法的json字符串
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.ValidJson.IsJsonStart(System.String@)">
+            <summary>
+            是否是json开头的字符串
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.ValidJson.GetValueLength(System.String,System.Boolean,System.Int32@)">
+            <summary>
+            获取值的长度（当Json值嵌套以"{"或"["开头时）
+            </summary>
+        </member>
+        <member name="T:QingShan.Utilities.ValidJson.CharState">
+            <summary>
+            字符状态
+            </summary>
+        </member>
+        <member name="F:QingShan.Utilities.ValidJson.CharState.arrayStart">
+            <summary>
+            数组开始【仅第一开头才算】，值嵌套的以【childrenStart】来标识。
+            </summary>
+        </member>
+        <member name="F:QingShan.Utilities.ValidJson.CharState.state">
+            <summary>
+            【0 初始状态，或 遇到“,”逗号】；【1 遇到“：”冒号】
+            </summary>
+        </member>
+        <member name="F:QingShan.Utilities.ValidJson.CharState.keyStart">
+            <summary>
+            【-1 取值结束】【0 未开始】【1 无引号开始】【2 单引号开始】【3 双引号开始】
+            </summary>
+        </member>
+        <member name="F:QingShan.Utilities.ValidJson.CharState.valueStart">
+            <summary>
+            【-1 取值结束】【0 未开始】【1 无引号开始】【2 单引号开始】【3 双引号开始】
+            </summary>
+        </member>
+        <member name="M:QingShan.Utilities.ValidJson.SetCharState(System.Char,QingShan.Utilities.ValidJson.CharState@)">
+            <summary>
+            设置字符状态(返回true则为关键词，返回false则当为普通字符处理）
+            </summary>
+        </member>
+        <member name="T:QingShan.Utilities.DateHelper">
+            <summary>
+            日期帮助类
+            </summary>
+        </member>
+        <member name="M:QingShan.Utilities.DateHelper.GetDiffMonth(System.DateTime,System.DateTime)">
+            <summary>
+            获取相差月份 正整数
+            </summary>
+            <param name="startDate"></param>
+            <param name="endDate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.DateHelper.GetDateTimeByMonth(System.Int32)">
+            <summary>
+            根据月份获取日期
+            </summary>
+            <param name="month">月份</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.DateHelper.GetDateTime(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            根据年月日获取指定日期
+            <para>默认1号</para>
+            </summary>
+            <param name="day">日</param>
+            <param name="month">月</param>
+            <param name="year">年</param>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Utilities.DEncrypt">
+            <summary>
+            Encrypt 的摘要说明。
+            </summary>
+        </member>
+        <member name="M:QingShan.Utilities.DEncrypt.#ctor">
+            <summary>
+            构造方法
+            </summary>
+        </member>
+        <member name="M:QingShan.Utilities.DEncrypt.Encrypt(System.String)">
+            <summary>
+            使用缺省密钥字符串加密string
+            </summary>
+            <param name="original">明文</param>
+            <returns>密文</returns>
+        </member>
+        <member name="M:QingShan.Utilities.DEncrypt.Decrypt(System.String)">
+            <summary>
+            使用缺省密钥字符串解密string
+            </summary>
+            <param name="original">密文</param>
+            <returns>明文</returns>
+        </member>
+        <member name="M:QingShan.Utilities.DEncrypt.Encrypt(System.String,System.String)">
+            <summary>
+            使用给定密钥字符串加密string
+            </summary>
+            <param name="original">原始文字</param>
+            <param name="key">密钥</param>
+            <param name="encoding">字符编码方案</param>
+            <returns>密文</returns>
+        </member>
+        <member name="M:QingShan.Utilities.DEncrypt.Decrypt(System.String,System.String)">
+            <summary>
+            使用给定密钥字符串解密string
+            </summary>
+            <param name="original">密文</param>
+            <param name="key">密钥</param>
+            <returns>明文</returns>
+        </member>
+        <member name="M:QingShan.Utilities.DEncrypt.Decrypt(System.String,System.String,System.Text.Encoding)">
+            <summary>
+            使用给定密钥字符串解密string,返回指定编码方式明文
+            </summary>
+            <param name="encrypted">密文</param>
+            <param name="key">密钥</param>
+            <param name="encoding">字符编码方案</param>
+            <returns>明文</returns>
+        </member>
+        <member name="M:QingShan.Utilities.DEncrypt.Decrypt(System.Byte[])">
+            <summary>
+            使用缺省密钥字符串解密byte[]
+            </summary>
+            <param name="encrypted">密文</param>
+            <param name="key">密钥</param>
+            <returns>明文</returns>
+        </member>
+        <member name="M:QingShan.Utilities.DEncrypt.Encrypt(System.Byte[])">
+            <summary>
+            使用缺省密钥字符串加密
+            </summary>
+            <param name="original">原始数据</param>
+            <param name="key">密钥</param>
+            <returns>密文</returns>
+        </member>
+        <member name="M:QingShan.Utilities.DEncrypt.MakeMD5(System.Byte[])">
+            <summary>
+            生成MD5摘要
+            </summary>
+            <param name="original">数据源</param>
+            <returns>摘要</returns>
+        </member>
+        <member name="M:QingShan.Utilities.DEncrypt.Encrypt(System.Byte[],System.Byte[])">
+            <summary>
+            使用给定密钥加密
+            </summary>
+            <param name="original">明文</param>
+            <param name="key">密钥</param>
+            <returns>密文</returns>
+        </member>
+        <member name="M:QingShan.Utilities.DEncrypt.Decrypt(System.Byte[],System.Byte[])">
+            <summary>
+            使用给定密钥解密数据
+            </summary>
+            <param name="encrypted">密文</param>
+            <param name="key">密钥</param>
+            <returns>明文</returns>
+        </member>
+        <member name="T:QingShan.Utilities.DESEncrypt">
+            <summary>
+            DES加密/解密类。
+            </summary>
+        </member>
+        <member name="M:QingShan.Utilities.DESEncrypt.Encrypt(System.String,System.String)">
+            <summary> 
+            DES加密字符串 
+            </summary> 
+            <param name="encryptString">待加密的字符串</param> 
+            <param name="encryptKey">加密密钥,要求为16位</param> 
+            <returns>加密成功返回加密后的字符串，失败返回源串</returns> 
+        </member>
+        <member name="M:QingShan.Utilities.DESEncrypt.Decrypt(System.String,System.String)">
+            <summary> 
+            DES解密字符串 
+            </summary> 
+            <param name="decryptString">待解密的字符串</param> 
+            <param name="decryptKey">解密密钥,要求为16位,和加密密钥相同</param> 
+            <returns>解密成功返回解密后的字符串，失败返源串</returns> 
+        </member>
+        <member name="T:QingShan.Utilities.Encrypt">
+            <summary>
+            加密解密实用类。
+            </summary>
+        </member>
+        <member name="M:QingShan.Utilities.Encrypt.Encode(System.String)">
+            <summary>
+            加密。
+            </summary>
+            <param name="m_Need_Encode_String"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.Encrypt.Decode(System.String)">
+            <summary>
+            解密。
+            </summary>
+            <param name="m_Need_Encode_String"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.Encrypt.Md5(System.String)">
+            <summary>
+            md5
+            </summary>
+            <param name="encypStr"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Utilities.HashEncode">
+            <summary>
+            得到随机安全码（哈希加密）。
+            </summary>
+        </member>
+        <member name="M:QingShan.Utilities.HashEncode.GetSecurity">
+            <summary>
+            得到随机哈希加密字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.HashEncode.GetRandomValue">
+            <summary>
+            得到一个随机数值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.HashEncode.HashEncoding(System.String)">
+            <summary>
+            哈希加密一个字符串
+            </summary>
+            <param name="Security"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Utilities.MySecurity">
+            <summary>
+            MySecurity(安全类) 的摘要说明。
+            </summary>
+        </member>
+        <member name="M:QingShan.Utilities.MySecurity.#ctor">
+            <summary>
+            初始化安全类
+            </summary>
+        </member>
+        <member name="M:QingShan.Utilities.MySecurity.SEncryptString(System.String,System.String)">
+            <summary>
+            加密字符串
+            </summary>
+            <param name="inputStr">输入字符串</param>
+            <param name="keyStr">密码，可以为“”</param>
+            <returns>输出加密后字符串</returns>
+        </member>
+        <member name="M:QingShan.Utilities.MySecurity.EncryptString(System.String,System.String)">
+            <summary>
+            加密字符串
+            </summary>
+            <param name="inputStr">输入字符串</param>
+            <param name="keyStr">密码，可以为“”</param>
+            <returns>输出加密后字符串</returns>
+        </member>
+        <member name="M:QingShan.Utilities.MySecurity.SEncryptString(System.String)">
+            <summary>
+            加密字符串 密钥为系统默认
+            </summary>
+            <param name="inputStr">输入字符串</param>
+            <returns>输出加密后字符串</returns>
+        </member>
+        <member name="M:QingShan.Utilities.MySecurity.EncryptFile(System.String,System.String,System.String)">
+            <summary>
+            加密文件
+            </summary>
+            <param name="filePath">输入文件路径</param>
+            <param name="savePath">加密后输出文件路径</param>
+            <param name="keyStr">密码，可以为“”</param>
+            <returns></returns>  
+        </member>
+        <member name="M:QingShan.Utilities.MySecurity.SDecryptString(System.String,System.String)">
+            <summary>
+            解密字符串
+            </summary>
+            <param name="inputStr">要解密的字符串</param>
+            <param name="keyStr">密钥</param>
+            <returns>解密后的结果</returns>
+        </member>
+        <member name="M:QingShan.Utilities.MySecurity.SDecryptString(System.String)">
+            <summary>
+             解密字符串 密钥为系统默认
+            </summary>
+            <param name="inputStr">要解密的字符串</param>
+            <returns>解密后的结果</returns>
+        </member>
+        <member name="M:QingShan.Utilities.MySecurity.DecryptString(System.String,System.String)">
+            <summary>
+            解密字符串
+            </summary>
+            <param name="inputStr">要解密的字符串</param>
+            <param name="keyStr">密钥</param>
+            <returns>解密后的结果</returns>
+        </member>
+        <member name="M:QingShan.Utilities.MySecurity.DecryptFile(System.String,System.String,System.String)">
+            <summary>
+            解密文件
+            </summary>
+            <param name="filePath">输入文件路径</param>
+            <param name="savePath">解密后输出文件路径</param>
+            <param name="keyStr">密码，可以为“”</param>
+            <returns></returns>    
+        </member>
+        <member name="M:QingShan.Utilities.MySecurity.MD5(System.String)">
+            <summary>
+            MD5加密（32位大写）
+            </summary>
+            <param name="text">要加密的字符串</param>    
+        </member>
+        <member name="M:QingShan.Utilities.MySecurity.EncodeBase64(System.String)">
+            <summary>
+            Base64加密
+            </summary>
+            <param name="text">要加密的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.MySecurity.DecodeBase64(System.String)">
+            <summary>
+            Base64解密
+            </summary>
+            <param name="text">要解密的字符串</param>
+        </member>
+        <member name="T:QingShan.Utilities.RSACryption">
+            <summary> 
+            RSA加密解密及RSA签名和验证
+            </summary> 
+        </member>
+        <member name="M:QingShan.Utilities.RSACryption.RSAKey(System.String@,System.String@)">
+            <summary>
+            RSA 的密钥产生 产生私钥 和公钥 
+            </summary>
+            <param name="xmlKeys"></param>
+            <param name="xmlPublicKey"></param>
+        </member>
+        <member name="P:QingShan.Utilities.EnumDto.Code">
+            <summary>
+            枚举code
+            </summary>
+        </member>
+        <member name="P:QingShan.Utilities.EnumDto.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="P:QingShan.Utilities.EnumDto.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="T:QingShan.Utilities.EnumHelper">
+            <summary>
+            枚举帮助类
+            </summary>
+        </member>
+        <member name="M:QingShan.Utilities.EnumHelper.GetEnumListByCode(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>
+            根据枚举代码获取枚举列表
+            </summary>
+            <param name="assemblys">程序集名称集合</param>
+            <param name="namespaces">命名空间名称集合</param>
+            <param name="enumCode">枚举名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Utilities.FileAppHelper">
+            <summary>
+            应用文件帮助类
+            <para>当前path为<see cref="M:System.IO.Directory.GetCurrentDirectory"/></para>
+            </summary>
+        </member>
+        <member name="F:QingShan.Utilities.FileAppHelper._path">
+            <summary>
+            程序目录
+            </summary>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.IsExistDirectory(System.String)">
+            <summary>
+            检测指定目录是否存在
+            </summary>
+            <param name="directoryPath">目录的绝对路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.IsExistFile(System.String)">
+            <summary>
+            检测指定文件是否存在,如果存在则返回true。
+            </summary>
+            <param name="filePath">文件的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.GetFileNames(System.String)">
+            <summary>
+            获取指定目录中所有文件列表
+            </summary>
+            <param name="directoryPath">指定目录的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.GetDirectories(System.String)">
+            <summary>
+            获取指定目录中所有子目录列表,若要搜索嵌套的子目录列表,请使用重载方法.
+            </summary>
+            <param name="directoryPath">指定目录的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.GetFileNames(System.String,System.String,System.Boolean)">
+            <summary>
+            获取指定目录及子目录中所有文件列表
+            </summary>
+            <param name="directoryPath">指定目录的绝对路径</param>
+            <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
+            范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param>
+            <param name="isSearchChild">是否搜索子目录</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.IsEmptyDirectory(System.String)">
+            <summary>
+            检测指定目录是否为空
+            </summary>
+            <param name="directoryPath">指定目录的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.Contains(System.String,System.String)">
+            <summary>
+            检测指定目录中是否存在指定的文件,若要搜索子目录请使用重载方法.
+            </summary>
+            <param name="directoryPath">指定目录的绝对路径</param>
+            <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
+            范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param>        
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.Contains(System.String,System.String,System.Boolean)">
+            <summary>
+            检测指定目录中是否存在指定的文件
+            </summary>
+            <param name="directoryPath">指定目录的绝对路径</param>
+            <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
+            范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param> 
+            <param name="isSearchChild">是否搜索子目录</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.CreateDirectory(System.String,System.String)">
+            <summary>
+            创建目录 不存在才创建
+            </summary>
+            <param name="dir">要创建的目录路径包括目录名</param>
+            <param name="path">文件夹路径 默认使用<see cref="F:QingShan.Utilities.FileAppHelper._path"/></param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.DeleteDir(System.String,System.String)">
+            <summary>
+            删除目录
+            </summary>
+            <param name="dir">要删除的目录路径和名称</param>
+            <param name="path">文件夹路径 默认使用<see cref="F:QingShan.Utilities.FileAppHelper._path"/></param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.DeleteFile(System.String,System.String)">
+            <summary>
+            删除文件
+            </summary>
+            <param name="file">要删除的文件路径和名称</param>
+            <param name="path">文件夹路径 默认使用<see cref="F:QingShan.Utilities.FileAppHelper._path"/></param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.CreateFile(System.String,System.String,System.String)">
+            <summary>
+            创建文件
+            </summary>
+            <param name="dir">带后缀的文件名</param>
+            <param name="pagestr">文件内容</param>
+            <param name="path">文件夹路径 默认使用<see cref="F:QingShan.Utilities.FileAppHelper._path"/></param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.CreateFileContent(System.String,System.String)">
+            <summary>
+            创建文件
+            </summary>
+            <param name="path">路径</param>
+            <param name="content">内容</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.MoveFile(System.String,System.String)">
+            <summary>
+            移动文件(剪贴--粘贴)
+            </summary>
+            <param name="dir1">要移动的文件的路径及全名(包括后缀)</param>
+            <param name="dir2">文件移动到新的位置,并指定新的文件名</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.CopyFile(System.String,System.String)">
+            <summary>
+            复制文件
+            </summary>
+            <param name="dir1">要复制的文件的路径已经全名(包括后缀)</param>
+            <param name="dir2">目标位置,并指定新的文件名</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.GetSystemRootDirectory(System.String)">
+            <summary>
+            获取系统根节点路径 www文件夹下
+            </summary>
+            <param name="folder">文件夹名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.GetDirectory(System.String,System.Boolean)">
+            <summary>
+            获取运行时的文件夹路径
+            <para>格式 $"/{foleder}/{<see cref="P:System.DateTime.Now"/>:yyyy}/{<see cref="P:System.DateTime.Now"/>:MM}/<see cref="P:System.DateTime.Now"/>:dd/"</para>
+            </summary>
+            <param name="folder">文件夹名称</param>
+            <param name="isDate">根据年月分层</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.GetDateDir">
+            <summary>
+            根据时间得到目录名yyyyMMdd
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.GetDateFile">
+            <summary>
+            根据时间得到文件名HHmmssff
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.GetFilesByTime(System.String,System.String)">
+            <summary>
+            根据时间获取指定路径的 后缀名的 的所有文件
+            </summary>
+            <param name="path">文件路径</param>
+            <param name="Extension">后缀名 比如.txt</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.CopyFolder(System.String,System.String)">
+            <summary>
+            复制文件夹(递归)
+            </summary>
+            <param name="varFromDirectory">源文件夹路径</param>
+            <param name="varToDirectory">目标文件夹路径</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.ExistsFile(System.String)">
+            <summary>
+            检查文件,如果文件不存在则创建  
+            </summary>
+            <param name="FilePath">路径,包括文件名</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.DeleteFolderFiles(System.String,System.String)">
+            <summary>
+            删除指定文件夹对应其他文件夹里的文件
+            </summary>
+            <param name="varFromDirectory">指定文件夹路径</param>
+            <param name="varToDirectory">对应其他文件夹路径</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.GetFileName(System.String)">
+            <summary>
+            从文件的绝对路径中获取文件名( 包含扩展名 )
+            </summary>
+            <param name="filePath">文件的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.GetFileName(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            获取文件名
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.CopyFiles(System.String,System.String)">
+            <summary>
+            复制文件参考方法,页面中引用
+            </summary>
+            <param name="cDir">新路径</param>
+            <param name="TempId">模板引擎替换编号</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.CreateDirectory(System.String)">
+            <summary>
+            创建一个目录
+            </summary>
+            <param name="directoryPath">目录的绝对路径</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.CreateFile(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            创建文件
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.CreateFile(System.String)">
+            <summary>
+            创建一个文件。
+            </summary>
+            <param name="filePath">文件的绝对路径</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.CreateFile(System.String,System.Byte[])">
+            <summary>
+            创建一个文件,并将字节流写入文件。
+            </summary>
+            <param name="filePath">文件的绝对路径</param>
+            <param name="buffer">二进制流数据</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.GetLineCount(System.String)">
+            <summary>
+            获取文本文件的行数
+            </summary>
+            <param name="filePath">文件的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.GetFileSize(System.String)">
+            <summary>
+            获取一个文件的长度,单位为Byte
+            </summary>
+            <param name="filePath">文件的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.ToFileSize(System.Int64)">
+            <summary>
+            计算文件大小函数(保留两位小数),Size为字节大小
+            </summary>
+            <param name="size">初始文件大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.GetDirectories(System.String,System.String,System.Boolean)">
+            <summary>
+            获取指定目录及子目录中所有子目录列表
+            </summary>
+            <param name="directoryPath">指定目录的绝对路径</param>
+            <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
+            范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param>
+            <param name="isSearchChild">是否搜索子目录</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.WriteText(System.String,System.String,System.Text.Encoding)">
+            <summary>
+            向文本文件中写入内容
+            </summary>
+            <param name="filePath">文件的绝对路径</param>
+            <param name="text">写入的内容</param>
+            <param name="encoding">编码</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.AppendText(System.String,System.String)">
+            <summary>
+            向文本文件的尾部追加内容
+            </summary>
+            <param name="filePath">文件的绝对路径</param>
+            <param name="content">写入的内容</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.Copy(System.String,System.String)">
+            <summary>
+            将源文件的内容复制到目标文件中
+            </summary>
+            <param name="sourceFilePath">源文件的绝对路径</param>
+            <param name="destFilePath">目标文件的绝对路径</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.Move(System.String,System.String)">
+            <summary>
+            将文件移动到指定目录
+            </summary>
+            <param name="sourceFilePath">需要移动的源文件的绝对路径</param>
+            <param name="descDirectoryPath">移动到的目录的绝对路径</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.GetFileNameNoExtension(System.String)">
+            <summary>
+            从文件的绝对路径中获取文件名( 不包含扩展名 )
+            </summary>
+            <param name="filePath">文件的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.GetExtension(System.String)">
+            <summary>
+            从文件的绝对路径中获取扩展名
+            </summary>
+            <param name="filePath">文件的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.ClearDirectory(System.String)">
+            <summary>
+            清空指定目录下所有文件及子目录,但该目录依然保存.
+            </summary>
+            <param name="directoryPath">指定目录的相对路径</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.ClearFile(System.String)">
+            <summary>
+            清空文件内容
+            </summary>
+            <param name="filePath">文件的绝对路径</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.DeleteDirectory(System.String)">
+            <summary>
+            删除指定目录及其所有子目录
+            </summary>
+            <param name="directoryPath">指定目录的相对路径</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.MapPath(System.String)">
+            <summary>
+            本地路径  <see cref="M:System.IO.Directory.GetCurrentDirectory"/>
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.FileDownSave(System.String,System.String,System.Boolean,System.String)">
+            <summary>
+            下载并保存
+            </summary>
+            <param name="url">网络路径</param>
+            <param name="savePath">保存本地的文件夹</param>
+            <param name="suffix">文件夹后缀</param>
+            <param name="isYear">是否根据年月日创建文件夹 路径/2021/03/18</param>
+            <returns>文件路径</returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.FileDownSave(System.String,System.String)">
+            <summary>
+            下载并保存
+            </summary>
+            <param name="url">网络路径</param>
+            <param name="savePath">保存本地的文件夹</param>
+            <returns>文件路径</returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileAppHelper.GetFileSuffix(System.String)">
+            <summary>
+            获取文件后缀
+            </summary>
+            <param name="url">url路径 例如12312312.jpg</param>
+            <returns>.文件后缀名 例如: .jpg</returns>
+        </member>
+        <member name="T:QingShan.Utilities.FileHelper">
+            <summary>
+            web文件帮助类
+            <para>当前存放路径为为<see cref="!:AppDomain.CurrentDomain.BaseDirectory"/></para>
+            </summary>
+        </member>
+        <member name="F:QingShan.Utilities.FileHelper._path">
+            <summary>
+            web程序运行时目录
+            </summary>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.IsExistDirectory(System.String)">
+            <summary>
+            检测指定目录是否存在
+            </summary>
+            <param name="directoryPath">目录的绝对路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.IsExistFile(System.String)">
+            <summary>
+            检测指定文件是否存在,如果存在则返回true。
+            </summary>
+            <param name="filePath">文件的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.GetFileNames(System.String)">
+            <summary>
+            获取指定目录中所有文件列表
+            </summary>
+            <param name="directoryPath">指定目录的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.GetDirectories(System.String)">
+            <summary>
+            获取指定目录中所有子目录列表,若要搜索嵌套的子目录列表,请使用重载方法.
+            </summary>
+            <param name="directoryPath">指定目录的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.GetFileNames(System.String,System.String,System.Boolean)">
+            <summary>
+            获取指定目录及子目录中所有文件列表
+            </summary>
+            <param name="directoryPath">指定目录的绝对路径</param>
+            <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
+            范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param>
+            <param name="isSearchChild">是否搜索子目录</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.IsEmptyDirectory(System.String)">
+            <summary>
+            检测指定目录是否为空
+            </summary>
+            <param name="directoryPath">指定目录的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.Contains(System.String,System.String)">
+            <summary>
+            检测指定目录中是否存在指定的文件,若要搜索子目录请使用重载方法.
+            </summary>
+            <param name="directoryPath">指定目录的绝对路径</param>
+            <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
+            范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param>        
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.Contains(System.String,System.String,System.Boolean)">
+            <summary>
+            检测指定目录中是否存在指定的文件
+            </summary>
+            <param name="directoryPath">指定目录的绝对路径</param>
+            <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
+            范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param> 
+            <param name="isSearchChild">是否搜索子目录</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.CreateDirectory(System.String,System.String)">
+            <summary>
+            创建目录 不存在才创建
+            </summary>
+            <param name="dir">要创建的目录路径包括目录名</param>
+            <param name="path">文件夹路径 默认使用<see cref="F:QingShan.Utilities.FileHelper._path"/></param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.DeleteDir(System.String,System.String)">
+            <summary>
+            删除目录
+            </summary>
+            <param name="dir">要删除的目录路径和名称</param>
+            <param name="path">文件夹路径 默认使用<see cref="F:QingShan.Utilities.FileHelper._path"/></param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.DeleteFile(System.String,System.String)">
+            <summary>
+            删除文件
+            </summary>
+            <param name="file">要删除的文件路径和名称</param>
+            <param name="path">文件夹路径 默认使用<see cref="F:QingShan.Utilities.FileHelper._path"/></param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.CreateFile(System.String,System.String,System.String)">
+            <summary>
+            创建文件
+            </summary>
+            <param name="dir">带后缀的文件名</param>
+            <param name="pagestr">文件内容</param>
+            <param name="path">文件夹路径 默认使用<see cref="F:QingShan.Utilities.FileHelper._path"/></param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.CreateFileContent(System.String,System.String)">
+            <summary>
+            创建文件
+            </summary>
+            <param name="path">路径</param>
+            <param name="content">内容</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.MoveFile(System.String,System.String)">
+            <summary>
+            移动文件(剪贴--粘贴)
+            </summary>
+            <param name="dir1">要移动的文件的路径及全名(包括后缀)</param>
+            <param name="dir2">文件移动到新的位置,并指定新的文件名</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.CopyFile(System.String,System.String)">
+            <summary>
+            复制文件
+            </summary>
+            <param name="dir1">要复制的文件的路径已经全名(包括后缀)</param>
+            <param name="dir2">目标位置,并指定新的文件名</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.GetSystemRootDirectory(System.String)">
+            <summary>
+            获取系统根节点路径 www文件夹下
+            </summary>
+            <param name="folder">文件夹名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.GetDirectory(System.String,System.Boolean)">
+            <summary>
+            获取运行时的文件夹路径 在web上使用
+            <para>格式 $"/{foleder}/{<see cref="P:System.DateTime.Now"/>:yyyy}/{<see cref="P:System.DateTime.Now"/>:MM}/<see cref="P:System.DateTime.Now"/>:dd/"</para>
+            </summary>
+            <param name="folder">文件夹名称</param>
+            <param name="isDate">根据年月分层</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.GetDateDir">
+            <summary>
+            根据时间得到目录名yyyyMMdd
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.GetDateFile">
+            <summary>
+            根据时间得到文件名HHmmssff
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.GetFilesByTime(System.String,System.String)">
+            <summary>
+            根据时间获取指定路径的 后缀名的 的所有文件
+            </summary>
+            <param name="path">文件路径</param>
+            <param name="Extension">后缀名 比如.txt</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.CopyFolder(System.String,System.String)">
+            <summary>
+            复制文件夹(递归)
+            </summary>
+            <param name="varFromDirectory">源文件夹路径</param>
+            <param name="varToDirectory">目标文件夹路径</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.ExistsFile(System.String)">
+            <summary>
+            检查文件,如果文件不存在则创建  
+            </summary>
+            <param name="FilePath">路径,包括文件名</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.DeleteFolderFiles(System.String,System.String)">
+            <summary>
+            删除指定文件夹对应其他文件夹里的文件
+            </summary>
+            <param name="varFromDirectory">指定文件夹路径</param>
+            <param name="varToDirectory">对应其他文件夹路径</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.GetFileName(System.String)">
+            <summary>
+            从文件的绝对路径中获取文件名( 包含扩展名 )
+            </summary>
+            <param name="filePath">文件的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.GetFileName(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            获取文件名
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.CopyFiles(System.String,System.String)">
+            <summary>
+            复制文件参考方法,页面中引用
+            </summary>
+            <param name="cDir">新路径</param>
+            <param name="TempId">模板引擎替换编号</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.CreateDirectory(System.String)">
+            <summary>
+            创建一个目录  绝对路径
+            </summary>
+            <param name="directoryPath">目录的绝对路径</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.CreateFile(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            创建文件 在web服务下使用
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.CreateFile(System.String)">
+            <summary>
+            创建一个文件。
+            </summary>
+            <param name="filePath">文件的绝对路径</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.CreateFile(System.String,System.Byte[])">
+            <summary>
+            创建一个文件,并将字节流写入文件。
+            </summary>
+            <param name="filePath">文件的绝对路径</param>
+            <param name="buffer">二进制流数据</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.GetLineCount(System.String)">
+            <summary>
+            获取文本文件的行数
+            </summary>
+            <param name="filePath">文件的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.GetFileSize(System.String)">
+            <summary>
+            获取一个文件的长度,单位为Byte
+            </summary>
+            <param name="filePath">文件的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.ToFileSize(System.Int64)">
+            <summary>
+            计算文件大小函数(保留两位小数),Size为字节大小
+            </summary>
+            <param name="size">初始文件大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.GetDirectories(System.String,System.String,System.Boolean)">
+            <summary>
+            获取指定目录及子目录中所有子目录列表
+            </summary>
+            <param name="directoryPath">指定目录的绝对路径</param>
+            <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
+            范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param>
+            <param name="isSearchChild">是否搜索子目录</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.WriteText(System.String,System.String,System.Text.Encoding)">
+            <summary>
+            向文本文件中写入内容
+            </summary>
+            <param name="filePath">文件的绝对路径</param>
+            <param name="text">写入的内容</param>
+            <param name="encoding">编码</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.AppendText(System.String,System.String)">
+            <summary>
+            向文本文件的尾部追加内容
+            </summary>
+            <param name="filePath">文件的绝对路径</param>
+            <param name="content">写入的内容</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.Copy(System.String,System.String)">
+            <summary>
+            将源文件的内容复制到目标文件中
+            </summary>
+            <param name="sourceFilePath">源文件的绝对路径</param>
+            <param name="destFilePath">目标文件的绝对路径</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.Move(System.String,System.String)">
+            <summary>
+            将文件移动到指定目录
+            </summary>
+            <param name="sourceFilePath">需要移动的源文件的绝对路径</param>
+            <param name="descDirectoryPath">移动到的目录的绝对路径</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.GetFileNameNoExtension(System.String)">
+            <summary>
+            从文件的绝对路径中获取文件名( 不包含扩展名 )
+            </summary>
+            <param name="filePath">文件的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.GetExtension(System.String)">
+            <summary>
+            从文件的绝对路径中获取扩展名
+            </summary>
+            <param name="filePath">文件的绝对路径</param>        
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.ClearDirectory(System.String)">
+            <summary>
+            清空指定目录下所有文件及子目录,但该目录依然保存.
+            </summary>
+            <param name="directoryPath">指定目录的相对路径</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.ClearFile(System.String)">
+            <summary>
+            清空文件内容
+            </summary>
+            <param name="filePath">文件的绝对路径</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.DeleteDirectory(System.String)">
+            <summary>
+            删除指定目录及其所有子目录
+            </summary>
+            <param name="directoryPath">指定目录的相对路径</param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.MapPath(System.String)">
+            <summary>
+            本地路径  <see cref="!:AppDomain.CurrentDomain.BaseDirectory"/>
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.FileDownSave(System.String,System.String,System.Boolean,System.String)">
+            <summary>
+            下载并保存
+            </summary>
+            <param name="url">网络路径</param>
+            <param name="savePath">保存本地的文件夹</param>
+            <param name="suffix">文件夹后缀</param>
+            <param name="isYear">是否根据年月日创建文件夹 路径/2021/03/18</param>
+            <returns>文件路径</returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.FileDownSave(System.String,System.String)">
+            <summary>
+            下载并保存
+            </summary>
+            <param name="url">网络路径</param>
+            <param name="savePath">保存本地的文件夹</param>
+            <returns>文件路径</returns>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.GetFileSuffix(System.String)">
+            <summary>
+            获取文件后缀
+            </summary>
+            <param name="url">url路径 例如12312312.jpg</param>
+            <returns>.文件后缀名 例如: .jpg</returns>
+        </member>
+        <member name="T:QingShan.Utilities.HttpClientHelper">
+            <summary>
+            HttpClient的帮助类
+            </summary>
+        </member>
+        <member name="M:QingShan.Utilities.HttpClientHelper.GetResponse(System.String,System.String@)">
+            <summary>
+            根据Url地址Get请求返回数据
+            2015年11月12日14:50:02
+            </summary>
+            <param name="url">请求的地址</param>
+            <param name="httpStatusCode">http状态码</param>
+            <returns>字符串</returns>
+        </member>
+        <member name="M:QingShan.Utilities.HttpClientHelper.GetResponse(System.String)">
+            <summary>
+            根据Url地址Get请求返回数据
+            xuja
+            2015年11月12日14:50:02
+            </summary>
+            <param name="url">请求的地址</param>
+            <returns>字符串</returns>
+        </member>
+        <member name="M:QingShan.Utilities.HttpClientHelper.GetResponse``1(System.String)">
+            <summary>
+            根据Url地址Get请求返回实体
+            xuja
+            2015年11月12日14:50:02
+            </summary>
+            <param name="url">请求的地址</param>
+            <returns>实体</returns>
+        </member>
+        <member name="M:QingShan.Utilities.HttpClientHelper.WithParameters(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            处理Get的Url
+            des：huyf
+            </summary>
+            <param name="dic"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.HttpClientHelper.PostResponse(System.String,System.String)">
+            <summary>
+            Post请求返回字符
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="postData">请求数据</param>
+            <returns>字符</returns>
+        </member>
+        <member name="M:QingShan.Utilities.HttpClientHelper.PostResponse(System.String,System.Object)">
+            <summary>
+            Post请求返回字符
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="postData">请求数据</param>
+            <returns>字符</returns>
+        </member>
+        <member name="M:QingShan.Utilities.HttpClientHelper.PostResponse``1(System.String,System.String)">
+            <summary>
+            Post请求返回实体 
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="postData">请求数据</param>
+            <returns>实体</returns>
+        </member>
+        <member name="M:QingShan.Utilities.HttpClientHelper.PostResponse``1(System.String,System.Object)">
+            <summary>
+            Post请求返回实体
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="postData">请求数据</param>
+            <returns>实体</returns>
+        </member>
+        <member name="M:QingShan.Utilities.HttpClientHelper.PutResponse(System.String,System.Object)">
+            <summary>
+            Put请求返回字符
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="obj">请求数据</param>
+            <returns>字符</returns>
+        </member>
+        <member name="M:QingShan.Utilities.HttpClientHelper.ToChsText(System.Net.HttpStatusCode)">
+            <summary>
+            将Http状态码翻译为对应的中文【暂未使用】
+            </summary>
+            <param name="code">Http状态码</param>
+            <returns>中文解析</returns>
+        </member>
+        <member name="T:QingShan.Utilities.HttpContextUtility">
             <summary>
             HttpContext 上下文实用类
             </summary>
         </member>
-        <member name="M:QingShan.Utility.HttpContextUtility.GetCurrentHttpContext">
+        <member name="M:QingShan.Utilities.HttpContextUtility.GetCurrentHttpContext">
             <summary>
             获取当前 HttpContext 对象
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:QingShan.Utilities.HttpHelper">
+            <summary>
+            Http请求 使用<see cref="T:System.Net.HttpWebRequest"/>
+            </summary>
+        </member>
+        <member name="M:QingShan.Utilities.HttpHelper.HttpPost(System.String,System.String)">
+            <summary>
+            post请求
+            </summary>
+            <param name="Url">请求地址</param>
+            <param name="postDataStr">序列化的json数据</param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:QingShan.Utilities.HttpHelper.HttpGet(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})" -->
+        <member name="M:QingShan.Utilities.ObjectHelper.IsNullOrEmpty``1(``0)">
+            <summary>
+            判断对象是否为空，为空返回true
+            </summary>
+            <typeparam name="T">要验证的对象的类型</typeparam>
+            <param name="data">要验证的对象</param>        
+        </member>
+        <member name="M:QingShan.Utilities.ObjectHelper.IsNullOrEmpty(System.Object)">
+            <summary>
+            判断对象是否为空，为空返回true
+            </summary>
+            <param name="data">要验证的对象</param>
         </member>
         <member name="T:System.Collections.Generic.CollectionExtensions">
             <summary>
@@ -1842,6 +2726,15 @@
             判断集合是否为null或空集合
             </summary>
         </member>
+        <member name="M:System.Collections.Generic.CollectionExtensions.GetBlockList``1(System.Collections.Generic.List{``0},System.Int32)">
+            <summary>
+            根据指定数量进行分块
+            </summary>
+            <typeparam name="T">模型</typeparam>
+            <param name="list">列表</param>
+            <param name="blockSize">分块数量</param>
+            <returns></returns>
+        </member>
         <member name="T:System.Collections.Generic.DictionaryExtensions">
             <summary>
             字典拓展类
@@ -1853,6 +2746,28 @@
             </summary>
             <param name="dic">字典</param>
             <param name="newDic">新字典</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.DictionaryExtensions.GetArrayValueStr(System.Collections.Generic.Dictionary{System.Int32,System.Int32})">
+            <summary>
+            得到数组列表以逗号分隔的字符串
+            </summary>
+            <param name="list"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtension.GetArrayStr(System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            把 数组 按照分隔符组装成 string
+            </summary>
+            <param name="list"></param>
+            <param name="speater"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtension.GetArrayStr(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            得到数组列表以逗号分隔的字符串
+            </summary>
+            <param name="list"></param>
             <returns></returns>
         </member>
         <member name="T:System.EntityExtensions">
@@ -1893,40 +2808,6 @@
             <summary>
             检测并执行<see cref="T:QingShan.DatabaseAccessor.IUpdateAudited`1"/>接口的处理
             </summary>
-        </member>
-        <member name="T:System.EnumExtensions">
-            <summary>
-            枚举拓展
-            </summary>
-        </member>
-        <member name="M:System.EnumExtensions.ToDescription(System.Enum)">
-            <summary>
-            获取枚举项上的<see cref="T:System.ComponentModel.DescriptionAttribute"/>特性的文字描述
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:System.ObjectExtensions.CastTo(System.Object,System.Type)">
-            <summary>
-            把对象类型转换为指定类型
-            </summary>
-            <param name="value"></param>
-            <param name="conversionType"></param>
-            <returns></returns>
-        </member>
-        <member name="M:System.ObjectExtensions.CastTo``1(System.Object)">
-            <summary>
-            把对象类型转化为指定类型
-            </summary>
-            <typeparam name="T"> 动态类型 </typeparam>
-            <param name="value"> 要转化的源对象 </param>
-            <returns> 转化后的指定类型的对象，转化失败引发异常。 </returns>
-        </member>
-        <member name="M:System.ObjectExtensions.ToDictionary(System.Object)">
-            <summary>
-            将对象属性转换为key-value对
-            </summary>
-            <param name="o"></param>
-            <returns></returns>
         </member>
         <member name="M:System.Linq.QueryableExtentions.Select``1(System.Linq.IQueryable{System.Object})">
             <summary>
@@ -1985,6 +2866,116 @@
             <param name="entityColuum"></param>
             <param name="entityNames"></param>
         </member>
+        <member name="M:System.DecimalExtension.ToRound(System.Decimal)">
+            <summary>
+            四舍五入(默认保留2位小数)
+            </summary>
+        </member>
+        <member name="M:System.DecimalExtension.ToRound(System.Decimal,System.Int32)">
+            <summary>
+            四舍五入
+            </summary>
+            <param name="val">当前值</param>
+            <param name="decimals">保留小数位数</param>
+        </member>
+        <member name="M:System.DecimalExtension.DivisionAbs(System.Decimal,System.Decimal)">
+            <summary>
+            除以
+            </summary>
+            <param name="dividend">被除数</param>
+            <param name="val">除数</param>
+            <returns>返回一个正数<para>当被除数为零（0）时返回0</para></returns>
+        </member>
+        <member name="M:System.DecimalExtension.DivisionRadioAbs(System.Decimal,System.Decimal)">
+            <summary>
+            除以 百分比 将会乘以100
+            </summary>
+            <param name="dividend">被除数</param>
+            <param name="val">除数</param>
+            <returns>返回一个正数<para>当被除数为零（0）时返回0</para></returns>
+        </member>
+        <member name="M:System.DecimalExtension.Division(System.Decimal,System.Decimal)">
+            <summary>
+            除以
+            </summary>
+            <param name="dividend">被除数</param>
+            <param name="val">除数</param>
+            <returns>当被除数为零（0）时返回0</returns>
+        </member>
+        <member name="M:System.DecimalExtension.ToZero(System.Nullable{System.Decimal})">
+            <summary>
+            空值转换为0
+            </summary>
+            <param name="val">值</param>
+            <returns></returns>
+        </member>
+        <member name="T:System.EnumExtensions">
+            <summary>
+            枚举拓展
+            </summary>
+        </member>
+        <member name="M:System.EnumExtensions.ToDescription(System.Enum)">
+            <summary>
+            获取枚举项上的<see cref="T:System.ComponentModel.DescriptionAttribute"/>特性的文字描述
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:System.Int32Extension">
+            <summary>
+            <see cref="T:System.Int32"/>拓展
+            </summary>
+        </member>
+        <member name="M:System.Int32Extension.Division(System.Int32,System.Decimal)">
+            <summary>
+            除以
+            </summary>
+            <param name="dividend">被除数</param>
+            <param name="val">除数</param>
+            <returns>当被除数为零（0）时返回0</returns>
+        </member>
+        <member name="M:System.Int32Extension.ToZero(System.Nullable{System.Int32})">
+            <summary>
+            空值转换为0
+            </summary>
+            <param name="val">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.ObjectExtensions.CastTo(System.Object,System.Type)">
+            <summary>
+            把对象类型转换为指定类型
+            </summary>
+            <param name="value"></param>
+            <param name="conversionType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.ObjectExtensions.CastTo``1(System.Object)">
+            <summary>
+            把对象类型转化为指定类型
+            </summary>
+            <typeparam name="T"> 动态类型 </typeparam>
+            <param name="value"> 要转化的源对象 </param>
+            <returns> 转化后的指定类型的对象，转化失败引发异常。 </returns>
+        </member>
+        <member name="M:System.ObjectExtensions.ToDictionary(System.Object)">
+            <summary>
+            将对象属性转换为key-value对
+            </summary>
+            <param name="o"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.ObjectExtensions.IsNullOrEmpty``1(``0)">
+            <summary>
+            判断对象是否为空，为空返回true
+            </summary>
+            <typeparam name="T">要验证的对象的类型</typeparam>
+            <param name="data">要验证的对象</param>        
+        </member>
+        <member name="M:System.ObjectExtensions.IsNullOrEmpty(System.Object)">
+            <summary>
+            判断对象是否为空，为空返回true
+            </summary>
+            <param name="data">要验证的对象</param>
+        </member>
         <member name="M:System.StringExtensions.IF(System.String,System.Boolean)">
             <summary>
             根据条件展示数据
@@ -2014,6 +3005,13 @@
             <param name="path">要进行转换的路径，可以是绝对路径，相以路径和URL地址</param>
             <returns>转换后的全路径</returns>
         </member>
+        <member name="M:System.StringExtensions.ToLocalBinDirectory(System.String)">
+            <summary>
+            将相对路径转换成程序所在的绝对路径
+            </summary>
+            <param name="path">要进行转换的路径，可以是绝对路径，相以路径和URL地址</param>
+            <returns>转换后的全路径</returns>
+        </member>
         <member name="M:System.StringExtensions.SplitCamelCase(System.String)">
             <summary>
             切割骆驼命名式字符串
@@ -2027,6 +3025,135 @@
             </summary>
             <param name="str">字符串</param>
             <returns>首单词</returns>
+        </member>
+        <member name="M:System.StringExtensions.GetStrArray(System.String,System.Char,System.Boolean)">
+            <summary>
+            把字符串按照分隔符转换成 List
+            </summary>
+            <param name="str">源字符串</param>
+            <param name="speater">分隔符</param>
+            <param name="toLower">是否转换为小写</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.GetStrArray(System.String)">
+            <summary>
+            把字符串转 按照, 分割 换为数据
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.DelLastComma(System.String)">
+            <summary>
+            删除最后结尾的一个逗号
+            </summary>
+        </member>
+        <member name="M:System.StringExtensions.DelLastChar(System.String,System.String)">
+            <summary>
+            删除最后结尾的指定字符后的字符
+            </summary>
+        </member>
+        <member name="M:System.StringExtensions.ToBytes(System.String)">
+            <summary>
+            When overridden in a derived class, encodes all the characters in the specified
+            string into a sequence of bytes.
+            </summary>
+            <param name="str"></param>
+            <returns>A byte array containing the results of encoding the specified set of characters.</returns>
+        </member>
+        <member name="M:System.StringExtensions.ToSBC(System.String)">
+            <summary>
+            转全角的函数(SBC case)
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.ToDBC(System.String)">
+            <summary>
+             转半角的函数(SBC case)
+            </summary>
+            <param name="input">输入</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.GetSubStringList(System.String,System.Char)">
+            <summary>
+            把字符串按照指定分隔符装成 List 去除重复
+            </summary>
+            <param name="o_str"></param>
+            <param name="sepeater"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.GetCleanStyle(System.String,System.String)">
+            <summary>
+             将字符串样式转换为纯字符串
+            </summary>
+            <param name="StrList"></param>
+            <param name="SplitString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.SplitMulti(System.String,System.String)">
+            <summary>
+            分割字符串
+            </summary>
+            <param name="str"></param>
+            <param name="splitstr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.StrToId(System.String)">
+            <summary>
+            获取正确的Id，如果不是正整数，返回0
+            </summary>
+            <param name="_value"></param>
+            <returns>返回正确的整数ID，失败返回0</returns>
+        </member>
+        <member name="M:System.StringExtensions.IsNumberId(System.String)">
+            <summary>
+            检查一个字符串是否是纯数字构成的，一般用于查询字符串参数的有效性验证。(0除外)
+            </summary>
+            <param name="_value">需验证的字符串。。</param>
+            <returns>是否合法的bool值。</returns>
+        </member>
+        <member name="M:System.StringExtensions.QuickValidate(System.String,System.String)">
+            <summary>
+            快速验证一个字符串是否符合指定的正则表达式。
+            </summary>
+            <param name="_express">正则表达式的内容。</param>
+            <param name="_value">需验证的字符串。</param>
+            <returns>是否合法的bool值。</returns>
+        </member>
+        <member name="M:System.StringExtensions.GetMD5(System.String)">
+            <summary>
+            根据配置对指定字符串进行 MD5 加密
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.StrLength(System.String)">
+            <summary>
+            得到字符串长度，一个汉字长度为2
+            </summary>
+            <param name="inputString">参数字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.ClipString(System.String,System.Int32)">
+            <summary>
+            截取指定长度字符串
+            </summary>
+            <param name="inputString">要处理的字符串</param>
+            <param name="len">指定长度</param>
+            <returns>返回处理后的字符串</returns>
+        </member>
+        <member name="M:System.StringExtensions.IsNullOrEmpty``1(``0)">
+            <summary>
+            判断对象是否为空，为空返回true
+            </summary>
+            <typeparam name="T">要验证的对象的类型</typeparam>
+            <param name="data">要验证的对象</param>        
+        </member>
+        <member name="M:System.StringExtensions.IsNullOrEmpty(System.Object)">
+            <summary>
+            判断对象是否为空，为空返回true
+            </summary>
+            <param name="data">要验证的对象</param>
         </member>
         <member name="M:System.TypeExtensions.IsController(System.Type)">
             <summary>

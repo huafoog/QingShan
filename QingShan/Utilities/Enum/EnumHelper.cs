@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace QingShan.Helper
+namespace QingShan.Utilities
 {
 
     public class EnumDto

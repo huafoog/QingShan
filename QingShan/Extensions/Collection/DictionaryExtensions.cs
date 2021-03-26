@@ -1,4 +1,5 @@
 ﻿using QingShan.DependencyInjection;
+using System.Text;
 
 namespace System.Collections.Generic
 {
@@ -28,6 +29,28 @@ namespace System.Collections.Generic
                 }
             }
             return dic;
+        }
+
+        /// <summary>
+        /// 得到数组列表以逗号分隔的字符串
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public static string GetArrayValueStr(this Dictionary<int, int> list)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (KeyValuePair<int, int> kvp in list)
+            {
+                sb.Append(kvp.Value + ",");
+            }
+            if (list.Count > 0)
+            {
+                return sb.ToString().DelLastComma();
+            }
+            else
+            {
+                return "";
+            }
         }
 
     }

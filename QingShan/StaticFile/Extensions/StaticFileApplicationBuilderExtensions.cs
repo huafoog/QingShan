@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using QingShan.Helper;
+using QingShan.Utilities;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.FileProviders;
@@ -40,7 +40,7 @@ namespace Microsoft.AspNetCore.Builder
                 }
                 foreach (var folder in staticFileSettings.StaticFileFolder)
                 {
-                    FileHelper.CreateDir(folder.Folder, env.ContentRootPath);
+                    FileHelper.CreateDirectory(folder.Folder, env.ContentRootPath);
                     var requestPath = folder.RequestPath;
 
                     app.UseStaticFiles(new StaticFileOptions

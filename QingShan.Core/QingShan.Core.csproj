@@ -16,6 +16,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="FreeSql\UnitOfWork\Filters\**" />
+    <EmbeddedResource Remove="FreeSql\UnitOfWork\Filters\**" />
+    <None Remove="FreeSql\UnitOfWork\Filters\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="EFCore.BulkExtensions" Version="3.1.1" />
     <PackageReference Include="FreeSql" Version="2.0.101" />
     <PackageReference Include="FreeSql.Provider.SqlServer" Version="2.0.101" />
@@ -43,7 +49,6 @@
 
 	<ItemGroup>
 	  <Folder Include="App\Extensions\" />
-	  <Folder Include="FreeSql\UnitOfWork\Filters\" />
 	</ItemGroup>
 
 	<ItemGroup>

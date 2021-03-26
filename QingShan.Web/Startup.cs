@@ -11,7 +11,7 @@ using Newtonsoft.Json.Serialization;
 using QingShan.Attributes;
 using QingShan.Core.ConfigurableOptions;
 using QingShan.DatabaseAccessor;
-using QingShan.Helper;
+using QingShan.Utilities;
 using QingShan.Reflection;
 using QingShan.Core.Web.Filter;
 using QingShan.Core.Web.Permission;

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using QingShan.Data;
-using QingShan.Helper;
+using QingShan.Utilities;
 
 namespace QingShan.Core.Web.Controllers
 {

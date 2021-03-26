@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using QingShan.Utility;
+using QingShan.Utilities;
 using System;
 
 namespace QingShan.DependencyInjection

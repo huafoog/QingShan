@@ -1,13 +1,12 @@
 ﻿using System;
 
-namespace QingShan.Helper
+namespace QingShan.Utilities
 {
     /// <summary>
     /// 日期帮助类
     /// </summary>
     public class DateHelper
     {
-
         /// <summary>
         /// 获取相差月份 正整数
         /// </summary>

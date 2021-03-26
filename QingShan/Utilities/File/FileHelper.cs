@@ -3,12 +3,26 @@ using QingShan.Data.Constants;
 using System;
 using System.Data;
 using System.IO;
+using System.Net.Http;
 using System.Text;
 
-namespace QingShan.Helper
+namespace QingShan.Utilities
 {
+
+#pragma warning disable CS1574 // XML 注释中有无法解析的 cref 特性
+    /// <summary>
+    /// web文件帮助类
+    /// <para>当前存放路径为为<see cref="AppDomain.CurrentDomain.BaseDirectory"/></para>
+    /// </summary>
     public class FileHelper
+#pragma warning restore CS1574 // XML 注释中有无法解析的 cref 特性
     {
+        /// <summary>
+        /// web程序运行时目录
+        /// </summary>
+
+        private readonly static string _path = AppDomain.CurrentDomain.BaseDirectory;
+
         #region 检测指定目录是否存在
         /// <summary>
         /// 检测指定目录是否存在
@@ -204,18 +218,18 @@ namespace QingShan.Helper
         /// 创建目录 不存在才创建
         /// </summary>
         /// <param name="dir">要创建的目录路径包括目录名</param>
-        /// <param name="path">文件夹路径 默认使用<see cref="Directory.GetCurrentDirectory()"/></param>
-        public static void CreateDir(string dir,string path = null)
+        /// <param name="path">文件夹路径 默认使用<see cref="_path"/></param>
+        public static void CreateDirectory(string dir, string path = null)
         {
             if (dir.Length == 0)
             {
                 return;
             }
-            if (path == null)
+            if (path.IsNull())
             {
-                path = Directory.GetCurrentDirectory();
+                path = _path;
             }
-           
+
             if (!Directory.Exists(path + "\\" + dir))
             {
                 Directory.CreateDirectory(path + "\\" + dir);
@@ -228,16 +242,20 @@ namespace QingShan.Helper
         /// 删除目录
         /// </summary>
         /// <param name="dir">要删除的目录路径和名称</param>
-        public static void DeleteDir(string dir)
+        /// <param name="path">文件夹路径 默认使用<see cref="_path"/></param>
+        public static void DeleteDir(string dir, string path = null)
         {
             if (dir.Length == 0)
             {
                 return;
             }
-
-            if (Directory.Exists(Directory.GetCurrentDirectory() + "\\" + dir))
+            if (path == null)
             {
-                Directory.Delete(Directory.GetCurrentDirectory() + "\\" + dir);
+                path = _path;
+            }
+            if (Directory.Exists(path + "\\" + dir))
+            {
+                Directory.Delete(path + "\\" + dir);
             }
         }
         #endregion
@@ -247,11 +265,16 @@ namespace QingShan.Helper
         /// 删除文件
         /// </summary>
         /// <param name="file">要删除的文件路径和名称</param>
-        public static void DeleteFile(string file)
+        /// <param name="path">文件夹路径 默认使用<see cref="_path"/></param>
+        public static void DeleteFile(string file, string path = null)
         {
-            if (File.Exists(Directory.GetCurrentDirectory() + file))
+            if (path.IsNull())
             {
-                File.Delete(Directory.GetCurrentDirectory() + file);
+                path = _path;
+            }
+            if (File.Exists(path + file))
+            {
+                File.Delete(path + file);
             }
         }
         #endregion
@@ -262,15 +285,20 @@ namespace QingShan.Helper
         /// </summary>
         /// <param name="dir">带后缀的文件名</param>
         /// <param name="pagestr">文件内容</param>
-        public static void CreateFile(string dir, string pagestr)
+        /// <param name="path">文件夹路径 默认使用<see cref="_path"/></param>
+        public static void CreateFile(string dir, string pagestr, string path = null)
         {
+            if (path.IsNull())
+            {
+                path = _path;
+            }
             dir = dir.Replace("/", "\\");
             if (dir.IndexOf("\\") > -1)
             {
-                CreateDir(dir.Substring(0, dir.LastIndexOf("\\")));
+                CreateDirectory(dir.Substring(0, dir.LastIndexOf("\\")));
             }
 
-            StreamWriter sw = new StreamWriter(Directory.GetCurrentDirectory() + "\\" + dir, false, System.Text.Encoding.GetEncoding("GB2312"));
+            StreamWriter sw = new StreamWriter(path + "\\" + dir, false, Encoding.GetEncoding("GB2312"));
             sw.Write(pagestr);
             sw.Close();
         }
@@ -287,7 +315,7 @@ namespace QingShan.Helper
             {
                 di.Create();
             }
-            StreamWriter sw = new StreamWriter(path, false, System.Text.Encoding.GetEncoding("GB2312"));
+            StreamWriter sw = new StreamWriter(path, false, Encoding.GetEncoding("GB2312"));
             sw.Write(content);
             sw.Close();
         }
@@ -303,9 +331,9 @@ namespace QingShan.Helper
         {
             dir1 = dir1.Replace("/", "\\");
             dir2 = dir2.Replace("/", "\\");
-            if (File.Exists(Directory.GetCurrentDirectory() + "\\" + dir1))
+            if (File.Exists(_path + "\\" + dir1))
             {
-                File.Move(Directory.GetCurrentDirectory() + "\\" + dir1, Directory.GetCurrentDirectory() + "\\" + dir2);
+                File.Move(_path + "\\" + dir1, _path + "\\" + dir2);
             }
         }
         #endregion
@@ -320,9 +348,9 @@ namespace QingShan.Helper
         {
             dir1 = dir1.Replace("/", "\\");
             dir2 = dir2.Replace("/", "\\");
-            if (File.Exists(Directory.GetCurrentDirectory() + "\\" + dir1))
+            if (File.Exists(_path + "\\" + dir1))
             {
-                File.Copy(Directory.GetCurrentDirectory() + "\\" + dir1, Directory.GetCurrentDirectory() + "\\" + dir2, true);
+                File.Copy(_path + "\\" + dir1, _path + "\\" + dir2, true);
             }
         }
         #endregion
@@ -330,16 +358,35 @@ namespace QingShan.Helper
         #region 根据时间得到目录名 / 格式:yyyyMMdd 或者 HHmmssff
 
         /// <summary>
-        /// 获取一个存在的文件夹
+        /// 获取系统根节点路径 www文件夹下
         /// </summary>
         /// <param name="folder">文件夹名称</param>
         /// <returns></returns>
-        public static string GetDirectory(string folder = default)
+        public static string GetSystemRootDirectory(string folder = default)
         {
             var path = $"{SystemConst.SYS_FILE_FOLDER_ROOT}/{folder ?? "Uploads"}/{DateTime.Now:yyyy/MM/dd}";
             CreateDirectory(MapPath(path));
             return path;
         }
+
+        /// <summary>
+        /// 获取运行时的文件夹路径 在web上使用
+        /// <para>格式 $"/{foleder}/{<see cref="DateTime.Now"/>:yyyy}/{<see cref="DateTime.Now"/>:MM}/<see cref="DateTime.Now"/>:dd/"</para>
+        /// </summary>
+        /// <param name="folder">文件夹名称</param>
+        /// <param name="isDate">根据年月分层</param>
+        /// <returns></returns>
+        public static string GetDirectory(string folder = default, bool isDate = true)
+        {
+            var path = $"/{folder ?? "Uploads"}/{DateTime.Now:yyyy}/{DateTime.Now:MM}/{DateTime.Now:dd}/";
+            if (!isDate)
+            {
+                path = $"/{folder ?? "Uploads"}/{DateTime.Now:yyyy/MM/dd}";
+            }
+            CreateDirectory(MapPath(path));
+            return path;
+        }
+
 
         /// <summary>
         /// 根据时间得到目录名yyyyMMdd
@@ -588,7 +635,7 @@ namespace QingShan.Helper
 
         #region 创建一个目录
         /// <summary>
-        /// 创建一个目录
+        /// 创建一个目录  绝对路径
         /// </summary>
         /// <param name="directoryPath">目录的绝对路径</param>
         public static void CreateDirectory(string directoryPath)
@@ -604,7 +651,7 @@ namespace QingShan.Helper
         #region 创建一个文件
 
         /// <summary>
-        /// 创建文件
+        /// 创建文件 在web服务下使用
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
@@ -615,7 +662,7 @@ namespace QingShan.Helper
             var folder = GetDirectory();
 
             var filePath = Path.Combine(folder, fileName);
-            using (FileStream fs = System.IO.File.Create(filePath.ToLocalDirectory()))
+            using (FileStream fs = File.Create(filePath.ToLocalDirectory()))
             {
                 file.CopyTo(fs);
                 fs.Flush();
@@ -921,15 +968,121 @@ namespace QingShan.Helper
         #endregion
 
         #region 本地路径
+
+#pragma warning disable CS1574 // XML 注释中有无法解析的 cref 特性
         /// <summary>
-        /// 本地路径
+        /// 本地路径  <see cref="AppDomain.CurrentDomain.BaseDirectory"/>
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
         public static string MapPath(string path)
+#pragma warning restore CS1574 // XML 注释中有无法解析的 cref 特性
         {
-            return path.ToLocalDirectory();
+            return path.ToLocalBinDirectory();
         }
         #endregion
+
+
+        #region 下载文件
+        private static HttpClient _httpClient = null;
+        /// <summary>
+        /// 下载并保存
+        /// </summary>
+        /// <param name="url">网络路径</param>
+        /// <param name="savePath">保存本地的文件夹</param>
+        /// <param name="suffix">文件夹后缀</param>
+        /// <param name="isYear">是否根据年月日创建文件夹 路径/2021/03/18</param>
+        /// <returns>文件路径</returns>
+        public static string FileDownSave(string url, string savePath, bool isYear = true, string suffix = null)
+        {
+            if (string.IsNullOrEmpty(url))
+            {
+                throw new FileLoadException("网络路径为空");
+            }
+            if (suffix == null)
+            {
+                suffix = url.Split('.')[1];
+            }
+            if (isYear)
+            {
+                savePath = GetDirectory(savePath);
+            }
+            CreateDirectory(savePath);
+            var path = $"{savePath}/{Guid.NewGuid()}.{suffix}";
+            if (_httpClient == null)
+            {
+                _httpClient = new HttpClient();
+            }
+            var t = _httpClient.GetByteArrayAsync(url);
+            t.Wait();
+            using Stream responseStream = new MemoryStream(t.Result);
+            using Stream stream = new FileStream(path, FileMode.Create);
+            byte[] bArr = new byte[1024];
+            int size = responseStream.Read(bArr, 0, bArr.Length);
+            while (size > 0)
+            {
+                stream.Write(bArr, 0, size);
+                size = responseStream.Read(bArr, 0, bArr.Length);
+            }
+            stream.Close();
+            responseStream.Close();
+            return path;
+        }
+        /// <summary>
+        /// 下载并保存
+        /// </summary>
+        /// <param name="url">网络路径</param>
+        /// <param name="savePath">保存本地的文件夹</param>
+        /// <returns>文件路径</returns>
+        public static void FileDownSave(string url, string savePath)
+        {
+            if (string.IsNullOrEmpty(url))
+            {
+                throw new FileLoadException("网络路径为空");
+            }
+            if (_httpClient == null)
+            {
+                _httpClient = new HttpClient();
+            }
+            var t = _httpClient.GetByteArrayAsync(url);
+            t.Wait();
+            using Stream responseStream = new MemoryStream(t.Result);
+            using Stream stream = new FileStream(_path + "/" + savePath, FileMode.Create);
+            byte[] bArr = new byte[1024];
+            int size = responseStream.Read(bArr, 0, bArr.Length);
+            while (size > 0)
+            {
+                stream.Write(bArr, 0, size);
+                size = responseStream.Read(bArr, 0, bArr.Length);
+            }
+            stream.Close();
+            responseStream.Close();
+        }
+        #endregion
+
+        /// <summary>
+        /// 获取文件后缀
+        /// </summary>
+        /// <param name="url">url路径 例如12312312.jpg</param>
+        /// <returns>.文件后缀名 例如: .jpg</returns>
+        public static string GetFileSuffix(string url)
+        {
+            if (string.IsNullOrEmpty(url))
+            {
+                return url;
+            }
+            /*
+            string filename  = Path.GetFileName(fullPath);//返回带扩展名的文件名 "default.avi"
+            string extension = Path.GetExtension(fullPath);//扩展名 ".aspx"
+            string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fullPath);// 没有扩展名的文件名 "default"
+
+
+            string dirPath = Path.GetDirectoryName(filePath) //返回文件所在目录 "d:\test"
+            string fullPath1 = Path.Combine(@"d:\test", "default.avi")  //返回 "d:\test\default.avi"
+
+            string fullPath2 = Path.GetFullPath("config.ini");//返回指定路径字符串的绝对路径
+             */
+            return Path.GetExtension(url);
+        }
     }
 }

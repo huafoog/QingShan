@@ -77,5 +77,24 @@ namespace System.Collections.Generic
         {
             return collection == null || collection.Count == 0;
         }
+
+        /// <summary>
+        /// 根据指定数量进行分块
+        /// </summary>
+        /// <typeparam name="T">模型</typeparam>
+        /// <param name="list">列表</param>
+        /// <param name="blockSize">分块数量</param>
+        /// <returns></returns>
+        public static List<List<T>> GetBlockList<T>(List<T> list, int blockSize = 10)
+        {
+            List<List<T>> result = new List<List<T>>();
+            var count = Math.Ceiling(Convert.ToDecimal(list.Count) / blockSize);
+            for (int i = 0; i < count; i++)
+            {
+                List<T> small = list.Skip(i * blockSize).Take(blockSize).ToList();
+                result.Add(small);
+            }
+            return result;
+        }
     }
 }

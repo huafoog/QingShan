@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QingShan.Data.Enums;
 using QingShan.DependencyInjection;
-using QingShan.Helper;
+using QingShan.Utilities;
 using QingShan.Permission.Authorization;
 using QingShan.Reflection;
 using QingShan.Services.Permission.Dto;

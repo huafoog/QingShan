@@ -199,7 +199,6 @@ namespace QingShan.Core.SpecificationDocument
                 .Select(u => u.Group);
         }
         /// <summary>
-        /// <see cref="GetControllerGroups(MethodInfo)"/> 缓存集合
         /// </summary>
         private static readonly ConcurrentDictionary<Type, IEnumerable<GroupOrder>> GetControllerGroupsCached;
         /// <summary>
@@ -255,7 +254,6 @@ namespace QingShan.Core.SpecificationDocument
             };
         }
         /// <summary>
-        /// <see cref="GetControllerGroups(MethodInfo)"/> 缓存集合
         /// </summary>
         private static readonly ConcurrentDictionary<string, SpecificationOpenApiInfo> GetGroupOpenApiInfoCached;
         /// <summary>
@@ -305,6 +303,7 @@ namespace QingShan.Core.SpecificationDocument
         /// Swagger UI 构建
         /// </summary>
         /// <param name="swaggerUIOptions"></param>
+        /// <param name="routePrefix">api地址</param>
         internal static void BuildUI(SwaggerUIOptions swaggerUIOptions,string routePrefix =default)
         {
             // 配置分组终点路由

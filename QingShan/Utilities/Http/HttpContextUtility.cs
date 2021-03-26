@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading;
 
-namespace QingShan.Utility
+namespace QingShan.Utilities
 {
     /// <summary>
     /// HttpContext 上下文实用类

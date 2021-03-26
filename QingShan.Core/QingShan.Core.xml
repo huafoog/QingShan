@@ -678,7 +678,6 @@
         </member>
         <member name="F:QingShan.Core.SpecificationDocument.SpecificationDocumentBuilder.GetControllerGroupsCached">
             <summary>
-            <see cref="!:GetControllerGroups(MethodInfo)"/> 缓存集合
             </summary>
         </member>
         <member name="M:QingShan.Core.SpecificationDocument.SpecificationDocumentBuilder.GetControllerGroups(System.Type)">
@@ -697,7 +696,6 @@
         </member>
         <member name="F:QingShan.Core.SpecificationDocument.SpecificationDocumentBuilder.GetGroupOpenApiInfoCached">
             <summary>
-            <see cref="!:GetControllerGroups(MethodInfo)"/> 缓存集合
             </summary>
         </member>
         <member name="M:QingShan.Core.SpecificationDocument.SpecificationDocumentBuilder.GetGroupOpenApiInfo(System.String)">
@@ -720,6 +718,7 @@
             Swagger UI 构建
             </summary>
             <param name="swaggerUIOptions"></param>
+            <param name="routePrefix">api地址</param>
         </member>
         <member name="M:QingShan.Core.SpecificationDocument.SpecificationDocumentBuilder.CreateGroupEndpoint(Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIOptions)">
             <summary>

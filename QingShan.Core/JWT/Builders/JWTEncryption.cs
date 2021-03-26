@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
-using QingShan.Utility;
+using QingShan.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
