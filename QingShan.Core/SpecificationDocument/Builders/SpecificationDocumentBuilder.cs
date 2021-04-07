@@ -119,7 +119,29 @@ namespace QingShan.Core.SpecificationDocument
             if (_specificationDocumentSettings.EnableAuthorized != true || _specificationDocumentSettings.SecurityDefinitions.Length == 0) return;
 
             var openApiSecurityRequirement = new OpenApiSecurityRequirement();
+            //swaggerGenOptions.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+            //{
+            //    Description = "在下框中输入请求头中需要添加Jwt授权Token：Bearer Token",
+            //    Name = "Authorization",
+            //    In = ParameterLocation.Header,
+            //    Type = SecuritySchemeType.ApiKey,
+            //    BearerFormat = "JWT",
+            //    Scheme = "Bearer"
+            //});
 
+            swaggerGenOptions.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] { }
+                    }
+                });
             // 生成安全定义
             foreach (var securityDefinition in _specificationDocumentSettings.SecurityDefinitions)
             {

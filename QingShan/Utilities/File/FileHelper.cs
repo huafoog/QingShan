@@ -5,6 +5,7 @@ using System.Data;
 using System.IO;
 using System.Net.Http;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace QingShan.Utilities
 {
@@ -17,6 +18,15 @@ namespace QingShan.Utilities
     public class FileHelper
 #pragma warning restore CS1574 // XML 注释中有无法解析的 cref 特性
     {
+        /// <summary>
+        /// 当前操作系统是否是Linux
+        /// <para>在Linux中，如果一个项目的根目录为：D:\</para>
+        /// <para>string path = Path.Combine( Directory.GetCurrentDirectory(), "Console\\Temp\\test.txt");</para>
+        /// <para>那么path路径为D:/Console\Temp\test.txt目录，Console\Temp\test.txt是一个名为Console\Temp\test的txt文件。</para>
+        /// <para>在Windows下路径应该这么写： C:\temp\test.txt 在Linux下则是这样的： C:/temp/test.txt</para>
+        /// </summary>
+        private readonly static bool IsLinux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+
         /// <summary>
         /// web程序运行时目录
         /// </summary>
@@ -73,6 +83,12 @@ namespace QingShan.Utilities
         {
             try
             {
+
+                if (IsLinux)
+                {
+                    directoryPath = directoryPath.Replace("\\", "/");
+                }
+
                 return Directory.GetDirectories(directoryPath);
             }
             catch (IOException ex)
@@ -100,6 +116,10 @@ namespace QingShan.Utilities
 
             try
             {
+                if (IsLinux)
+                {
+                    directoryPath = directoryPath.Replace("\\", "/");
+                }
                 if (isSearchChild)
                 {
                     return Directory.GetFiles(directoryPath, searchPattern, SearchOption.AllDirectories);
@@ -125,6 +145,10 @@ namespace QingShan.Utilities
         {
             try
             {
+                if (IsLinux)
+                {
+                    directoryPath = directoryPath.Replace("\\", "/");
+                }
                 //判断是否存在文件
                 string[] fileNames = GetFileNames(directoryPath);
                 if (fileNames.Length > 0)
@@ -161,6 +185,10 @@ namespace QingShan.Utilities
         {
             try
             {
+                if (IsLinux)
+                {
+                    directoryPath = directoryPath.Replace("\\", "/");
+                }
                 //获取指定的文件列表
                 string[] fileNames = GetFileNames(directoryPath, searchPattern, false);
 
@@ -192,6 +220,10 @@ namespace QingShan.Utilities
         {
             try
             {
+                if (IsLinux)
+                {
+                    directoryPath = directoryPath.Replace("\\", "/");
+                }
                 //获取指定的文件列表
                 string[] fileNames = GetFileNames(directoryPath, searchPattern, true);
 
@@ -229,10 +261,15 @@ namespace QingShan.Utilities
             {
                 path = _path;
             }
-
-            if (!Directory.Exists(path + "\\" + dir))
+            var thisPath = path + "\\" + dir;
+            if (IsLinux)
             {
-                Directory.CreateDirectory(path + "\\" + dir);
+                thisPath = thisPath.Replace("\\", "/");
+            }
+
+            if (!Directory.Exists(thisPath))
+            {
+                Directory.CreateDirectory(thisPath);
             }
         }
         #endregion
@@ -253,9 +290,14 @@ namespace QingShan.Utilities
             {
                 path = _path;
             }
-            if (Directory.Exists(path + "\\" + dir))
+            var thisPath = path + "\\" + dir;
+            if (IsLinux)
             {
-                Directory.Delete(path + "\\" + dir);
+                thisPath = thisPath.Replace("\\", "/");
+            }
+            if (Directory.Exists(thisPath))
+            {
+                Directory.Delete(thisPath);
             }
         }
         #endregion
@@ -272,9 +314,14 @@ namespace QingShan.Utilities
             {
                 path = _path;
             }
-            if (File.Exists(path + file))
+            var thisPath = path + file;
+            if (IsLinux)
             {
-                File.Delete(path + file);
+                thisPath = thisPath.Replace("\\", "/");
+            }
+            if (File.Exists(thisPath))
+            {
+                File.Delete(thisPath);
             }
         }
         #endregion
@@ -297,8 +344,12 @@ namespace QingShan.Utilities
             {
                 CreateDirectory(dir.Substring(0, dir.LastIndexOf("\\")));
             }
-
-            StreamWriter sw = new StreamWriter(path + "\\" + dir, false, Encoding.GetEncoding("GB2312"));
+            var thisPath = path + "\\" + dir;
+            if (IsLinux)
+            {
+                thisPath = thisPath.Replace("\\","/");
+            }
+            StreamWriter sw = new StreamWriter(thisPath, false, Encoding.GetEncoding("GB2312"));
             sw.Write(pagestr);
             sw.Close();
         }
@@ -314,6 +365,10 @@ namespace QingShan.Utilities
             if (!di.Exists)
             {
                 di.Create();
+            }
+            if (IsLinux)
+            {
+                path = path.Replace("\\", "/");
             }
             StreamWriter sw = new StreamWriter(path, false, Encoding.GetEncoding("GB2312"));
             sw.Write(content);
@@ -331,9 +386,18 @@ namespace QingShan.Utilities
         {
             dir1 = dir1.Replace("/", "\\");
             dir2 = dir2.Replace("/", "\\");
-            if (File.Exists(_path + "\\" + dir1))
+          
+
+            var path1 = _path + "\\" + dir1;
+            var path2 = _path + "\\" + dir2;
+            if (IsLinux)
             {
-                File.Move(_path + "\\" + dir1, _path + "\\" + dir2);
+                path1 = path1.Replace("\\", "/");
+                path2 = path2.Replace("\\", "/");
+            }
+            if (File.Exists(path1))
+            {
+                File.Move(path1, path2);
             }
         }
         #endregion
@@ -348,9 +412,18 @@ namespace QingShan.Utilities
         {
             dir1 = dir1.Replace("/", "\\");
             dir2 = dir2.Replace("/", "\\");
-            if (File.Exists(_path + "\\" + dir1))
+
+            var path1 = _path + "\\" + dir1;
+            var path2 = _path + "\\" + dir2;
+            if (IsLinux)
             {
-                File.Copy(_path + "\\" + dir1, _path + "\\" + dir2, true);
+                path1 = path1.Replace("\\", "/");
+                path2 = path2.Replace("\\", "/");
+            }
+
+            if (File.Exists(path1))
+            {
+                File.Copy(path1, path2, true);
             }
         }
         #endregion
@@ -449,7 +522,11 @@ namespace QingShan.Utilities
         public static void CopyFolder(string varFromDirectory, string varToDirectory)
         {
             Directory.CreateDirectory(varToDirectory);
-
+            if (IsLinux)
+            {
+                varFromDirectory = varFromDirectory.Replace("\\", "/");
+                varToDirectory = varToDirectory.Replace("\\", "/");
+            }
             if (!Directory.Exists(varFromDirectory))
             {
                 return;
@@ -485,6 +562,10 @@ namespace QingShan.Utilities
             //if(!File.Exists(FilePath))    
             //File.Create(FilePath);    
             //以上写法会报错,详细解释请看下文.........   
+            if (IsLinux)
+            {
+                FilePath = FilePath.Replace("\\", "/");
+            }
             if (!File.Exists(FilePath))
             {
                 FileStream fs = File.Create(FilePath);
@@ -502,7 +583,11 @@ namespace QingShan.Utilities
         public static void DeleteFolderFiles(string varFromDirectory, string varToDirectory)
         {
             Directory.CreateDirectory(varToDirectory);
-
+            if (IsLinux)
+            {
+                varFromDirectory = varFromDirectory.Replace("\\", "/");
+                varToDirectory = varToDirectory.Replace("\\", "/");
+            }
             if (!Directory.Exists(varFromDirectory))
             {
                 return;
@@ -640,6 +725,10 @@ namespace QingShan.Utilities
         /// <param name="directoryPath">目录的绝对路径</param>
         public static void CreateDirectory(string directoryPath)
         {
+            if (IsLinux)
+            {
+                directoryPath = directoryPath.Replace("\\", "/");
+            }
             //如果目录不存在则创建该目录
             if (!IsExistDirectory(directoryPath))
             {
@@ -662,7 +751,12 @@ namespace QingShan.Utilities
             var folder = GetDirectory();
 
             var filePath = Path.Combine(folder, fileName);
-            using (FileStream fs = File.Create(filePath.ToLocalDirectory()))
+            var path = filePath.ToLocalBinDirectory();
+            if (IsLinux)
+            {
+                path = path.Replace("\\", "/");
+            }
+            using (FileStream fs = File.Create(path))
             {
                 file.CopyTo(fs);
                 fs.Flush();
@@ -679,6 +773,10 @@ namespace QingShan.Utilities
         {
             try
             {
+                if (IsLinux)
+                {
+                    filePath = filePath.Replace("\\", "/");
+                }
                 //如果文件不存在则创建该文件
                 if (!IsExistFile(filePath))
                 {
@@ -708,6 +806,10 @@ namespace QingShan.Utilities
         {
             try
             {
+                if (IsLinux)
+                {
+                    filePath = filePath.Replace("\\", "/");
+                }
                 //如果文件不存在则创建该文件
                 if (!IsExistFile(filePath))
                 {
@@ -739,6 +841,10 @@ namespace QingShan.Utilities
         /// <param name="filePath">文件的绝对路径</param>        
         public static int GetLineCount(string filePath)
         {
+            if (IsLinux)
+            {
+                filePath = filePath.Replace("\\", "/");
+            }
             //将文本文件的各行读到一个字符串数组中
             string[] rows = File.ReadAllLines(filePath);
 
@@ -754,6 +860,10 @@ namespace QingShan.Utilities
         /// <param name="filePath">文件的绝对路径</param>        
         public static long GetFileSize(string filePath)
         {
+            if (IsLinux)
+            {
+                filePath = filePath.Replace("\\", "/");
+            }
             //创建一个文件对象
             FileInfo fi = new FileInfo(filePath);
 
@@ -806,6 +916,10 @@ namespace QingShan.Utilities
         {
             try
             {
+                if (IsLinux)
+                {
+                    directoryPath = directoryPath.Replace("\\", "/");
+                }
                 if (isSearchChild)
                 {
                     return Directory.GetDirectories(directoryPath, searchPattern, SearchOption.AllDirectories);
@@ -832,6 +946,10 @@ namespace QingShan.Utilities
         /// <param name="encoding">编码</param>
         public static void WriteText(string filePath, string text, Encoding encoding)
         {
+            if (IsLinux)
+            {
+                filePath = filePath.Replace("\\", "/");
+            }
             //向文件写入内容
             File.WriteAllText(filePath, text, encoding);
         }
@@ -845,6 +963,10 @@ namespace QingShan.Utilities
         /// <param name="content">写入的内容</param>
         public static void AppendText(string filePath, string content)
         {
+            if (IsLinux)
+            {
+                filePath = filePath.Replace("\\", "/");
+            }
             File.AppendAllText(filePath, content);
         }
         #endregion
@@ -857,6 +979,11 @@ namespace QingShan.Utilities
         /// <param name="destFilePath">目标文件的绝对路径</param>
         public static void Copy(string sourceFilePath, string destFilePath)
         {
+            if (IsLinux)
+            {
+                sourceFilePath = sourceFilePath.Replace("\\", "/");
+                destFilePath = destFilePath.Replace("\\", "/");
+            }
             File.Copy(sourceFilePath, destFilePath, true);
         }
         #endregion
@@ -872,15 +999,22 @@ namespace QingShan.Utilities
             //获取源文件的名称
             string sourceFileName = GetFileName(sourceFilePath);
 
+
+            var path = descDirectoryPath + "\\" + sourceFileName;
+            if (IsLinux)
+            {
+                path = path.Replace("\\", "/");
+            }
+
             if (IsExistDirectory(descDirectoryPath))
             {
                 //如果目标中存在同名文件,则删除
-                if (IsExistFile(descDirectoryPath + "\\" + sourceFileName))
+                if (IsExistFile(path))
                 {
-                    DeleteFile(descDirectoryPath + "\\" + sourceFileName);
+                    DeleteFile(path);
                 }
                 //将文件移动到指定目录
-                File.Move(sourceFilePath, descDirectoryPath + "\\" + sourceFileName);
+                File.Move(sourceFilePath, path);
             }
         }
         #endregion
@@ -892,6 +1026,10 @@ namespace QingShan.Utilities
         /// <param name="filePath">文件的绝对路径</param>        
         public static string GetFileNameNoExtension(string filePath)
         {
+            if (IsLinux)
+            {
+                filePath = filePath.Replace("\\", "/");
+            }
             //获取文件的名称
             FileInfo fi = new FileInfo(filePath);
             return fi.Name.Split('.')[0];
@@ -905,6 +1043,10 @@ namespace QingShan.Utilities
         /// <param name="filePath">文件的绝对路径</param>        
         public static string GetExtension(string filePath)
         {
+            if (IsLinux)
+            {
+                filePath = filePath.Replace("\\", "/");
+            }
             //获取文件的名称
             FileInfo fi = new FileInfo(filePath);
             return fi.Extension;
@@ -918,7 +1060,12 @@ namespace QingShan.Utilities
         /// <param name="directoryPath">指定目录的相对路径</param>
         public static void ClearDirectory(string directoryPath)
         {
-            directoryPath = directoryPath.ToLocalDirectory();
+
+            directoryPath = directoryPath.ToLocalBinDirectory();
+            if (IsLinux)
+            {
+                directoryPath = directoryPath.Replace("\\", "/");
+            }
             if (IsExistDirectory(directoryPath))
             {
                 //删除目录中所有的文件
@@ -944,6 +1091,11 @@ namespace QingShan.Utilities
         /// <param name="filePath">文件的绝对路径</param>
         public static void ClearFile(string filePath)
         {
+            if (IsLinux)
+            {
+                filePath = filePath.Replace("\\", "/");
+            }
+
             //删除文件
             File.Delete(filePath);
 
@@ -959,7 +1111,11 @@ namespace QingShan.Utilities
         /// <param name="directoryPath">指定目录的相对路径</param>
         public static void DeleteDirectory(string directoryPath)
         {
-            directoryPath = directoryPath.ToLocalDirectory();
+            directoryPath = directoryPath.ToLocalBinDirectory();
+            if (IsLinux)
+            {
+                directoryPath = directoryPath.Replace("\\", "/");
+            }
             if (IsExistDirectory(directoryPath))
             {
                 Directory.Delete(directoryPath, true);
@@ -978,7 +1134,13 @@ namespace QingShan.Utilities
         public static string MapPath(string path)
 #pragma warning restore CS1574 // XML 注释中有无法解析的 cref 特性
         {
-            return path.ToLocalBinDirectory();
+            var thisPath = path.ToLocalBinDirectory();
+
+            if (IsLinux)
+            {
+                thisPath = thisPath.Replace("\\", "/");
+            }
+            return thisPath;
         }
         #endregion
 
@@ -1009,6 +1171,11 @@ namespace QingShan.Utilities
             }
             CreateDirectory(savePath);
             var path = $"{savePath}/{Guid.NewGuid()}.{suffix}";
+
+            if (IsLinux)
+            {
+                path = path.Replace("\\", "/");
+            }
             if (_httpClient == null)
             {
                 _httpClient = new HttpClient();
@@ -1047,7 +1214,12 @@ namespace QingShan.Utilities
             var t = _httpClient.GetByteArrayAsync(url);
             t.Wait();
             using Stream responseStream = new MemoryStream(t.Result);
-            using Stream stream = new FileStream(_path + "/" + savePath, FileMode.Create);
+            var path = _path + "/" + savePath;
+            if (IsLinux)
+            {
+                path = path.Replace("\\", "/");
+            }
+            using Stream stream = new FileStream(path, FileMode.Create);
             byte[] bArr = new byte[1024];
             int size = responseStream.Read(bArr, 0, bArr.Length);
             while (size > 0)

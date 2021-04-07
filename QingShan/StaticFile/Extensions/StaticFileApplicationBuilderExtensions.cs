@@ -27,7 +27,8 @@ namespace Microsoft.AspNetCore.Builder
         {
             var pro = app.ApplicationServices;
             var staticFileSettings = pro.GetService<IOptions<StaticFileSettingsOption>>().Value;
-            var env = pro.GetService<IWebHostEnvironment>();
+            //var env = pro.GetService<IWebHostEnvironment>();
+            var path = AppDomain.CurrentDomain.BaseDirectory;
             if (staticFileSettings.StaticFileFolder?.Length > 0)
             {
                 FileExtensionContentTypeProvider provider = new FileExtensionContentTypeProvider();
@@ -40,13 +41,13 @@ namespace Microsoft.AspNetCore.Builder
                 }
                 foreach (var folder in staticFileSettings.StaticFileFolder)
                 {
-                    FileHelper.CreateDirectory(folder.Folder, env.ContentRootPath);
+                    FileHelper.CreateDirectory(folder.Folder, path);
                     var requestPath = folder.RequestPath;
 
                     app.UseStaticFiles(new StaticFileOptions
                     {
 
-                        FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, folder.Folder)),
+                        FileProvider = new PhysicalFileProvider(Path.Combine(path, folder.Folder)),
                         ServeUnknownFileTypes = folder.ServeUnknownFileTypes,
                         ContentTypeProvider = provider,
                         RequestPath = requestPath,
@@ -56,7 +57,7 @@ namespace Microsoft.AspNetCore.Builder
                     {
                         app.UseDirectoryBrowser(new DirectoryBrowserOptions()
                         {
-                            FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, folder.Folder)), // 制定目录
+                            FileProvider = new PhysicalFileProvider(Path.Combine(path, folder.Folder)), // 制定目录
                             RequestPath = new PathString(requestPath)
                         });
                     }

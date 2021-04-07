@@ -1146,6 +1146,50 @@
             <param name="info">保存序列化对象数据的对象。</param>
             <param name="context">有关源或目标的上下文信息。</param>
         </member>
+        <member name="M:QingShan.Extensions.Object.DateTimeExtension.ToUnixTimestamp(System.DateTime)">
+            <summary>
+            返回10位时间戳 Timestamp
+            </summary>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Extensions.Object.DateTimeExtension.ToLocalDateTime(System.Int64)">
+            <summary>
+            将10位时间戳Timestamp转换成日期
+            </summary>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Extensions.Object.DateTimeExtension.ToTimeStamp(System.DateTime)">
+            <summary>  
+            获取时间戳 获取13位(毫秒)时间戳
+            </summary>  
+            <param name="bflag">.</param>  
+            <returns></returns>  
+        </member>
+        <member name="M:QingShan.Extensions.Object.DateTimeExtension.ToTimeStamp(System.DateTime,System.Boolean)">
+            <summary>  
+            获取时间戳,为真时获取10位(秒)时间戳(Unix),为假时获取13位(毫秒)时间戳
+            </summary>  
+            <param name="bflag">.</param>  
+            <returns></returns>  
+        </member>
+        <member name="M:QingShan.Extensions.Object.DateTimeExtension.ToTimeStampToDateTime(System.Int64)">
+            <summary>
+            将时间戳转换为DateTime时间   毫秒
+            </summary>
+            <param name="timestamp"></param>
+            <param name="bSecond"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Extensions.Object.DateTimeExtension.ToTimeStampToDateTime(System.Int64,System.Boolean)">
+            <summary>
+            将时间戳转换为DateTime时间，bSecond为true：秒，bSecond为false：毫秒
+            </summary>
+            <param name="timestamp"></param>
+            <param name="bSecond"></param>
+            <returns></returns>
+        </member>
         <member name="T:QingShan.Permission.Authorization.ModuleInfoAttribute">
             <summary>
             模型描述
@@ -2231,6 +2275,15 @@
             <summary>
             web文件帮助类
             <para>当前存放路径为为<see cref="!:AppDomain.CurrentDomain.BaseDirectory"/></para>
+            </summary>
+        </member>
+        <member name="F:QingShan.Utilities.FileHelper.IsLinux">
+            <summary>
+            当前操作系统是否是Linux
+            <para>在Linux中，如果一个项目的根目录为：D:\</para>
+            <para>string path = Path.Combine( Directory.GetCurrentDirectory(), "Console\\Temp\\test.txt");</para>
+            <para>那么path路径为D:/Console\Temp\test.txt目录，Console\Temp\test.txt是一个名为Console\Temp\test的txt文件。</para>
+            <para>在Windows下路径应该这么写： C:\temp\test.txt 在Linux下则是这样的： C:/temp/test.txt</para>
             </summary>
         </member>
         <member name="F:QingShan.Utilities.FileHelper._path">

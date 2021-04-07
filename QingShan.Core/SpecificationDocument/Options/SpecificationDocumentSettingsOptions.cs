@@ -77,6 +77,35 @@ namespace QingShan.Core.SpecificationDocument
                     Group=options.DefaultGroupName
                 }
             };
+
+            if (EnableAuthorized == true)
+            {
+                SecurityDefinitions ??= new SpecificationOpenApiSecurityScheme[]
+                {
+                    new SpecificationOpenApiSecurityScheme
+                    {
+                        Id="Bearer",
+                        Type= SecuritySchemeType.Http,
+                        Name="Authorization",
+                        Description="JWT Authorization header using the Bearer scheme.",
+                        BearerFormat="JWT",
+                        Scheme="bearer",
+                        In= ParameterLocation.Header,
+                        Requirement=new SpecificationOpenApiSecurityRequirementItem
+                        {
+                            Scheme=new OpenApiSecurityScheme
+                            {
+                                Reference=new OpenApiReference
+                                {
+                                    Id="Bearer",
+                                    Type= ReferenceType.SecurityScheme
+                                }
+                            },
+                            Accesses=Array.Empty<string>()
+                        }
+                    }
+                };
+            }
         }
     }
 }
