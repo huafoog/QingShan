@@ -497,6 +497,7 @@ namespace QingShan.DependencyInjection.Extensions
         /// </summary>
         private static readonly ConcurrentBag<(Type, Type)> RegisterDispatchProxies;
 
+
         /// <summary>
         /// 创建代理方法
         /// </summary>
