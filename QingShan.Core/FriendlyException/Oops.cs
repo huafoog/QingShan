@@ -30,17 +30,17 @@ namespace QingShan.Core.FriendlyException
         /// <summary>
         /// 方法错误异常特性
         /// </summary>
-        internal static readonly ConcurrentDictionary<MethodInfo, MethodIfException> ErrorMethods;
+        internal static  ConcurrentDictionary<MethodInfo, MethodIfException> ErrorMethods;
 
         /// <summary>
         /// 错误代码类型
         /// </summary>
-        internal static readonly IEnumerable<Type> ErrorCodeTypes;
+        internal static  IEnumerable<Type> ErrorCodeTypes;
 
         /// <summary>
         /// 错误消息字典
         /// </summary>
-        internal static readonly Dictionary<string, string> ErrorCodeMessages;
+        internal static  Dictionary<string, string> ErrorCodeMessages;
 
         /// <summary>
         /// 构造函数
@@ -48,8 +48,14 @@ namespace QingShan.Core.FriendlyException
         static Oops()
         {
             ErrorMethods = new ConcurrentDictionary<MethodInfo, MethodIfException>();
-            ErrorCodeTypes = GetErrorCodeTypes();
-            ErrorCodeMessages = GetErrorCodeMessages();
+        }
+
+        static void Init(IServiceCollection services)
+        {
+            var errorCodeTypeProvider = services.GetOptions<IErrorCodeTypeProvider>();
+            ErrorCodeTypes = GetErrorCodeTypes(errorCodeTypeProvider);
+            var errorCodeMessageSettingsOptions = services.GetOptions<ErrorCodeMessageSettingsOptions>(); 
+            ErrorCodeMessages = GetErrorCodeMessages(errorCodeMessageSettingsOptions);
         }
 
         /// <summary>
@@ -169,7 +175,7 @@ namespace QingShan.Core.FriendlyException
         /// 获取错误代码类型
         /// </summary>
         /// <returns></returns>
-        private static IEnumerable<Type> GetErrorCodeTypes()
+        private static IEnumerable<Type> GetErrorCodeTypes(IErrorCodeTypeProvider errorCodeTypeProvider)
         {
             // 查找所有公开的枚举贴有 [ErrorCodeType] 特性的类型
             var errorCodeTypes = App.CanBeScanTypes
@@ -177,7 +183,6 @@ namespace QingShan.Core.FriendlyException
                 .ToList();
 
             // 获取错误代码提供器中定义的类型
-            var errorCodeTypeProvider = App.TransientServiceProvider.GetService<IErrorCodeTypeProvider>();
             if (errorCodeTypeProvider is { Definitions: not null })
             {
                 errorCodeTypes.AddRange(errorCodeTypeProvider.Definitions);
@@ -190,7 +195,7 @@ namespace QingShan.Core.FriendlyException
         /// 获取所有错误消息
         /// </summary>
         /// <returns></returns>
-        private static Dictionary<string, string> GetErrorCodeMessages()
+        private static Dictionary<string, string> GetErrorCodeMessages(ErrorCodeMessageSettingsOptions errorCodeMessageSettings)
         {
             // 查找所有 [ErrorCodeType] 类型中的 [ErrorCodeMetadata] 元数据定义
             var errorCodeMessages = ErrorCodeTypes.SelectMany(u => u.GetFields().Where(u => u.IsDefined(typeof(ErrorCodeItemMetadataAttribute))))
@@ -198,7 +203,6 @@ namespace QingShan.Core.FriendlyException
                .ToDictionary(u => u.Key.ToString(), u => u.Value);
 
             // 加载配置文件状态码
-            var errorCodeMessageSettings = App.GetOptions<ErrorCodeMessageSettingsOptions>();
             if (errorCodeMessageSettings is { Definitions: not null })
             {
                 // 获取所有参数大于1的配置

@@ -24,23 +24,25 @@ namespace QingShan.Core.SpecificationDocument
         /// <summary>
         /// 规范化文档配置
         /// </summary>
-        private static readonly SpecificationDocumentSettingsOptions _specificationDocumentSettings;
+        public static SpecificationDocumentSettingsOptions _specificationDocumentSettings { get; set; }
         /// <summary>
         /// 文档默认分组
         /// </summary>
-        private static readonly IEnumerable<GroupOrder> _defaultGroups;
+        private static IEnumerable<GroupOrder> _defaultGroups;
 
         /// <summary>
         /// 文档分组列表
         /// </summary>
-        private static readonly IEnumerable<string> _groups;
+        private static IEnumerable<string> _groups;
         static SpecificationDocumentBuilder()
         {
-            // 载入配置
-            _specificationDocumentSettings = App.GetOptions<SpecificationDocumentSettingsOptions>();
             GetControllerGroupsCached = new ConcurrentDictionary<Type, IEnumerable<GroupOrder>>();
             //初始化分组
             GetGroupOpenApiInfoCached = new ConcurrentDictionary<string, SpecificationOpenApiInfo>();
+        }
+        public static void Init(SpecificationDocumentSettingsOptions specificationDocumentSettings)
+        {
+            _specificationDocumentSettings = specificationDocumentSettings;
             // 默认分组，支持多个逗号分割
             _defaultGroups = new List<GroupOrder> { ResolveGroupOrder(_specificationDocumentSettings.DefaultGroupName) };
             // 加载所有分组

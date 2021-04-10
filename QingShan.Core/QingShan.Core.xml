@@ -9,26 +9,6 @@
             全局应用类
             </summary>
         </member>
-        <member name="F:QingShan.Core.App._settings">
-            <summary>
-            私有设置，避免重复解析
-            </summary>
-        </member>
-        <member name="P:QingShan.Core.App.Settings">
-            <summary>
-            应用全局配置
-            </summary>
-        </member>
-        <member name="P:QingShan.Core.App.Configuration">
-            <summary>
-            全局配置选项
-            </summary>
-        </member>
-        <member name="P:QingShan.Core.App.HostEnvironment">
-            <summary>
-            应用环境
-            </summary>
-        </member>
         <member name="F:QingShan.Core.App.Assemblies">
             <summary>
             应用有效程序集
@@ -39,23 +19,6 @@
             能够被扫描的类型
             </summary>
         </member>
-        <member name="P:QingShan.Core.App.Services">
-            <summary>
-            应用服务
-            </summary>
-        </member>
-        <member name="P:QingShan.Core.App.TransientServiceProvider">
-            <summary>
-            瞬时服务提供器，每次都是不一样的实例
-            </summary>
-        </member>
-        <member name="P:QingShan.Core.App.RequestServiceProvider">
-            <summary>
-            请求服务提供器，相当于使用构造函数注入方式
-            </summary>
-            <remarks>每一个请求一个作用域，由于基于请求，所以可能有空异常</remarks>
-            <exception cref="T:System.ArgumentNullException">空异常</exception>
-        </member>
         <member name="M:QingShan.Core.App.#cctor">
             <summary>
             静态构造函数，只在程序启动时执行一次。
@@ -65,35 +28,6 @@
             <summary>
             应用所有启动配置对象
             </summary>
-        </member>
-        <member name="M:QingShan.Core.App.GetOptions``1(System.String)">
-            <summary>
-            获取选项
-            </summary>
-            <typeparam name="TOptions">强类型选项类</typeparam>
-            <param name="jsonKey">配置中对应的Key</param>
-            <returns>TOptions</returns>
-        </member>
-        <member name="M:QingShan.Core.App.GetOptions``1">
-            <summary>
-            获取选项
-            </summary>
-            <typeparam name="TOptions">强类型选项类</typeparam>
-            <returns>TOptions</returns>
-        </member>
-        <member name="M:QingShan.Core.App.GetOptionsMonitor``1">
-            <summary>
-            获取选项
-            </summary>
-            <typeparam name="TOptions">强类型选项类</typeparam>
-            <returns>TOptions</returns>
-        </member>
-        <member name="M:QingShan.Core.App.GetOptionsSnapshot``1">
-            <summary>
-            获取选项
-            </summary>
-            <typeparam name="TOptions">强类型选项类</typeparam>
-            <returns>TOptions</returns>
         </member>
         <member name="M:QingShan.Core.App.GetAssemblies">
             <summary>
@@ -418,13 +352,13 @@
             <param name="errorCode">错误码</param>
             <returns></returns>
         </member>
-        <member name="M:QingShan.Core.FriendlyException.Oops.GetErrorCodeTypes">
+        <member name="M:QingShan.Core.FriendlyException.Oops.GetErrorCodeTypes(QingShan.Core.FriendlyException.IErrorCodeTypeProvider)">
             <summary>
             获取错误代码类型
             </summary>
             <returns></returns>
         </member>
-        <member name="M:QingShan.Core.FriendlyException.Oops.GetErrorCodeMessages">
+        <member name="M:QingShan.Core.FriendlyException.Oops.GetErrorCodeMessages(QingShan.Core.FriendlyException.ErrorCodeMessageSettingsOptions)">
             <summary>
             获取所有错误消息
             </summary>
@@ -631,7 +565,7 @@
             过期时间（分钟）
             </summary>
         </member>
-        <member name="F:QingShan.Core.SpecificationDocument.SpecificationDocumentBuilder._specificationDocumentSettings">
+        <member name="P:QingShan.Core.SpecificationDocument.SpecificationDocumentBuilder._specificationDocumentSettings">
             <summary>
             规范化文档配置
             </summary>
@@ -1451,6 +1385,16 @@
             </summary>
             <param name="type">排序类型</param>
             <returns>int</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtension.GetOptions``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+             <summary>
+            获取选项
+             </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtension.GetOptions``1(Microsoft.Extensions.DependencyInjection.ServiceProvider)">
+             <summary>
+            获取选项
+             </summary>
         </member>
         <member name="T:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions">
             <summary>

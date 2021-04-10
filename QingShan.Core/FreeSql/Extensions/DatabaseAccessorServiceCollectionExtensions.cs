@@ -1,5 +1,6 @@
 ﻿using FreeSql;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Options;
 using QingShan.Core;
 using QingShan.Core.ConfigurableOptions;
 using QingShan.DatabaseAccessor;
@@ -23,7 +24,9 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddDatabaseAccessor(this IServiceCollection services, Action<IServiceCollection> configure = null)
         {
             services.AddConfigurableOptions<DatabaseAccessorSettingsOptions>();
-            var dbConfig = App.GetOptions<DatabaseAccessorSettingsOptions>();
+            var build = services.BuildServiceProvider();
+            
+            var dbConfig = services.GetOptions<DatabaseAccessorSettingsOptions>();
 
             var freeSqlBuilder = new FreeSqlBuilder()
                     .UseConnectionString(dbConfig.Type, dbConfig.ConnectionString)
