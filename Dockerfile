@@ -1,5 +1,5 @@
 # 使用运行时镜像
-FROM mcr.microsoft.com/dotnet/core/aspnet:5.0
+FROM mcr.microsoft.com/dotnet/core/aspnet:5.0-buster-slim
 # 设置工作目录
 WORKDIR /app
 # 把目录下的内容都复制到当前目录下
