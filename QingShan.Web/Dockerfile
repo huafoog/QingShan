@@ -1,4 +1,4 @@
-# 使用运行时镜像
+# 使用运行时镜像 5.0  SDK
 FROM mcr.microsoft.com/dotnet/core/aspnet:5.0
 # 设置工作目录
 WORKDIR /app
