@@ -53,7 +53,7 @@ namespace QingShan.Core.Web
            .UseSetting(WebHostDefaults.HostingStartupAssembliesKey, "QingShan.Core")
            .UseStartup<Startup>()
            .UseKestrel()
-           .UseUrls("http://*:44338")
+           .UseUrls("http://*:9999")
            .ConfigureLogging(logging =>
            {
                logging.ClearProviders();
