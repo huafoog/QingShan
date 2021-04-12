@@ -145,10 +145,10 @@ namespace QingShan.Services.User
                 Id = input.Id
             };
             _userRepository.Attach(thisUser);
-            thisUser.Avatar = user.Avatar;
-            thisUser.NickName = user.NickName;
-            thisUser.Phone = user.Phone;
-            thisUser.RealName = user.RealName;
+            thisUser.Avatar = input.Avatar;
+            thisUser.NickName = input.NickName;
+            thisUser.Phone = input.Phone;
+            thisUser.RealName = input.RealName;
             int res = await _userRepository.UpdateAsync(thisUser);
             return new StatusResult(res > 0, "修改失败");
         }

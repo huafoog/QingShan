@@ -48,7 +48,6 @@ namespace QingShan.Core.Web.Areas.Admin.Controllers
         [HttpPost]
         [Description("修改用户")]
         [ModuleInfo]
-        [TransactionInterceptor]
         public async Task<StatusResult> Update(UserUpdateInputDto input)
         {
             return await _userService.UpdateAsync(input);

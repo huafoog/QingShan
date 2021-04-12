@@ -9,8 +9,8 @@ namespace QingShan.Core.Web.Areas.Admin.Controllers
     /// </summary>
     [AreaInfo("Admin", Display = "后台管理")]
     [ApiController]
-    [Route("/Api/[controller]/[action]")]
-    [ApiDescriptionSettings("Default")]
+    [Route("/Api/[Area]/[controller]/[action]")]
+    [ApiDescriptionSettings("Admin")]
     [Permission]
     public class AdminBaseController : ControllerBase
     {

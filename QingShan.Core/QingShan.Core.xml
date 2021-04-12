@@ -1061,6 +1061,11 @@
             <para>注意：生产环境中谨慎使用</para>
             </summary>
         </member>
+        <member name="P:QingShan.DatabaseAccessor.DatabaseAccessorSettingsOptions.PrintingSQL">
+            <summary>
+            打印sql
+            </summary>
+        </member>
         <member name="M:QingShan.DatabaseAccessor.DatabaseAccessorSettingsOptions.PostConfigure(QingShan.DatabaseAccessor.DatabaseAccessorSettingsOptions,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             选项后期配置

@@ -46,6 +46,8 @@ namespace QingShan.Services.User.Dtos.InputDto
         /// </summary>
         public string Remark { get; set; }
 
+        public string RealName { get; set; }
+
         /// <summary>
         /// 角色
         /// </summary>

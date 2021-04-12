@@ -39,10 +39,14 @@ namespace Microsoft.Extensions.DependencyInjection
             // 注册FreeSql   IFreeSql必须使用单例注入
             services.AddSingleton<IFreeSql>(fsql);
 
-            // 监听生成的sql语句
-            //fsql.Aop.CurdBefore += (s, e) =>
-            //{
-            //};
+            //监听生成的sql语句
+            fsql.Aop.CurdBefore += (s, e) =>
+            {
+                if (dbConfig.PrintingSQL)
+                {
+                    Console.WriteLine(e.Sql);
+                }
+            };
             // 注册仓储
             services.TryAddScoped(typeof(IRepository<,>), typeof(Repository<,>));
             services.AddScoped<UnitOfWorkManager>();

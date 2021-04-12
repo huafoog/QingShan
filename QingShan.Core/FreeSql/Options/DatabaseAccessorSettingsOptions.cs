@@ -27,12 +27,18 @@ namespace QingShan.DatabaseAccessor
         public bool SyncStructure { get; set; }
 
         /// <summary>
+        /// 打印sql
+        /// </summary>
+        public bool PrintingSQL { get; set; }
+
+        /// <summary>
         /// 选项后期配置
         /// </summary>
         /// <param name="options"></param>
         /// <param name="configuration"></param>
         public void PostConfigure(DatabaseAccessorSettingsOptions options, IConfiguration configuration)
         {
+            PrintingSQL = false;
         }
     }
 }
