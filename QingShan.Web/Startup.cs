@@ -75,10 +75,10 @@ namespace QingShan.Core.Web
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseApp(options =>
             {
                 app.UseSpecificationDocuments();
+                app.UseCorsAccessor();
             });
             app.UseStaticFile();
             app.UseEndpoints(endpoints =>
