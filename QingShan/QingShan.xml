@@ -1164,13 +1164,14 @@
             <summary>  
             获取时间戳 获取13位(毫秒)时间戳
             </summary>  
-            <param name="bflag">.</param>  
+            <param name="dt">当前时间</param>  
             <returns></returns>  
         </member>
         <member name="M:QingShan.Extensions.Object.DateTimeExtension.ToTimeStamp(System.DateTime,System.Boolean)">
             <summary>  
             获取时间戳,为真时获取10位(秒)时间戳(Unix),为假时获取13位(毫秒)时间戳
             </summary>  
+            <param name="dt">当前时间</param>
             <param name="bflag">.</param>  
             <returns></returns>  
         </member>
@@ -1179,7 +1180,6 @@
             将时间戳转换为DateTime时间   毫秒
             </summary>
             <param name="timestamp"></param>
-            <param name="bSecond"></param>
             <returns></returns>
         </member>
         <member name="M:QingShan.Extensions.Object.DateTimeExtension.ToTimeStampToDateTime(System.Int64,System.Boolean)">
@@ -1668,7 +1668,6 @@
             </summary>
             <param name="original">原始文字</param>
             <param name="key">密钥</param>
-            <param name="encoding">字符编码方案</param>
             <returns>密文</returns>
         </member>
         <member name="M:QingShan.Utilities.DEncrypt.Decrypt(System.String,System.String)">
@@ -1693,7 +1692,6 @@
             使用缺省密钥字符串解密byte[]
             </summary>
             <param name="encrypted">密文</param>
-            <param name="key">密钥</param>
             <returns>明文</returns>
         </member>
         <member name="M:QingShan.Utilities.DEncrypt.Encrypt(System.Byte[])">
@@ -1701,7 +1699,6 @@
             使用缺省密钥字符串加密
             </summary>
             <param name="original">原始数据</param>
-            <param name="key">密钥</param>
             <returns>密文</returns>
         </member>
         <member name="M:QingShan.Utilities.DEncrypt.MakeMD5(System.Byte[])">
@@ -2672,7 +2669,7 @@
             Post请求返回字符
             </summary>
             <param name="url">请求地址</param>
-            <param name="postData">请求数据</param>
+            <param name="obj">请求数据</param>
             <returns>字符</returns>
         </member>
         <member name="M:QingShan.Utilities.HttpClientHelper.PostResponse``1(System.String,System.String)">
@@ -2688,7 +2685,7 @@
             Post请求返回实体
             </summary>
             <param name="url">请求地址</param>
-            <param name="postData">请求数据</param>
+            <param name="obj">请求数据</param>
             <returns>实体</returns>
         </member>
         <member name="M:QingShan.Utilities.HttpClientHelper.PutResponse(System.String,System.Object)">

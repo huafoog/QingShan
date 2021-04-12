@@ -17,7 +17,7 @@ namespace QingShan.Utilities
         /// </summary>
         public MySecurity()
         {
-            ///默认密码
+            //默认密码
             key = "0123456789";
         }
         private string key; //默认密钥

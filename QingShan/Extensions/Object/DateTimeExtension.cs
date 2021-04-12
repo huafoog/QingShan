@@ -34,7 +34,7 @@ namespace QingShan.Extensions.Object
         /// <summary>  
         /// 获取时间戳 获取13位(毫秒)时间戳
         /// </summary>  
-        /// <param name="bflag">.</param>  
+        /// <param name="dt">当前时间</param>  
         /// <returns></returns>  
         public static long ToTimeStamp(this DateTime dt)
         {
@@ -44,11 +44,12 @@ namespace QingShan.Extensions.Object
         /// <summary>  
         /// 获取时间戳,为真时获取10位(秒)时间戳(Unix),为假时获取13位(毫秒)时间戳
         /// </summary>  
+        /// <param name="dt">当前时间</param>
         /// <param name="bflag">.</param>  
         /// <returns></returns>  
         public static long ToTimeStamp(this DateTime dt, bool bflag)
         {
-            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1)); // 当地时区
+            System.DateTime startTime = TimeZoneInfo.ConvertTime(new System.DateTime(1970, 1, 1), TimeZoneInfo.Local); // 当地时区
             TimeSpan ts = dt - startTime;
             long ret = 0;
             if (bflag)
@@ -63,7 +64,6 @@ namespace QingShan.Extensions.Object
         /// 将时间戳转换为DateTime时间   毫秒
         /// </summary>
         /// <param name="timestamp"></param>
-        /// <param name="bSecond"></param>
         /// <returns></returns>
         public static DateTime ToTimeStampToDateTime(this long timestamp)
         {
@@ -79,7 +79,7 @@ namespace QingShan.Extensions.Object
         /// <returns></returns>
         public static DateTime ToTimeStampToDateTime(this long timestamp, bool bSecond)
         {
-            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1)); // 当地时区
+            System.DateTime startTime = TimeZoneInfo.ConvertTime(new System.DateTime(1970, 1, 1), TimeZoneInfo.Local); // 当地时区
 
             if (bSecond)
             {

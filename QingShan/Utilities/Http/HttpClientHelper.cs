@@ -285,7 +285,7 @@ namespace QingShan.Utilities
         /// Post请求返回字符
         /// </summary>
         /// <param name="url">请求地址</param>
-        /// <param name="postData">请求数据</param>
+        /// <param name="obj">请求数据</param>
         /// <returns>字符</returns>
         public static string PostResponse(string url, object obj)
         {
@@ -410,7 +410,7 @@ namespace QingShan.Utilities
         /// Post请求返回实体
         /// </summary>
         /// <param name="url">请求地址</param>
-        /// <param name="postData">请求数据</param>
+        /// <param name="obj">请求数据</param>
         /// <returns>实体</returns>
         public static T PostResponse<T>(string url, object obj)
         {

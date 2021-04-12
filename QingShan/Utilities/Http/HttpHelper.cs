@@ -41,6 +41,8 @@ namespace QingShan.Utilities
 
             return retString;
         }
+
+#pragma warning disable CS1570 // XML 注释出现 XML 格式错误
         /// <summary>
         /// get请求
         /// </summary>
@@ -49,6 +51,7 @@ namespace QingShan.Utilities
         /// <param name="headers">请求头数据</param>
         /// <returns></returns>
         public static string HttpGet(string Url, string postDataStr,Dictionary<string,string> headers)
+#pragma warning restore CS1570 // XML 注释出现 XML 格式错误
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url + (postDataStr == "" ? "" : "?") + postDataStr);
             request.Method = "GET";
