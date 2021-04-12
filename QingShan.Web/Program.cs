@@ -49,7 +49,8 @@ namespace QingShan.Core.Web
 
         public static IWebHostBuilder CreateHostBuilder(string[] args) =>
            WebHost.
-           CreateDefaultBuilder(args).UseSetting(WebHostDefaults.HostingStartupAssembliesKey, "QingShan.Core")
+           CreateDefaultBuilder(args)
+           .UseSetting(WebHostDefaults.HostingStartupAssembliesKey, "QingShan.Core")
            .UseStartup<Startup>()
            .UseKestrel()
            .UseUrls("http://*:9999")

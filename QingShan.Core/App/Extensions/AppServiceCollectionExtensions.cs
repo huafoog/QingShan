@@ -36,7 +36,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="services">服务集合</param>
         /// <param name="configure">服务配置</param>
         /// <returns>服务集合</returns>
-        internal static IServiceCollection AddApp(this IServiceCollection services, Action<IServiceCollection> configure = null)
+        public static IServiceCollection AddApp(this IServiceCollection services, Action<IServiceCollection> configure = null)
         {
             // 注册全局配置选项
             services.AddConfigurableOptions<AppSettingsOptions>();
@@ -67,7 +67,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// </summary>
         /// <param name="services">服务集合</param>
         /// <returns>服务集合</returns>
-        internal static IServiceCollection AddStartup(this IServiceCollection services)
+        public static IServiceCollection AddStartup(this IServiceCollection services)
         {
             // 扫描所有继承 AppStartup 的类
             var startups = App.CanBeScanTypes

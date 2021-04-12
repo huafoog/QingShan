@@ -20,7 +20,7 @@ namespace Microsoft.Extensions.DependencyInjection
             var build = services.BuildServiceProvider();
 
             var option = build.GetService<IOptions<Options>>().Value;
-            return option;
+            return option?? default;
         }
         /// <summary>
         ///获取选项
@@ -29,7 +29,7 @@ namespace Microsoft.Extensions.DependencyInjection
             where Options : class
         {
             var option = serviceProvider.GetService<IOptions<Options>>().Value;
-            return option;
+            return option??default;
         }
     }
 }
