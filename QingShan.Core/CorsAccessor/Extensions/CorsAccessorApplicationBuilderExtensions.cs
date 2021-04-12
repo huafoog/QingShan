@@ -1,7 +1,7 @@
-﻿using Furion.CorsAccessor;
-using Furion.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using QingShan.Core.CorsAccessor;
+using QingShan.DependencyInjection;
 
 namespace Microsoft.AspNetCore.Builder
 {
