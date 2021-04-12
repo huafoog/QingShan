@@ -50,4 +50,8 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\QingShan\QingShan.csproj" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="CorsAccessor\" />
+	</ItemGroup>
 </Project>

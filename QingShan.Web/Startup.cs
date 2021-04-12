@@ -39,6 +39,7 @@ namespace QingShan.Core.Web
             services.AddInject();
             services.AddStaticFile();
             services.AddJwt();
+            services.AddCorsAccessor();
             services.AddControllers(o =>
             {
                 //È«¾ÖÒì³£
@@ -72,7 +73,6 @@ namespace QingShan.Core.Web
             }
 
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
 
