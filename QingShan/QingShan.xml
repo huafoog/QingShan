@@ -1146,50 +1146,6 @@
             <param name="info">保存序列化对象数据的对象。</param>
             <param name="context">有关源或目标的上下文信息。</param>
         </member>
-        <member name="M:QingShan.Extensions.Object.DateTimeExtension.ToUnixTimestamp(System.DateTime)">
-            <summary>
-            返回10位时间戳 Timestamp
-            </summary>
-            <param name="target"></param>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Extensions.Object.DateTimeExtension.ToLocalDateTime(System.Int64)">
-            <summary>
-            将10位时间戳Timestamp转换成日期
-            </summary>
-            <param name="target"></param>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Extensions.Object.DateTimeExtension.ToTimeStamp(System.DateTime)">
-            <summary>  
-            获取时间戳 获取13位(毫秒)时间戳
-            </summary>  
-            <param name="dt">当前时间</param>  
-            <returns></returns>  
-        </member>
-        <member name="M:QingShan.Extensions.Object.DateTimeExtension.ToTimeStamp(System.DateTime,System.Boolean)">
-            <summary>  
-            获取时间戳,为真时获取10位(秒)时间戳(Unix),为假时获取13位(毫秒)时间戳
-            </summary>  
-            <param name="dt">当前时间</param>
-            <param name="bflag">.</param>  
-            <returns></returns>  
-        </member>
-        <member name="M:QingShan.Extensions.Object.DateTimeExtension.ToTimeStampToDateTime(System.Int64)">
-            <summary>
-            将时间戳转换为DateTime时间   毫秒
-            </summary>
-            <param name="timestamp"></param>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Extensions.Object.DateTimeExtension.ToTimeStampToDateTime(System.Int64,System.Boolean)">
-            <summary>
-            将时间戳转换为DateTime时间，bSecond为true：秒，bSecond为false：毫秒
-            </summary>
-            <param name="timestamp"></param>
-            <param name="bSecond"></param>
-            <returns></returns>
-        </member>
         <member name="T:QingShan.Permission.Authorization.ModuleInfoAttribute">
             <summary>
             模型描述
@@ -1425,6 +1381,35 @@
             </summary>
             <param name="options"></param>
             <param name="configuration"></param>
+        </member>
+        <member name="T:QingShan.Utilities.Base64Convert">
+            <summary>
+            Base64转换
+            </summary>
+        </member>
+        <member name="M:QingShan.Utilities.Base64Convert.IsBase64(System.String,System.Byte[]@)">
+            <summary>
+            是否base64字符串
+            </summary>
+            <param name="base64Str">要判断的字符串</param>
+            <param name="bytes">字符串转换成的字节数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.Base64Convert.FileToBase64(System.IO.Stream)">
+            <summary>
+             文件转换成Base64字符串
+            </summary>
+            <param name="fs">文件流</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.Base64Convert.Base64ToFileAndSave(System.Byte[],System.String)">
+            <summary>
+            Base64字符串转换成文件
+            <para>使用<see cref="M:QingShan.Utilities.Base64Convert.IsBase64(System.String,System.Byte[]@)"/>验证是否是base64字符串</para>
+            </summary>
+            <param name="bytes">字节文件</param>
+            <param name="url">保存文件的绝对路径</param>
+            <returns></returns>
         </member>
         <member name="T:QingShan.Utilities.UtilConvert">
             <summary>
@@ -2915,6 +2900,50 @@
             </summary>
             <param name="entityColuum"></param>
             <param name="entityNames"></param>
+        </member>
+        <member name="M:System.DateTimeExtension.ToUnixTimestamp(System.DateTime)">
+            <summary>
+            返回10位时间戳 Timestamp
+            </summary>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.DateTimeExtension.ToLocalDateTime(System.Int64)">
+            <summary>
+            将10位时间戳Timestamp转换成日期
+            </summary>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.DateTimeExtension.ToTimeStamp(System.DateTime)">
+            <summary>  
+            获取时间戳 获取13位(毫秒)时间戳
+            </summary>  
+            <param name="dt">当前时间</param>  
+            <returns></returns>  
+        </member>
+        <member name="M:System.DateTimeExtension.ToTimeStamp(System.DateTime,System.Boolean)">
+            <summary>  
+            获取时间戳,为真时获取10位(秒)时间戳(Unix),为假时获取13位(毫秒)时间戳
+            </summary>  
+            <param name="dt">当前时间</param>
+            <param name="bflag">.</param>  
+            <returns></returns>  
+        </member>
+        <member name="M:System.DateTimeExtension.ToTimeStampToDateTime(System.Int64)">
+            <summary>
+            将时间戳转换为DateTime时间   毫秒
+            </summary>
+            <param name="timestamp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.DateTimeExtension.ToTimeStampToDateTime(System.Int64,System.Boolean)">
+            <summary>
+            将时间戳转换为DateTime时间，bSecond为true：秒，bSecond为false：毫秒
+            </summary>
+            <param name="timestamp"></param>
+            <param name="bSecond"></param>
+            <returns></returns>
         </member>
         <member name="M:System.DecimalExtension.ToRound(System.Decimal)">
             <summary>

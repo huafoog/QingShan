@@ -21,14 +21,17 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:44338;"
+      "applicationUrl": "https://localhost:9999"
     },
     "Docker": {
       "commandName": "Docker",
-      "launchBrowser": true,
+      "commandLineArgs": "--net=host",
+      "launchBrowser": false,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
-      "publishAllPorts": true,
-      "useSSL": true
+      "environmentVariables": {
+        "ASPNETCORE_URLS": "http://+:9999"
+      },
+      "httpPort": 9999
     }
   }
 }
