@@ -8,7 +8,7 @@ namespace QingShan.DataLayer.Entities
     /// <summary>
     /// 用户表
     /// </summary>
-    public class UserEntity : EntityBase<int>
+    public class UserEntity : EntityBase
     {
         /// <summary>
         /// 真实姓名
@@ -37,7 +37,7 @@ namespace QingShan.DataLayer.Entities
         /// <summary>
         /// 部门Id
         /// </summary>
-        public int DepartmentId { get; set; }
+        public string DepartmentId { get; set; }
 
         /// <summary>
         /// 手机号码
@@ -63,6 +63,16 @@ namespace QingShan.DataLayer.Entities
         /// 更新时间
         /// </summary>
         public DateTime? UpdateDateTime { get; set; }
+
+        /// <summary>
+        /// 上次登录ip
+        /// </summary>
+        public string LastLoginIp { get; set; }
+
+        /// <summary>
+        /// 上次登录时间
+        /// </summary>
+        public DateTime? LastLoginTime { get; set; }
     }
     /// <summary>
     /// 用户状态

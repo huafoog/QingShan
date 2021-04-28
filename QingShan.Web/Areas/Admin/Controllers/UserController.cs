@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QingShan.Core.FreeSql.UnitOfWork.TransactionInterceptor;
 using QingShan.Data;
 using QingShan.DatabaseAccessor;
 using QingShan.Permission;
@@ -9,7 +10,7 @@ using QingShan.Services.User.Dtos.OutputDto;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
-namespace QingShan.Core.Web.Areas.Admin.Controllers
+namespace QingShan.Web.Areas.Admin.Controllers
 {
     /// <summary>
     /// 用户管理
@@ -18,9 +19,9 @@ namespace QingShan.Core.Web.Areas.Admin.Controllers
     [ModuleInfo(URL = "/Admin/Url/Index", Module = Data.Enums.ModuleEnum.System, Sort = 0)]
     public class UserController : AdminBaseController
     {
-        private readonly IUserService _userService;
+        private readonly IUserContract _userService;
         public readonly IUserInfo _userInfo;
-        public UserController(IUserService userService, IUserInfo userInfo)
+        public UserController(IUserContract userService, IUserInfo userInfo)
         {
             _userService = userService;
             _userInfo = userInfo;

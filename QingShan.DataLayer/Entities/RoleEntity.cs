@@ -6,7 +6,7 @@ namespace QingShan.DataLayer.Entities
     /// <summary>
     /// 角色模型
     /// </summary>
-    public class RoleEntity : EntityBase<int>
+    public class RoleEntity : EntityBase
     {
         /// <summary>
         /// 角色名

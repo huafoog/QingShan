@@ -8,7 +8,7 @@
         /// <summary>
         /// 主键
         /// </summary>
-        int Id { get; }
+        string Id { get; }
 
         /// <summary>
         /// 用户名

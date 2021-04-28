@@ -8,24 +8,25 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace QingShan.DataLayer.Entities
 {
     /// <summary>
-    /// 模块
+    /// 权限
     /// </summary>
-    public class ModuleEntity : EntityBase<Guid>
+    public class PermissionEntity : EntityBase
     {
-
         /// <summary>
-        /// 当前操作代码
+        /// 当前权限编码
         /// </summary>
-        [Description("模块编码")]
+        [Description("权限编码")]
         public string Code { get; set; }
 
         /// <summary>
         /// 区域
         /// </summary>
         [MaxLength(200)]
-        [Column("区域")]
-        [Description("区域")]
         public string Area { get; set; }
+        /// <summary>
+        /// 是否有区域
+        /// </summary>
+        public bool IsArea  { get; set; }
 
         /// <summary>
         /// 控制器
@@ -68,16 +69,5 @@ namespace QingShan.DataLayer.Entities
         /// </summary>
         [Description("排序值")]
         public int Sort { get; set; }
-        /// <summary>
-        /// 父节点Id
-        /// </summary>
-        [Description("父节点Id")]
-        public Guid Pid { get; set; }
-
-        /// <summary>
-        /// 节点
-        /// </summary>
-        [Description("节点")]
-        public ModuleLevel Level { get; set; }
     }
 }

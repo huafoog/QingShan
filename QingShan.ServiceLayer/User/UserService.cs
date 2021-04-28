@@ -11,23 +11,25 @@ using QingShan.Services.User.Dtos.OutputDto;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using QingShan.Core.FreeSql;
+using QingShan.Utilities;
 
 namespace QingShan.Services.User
 {
     /// <summary>
     /// 用户管理-
     /// </summary>
-    public class UserService : IUserService, IScopeDependency
+    public class UserService : IUserContract, IScopeDependency
     {
         private readonly IUserInfo _user;
 
         /// <summary>
         /// 用户仓储
         /// </summary>
-        private readonly IRepository<UserEntity, int> _userRepository;
+        private readonly IRepository<UserEntity> _userRepository;
 
         public UserService(IUserInfo user,
-            IRepository<UserEntity, int> userRepository
+            IRepository<UserEntity> userRepository
             )
         {
             _user = user;
@@ -38,7 +40,7 @@ namespace QingShan.Services.User
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<StatusResult<UserGetOutputDto>> GetAsync(int id)
+        public async Task<StatusResult<UserGetOutputDto>> GetAsync(string id)
         {
             var user = await _userRepository
                 .Select
@@ -55,6 +57,33 @@ namespace QingShan.Services.User
             //var entityDto = await _context.Users.ProjectTo<UserGetOutputDto>(_configurationProvider).FirstOrDefaultAsync(o => o.Id == id);
             //var entityDto = _mapper.Map<UserGetOutputDto>(entity);
             return new StatusResult<UserGetOutputDto>(user);
+        }
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <returns></returns>
+        public async Task<StatusResult> Init()
+        {
+            var user = await _userRepository
+                .Select.FirstAsync();
+            if (user != null)
+            {
+                return new StatusResult("当前已存在人员信息，无法初始化");
+            }
+            var password = MD5Encrypt.Encrypt32("123456");
+            var model = new UserEntity()
+            {
+                Id = Snowflake.GenId(),
+                Avatar = "",
+                UserName = "123456",
+                Password = password
+
+            };
+            _userRepository.Insert(model);
+            return new StatusResult()
+            {
+                Message = "初始化人员成功，账号【123456】，密码【123456】"
+            };
         }
 
         /// <summary>
@@ -130,13 +159,8 @@ namespace QingShan.Services.User
         /// <returns></returns>
         public async Task<StatusResult> UpdateAsync(UserUpdateInputDto input)
         {
-            if (!(input?.Id > 0))
-            {
-                return new StatusResult("未获取到用户信息");
-            }
-
             var user = await _userRepository.Select.Where(o => o.Id == input.Id).FirstAsync();
-            if (!(user?.Id > 0))
+            if (user == null)
             {
                 return new StatusResult("用户不存在！");
             }
@@ -158,10 +182,11 @@ namespace QingShan.Services.User
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<StatusResult> DeleteAsync(int id)
+        public async Task<StatusResult> DeleteAsync(string id)
         {
             var res = await _userRepository.DeleteAsync(id);
             return new StatusResult(res > 0, "删除失败");
         }
+
     }
 }

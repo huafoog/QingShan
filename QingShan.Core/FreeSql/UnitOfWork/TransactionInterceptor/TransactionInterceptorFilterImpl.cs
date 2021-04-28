@@ -6,12 +6,12 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace QingShan.DatabaseAccessor
+namespace QingShan.Core.FreeSql.UnitOfWork.TransactionInterceptor
 {
     /// <summary>
     /// 事务拦截注入
     /// </summary>
-    internal class TransactionInterceptorFilterImpl : IAsyncActionFilter,IOrderedFilter
+    internal class TransactionInterceptorFilterImpl : IAsyncActionFilter, IOrderedFilter
     {
         private readonly UnitOfWorkManager _unitOfWorkManager;
         private readonly ILogger _logger;
@@ -50,7 +50,7 @@ namespace QingShan.DatabaseAccessor
                 await next();
                 return;
             }
-            using var trans = _unitOfWorkManager.Begin(attr.Propagation,attr.IsolationLevel);
+            using var trans = _unitOfWorkManager.Begin(attr.Propagation, attr.IsolationLevel);
             // 继续执行
             var resultContext = await next();
             // 判断是否出现异常

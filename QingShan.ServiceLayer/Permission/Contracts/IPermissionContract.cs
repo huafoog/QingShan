@@ -1,4 +1,6 @@
-﻿using QingShan.Data;
+﻿using Panda.DynamicWebApi;
+using Panda.DynamicWebApi.Attributes;
+using QingShan.Data;
 using QingShan.DataLayer.Entities;
 using QingShan.Services.Permission.Dto;
 using System;
@@ -7,36 +9,43 @@ using System.Threading.Tasks;
 
 namespace QingShan.Services.Permission
 {
-    public interface IModuleService
+    /// <summary>
+    /// 权限
+    /// </summary>
+    public interface IPermissionContract
     {
         /// <summary>
-        /// 添加模块
+        /// 添加权限
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task<StatusResult> InsertModules(ModuleInputDto dto);
+        Task<StatusResult> InsertPermission(PermissionInputDto dto);
 
         /// <summary>
-        /// 修改模块
+        /// 修改权限
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task<StatusResult> UpdateModules(ModuleInputDto dto);
+        Task<StatusResult> UpdatePermission(UpdatePermissionInputDto dto);
 
         /// <summary>
-        /// 添加模块集合
+        /// 添加权限集合
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        Task<StatusResult> InsertModules(ModuleEntity[] models);
+        Task<StatusResult> InsertPermission(PermissionInputDto[] models);
 
         /// <summary>
         /// 逻辑删除
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<StatusResult> DeleteModule(Guid id);
+        Task<StatusResult> DeleteModule(string id);
 
-        Task CreateModules(List<ModuleInfo> moduleInfos);
-    }
+        /// <summary>
+        /// 检查权限
+        /// </summary>
+        /// <returns></returns>
+        Task<bool> CheckPermission();
+    }   
 }

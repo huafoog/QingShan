@@ -4,64 +4,94 @@
         <name>QingShan.DataLayer</name>
     </assembly>
     <members>
-        <member name="T:QingShan.DataLayer.Entities.ModuleEntity">
+        <member name="T:QingShan.DataLayer.Entities.MenuEntity">
             <summary>
-            模块
+            菜单
             </summary>
         </member>
-        <member name="P:QingShan.DataLayer.Entities.ModuleEntity.Code">
+        <member name="P:QingShan.DataLayer.Entities.MenuEntity.Code">
             <summary>
-            当前操作代码
+            菜单code
             </summary>
         </member>
-        <member name="P:QingShan.DataLayer.Entities.ModuleEntity.Area">
+        <member name="P:QingShan.DataLayer.Entities.MenuEntity.Name">
             <summary>
-            区域
+            菜单名称
             </summary>
         </member>
-        <member name="P:QingShan.DataLayer.Entities.ModuleEntity.Controller">
+        <member name="P:QingShan.DataLayer.Entities.MenuEntity.Redirect">
             <summary>
-            控制器
+            跳转地址
             </summary>
         </member>
-        <member name="P:QingShan.DataLayer.Entities.ModuleEntity.Action">
-            <summary>
-            操作
-            </summary>
-        </member>
-        <member name="P:QingShan.DataLayer.Entities.ModuleEntity.Name">
-            <summary>
-            模块名称
-            </summary>
-        </member>
-        <member name="P:QingShan.DataLayer.Entities.ModuleEntity.Path">
-            <summary>
-            路径
-            </summary>
-        </member>
-        <member name="P:QingShan.DataLayer.Entities.ModuleEntity.Icon">
+        <member name="P:QingShan.DataLayer.Entities.MenuEntity.Icon">
             <summary>
             图标
             </summary>
         </member>
-        <member name="P:QingShan.DataLayer.Entities.ModuleEntity.Remark">
+        <member name="P:QingShan.DataLayer.Entities.MenuEntity.Component">
+            <summary>
+            组件
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.MenuEntity.ParentId">
+            <summary>
+            父级id
+            </summary>
+        </member>
+        <member name="T:QingShan.DataLayer.Entities.PermissionEntity">
+            <summary>
+            权限
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.PermissionEntity.Code">
+            <summary>
+            当前权限编码
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.PermissionEntity.Area">
+            <summary>
+            区域
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.PermissionEntity.IsArea">
+            <summary>
+            是否有区域
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.PermissionEntity.Controller">
+            <summary>
+            控制器
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.PermissionEntity.Action">
+            <summary>
+            操作
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.PermissionEntity.Name">
+            <summary>
+            模块名称
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.PermissionEntity.Path">
+            <summary>
+            路径
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.PermissionEntity.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.PermissionEntity.Remark">
             <summary>
             备注信息
             </summary>
         </member>
-        <member name="P:QingShan.DataLayer.Entities.ModuleEntity.Sort">
+        <member name="P:QingShan.DataLayer.Entities.PermissionEntity.Sort">
             <summary>
             排序值
-            </summary>
-        </member>
-        <member name="P:QingShan.DataLayer.Entities.ModuleEntity.Pid">
-            <summary>
-            父节点Id
-            </summary>
-        </member>
-        <member name="P:QingShan.DataLayer.Entities.ModuleEntity.Level">
-            <summary>
-            节点
             </summary>
         </member>
         <member name="T:QingShan.DataLayer.Entities.Product">
@@ -109,19 +139,34 @@
             是否激活
             </summary>
         </member>
-        <member name="T:QingShan.DataLayer.Entities.RoleModuleEntity">
+        <member name="T:QingShan.DataLayer.Entities.RoleMenuEntity">
             <summary>
-            角色模块
+            角色菜单
             </summary>
         </member>
-        <member name="P:QingShan.DataLayer.Entities.RoleModuleEntity.RoleId">
+        <member name="P:QingShan.DataLayer.Entities.RoleMenuEntity.RoleId">
             <summary>
             角色Id
             </summary>
         </member>
-        <member name="P:QingShan.DataLayer.Entities.RoleModuleEntity.ModuleId">
+        <member name="P:QingShan.DataLayer.Entities.RoleMenuEntity.MeunId">
             <summary>
-            模块id
+            菜单id
+            </summary>
+        </member>
+        <member name="T:QingShan.DataLayer.Entities.RolePermissionEntity">
+            <summary>
+            角色模块
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.RolePermissionEntity.RoleId">
+            <summary>
+            角色Id
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.RolePermissionEntity.PermissionId">
+            <summary>
+            权限id
             </summary>
         </member>
         <member name="T:QingShan.DataLayer.Entities.UserEntity">
@@ -178,6 +223,16 @@
         <member name="P:QingShan.DataLayer.Entities.UserEntity.UpdateDateTime">
             <summary>
             更新时间
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.UserEntity.LastLoginIp">
+            <summary>
+            上次登录ip
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.UserEntity.LastLoginTime">
+            <summary>
+            上次登录时间
             </summary>
         </member>
         <member name="T:QingShan.DataLayer.Entities.EAdministratorStatus">

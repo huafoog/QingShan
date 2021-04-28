@@ -18,6 +18,8 @@ using QingShan.Core.Web.Permission;
 using QingShan.Core.Web.Services;
 using System.IO;
 using System;
+using Microsoft.AspNetCore.Authorization;
+using QingShan.Web.Authorization;
 
 namespace QingShan.Core.Web
 {
@@ -38,7 +40,7 @@ namespace QingShan.Core.Web
         {
             services.AddInject();
             services.AddStaticFile();
-            services.AddJwt();
+            services.AddJwt<JwtHandler>(enableGlobalAuthorize: true);
             services.AddCorsAccessor();
             services.AddControllers(o =>
             {

@@ -105,10 +105,10 @@ namespace Microsoft.Extensions.DependencyInjection
         public static AuthenticationBuilder AddJwt<TAuthorizationHandler>(this IServiceCollection services, Action<AuthenticationOptions> authenticationConfigure = null, object tokenValidationParameters = default, Action<JwtBearerOptions> jwtBearerConfigure = null, bool enableGlobalAuthorize = false)
             where TAuthorizationHandler : class, IAuthorizationHandler
         {
-            var furionAssembly = Assembly.Load("QingShan");
+            var assembly = Assembly.Load("QingShan.Core");
 
             // 获取添加授权类型
-            var authorizationServiceCollectionExtensionsType = furionAssembly.GetType("Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions");
+            var authorizationServiceCollectionExtensionsType = assembly.GetType("Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions");
             var addAppAuthorizationMethod = authorizationServiceCollectionExtensionsType
                 .GetMethods(BindingFlags.Public | BindingFlags.Static)
                 .Where(u => u.Name == "AddAppAuthorization" && u.IsGenericMethod && u.GetParameters().Length > 0 && u.GetParameters()[0].ParameterType == typeof(IServiceCollection)).First();

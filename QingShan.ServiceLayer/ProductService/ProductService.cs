@@ -6,15 +6,16 @@ using QingShan.DataLayer.Entities;
 using QingShan.Services.ProductService.Dtos;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using QingShan.Core.FreeSql;
 
 namespace QingShan.Services.ProductService
 {
     public class ProductService : IProductService, IScopeDependency
     {
 
-        public readonly IRepository<Product, int> _productRepository;
+        public readonly IRepository<Product> _productRepository;
 
-        public ProductService(IRepository<Product, int> productRepository)
+        public ProductService(IRepository<Product> productRepository)
         {
             _productRepository = productRepository;
         }
@@ -29,7 +30,7 @@ namespace QingShan.Services.ProductService
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<StatusResult> Delete(int id)
+        public async Task<StatusResult> Delete(string id)
         {
             var result = await _productRepository.DeleteAsync(id);
             return new StatusResult(result > 0, "删除失败");

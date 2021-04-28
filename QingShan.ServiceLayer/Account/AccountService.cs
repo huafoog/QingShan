@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using QingShan.Data;
-using QingShan.DatabaseAccessor;
 using QingShan.DependencyInjection;
 using QingShan.Encryption;
 using QingShan.DataLayer.Entities;
@@ -9,20 +8,24 @@ using QingShan.Services.Account.Dto.OutputDto;
 using QingShan.Services.User;
 using System.Threading.Tasks;
 using System;
+using QingShan.Core.FreeSql;
+using QingShan.Utilities;
 
 namespace QingShan.Services.Account
 {
     public class AccountService : IAccountService, IScopeDependency
     {
         private readonly IConfiguration _config;
-        private readonly IUserService _userService;
+        //private readonly IUserService _userService;
 
-        private readonly IRepository<UserEntity, int> _userRepository;
+        private readonly IRepository<UserEntity> _userRepository;
 
-        public AccountService(IConfiguration config, IUserService userService, IRepository<UserEntity, int> userRepository)
+        public AccountService(IConfiguration config, 
+            IUserContract userService,
+            IRepository<UserEntity> userRepository)
         {
             _config = config;
-            _userService = userService;
+            //_userService = userService;
             _userRepository = userRepository;
         }
 
@@ -45,9 +48,8 @@ namespace QingShan.Services.Account
             {
                 return new StatusResult<AuthLoginOutputDto>($"当前账号状态为：{user.Status.ToDescription()}");
             }
-
-            var password = MD5Encrypt.Encrypt32(dto.Password);
-            if (user.Password != password)
+            //前端加密
+            if (user.Password != dto.Password)
             {
                 return new StatusResult<AuthLoginOutputDto>("账号或密码错误");
             }

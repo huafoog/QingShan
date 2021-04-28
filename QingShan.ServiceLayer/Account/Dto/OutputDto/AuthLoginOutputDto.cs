@@ -5,7 +5,7 @@
         /// <summary>
         /// 用户id
         /// </summary>
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 账号

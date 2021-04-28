@@ -4,18 +4,18 @@ using System;
 namespace QingShan.DataLayer.Entities
 {
     /// <summary>
-    /// 角色模块
+    /// 角色菜单
     /// </summary>
-    public class RoleModuleEntity : EntityBaseById<int>
+    public class RoleMenuEntity : EntityBase
     {
         /// <summary>
         /// 角色Id
         /// </summary>
-        public int RoleId { get; set; }
+        public string RoleId { get; set; }
 
         /// <summary>
-        /// 模块id
+        /// 菜单id
         /// </summary>
-        public Guid ModuleId { get; set; }
+        public string MeunId { get; set; }
     }
 }

@@ -1,40 +1,37 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using QingShan.Data.Constants;
 using QingShan.DependencyInjection;
 using QingShan.Utilities;
 using System;
+using System.Linq;
+using System.Security.Claims;
 
 namespace QingShan.Permission
 {
     /// <summary>
     /// 用户信息接口
     /// </summary>
-    public class UserInfo : IUserInfo, ITransientDependency
+    public class UserInfo : IUserInfo, IScopeDependency
     {
         private readonly IHttpContextAccessor _accessor;
 
-        private readonly IConfiguration _config;
 
-        public UserInfo(IHttpContextAccessor accessor, IConfiguration config)
+        public UserInfo(IHttpContextAccessor accessor)
         {
             _accessor = accessor;
-            _config = config;
         }
 
         /// <summary>
         /// 用户Id
         /// </summary>
-        public int Id
+        public string Id
         {
             get
             {
-                var id = _accessor?.HttpContext?.User?.FindFirst(ClaimConst.USERID);
-                if (id != null && id.Value.NotNull())
-                {
-                    return id.Value.ToInt();
-                }
-                return 0;
+                var id = _accessor.HttpContext.User.FindFirstValue(ClaimConst.USERID);
+                return id;
             }
         }
 
@@ -45,14 +42,9 @@ namespace QingShan.Permission
         {
             get
             {
-                var name = _accessor?.HttpContext?.User?.FindFirst(ClaimConst.USERNAME);
+                var name = _accessor?.HttpContext?.User?.FindFirstValue(ClaimConst.USERNAME);
 
-                if (name != null && name.Value.NotNull())
-                {
-                    return name.Value;
-                }
-
-                return "";
+                return name;
             }
         }
 
@@ -63,14 +55,9 @@ namespace QingShan.Permission
         {
             get
             {
-                var name = _accessor?.HttpContext?.User?.FindFirst(ClaimConst.USERNICKNAME);
+                var name = _accessor?.HttpContext?.User?.FindFirstValue(ClaimConst.USERNICKNAME);
 
-                if (name != null && name.Value.NotNull())
-                {
-                    return name.Value;
-                }
-
-                return "";
+                return name;
             }
         }
     }

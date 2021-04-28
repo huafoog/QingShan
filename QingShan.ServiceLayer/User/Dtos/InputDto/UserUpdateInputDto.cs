@@ -7,13 +7,12 @@ namespace QingShan.Services.User.Dtos.InputDto
     /// <summary>
     /// 修改
     /// </summary>
-    [MapTo(typeof(UserEntity))]
     public class UserUpdateInputDto
     {
         /// <summary>
         /// 主键Id
         /// </summary>
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 账号

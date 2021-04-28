@@ -10,7 +10,12 @@
 
         }
 
-        public StatusResult(bool isSuccess, string message) : base(isSuccess, message)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="isFail">是否失败</param>
+        /// <param name="message">失败显示的消息</param>
+        public StatusResult(bool isFail, string message) : base(!isFail, message)
         {
 
         }

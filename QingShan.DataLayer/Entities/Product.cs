@@ -6,7 +6,7 @@ namespace QingShan.DataLayer.Entities
     /// <summary>
     /// 商品
     /// </summary>
-    public class Product : EntityBase<int>
+    public class Product : EntityBase
     {
         /// <summary>
         /// 名称

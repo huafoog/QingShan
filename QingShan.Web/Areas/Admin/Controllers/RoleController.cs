@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QingShan.Core.FreeSql.UnitOfWork.TransactionInterceptor;
 using QingShan.Data;
-using QingShan.DatabaseAccessor;
 using QingShan.Permission;
 using QingShan.Permission.Authorization;
 using QingShan.Services.System.Role;
@@ -9,7 +9,7 @@ using QingShan.Services.System.Role.Dto.OutputDto;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
-namespace QingShan.Core.Web.Areas.Admin.Controllers
+namespace QingShan.Web.Areas.Admin.Controllers
 {
     /// <summary>
     /// 角色管理

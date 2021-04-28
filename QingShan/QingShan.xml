@@ -252,6 +252,16 @@
             获取或设置 数据状态
             </summary>
         </member>
+        <member name="P:QingShan.DatabaseAccessor.EntityBase`1.CreatedId">
+            <summary>
+            创建人id
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.ICreatedId`1.CreatedId">
+            <summary>
+            创建人
+            </summary>
+        </member>
         <member name="T:QingShan.DatabaseAccessor.ICreatedTime">
             <summary>
             创建时间
@@ -590,6 +600,21 @@
             消息
             </summary>
         </member>
+        <member name="T:QingShan.Data.PageInputDto`1">
+            <summary>
+            分页输入参数
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.PageInputDto`1.Data">
+            <summary>
+            分页筛选数据
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.PageInputDto`1.Search">
+            <summary>
+            关键字
+            </summary>
+        </member>
         <member name="T:QingShan.Data.PageInputDto">
             <summary>
             分页输入参数
@@ -600,7 +625,7 @@
             关键字
             </summary>
         </member>
-        <member name="P:QingShan.Data.PageBaseInputDto.PageIndex">
+        <member name="P:QingShan.Data.PageBaseInputDto.PageNo">
             <summary>
             当前页标
             </summary>
@@ -615,7 +640,7 @@
             分页信息输出
             </summary>
         </member>
-        <member name="P:QingShan.Data.PageOutputDto`1.Total">
+        <member name="P:QingShan.Data.PageOutputDto`1.TotalCount">
             <summary>
             数据总数
             </summary>
@@ -629,6 +654,13 @@
             <summary>
             业务操作信息信息类
             </summary>
+        </member>
+        <member name="M:QingShan.Data.StatusResult.#ctor(System.Boolean,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="isFail">是否失败</param>
+            <param name="message">失败显示的消息</param>
         </member>
         <member name="M:QingShan.Data.StatusResult.#ctor(System.String)">
             <summary>
@@ -1381,6 +1413,37 @@
             </summary>
             <param name="options"></param>
             <param name="configuration"></param>
+        </member>
+        <member name="M:QingShan.Utilities.Snowflake.#ctor(System.Int64)">
+            <summary>
+            机器码
+            </summary>
+            <param name="workerId">当前机器码</param>
+        </member>
+        <member name="M:QingShan.Utilities.Snowflake.GenId">
+            <summary>
+            雪花算法生成一个ID -- 单机下使用
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.Snowflake.nextId">
+            <summary>
+            雪花算法生成一个ID
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.Snowflake.tillNextMillis(System.Int64)">
+            <summary>
+            获取下一微秒时间戳
+            </summary>
+            <param name="lastTimestamp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.Snowflake.timeGen">
+            <summary>
+            生成当前时间戳
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:QingShan.Utilities.Base64Convert">
             <summary>
@@ -2988,6 +3051,20 @@
             <param name="val">值</param>
             <returns></returns>
         </member>
+        <member name="M:System.DecimalExtension.Ceiling(System.Decimal)">
+            <summary>
+            向上取整
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.DecimalExtension.Floor(System.Decimal)">
+            <summary>
+            向下取整
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
         <member name="T:System.EnumExtensions">
             <summary>
             枚举拓展
@@ -2997,6 +3074,26 @@
             <summary>
             获取枚举项上的<see cref="T:System.ComponentModel.DescriptionAttribute"/>特性的文字描述
             </summary>
+            <returns></returns>
+        </member>
+        <member name="T:System.Int64Extension">
+            <summary>
+            <see cref="T:System.Int64"/>拓展
+            </summary>
+        </member>
+        <member name="M:System.Int64Extension.Division(System.Int64,System.Decimal)">
+            <summary>
+            除以
+            </summary>
+            <param name="dividend">被除数</param>
+            <param name="val">除数</param>
+            <returns>当被除数为零（0）时返回0</returns>
+        </member>
+        <member name="M:System.Int64Extension.ToZero(System.Nullable{System.Int64})">
+            <summary>
+            空值转换为0
+            </summary>
+            <param name="val">值</param>
             <returns></returns>
         </member>
         <member name="T:System.Int32Extension">

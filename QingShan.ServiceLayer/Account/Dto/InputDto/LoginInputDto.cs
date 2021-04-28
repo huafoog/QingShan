@@ -11,12 +11,12 @@ namespace QingShan.Services.Account.Dto
         /// 账号
         /// </summary>
         [Required(ErrorMessage = "请输入账号")]
-        public string Account { get; set; }
+        public string Account { get; set; } = "123456";
 
         /// <summary>
         /// 密码
         /// </summary>
         [Required(ErrorMessage = "请输入密码")]
-        public string Password { get; set; }
+        public string Password { get; set; } = "123456";
     }
 }

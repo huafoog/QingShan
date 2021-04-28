@@ -12,7 +12,7 @@ namespace QingShan.Services.System.Role
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<StatusResult<RoleOutputDto>> GetAsync(int id);
+        Task<StatusResult<RoleOutputDto>> GetAsync(string id);
 
         /// <summary>
         /// 添加用户信息
@@ -41,6 +41,6 @@ namespace QingShan.Services.System.Role
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<StatusResult> DeleteAsync(int id);
+        Task<StatusResult> DeleteAsync(string id);
     }
 }

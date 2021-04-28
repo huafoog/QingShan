@@ -82,7 +82,7 @@ namespace System
                 return entity;
             }
 
-            ICreationAudited<int> entity1 = (ICreationAudited<int>)entity;
+            var entity1 = (ICreationAudited<string>)entity;
             entity1.CreatorId = user.Id;
             entity1.CreateTime = DateTime.Now;
             return (TEntity)entity1;
@@ -100,7 +100,7 @@ namespace System
                 return entity;
             }
 
-            IUpdateAudited<int> entity1 = (IUpdateAudited<int>)entity;
+            var entity1 = (IUpdateAudited<string>)entity;
             entity1.LastUpdaterId = user.Id;
             entity1.LastUpdatedTime = DateTime.Now;
             return (TEntity)entity1;

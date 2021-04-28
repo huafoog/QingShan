@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Data;
 
-namespace QingShan.DatabaseAccessor
+namespace QingShan.Core.FreeSql.UnitOfWork.TransactionInterceptor
 {
     /// <summary>
     /// 自动事务提交过滤器，在<see cref="ActionFilterAttribute.OnResultExecutionAsync(ResultExecutingContext, ResultExecutionDelegate)"/>方法中执行拦截进行事务提交
@@ -35,7 +35,7 @@ namespace QingShan.DatabaseAccessor
         /// <para>支持传入 事务级别 <see cref="IsolationLevel"/> 参数值</para>
         /// </summary>
         /// <param name="isolationLevel">事务隔离级别</param>
-        public TransactionInterceptorAttribute(IsolationLevel isolationLevel) :this()
+        public TransactionInterceptorAttribute(IsolationLevel isolationLevel) : this()
         {
             IsolationLevel = isolationLevel;
         }

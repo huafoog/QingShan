@@ -1,7 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using FreeSql;
+using Microsoft.Extensions.Configuration;
 using QingShan.Core.ConfigurableOptions;
 
-namespace QingShan.DatabaseAccessor
+namespace QingShan.Core.FreeSql.Options
 {
     /// <summary>
     /// 数据库配置选项
@@ -13,7 +14,7 @@ namespace QingShan.DatabaseAccessor
         /// <summary>
         /// 数据库类型
         /// </summary>
-        public FreeSql.DataType Type { get; set; }
+        public DataType Type { get; set; }
 
         /// <summary>
         /// 连接字符串
@@ -32,13 +33,19 @@ namespace QingShan.DatabaseAccessor
         public bool PrintingSQL { get; set; }
 
         /// <summary>
+        /// 全局过滤
+        /// </summary>
+        public bool GlobalFilter { get; set; }
+
+        /// <summary>
         /// 选项后期配置
         /// </summary>
         /// <param name="options"></param>
         /// <param name="configuration"></param>
         public void PostConfigure(DatabaseAccessorSettingsOptions options, IConfiguration configuration)
         {
-            PrintingSQL = false;
+            PrintingSQL = true;
+            GlobalFilter = true;
         }
     }
 }

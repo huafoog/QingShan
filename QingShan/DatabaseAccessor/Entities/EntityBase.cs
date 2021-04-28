@@ -4,6 +4,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace QingShan.DatabaseAccessor
 {
+
+
+    public abstract class EntityBase : EntityBase<string>
+    {
+
+    }
+
     /// <summary>
     /// 实体类基类
     /// <para>只包含<see cref="IEntity{TKey}"/>接口类</para>
@@ -22,7 +29,7 @@ namespace QingShan.DatabaseAccessor
     /// <para>包含<see cref="IEntity{TKey}"/>|<see cref="ICreatedTime"/>|<see cref="IDataState"/>接口类</para>
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
-    public abstract class EntityBase<TKey> : IEntity<TKey>, ICreatedTime, ISoftDeletable
+    public abstract class EntityBase<TKey> : IEntity<TKey>,ICreatedId<TKey>, ICreatedTime, ISoftDeletable
     {
         /// <summary>
         /// 获取或设置 编号
@@ -40,5 +47,9 @@ namespace QingShan.DatabaseAccessor
         /// </summary>
         [DisplayName("数据状态")]
         public DateTime? DeleteTime { get; set; }
+        /// <summary>
+        /// 创建人id
+        /// </summary>
+        public TKey CreatedId { get; set; }
     }
 }

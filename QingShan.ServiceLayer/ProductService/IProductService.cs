@@ -14,7 +14,7 @@ namespace QingShan.Services.ProductService
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<StatusResult> Delete(int id);
+        Task<StatusResult> Delete(string id);
 
         Task<StatusResult> Add(ProductInputDto dto);
     }

@@ -5,15 +5,26 @@ using System;
 
 namespace QingShan.Services.Permission.Dto
 {
-    [MapTo(typeof(ModuleEntity))]
-    public class ModuleInputDto
+    public class UpdatePermissionInputDto: PermissionInputDto
     {
-        public Guid? Id { get; set; }
+        public string Id { get; set; }
+    }
+
+    public class PermissionInputDto
+    {
+        /// <summary>
+        /// 权限代码
+        /// </summary>
+        public string Code { get; set; }
 
         /// <summary>
         /// 区域
         /// </summary>
         public string Area { get; set; }
+        /// <summary>
+        /// 是否区域
+        /// </summary>
+        public bool IsArea { get; set; }
 
         /// <summary>
         /// 控制器
@@ -44,13 +55,8 @@ namespace QingShan.Services.Permission.Dto
         /// </summary>
         public int Sort { get; set; }
         /// <summary>
-        /// 父节点Id
+        /// 依赖的权限代码
         /// </summary>
-        public int Pid { get; set; }
-
-        /// <summary>
-        /// 节点
-        /// </summary>
-        public ModuleLevel Level { get; set; }
+        public string DependCode { get; set; }
     }
 }

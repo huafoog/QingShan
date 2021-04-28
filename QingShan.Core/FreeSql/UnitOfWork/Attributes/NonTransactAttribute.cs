@@ -12,7 +12,7 @@
 using QingShan.DependencyInjection;
 using System;
 
-namespace QingShan.DatabaseAccessor
+namespace QingShan.Core.FreeSql.UnitOfWork.Attributes
 {
     /// <summary>
     /// 禁用工作单元特性

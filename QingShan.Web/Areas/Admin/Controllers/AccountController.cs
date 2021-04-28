@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QingShan.Core.JWT;
 using QingShan.Data;
@@ -11,7 +14,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace QingShan.Core.Web.Areas.Admin.Controllers
+namespace QingShan.Web.Areas.Admin.Controllers
 {
 
     /// <summary>
@@ -24,9 +27,11 @@ namespace QingShan.Core.Web.Areas.Admin.Controllers
 
         private readonly IJwtFactory _userToken;
 
-        private readonly IUserService _userService;
+        private readonly IUserContract _userService;
 
-        public AccountController(IAccountService accountService, IJwtFactory userToken, IUserService userService)
+        public AccountController(IAccountService accountService,
+            IJwtFactory userToken,
+            IUserContract userService)
         {
             _accountService = accountService;
             _userToken = userToken;
@@ -34,9 +39,15 @@ namespace QingShan.Core.Web.Areas.Admin.Controllers
         }
         [HttpGet]
         [AllowAnonymous]
-        public async Task<object> Test(int id)
+        public async Task<object> Test(string id)
         {
             return await _userService.GetAsync(id);
+        }
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<StatusResult> Init()
+        {
+            return await _userService.Init();
         }
 
         /// <summary>
@@ -64,16 +75,7 @@ namespace QingShan.Core.Web.Areas.Admin.Controllers
                 { ClaimConst.USERNAME,result.Data.UserName }, // 存储用户名
                 { ClaimConst.USERNICKNAME,result.Data.NickName },
             });
-
-            // 获取刷新 token
-            //var refreshToken = JWTEncryption.GenerateRefreshToken(accessToken, 30); // 第二个参数是刷新 token 的有效期，默认三十天
-
-            //var token = _userToken.Create(new Claim[] {
-            //    new Claim(ClaimConst.USERID,result.Data.Id.ToString()),
-            //    new Claim(ClaimConst.USERNAME,result.Data.UserName),
-            //    new Claim(ClaimConst.USERNICKNAME,result.Data.NickName)
-            //});
-            return new StatusResult<string>() { Data = accessToken };
+            return new StatusResult<string>() { Data = "Bearer "+accessToken };
         }
     }
 }

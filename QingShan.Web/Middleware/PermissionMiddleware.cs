@@ -27,10 +27,9 @@ namespace QingShan.Core.Web.Permission
         {
             if (_configuration["Config:InitModule"] == "1")
             {
-                var moduleService = httpContext.RequestServices.GetService<IModuleService>();
+                var moduleService = httpContext.RequestServices.GetService<IPermissionContract>();
                 var moduleManager = httpContext.RequestServices.GetService<IModuleManager>();
 
-                await moduleService.CreateModules(moduleManager.GetModules());
             }
             await _next(httpContext);
         }

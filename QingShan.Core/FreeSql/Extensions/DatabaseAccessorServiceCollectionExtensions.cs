@@ -3,6 +3,9 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using QingShan.Core;
 using QingShan.Core.ConfigurableOptions;
+using QingShan.Core.FreeSql;
+using QingShan.Core.FreeSql.Options;
+using QingShan.Core.FreeSql.UnitOfWork.TransactionInterceptor;
 using QingShan.DatabaseAccessor;
 using QingShan.DependencyInjection;
 using System;
@@ -25,7 +28,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.AddConfigurableOptions<DatabaseAccessorSettingsOptions>();
             var build = services.BuildServiceProvider();
-            
+
             var dbConfig = services.GetOptions<DatabaseAccessorSettingsOptions>();
 
             var freeSqlBuilder = new FreeSqlBuilder()
@@ -38,17 +41,21 @@ namespace Microsoft.Extensions.DependencyInjection
             var fsql = freeSqlBuilder.Build();
             // 注册FreeSql   IFreeSql必须使用单例注入
             services.AddSingleton<IFreeSql>(fsql);
-
-            //监听生成的sql语句
-            fsql.Aop.CurdBefore += (s, e) =>
+            if (dbConfig.GlobalFilter)
             {
-                if (dbConfig.PrintingSQL)
+                services.AddFreeRepository(filter => filter.Apply<ISoftDeletable>("DeleteTime", a => !a.DeleteTime.HasValue));
+            }
+            if (dbConfig.PrintingSQL)
+            {
+                //监听生成的sql语句
+                fsql.Aop.CurdBefore += (s, e) =>
                 {
                     Console.WriteLine(e.Sql);
-                }
-            };
+                };
+            }
+            services.TryAddScoped(typeof(IRepository<>), typeof(Repository<>));
             // 注册仓储
-            services.TryAddScoped(typeof(IRepository<,>), typeof(Repository<,>));
+            services.TryAddScoped(typeof(IKeyRepository<,>), typeof(KeyRepository<,>));
             services.AddScoped<UnitOfWorkManager>();
             services.TryAddScoped(typeof(TransactionInterceptorFilterImpl));
             services.TryAddScoped(typeof(TransactionInterceptorAttribute));

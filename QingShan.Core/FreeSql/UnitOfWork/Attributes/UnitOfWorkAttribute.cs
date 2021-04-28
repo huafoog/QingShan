@@ -13,7 +13,7 @@ using QingShan.DependencyInjection;
 using System;
 using System.Transactions;
 
-namespace QingShan.DatabaseAccessor
+namespace QingShan.Core.FreeSql.UnitOfWork.Attributes
 {
     /// <summary>
     /// 工作单元配置特性

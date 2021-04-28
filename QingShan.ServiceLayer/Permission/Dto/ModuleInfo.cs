@@ -8,7 +8,6 @@ namespace QingShan.Services.Permission.Dto
     /// <summary>
     /// 模型详情
     /// </summary>
-    [MapTo(typeof(ModuleEntity))]
     public class ModuleInfo
     {
         public Guid Id { get; set; }

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace System
 {
     /// <summary>
-    /// <see cref="int"/>拓展
+    /// <see cref="long"/>拓展
     /// </summary>
-    public static class Int32Extension
+    public static class Int64Extension
     {
         /// <summary>
         /// 除以
@@ -17,7 +17,7 @@ namespace System
         /// <param name="dividend">被除数</param>
         /// <param name="val">除数</param>
         /// <returns>当被除数为零（0）时返回0</returns>
-        public static decimal Division(this int val, decimal dividend)
+        public static decimal Division(this long val, decimal dividend)
         {
             if (dividend == 0)
             {
@@ -30,7 +30,7 @@ namespace System
         /// </summary>
         /// <param name="val">值</param>
         /// <returns></returns>
-        public static int ToZero(this int? val)
+        public static long ToZero(this long? val)
         {
             return val ?? 0;
         }

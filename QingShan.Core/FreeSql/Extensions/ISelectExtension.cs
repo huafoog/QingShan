@@ -45,14 +45,14 @@ namespace FreeSql
                 }
             }
             var data  = await query.Count(out var rowCount)
-                .Page(pageInputDto.PageIndex, pageInputDto.PageSize)
+                .Page(pageInputDto.PageNo, pageInputDto.PageSize.Value)
                 .ToListAsync<TResult>();
             return new PageOutputDto<TResult>()
             {
-                PageIndex = pageInputDto.PageIndex,
-                PageSize = pageInputDto.PageSize,
+                PageNo = pageInputDto.PageNo,
+                PageSize = pageInputDto.PageSize.Value,
                 Data = data,
-                Total = rowCount
+                TotalCount = rowCount
             };
         }
     }

@@ -5,15 +5,20 @@ using System.Threading.Tasks;
 
 namespace QingShan.Services.User
 {
-    public interface IUserService
+    public interface IUserContract
     {
         /// <summary>
         /// 获取用户信息
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<StatusResult<UserGetOutputDto>> GetAsync(int id);
-
+        Task<StatusResult<UserGetOutputDto>> GetAsync(string id);
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <returns></returns>
+        Task<StatusResult> Init();
+        
         /// <summary>
         /// 添加用户信息
         /// </summary>
@@ -41,6 +46,6 @@ namespace QingShan.Services.User
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<StatusResult> DeleteAsync(int id);
+        Task<StatusResult> DeleteAsync(string id);
     }
 }

@@ -26,9 +26,9 @@ namespace QingShan.Attributes.Permission
             {
                 return;
             }
-            //登录验证
+            //登录验证`
             var user = context.HttpContext.RequestServices.GetService<IUserInfo>();
-            if (user == null || !(user?.Id > 0))
+            if (user == null)
             {
                 context.Result = new ChallengeResult();
                 return;

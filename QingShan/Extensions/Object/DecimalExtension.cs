@@ -78,5 +78,25 @@ namespace System
         {
             return val??0;
         }
+
+        /// <summary>
+        /// 向上取整
+        /// </summary>
+        /// <param name="val"></param>
+        /// <returns></returns>
+        public static decimal Ceiling(this decimal val)
+        {
+            return Math.Ceiling(val);
+        }
+
+        /// <summary>
+        /// 向下取整
+        /// </summary>
+        /// <param name="val"></param>
+        /// <returns></returns>
+        public static decimal Floor(this decimal val)
+        {
+            return Math.Floor(val);
+        }
     }
 }

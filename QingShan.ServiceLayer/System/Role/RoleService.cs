@@ -9,16 +9,17 @@ using QingShan.Services.System.Role.Dto.InputDto;
 using QingShan.Services.System.Role.Dto.OutputDto;
 using System;
 using System.Threading.Tasks;
+using QingShan.Core.FreeSql;
 
 namespace QingShan.Services.System.Role
 {
     public class RoleService : IRoleService, IScopeDependency
     {
         private readonly IUserInfo _user;
-        private readonly IRepository<RoleEntity, int> _roleRepository;
+        private readonly IRepository<RoleEntity> _roleRepository;
 
         public RoleService(IUserInfo user,
-            IRepository<RoleEntity,int> roleRepository
+            IRepository<RoleEntity> roleRepository
             )
         {
             _user = user;
@@ -30,7 +31,7 @@ namespace QingShan.Services.System.Role
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<StatusResult<RoleOutputDto>> GetAsync(int id)
+        public async Task<StatusResult<RoleOutputDto>> GetAsync(string id)
         {
             var entityDto = await _roleRepository.Select.Where(o => o.Id.Equals(id)).FirstAsync<RoleOutputDto>();
             return new StatusResult<RoleOutputDto>(entityDto);
@@ -70,13 +71,9 @@ namespace QingShan.Services.System.Role
         /// <returns></returns>
         public async Task<StatusResult> UpdateAsync(RoleInputDto input)
         {
-            if (!(input?.Id > 0))
-            {
-                return new StatusResult("未获取到用户信息");
-            }
 
             var role = await _roleRepository.Select.Where(o => o.Id == input.Id).FirstAsync();
-            if (!(role?.Id > 0))
+            if (role == null)
             {
                 return new StatusResult("用户不存在！");
             }
@@ -98,7 +95,7 @@ namespace QingShan.Services.System.Role
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<StatusResult> DeleteAsync(int id)
+        public async Task<StatusResult> DeleteAsync(string id)
         {
             var res = await _roleRepository.DeleteAsync(id);
             return new StatusResult(res > 0, "删除失败");

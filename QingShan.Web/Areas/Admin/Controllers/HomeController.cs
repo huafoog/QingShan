@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
-namespace QingShan.Core.Web.Areas.Admin.Controllers
+namespace QingShan.Web.Areas.Admin.Controllers
 {
     /// <summary>
     /// 首页

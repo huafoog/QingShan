@@ -1,55 +1,35 @@
 ﻿using FreeSql;
+using QingShan.DatabaseAccessor;
+using QingShan.Permission;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Linq;
 
-namespace QingShan.DatabaseAccessor
+namespace QingShan.Core.FreeSql
 {
     /// <summary>
     /// 仓储
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
-    /// <typeparam name="TKey"></typeparam>
-    public class Repository<TEntity, TKey> :BaseRepository<TEntity, TKey>,IRepository<TEntity, TKey>
-        where TEntity : class,IEntity<TKey>, new()
-        where TKey : IEquatable<TKey>
+    public class Repository<TEntity> : BaseRepository<TEntity, string>, IRepository<TEntity>
+        where TEntity : EntityBase, new()
     {
-
         public readonly IFreeSql _fsql;
+        private readonly IUserInfo _userInfo;
 
-        public Repository(IFreeSql fsql, UnitOfWorkManager uowManger) :base(uowManger?.Orm ?? fsql, null,null)
+        public Repository(IFreeSql fsql, UnitOfWorkManager uowManger,IUserInfo userInfo) : base(uowManger?.Orm ?? fsql, null, null)
         {
             //事务管理绑定
             uowManger?.Binding(this);
             _fsql = fsql;
-
+            _userInfo = userInfo;
         }
 
         #region 同步方法
         #region 重写删除 逻辑删除或物理删除
-        public override int Delete(IEnumerable<TEntity> entitys)
-        {
-            var entityList = new List<TEntity>();
-            if (typeof(ISoftDeletable).IsAssignableFrom(typeof(TEntity)))
-            {
-                // 逻辑删除
-                foreach (TEntity entity in entitys)
-                {
-                    ((ISoftDeletable)entity).DeleteTime = DateTime.Now;
-                    entityList.Add(entity);
-                }
-                BeginEdit(entityList);
-                return 1;
-            }
-            else
-            {
-                // 物理删除
-                return base.Delete(entitys);
-            }
-        }
-
         public override int Delete(Expression<Func<TEntity, bool>> predicate)
         {
             var entityList = new List<TEntity>();
@@ -71,22 +51,46 @@ namespace QingShan.DatabaseAccessor
         {
             return Delete(new List<TEntity>() { new TEntity() });
         }
-        public override int Delete(TKey id)
+        public override int Delete(string id)
         {
-            return base.Delete(o=>o.Id.Equals(id));
+            return Delete(o => o.Id.Equals(id));
         }
         #endregion
         #endregion
 
         #region 异步方法
         #region 重写删除
+
+        /// <summary>
+        /// 逻辑删除
+        /// </summary>
+        /// <param name="ids">id集合</param>
+        /// <returns></returns>
+        public async Task<int> DeleteAsync(IEnumerable<string> ids)
+        {
+            var entityList = new List<TEntity>();
+            if (typeof(ISoftDeletable).IsAssignableFrom(typeof(TEntity)))
+            {
+                await _fsql.Update<TEntity>()
+                      .Set(a => a.DeleteTime, DateTime.Now)
+                      .Where(a => ids.Contains(a.Id))
+                      .ExecuteAffrowsAsync();
+                return 1;
+            }
+            else
+            {
+                // 物理删除
+                return await base.DeleteAsync(o => ids.Contains(o.Id));
+            }
+        }
+
         /// <summary>
         /// 删除
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public override async Task<int> DeleteAsync(TKey id, CancellationToken cancellationToken = default)
+        public override async Task<int> DeleteAsync(string id, CancellationToken cancellationToken = default)
         {
             var entity = new TEntity() { Id = id };
             if (typeof(ISoftDeletable).IsAssignableFrom(typeof(TEntity)))
@@ -103,6 +107,36 @@ namespace QingShan.DatabaseAccessor
             }
         }
         #endregion
+        /// <summary>
+        /// 添加或删除
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public override Task<TEntity> InsertOrUpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
+        {
+            entity.CreateTime = DateTime.Now;
+            entity.CreatedId = _userInfo.Id;
+            return base.InsertOrUpdateAsync(entity, cancellationToken);
+        }
+
+        public override Task<TEntity> InsertAsync(TEntity entity, CancellationToken cancellationToken = default)
+        {
+            entity.CreateTime = DateTime.Now;
+            entity.CreatedId = _userInfo.Id;
+            return base.InsertAsync(entity, cancellationToken);
+        }
+
+        public override Task<List<TEntity>> InsertAsync(IEnumerable<TEntity> entitys, CancellationToken cancellationToken = default)
+        {
+            foreach (var entity in entitys)
+            {
+                entity.CreateTime = DateTime.Now;
+                entity.CreatedId = _userInfo.Id;
+            }
+            return base.InsertAsync(entitys, cancellationToken);
+        }
+
         #endregion
     }
 }
