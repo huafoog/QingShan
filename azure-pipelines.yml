@@ -17,7 +17,8 @@ stages:
   jobs:  
   - job: Build
     displayName: Build
-    pool: 'QSPool'
+    pool:
+        vmImage: 'ubuntu-1604'
     steps:
     - task: Docker@2
       inputs:
