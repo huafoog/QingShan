@@ -24,4 +24,4 @@ stages:
         containerRegistry: 'qs_regisitry'
         repository: 'qs.core.api'
         command: 'buildAndPush'
-        Dockerfile: '$(Build.SourcesDirectory)/QingShan.Web/Dockerfile'
+        Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
