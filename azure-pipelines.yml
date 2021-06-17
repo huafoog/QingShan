@@ -5,9 +5,6 @@
 trigger:
 - master
 
-resources:
-- repo: self
-
 variables:
   tag: '$(Build.BuildId)'
 
@@ -17,22 +14,11 @@ stages:
   jobs:  
   - job: Build
     displayName: Build
-    pool: 'QSPool'
+    pool: QSPool
     steps:
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'qs_regisitry'
-        command: 'login'
-
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'qs_regisitry'
-        repository: '$(Build.Repository.Name)'
-        command: 'build'
-        Dockerfile: '$(Build.SourcesDirectory)/QingShan.Web/Dockerfile'
-        tags: $(Build.BuildId)
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'qs_regisitry'
-        repository: '$(Build.Repository.Name)'
-        command: 'push'
+      - task: Docker@2
+        inputs:
+          containerRegistry: 'qs_regisitry'
+          repository: 'qs.web.api'
+          command: 'buildAndPush'
+          Dockerfile: '**/Dockerfile'
