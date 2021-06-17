@@ -1,4 +1,5 @@
 ﻿using QingShan.DatabaseAccessor;
+using QingShan.DataLayer.Enums;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -50,7 +51,7 @@ namespace QingShan.DataLayer.Entities
         public string Password { get; set; }
 
         /// <summary>
-        /// 账号状态
+        /// 账号状态 
         /// </summary>
         public EAdministratorStatus Status { get; set; }
 
@@ -58,6 +59,12 @@ namespace QingShan.DataLayer.Entities
         /// 是否本系统超级管理员
         /// </summary>
         public bool IsSuper { get; set; }
+
+        /// <summary>
+        /// 个性签名
+        /// </summary>
+        [Column(TypeName = "nvarchar(100)")]
+        public string Remark { get; set; }
 
         /// <summary>
         /// 更新时间
@@ -73,17 +80,5 @@ namespace QingShan.DataLayer.Entities
         /// 上次登录时间
         /// </summary>
         public DateTime? LastLoginTime { get; set; }
-    }
-    /// <summary>
-    /// 用户状态
-    /// </summary>
-    public enum EAdministratorStatus
-    {
-        [Description("已停用")]
-        Stop = -1,
-        [Description("正常")]
-        Normal = 0,
-        [Description("未激活")]
-        NotActive = 1,
     }
 }

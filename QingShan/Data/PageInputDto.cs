@@ -1,20 +1,7 @@
-﻿namespace QingShan.Data
-{
-    /// <summary>
-    /// 分页输入参数
-    /// </summary>
-    public class PageInputDto<T> : PageBaseInputDto
-    {
-        /// <summary>
-        /// 分页筛选数据
-        /// </summary>
-        public T Data { get; set; }
+﻿using System;
 
-        /// <summary>
-        /// 关键字
-        /// </summary>
-        public string Search { get; set; }
-    }
+namespace QingShan.Data
+{
     /// <summary>
     /// 分页输入参数
     /// </summary>

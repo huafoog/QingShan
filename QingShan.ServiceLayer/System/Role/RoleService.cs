@@ -10,6 +10,7 @@ using QingShan.Services.System.Role.Dto.OutputDto;
 using System;
 using System.Threading.Tasks;
 using QingShan.Core.FreeSql;
+using QingShan.Utilities;
 
 namespace QingShan.Services.System.Role
 {
@@ -46,6 +47,7 @@ namespace QingShan.Services.System.Role
 
             return await _roleRepository.Select.ToPageResultAsync<RoleEntity,RoleOutputDto>(dto
                 , o => dto.Search.IsNull()  || o.Name.Contains(dto.Search)  || o.Description.Contains(dto.Search)
+                ,o=>o.OrderSort, Core.Core.DatabaseAccessor.Enums.SortType.ASC
             );
         }
         /// <summary>
@@ -60,8 +62,9 @@ namespace QingShan.Services.System.Role
                 return new StatusResult("角色名已存在");
             }
             var entity = input.Adapt<RoleEntity>();
+            entity.Id = Snowflake.GenId();
             var result = await _roleRepository.InsertAsync(entity);
-            return new StatusResult(result != null, "添加失败");
+            return new StatusResult(result == null, "添加失败");
         }
 
         /// <summary>
@@ -71,7 +74,6 @@ namespace QingShan.Services.System.Role
         /// <returns></returns>
         public async Task<StatusResult> UpdateAsync(RoleInputDto input)
         {
-
             var role = await _roleRepository.Select.Where(o => o.Id == input.Id).FirstAsync();
             if (role == null)
             {
@@ -87,7 +89,7 @@ namespace QingShan.Services.System.Role
             roleModel.OrderSort=input.OrderSort;
             roleModel.Enabled=input.Enabled;
             int res = await _roleRepository.UpdateAsync(roleModel);
-            return new StatusResult(res > 0, "修改失败");
+            return new StatusResult(res == 0, "修改失败");
         }
 
         /// <summary>
@@ -98,7 +100,7 @@ namespace QingShan.Services.System.Role
         public async Task<StatusResult> DeleteAsync(string id)
         {
             var res = await _roleRepository.DeleteAsync(id);
-            return new StatusResult(res > 0, "删除失败");
+            return new StatusResult(res == 0, "删除失败");
         }
     }
 }

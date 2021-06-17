@@ -48,6 +48,26 @@
             <param name="dto"></param>
             <returns></returns>
         </member>
+        <member name="T:QingShan.Services.Common.Dto.InputDto.EnumInputDto">
+            <summary>
+            枚举输入参数
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Common.Dto.InputDto.EnumInputDto.Code">
+            <summary>
+            枚举代码
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Common.Dto.InputDto.EnumInputDto.IsAll">
+            <summary>
+            是否显示全部
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Common.Dto.InputDto.GetUrlInputDto.Url">
+            <summary>
+            获取图片url
+            </summary>
+        </member>
         <member name="T:QingShan.Services.Permission.IMenuContract">
             <summary>
             菜单服务
@@ -615,6 +635,21 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.SaveInfoInputDto.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.SaveInfoInputDto.Avatar">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.SaveInfoInputDto.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
         <member name="T:QingShan.Services.User.Dtos.InputDto.UserAddInputDto">
             <summary>
             添加
@@ -625,14 +660,19 @@
             账号
             </summary>
         </member>
-        <member name="P:QingShan.Services.User.Dtos.InputDto.UserAddInputDto.Password">
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserAddInputDto.Phone">
             <summary>
-            密码
+            手机号
             </summary>
         </member>
         <member name="P:QingShan.Services.User.Dtos.InputDto.UserAddInputDto.NickName">
             <summary>
             昵称
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserAddInputDto.Avatar">
+            <summary>
+            头像
             </summary>
         </member>
         <member name="P:QingShan.Services.User.Dtos.InputDto.UserAddInputDto.Status">
@@ -820,11 +860,6 @@
             账号
             </summary>
         </member>
-        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserListOutputDto.Name">
-            <summary>
-            姓名
-            </summary>
-        </member>
         <member name="P:QingShan.Services.User.Dtos.OutputDto.UserListOutputDto.NickName">
             <summary>
             昵称
@@ -848,6 +883,16 @@
         <member name="P:QingShan.Services.User.Dtos.OutputDto.UserListOutputDto.CreatedTime">
             <summary>
             创建时间
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserListOutputDto.Avatar">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserListOutputDto.Phone">
+            <summary>
+            手机号
             </summary>
         </member>
         <member name="M:QingShan.Services.User.IUserContract.GetAsync(System.String)">
@@ -877,7 +922,14 @@
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:QingShan.Services.User.IUserContract.PageAsync(QingShan.Data.PageInputDto)">
+        <member name="M:QingShan.Services.User.IUserContract.SaveInfoAsync(QingShan.Services.User.Dtos.InputDto.SaveInfoInputDto)">
+            <summary>
+            修改自身信息
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.User.IUserContract.PageAsync(QingShan.Services.User.Dtos.InputDto.SearchUserInputDto)">
             <summary>
             获取数据
             </summary>
@@ -887,6 +939,13 @@
         <member name="M:QingShan.Services.User.IUserContract.DeleteAsync(System.String)">
             <summary>
             删除用户
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.User.IUserContract.DisableAsync(System.String)">
+            <summary>
+            禁用
             </summary>
             <param name="id"></param>
             <returns></returns>
@@ -920,7 +979,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:QingShan.Services.User.UserService.PageAsync(QingShan.Data.PageInputDto)">
+        <member name="M:QingShan.Services.User.UserService.PageAsync(QingShan.Services.User.Dtos.InputDto.SearchUserInputDto)">
             <summary>
             获取数据
             </summary>
@@ -941,9 +1000,23 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="M:QingShan.Services.User.UserService.SaveInfoAsync(QingShan.Services.User.Dtos.InputDto.SaveInfoInputDto)">
+            <summary>
+            修改自身信息
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:QingShan.Services.User.UserService.DeleteAsync(System.String)">
             <summary>
             删除用户
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.User.UserService.DisableAsync(System.String)">
+            <summary>
+            禁用
             </summary>
             <param name="id"></param>
             <returns></returns>

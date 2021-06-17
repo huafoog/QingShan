@@ -23,7 +23,7 @@ namespace FreeSql
         /// <param name="sortType"></param>
         /// <returns></returns>
         public static async Task<PageOutputDto<TResult>> ToPageResultAsync<TSoure, TResult>(this ISelect<TSoure> select
-            , PageInputDto pageInputDto
+            , PageBaseInputDto pageInputDto
             , Expression<Func<TSoure, bool>> where = null
             , Expression<Func<TSoure, object>> order = null, SortType sortType = SortType.DESC)
         {

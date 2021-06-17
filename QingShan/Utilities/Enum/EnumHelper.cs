@@ -17,12 +17,12 @@ namespace QingShan.Utilities
         /// <summary>
         /// 值
         /// </summary>
-        public int Value { get; set; }
+        public int? Value { get; set; }
 
         /// <summary>
         /// 描述
         /// </summary>
-        public string Description { get; set; }
+        public string Label { get; set; }
     }
 
     public class EnumException : Exception
@@ -91,7 +91,7 @@ namespace QingShan.Utilities
             List<EnumDto> enumDic = new List<EnumDto>();
             foreach (Enum item in enums)
             {
-                enumDic.Add(new EnumDto() { Code = item.ToString(), Value = Convert.ToInt32(item), Description = item.ToDescription() });
+                enumDic.Add(new EnumDto() { Code = item.ToString(), Value = Convert.ToInt32(item), Label = item.ToDescription() });
             }
             return enumDic;
         }

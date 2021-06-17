@@ -57,7 +57,7 @@ namespace QingShan.Web.Areas.Admin.Controllers
         /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
-        public async Task<StatusResult<string>> Login(LoginInputDto dto)
+        public async Task<StatusResult<string>> UserLogin(LoginInputDto dto)
         {
             var result = await _accountService.LoginAsync(dto);
             #region 添加登录日志

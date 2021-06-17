@@ -12,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using QingShan.Data.Constants;
 using System.Security.Claims;
 using QingShan.Services.Permission;
+using QingShan.Data;
+using Newtonsoft.Json;
 
 namespace QingShan.Web.Authorization
 {
@@ -24,10 +26,22 @@ namespace QingShan.Web.Authorization
         /// <returns></returns>
         public override async Task HandleAsync(AuthorizationHandlerContext context)
         {
-            // 自动刷新 token
+            // 判断请求报文头中是否有 "Authorization" 报文头
+            var bearerToken = context.GetCurrentHttpContext().Request.Headers["Authorization"].ToString();
+            if (bearerToken.NotNull())
+            {
+                await AuthorizeHandleAsync(context);
+            }
+            else
+            {
+                context.Fail();
+            }
+
+
+            //// 自动刷新 token
             //if (JWTEncryption.AutoRefreshToken(context, context.GetCurrentHttpContext()))
             //{
-            await AuthorizeHandleAsync(context);
+            //    await AuthorizeHandleAsync(context);
             //}
             //else
             //{

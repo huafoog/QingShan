@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using QingShan.Data;
@@ -30,6 +31,7 @@ namespace QingShan.Core.Web.Controllers
         /// <param name="file"></param>
         /// <returns></returns>
         [HttpPost]
+        [AllowAnonymous]
         public StatusResult<string> UploadFile(IFormFile file)
         {
             return new StatusResult<string>() { Data = FileHelper.CreateFile(file) };

@@ -72,43 +72,6 @@ namespace QingShan.Core.SpecificationDocument
             LoadXmlComments(swaggerOptions);
             ConfigureSecurities(swaggerOptions);
             CreateSwaggerDocs(swaggerOptions);
-
-            //swaggerOptions.SwaggerDoc("Default", new OpenApiInfo
-            //{
-            //    Version = "v2",
-            //    Title = "QingShan.Core API",
-            //    Description = "一个简单框架的api",
-            //    TermsOfService = new Uri("https://example.com/terms"),
-            //    Contact = new OpenApiContact
-            //    {
-            //        Name = "Shayne Boyer",
-            //        Email = string.Empty,
-            //        Url = new Uri("https://twitter.com/spboyer"),
-            //    },
-            //    License = new OpenApiLicense
-            //    {
-            //        Name = "Use under LICX",
-            //        Url = new Uri("https://example.com/license"),
-            //    }
-            //});
-            //swaggerOptions.SwaggerDoc("Upload", new OpenApiInfo
-            //{
-            //    Version = "v3",
-            //    Title = "QingShan.Core API",
-            //    Description = "一个简单框架的api",
-            //    TermsOfService = new Uri("https://example.com/terms"),
-            //    Contact = new OpenApiContact
-            //    {
-            //        Name = "Shayne Boyer",
-            //        Email = string.Empty,
-            //        Url = new Uri("https://twitter.com/spboyer"),
-            //    },
-            //    License = new OpenApiLicense
-            //    {
-            //        Name = "Use under LICX",
-            //        Url = new Uri("https://example.com/license"),
-            //    }
-            //});
         }
         #region 配置授权
         /// <summary>
@@ -121,16 +84,6 @@ namespace QingShan.Core.SpecificationDocument
             if (_specificationDocumentSettings.EnableAuthorized != true || _specificationDocumentSettings.SecurityDefinitions.Length == 0) return;
 
             var openApiSecurityRequirement = new OpenApiSecurityRequirement();
-            //swaggerGenOptions.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
-            //{
-            //    Description = "在下框中输入请求头中需要添加Jwt授权Token：Bearer Token",
-            //    Name = "Authorization",
-            //    In = ParameterLocation.Header,
-            //    Type = SecuritySchemeType.ApiKey,
-            //    BearerFormat = "JWT",
-            //    Scheme = "Bearer"
-            //});
-
             swaggerGenOptions.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {

@@ -1,5 +1,4 @@
-﻿using QingShan.Attributes;
-using QingShan.DataLayer.Entities;
+﻿using QingShan.DataLayer.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace QingShan.Services.User.Dtos.InputDto

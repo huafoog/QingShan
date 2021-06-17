@@ -600,21 +600,6 @@
             消息
             </summary>
         </member>
-        <member name="T:QingShan.Data.PageInputDto`1">
-            <summary>
-            分页输入参数
-            </summary>
-        </member>
-        <member name="P:QingShan.Data.PageInputDto`1.Data">
-            <summary>
-            分页筛选数据
-            </summary>
-        </member>
-        <member name="P:QingShan.Data.PageInputDto`1.Search">
-            <summary>
-            关键字
-            </summary>
-        </member>
         <member name="T:QingShan.Data.PageInputDto">
             <summary>
             分页输入参数
@@ -1357,6 +1342,66 @@
             </summary>
             <returns>程序集集合</returns>
         </member>
+        <member name="T:QingShan.Regular.RegexHelper">
+            <summary>
+            操作正则表达式的公共类
+            </summary>
+        </member>
+        <member name="M:QingShan.Regular.RegexHelper.IsMatch(System.String,System.String)">
+            <summary>
+            验证输入字符串是否与模式字符串匹配，匹配返回true
+            </summary>
+            <param name="input">输入字符串</param>
+            <param name="pattern">模式字符串</param>        
+        </member>
+        <member name="M:QingShan.Regular.RegexHelper.IsMatch(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
+            <summary>
+            验证输入字符串是否与模式字符串匹配，匹配返回true
+            </summary>
+            <param name="input">输入的字符串</param>
+            <param name="pattern">模式字符串</param>
+            <param name="options">筛选条件</param>
+        </member>
+        <member name="T:QingShan.Regular.RegularPatterns">
+            <summary>
+            正则表达式
+            </summary>
+        </member>
+        <member name="F:QingShan.Regular.RegularPatterns.Phone">
+            <summary>
+            手机正则
+            </summary>
+        </member>
+        <member name="F:QingShan.Regular.RegularPatterns.EMail">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="F:QingShan.Regular.RegularPatterns.Host">
+            <summary>
+            域名
+            </summary>
+        </member>
+        <member name="F:QingShan.Regular.RegularPatterns.IDCard">
+            <summary>
+            身份证
+            </summary>
+        </member>
+        <member name="F:QingShan.Regular.RegularPatterns.Password">
+            <summary>
+            密码(以字母开头，长度在6~18之间，只能包含字母、数字和下划线)
+            </summary>
+        </member>
+        <member name="F:QingShan.Regular.RegularPatterns.PasswordStrongCipherNo">
+            <summary>
+            强密码(必须包含大小写字母和数字的组合，不能使用特殊字符，长度在 8-10 之间)
+            </summary>
+        </member>
+        <member name="F:QingShan.Regular.RegularPatterns.PasswordStrongCipherYes">
+            <summary>
+            强密码(必须包含大小写字母和数字的组合，可以使用特殊字符，长度在8-10之间)
+            </summary>
+        </member>
         <member name="P:QingShan.StaticFile.Models.StaticFileFolderModel.Folder">
             <summary>
             文件夹
@@ -1958,7 +2003,7 @@
             值
             </summary>
         </member>
-        <member name="P:QingShan.Utilities.EnumDto.Description">
+        <member name="P:QingShan.Utilities.EnumDto.Label">
             <summary>
             描述
             </summary>

@@ -33,13 +33,19 @@ namespace QingShan.Services.User
         /// <returns></returns>
         Task<StatusResult> UpdateAsync(UserUpdateInputDto input);
 
+        /// <summary>
+        /// 修改自身信息
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task<StatusResult> SaveInfoAsync(SaveInfoInputDto input);
 
         /// <summary>
         /// 获取数据
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task<PageOutputDto<UserListOutputDto>> PageAsync(PageInputDto dto);
+        Task<PageOutputDto<UserListOutputDto>> PageAsync(SearchUserInputDto dto);
 
         /// <summary>
         /// 删除用户
@@ -47,5 +53,12 @@ namespace QingShan.Services.User
         /// <param name="id"></param>
         /// <returns></returns>
         Task<StatusResult> DeleteAsync(string id);
+
+        /// <summary>
+        /// 禁用
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<StatusResult> DisableAsync(string id);
     }
 }

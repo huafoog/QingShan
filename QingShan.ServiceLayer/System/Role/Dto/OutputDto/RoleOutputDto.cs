@@ -11,7 +11,7 @@ namespace QingShan.Services.System.Role.Dto.OutputDto
     public class RoleOutputDto
     {
 
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 角色名

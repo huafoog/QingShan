@@ -7,7 +7,6 @@ namespace QingShan.Services.User.Dtos.InputDto
     /// <summary>
     /// 添加
     /// </summary>
-    [MapTo(typeof(UserEntity))]
     public class UserAddInputDto
     {
         /// <summary>
@@ -17,20 +16,23 @@ namespace QingShan.Services.User.Dtos.InputDto
         public string UserName { get; set; }
 
         /// <summary>
-        /// 密码
+        /// 手机号
         /// </summary>
-        [Required(ErrorMessage = "请输入密码")]
-        public string Password { get; set; }
+        [Required(ErrorMessage = "请输入手机号")]
+        [RegularExpression(Regular.RegularPatterns.Phone,ErrorMessage = "请输入正确的手机号")]
+        public string Phone { get; set; }
 
         /// <summary>
         /// 昵称
         /// </summary>
+        [Required(ErrorMessage = "请输入昵称")] 
         public string NickName { get; set; }
 
-        ///// <summary>
-        ///// 头像
-        ///// </summary>
-        //public string Avatar { get; set; }
+        /// <summary>
+        /// 头像
+        /// </summary>
+        [Required(ErrorMessage = "请输入选择头像")]
+        public string Avatar { get; set; }
 
         /// <summary>
         /// 状态

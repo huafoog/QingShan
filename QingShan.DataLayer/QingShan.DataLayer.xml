@@ -212,12 +212,17 @@
         </member>
         <member name="P:QingShan.DataLayer.Entities.UserEntity.Status">
             <summary>
-            账号状态
+            账号状态 
             </summary>
         </member>
         <member name="P:QingShan.DataLayer.Entities.UserEntity.IsSuper">
             <summary>
             是否本系统超级管理员
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.UserEntity.Remark">
+            <summary>
+            个性签名
             </summary>
         </member>
         <member name="P:QingShan.DataLayer.Entities.UserEntity.UpdateDateTime">
@@ -235,11 +240,6 @@
             上次登录时间
             </summary>
         </member>
-        <member name="T:QingShan.DataLayer.Entities.EAdministratorStatus">
-            <summary>
-            用户状态
-            </summary>
-        </member>
         <member name="T:QingShan.DataLayer.Entities.UserRoleEntity">
             <summary>
             用户角色实体
@@ -253,6 +253,11 @@
         <member name="P:QingShan.DataLayer.Entities.UserRoleEntity.RoleId">
             <summary>
             角色Id
+            </summary>
+        </member>
+        <member name="T:QingShan.DataLayer.Enums.EAdministratorStatus">
+            <summary>
+            用户状态
             </summary>
         </member>
     </members>

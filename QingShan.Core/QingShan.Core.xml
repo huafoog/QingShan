@@ -843,6 +843,13 @@
             过期时间（分钟）
             </summary>
         </member>
+        <member name="M:QingShan.Core.RateLimit.Options.MineIpRateLimitOptions.PostConfigure(QingShan.Core.RateLimit.Options.MineIpRateLimitOptions,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            选项后期配置
+            </summary>
+            <param name="options"></param>
+            <param name="configuration"></param>
+        </member>
         <member name="P:QingShan.Core.SpecificationDocument.SpecificationDocumentBuilder._specificationDocumentSettings">
             <summary>
             规范化文档配置
@@ -1311,12 +1318,25 @@
             <param name="app"></param>
             <returns></returns>
         </member>
-        <member name="T:Microsoft.AspNetCore.Builder.SpecificationDocumentApplicationBuilderExtensions">
+        <member name="T:Microsoft.AspNetCore.Builder.RateLimitBuilderExtensions">
+            <summary>
+            使用限流 --- 占时无用
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.RateLimitBuilderExtensions.UseRateLimit(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)">
+            <summary>
+            使用限流
+            </summary>
+            <param name="app"></param>
+            <param name="routePrefix"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Builder.SpecificationDocumentsBuilderExtensions">
             <summary>
             规范化文档中间件拓展
             </summary>
         </member>
-        <member name="M:Microsoft.AspNetCore.Builder.SpecificationDocumentApplicationBuilderExtensions.UseSpecificationDocuments(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)">
+        <member name="M:Microsoft.AspNetCore.Builder.SpecificationDocumentsBuilderExtensions.UseSpecificationDocuments(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)">
             <summary>
             添加规范化文档中间件
             </summary>
@@ -1612,6 +1632,14 @@
             </summary>
             <param name="services"></param>
         </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.RateLimitServiceCollection.AddRateLimit(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})">
+            <summary>
+            添加限流
+            </summary>
+            <param name="services">服务集合</param>
+            <param name="configure">配置</param>
+            <returns>服务集合</returns>
+        </member>
         <member name="T:Microsoft.Extensions.DependencyInjection.SpecificationDocumentServiceCollectionExtensions">
             <summary>
             规范化接口服务拓展类
@@ -1641,7 +1669,7 @@
             <see cref="T:FreeSql.ISelect0"/>拓展
             </summary>
         </member>
-        <member name="M:FreeSql.ISelectExtension.ToPageResultAsync``2(FreeSql.ISelect{``0},QingShan.Data.PageInputDto,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}},QingShan.Core.Core.DatabaseAccessor.Enums.SortType)">
+        <member name="M:FreeSql.ISelectExtension.ToPageResultAsync``2(FreeSql.ISelect{``0},QingShan.Data.PageBaseInputDto,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}},QingShan.Core.Core.DatabaseAccessor.Enums.SortType)">
             <summary>
             分页
             </summary>

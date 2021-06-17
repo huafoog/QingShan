@@ -1,16 +1,16 @@
 ﻿using QingShan.Attributes;
 using QingShan.DataLayer.Entities;
+using QingShan.DataLayer.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace QingShan.Services.User.Dtos.OutputDto
 {
-    [MapFrom(typeof(UserEntity))]
     public class UserGetOutputDto
     {
         /// <summary>
         /// 主键Id
         /// </summary>
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 账号

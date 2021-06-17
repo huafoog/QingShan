@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System;
 using QingShan.Core.FreeSql;
 using QingShan.Utilities;
+using QingShan.DataLayer.Enums;
 
 namespace QingShan.Services.Account
 {

@@ -117,14 +117,14 @@ namespace QingShan.Services.User
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public async Task<PageOutputDto<UserListOutputDto>> PageAsync(PageInputDto dto)
+        public async Task<PageOutputDto<UserListOutputDto>> PageAsync(SearchUserInputDto dto)
         {
+            
             var data = await _userRepository
                 .Select
-                .ToPageResultAsync<UserEntity,UserListOutputDto>(
-                    dto, 
-                    o => dto.Search.IsNull() || o.UserName.Contains(dto.Search) || o.NickName.Contains(dto.Search)
-                );
+                .WhereIf(dto.Status.HasValue, o => o.Status == dto.Status)
+                .WhereIf(dto.Search.NotNull(),o=>o.UserName.Contains(dto.Search) || o.NickName.Contains(dto.Search))
+                .ToPageResultAsync<UserEntity,UserListOutputDto>(dto);
             return data;
 
 
@@ -136,20 +136,17 @@ namespace QingShan.Services.User
         /// <returns></returns>
         public async Task<StatusResult> AddAsync(UserAddInputDto input)
         {
-            if (input.Password.IsNull())
+            if (_userRepository.Select.Any(o => o.UserName == input.UserName || o.Phone == input.Phone))
             {
-                input.Password = "123456"; //初始密码 123456
+                return new StatusResult("账号或手机号已存在");
             }
 
-            if (_userRepository.Select.Any(o => o.UserName == input.UserName))
-            {
-                return new StatusResult("账号已存在");
-            }
-
-            input.Password = MD5Encrypt.Encrypt32(input.Password);
+            var password = MD5Encrypt.Encrypt32("123456");
             var entity = input.Adapt<UserEntity>();
+            entity.Id = Snowflake.GenId();
+            entity.Password = password;
             var res = await _userRepository.InsertOrUpdateAsync(entity);
-            return new StatusResult(res != null, "添加失败");
+            return new StatusResult(res == null, "添加失败");
         }
 
         /// <summary>
@@ -174,7 +171,31 @@ namespace QingShan.Services.User
             thisUser.Phone = input.Phone;
             thisUser.RealName = input.RealName;
             int res = await _userRepository.UpdateAsync(thisUser);
-            return new StatusResult(res > 0, "修改失败");
+            return new StatusResult(res == 0, "修改失败");
+        }
+
+        /// <summary>
+        /// 修改自身信息
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task<StatusResult> SaveInfoAsync(SaveInfoInputDto input)
+        {
+            if (_userRepository.Select.Where(o => o.Id != _user.Id && input.Phone == o.Phone).Any())
+            {
+                return new StatusResult("当前手机号已存在");
+            }
+            var thisUser = new UserEntity()
+            {
+                Id = _user.Id
+            };
+            _userRepository.Attach(thisUser);
+            thisUser.Avatar = input.Avatar;
+            thisUser.NickName = input.NickName;
+            thisUser.Phone = input.Phone;
+            thisUser.Remark = input.Remark;
+            int res = await _userRepository.UpdateAsync(thisUser);
+            return new StatusResult(res == 0, "更新失败");
         }
 
         /// <summary>
@@ -185,7 +206,26 @@ namespace QingShan.Services.User
         public async Task<StatusResult> DeleteAsync(string id)
         {
             var res = await _userRepository.DeleteAsync(id);
-            return new StatusResult(res > 0, "删除失败");
+            return new StatusResult(res == 0, "删除失败");
+        }
+
+        /// <summary>
+        /// 禁用
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<StatusResult> DisableAsync(string id)
+        {
+            var model = await _userRepository.GetAsync(id);
+            if (model == null)
+            {
+                return new StatusResult("未获取到用户信息");
+            }
+            model.Status =
+                model.Status == DataLayer.Enums.EAdministratorStatus.Normal ?
+                DataLayer.Enums.EAdministratorStatus.Stop : DataLayer.Enums.EAdministratorStatus.Normal;
+            await _userRepository.UpdateAsync(model);
+            return new StatusResult();
         }
 
     }

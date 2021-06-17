@@ -8,7 +8,7 @@ namespace Microsoft.AspNetCore.Builder
     /// 规范化文档中间件拓展
     /// </summary>
     [SkipScan]
-    public static class SpecificationDocumentApplicationBuilderExtensions
+    public static class SpecificationDocumentsBuilderExtensions
     {
         /// <summary>
         /// 添加规范化文档中间件

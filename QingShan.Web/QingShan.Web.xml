@@ -9,7 +9,7 @@
             用户授权控制器
             </summary>
         </member>
-        <member name="M:QingShan.Web.Areas.Admin.Controllers.AccountController.Login(QingShan.Services.Account.Dto.LoginInputDto)">
+        <member name="M:QingShan.Web.Areas.Admin.Controllers.AccountController.UserLogin(QingShan.Services.Account.Dto.LoginInputDto)">
             <summary>
             用户登录
             </summary>
@@ -20,6 +20,13 @@
             <summary>
             admin控制器基类
             </summary>
+        </member>
+        <member name="M:QingShan.Web.Areas.Admin.Controllers.CommonController.GetEnum(QingShan.Services.Common.Dto.InputDto.EnumInputDto)">
+            <summary>
+            添加菜单
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
         </member>
         <member name="T:QingShan.Web.Areas.Admin.Controllers.HomeController">
             <summary>
@@ -154,6 +161,13 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="M:QingShan.Web.Areas.Admin.Controllers.UserController.SaveInfoAsync(QingShan.Services.User.Dtos.InputDto.SaveInfoInputDto)">
+            <summary>
+            修改自身信息
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:QingShan.Web.Areas.Admin.Controllers.UserController.GetUserInfo">
             <summary>
             获取当前登录用户信息
@@ -166,7 +180,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:QingShan.Web.Areas.Admin.Controllers.UserController.GetUserPage(QingShan.Data.PageInputDto)">
+        <member name="M:QingShan.Web.Areas.Admin.Controllers.UserController.GetUserPage(QingShan.Services.User.Dtos.InputDto.SearchUserInputDto)">
             <summary>
             获取用户列表
             </summary>
@@ -175,6 +189,12 @@
         <member name="M:QingShan.Web.Areas.Admin.Controllers.UserController.Delete(QingShan.Data.CommonIdInputDto)">
             <summary>
             删除用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Web.Areas.Admin.Controllers.UserController.DisableAsync(QingShan.Data.CommonIdInputDto)">
+            <summary>
+            禁用用户信息
             </summary>
             <returns></returns>
         </member>
@@ -199,6 +219,17 @@
             </summary>
             <param name="context"></param>
             <param name="requirement"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Web.Controllers.TestController">
+            <summary>
+            测试
+            </summary>
+        </member>
+        <member name="M:QingShan.Web.Controllers.TestController.GetData">
+            <summary>
+            获取数据
+            </summary>
             <returns></returns>
         </member>
         <member name="M:QingShan.Core.Web.Authorization.IModuleManager.GetModules">
