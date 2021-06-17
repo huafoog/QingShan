@@ -29,7 +29,7 @@ stages:
         containerRegistry: 'qs_regisitry'
         repository: '$(Build.Repository.Name)'
         command: 'build'
-        Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        Dockerfile: '$(Build.SourcesDirectory)/QingShan.Web/Dockerfile'
         tags: $(Build.BuildId)
     - task: Docker@2
       inputs:
