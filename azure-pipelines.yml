@@ -23,9 +23,16 @@ stages:
       inputs:
         containerRegistry: 'qs_regisitry'
         command: 'login'
+
     - task: Docker@2
       inputs:
         containerRegistry: 'qs_regisitry'
-        repository: 'qs.core.api'
-        command: 'buildAndPush'
+        repository: '$(Build.Repository.Name)'
+        command: 'build'
         Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+
+      task: Docker@2
+      inputs:
+        containerRegistry: 'qs_regisitry'
+        repository: '$(Build.Repository.Name)'
+        command: 'push'
