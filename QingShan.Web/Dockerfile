@@ -14,12 +14,12 @@ COPY ["../QingShan/QingShan.csproj", "QingShan/"]
 RUN dotnet restore "QingShan.Web/QingShan.Web.csproj"
 COPY . .
 WORKDIR "/src/QingShan.Web"
-RUN dotnet build "QingShan.Web.csproj" -c Release -o /app/build
+RUN dotnet build "QingShan.Web.csproj" -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "QingShan.Web.csproj" -c Release -o /app/publish
+RUN dotnet publish "QingShan.Web.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=publish /app .
 ENTRYPOINT ["dotnet", "QingShan.Web.dll"]
