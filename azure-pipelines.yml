@@ -20,14 +20,8 @@ stages:
     pool: 'QSPool'
     steps:
     - task: Docker@2
-      displayName: Build an image
       inputs:
-        command: build
-        containerRegistry: 'docker 镜像生成'
-        repository: '$(Build.Repository.Name)'
-        dockerfile: 'QS.Core.Web/Dockerfile'
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'docker 镜像生成'
-        repository: '$(Build.Repository.Name)'
-        command: 'push'
+        containerRegistry: 'qs_regisitry'
+        repository: 'qs.core.api'
+        command: 'buildAndPush'
+        Dockerfile: '$(Build.SourcesDirectory)/QingShan.Web/Dockerfile'
