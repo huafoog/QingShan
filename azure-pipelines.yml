@@ -14,7 +14,7 @@ stages:
   jobs:  
   - job: Build
     displayName: Build
-    pool: QSPool
+    pool: Azure Pipelines
     steps:
     - task: Docker@2
       inputs:
