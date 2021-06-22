@@ -18,6 +18,7 @@ stages:
     steps:
     - task: Docker@2
       inputs:
+        buildContext : $(Build.Repository.LocalPath)
         containerRegistry: 'qs_regisitry'
         repository: 'qs.web.api'
         command: 'build'
