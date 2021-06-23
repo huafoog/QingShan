@@ -9,9 +9,6 @@ variables:
   tag: '$(Build.BuildId)'
   imageName: 'activityreservation'
 
-pool:
-    vmImage: 'ubuntu-1604' # set to windows-latest or another Windows vmImage for Windows builds
-
 steps:
         - task: Docker@2
           displayName: Build an image
