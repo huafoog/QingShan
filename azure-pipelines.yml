@@ -9,12 +9,15 @@ variables:
   tag: '$(Build.BuildId)'
   imageName: 'activityreservation'
 
-pool: QSPool
+pool:
+    vmImage: 'ubuntu-1604' # set to windows-latest or another Windows vmImage for Windows builds
 
 steps:
-    - script: |
-        docker build -f Dockerfile -t $(imageName) .
-        docker login -u $(dockerId) -p $(pswd)
-        docker push $(imageName)
+        - task: Docker@2
+          displayName: Build an image
+          inputs:
+            repository: $(imageName)
+            command: build
+            Dockerfile: Dockerfile
     
     
