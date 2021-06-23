@@ -7,14 +7,14 @@ trigger:
 
 variables:
   tag: '$(Build.BuildId)'
-  imageName: 'activityreservation'
+  imageName: 'qs.web.api'
 
 steps:
-        - task: Docker@2
-          displayName: Build an image
-          inputs:
-            repository: $(imageName)
-            command: build
-            Dockerfile: Dockerfile
+- task: Docker@2
+  inputs:
+    containerRegistry: 'qs_regisitry'
+    repository: 'qs.web.api'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
     
     
