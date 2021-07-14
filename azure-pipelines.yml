@@ -2,9 +2,6 @@
 # Build a Docker image 
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
-trigger:
-- master
-
 variables:
   tag: '$(Build.BuildId)'
   imageName: 'qs.web.api'
