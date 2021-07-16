@@ -18,5 +18,6 @@ steps:
   - task: CmdLine@2
     inputs:
       script: |
-        docker login registry.zyaxin.com -u qs -p qazplm,./$
-        docker push qs.web.api:latest
+        docker login -u=zhangyaxing521@qq.com -p qazplm,./$ registry.cn-hangzhou.aliyuncs.com
+        docker tag $(Build.BuildId) registry.cn-hangzhou.aliyuncs.com/qs315/qsres:latest
+        docker push registry.cn-hangzhou.aliyuncs.com/qs315/qsres:latest
