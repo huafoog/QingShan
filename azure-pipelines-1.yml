@@ -15,3 +15,8 @@ steps:
   - task: CmdLine@2
     inputs:
       script: 'docker build -t qs.web.api:latest .'
+  - task: CmdLine@2
+    inputs:
+      script: |
+        docker login -u qs -p qazplm,./$
+        docker push qs.web.api:latest
