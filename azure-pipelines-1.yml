@@ -18,5 +18,5 @@ steps:
   - task: CmdLine@2
     inputs:
       script: |
-        docker login -u qs -p qazplm,./$
+        docker login registry.zyaxin.com -u qs -p qazplm,./$
         docker push qs.web.api:latest
