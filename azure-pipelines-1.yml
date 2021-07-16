@@ -17,7 +17,6 @@ stages:
   jobs:
   - job: Build
     displayName: Build
-    pool: QSPool
     steps:
     - task: Docker@2
       inputs:
