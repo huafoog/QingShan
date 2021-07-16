@@ -21,13 +21,13 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'QSDockerRegistry'
-        command: 'login'
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'QSDockerRegistry'
         repository: 'qs.web.api'
         command: 'build'
         Dockerfile: '**/Dockerfile'
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'QSDockerRegistry'
+        command: 'login'
     - task: Docker@2
       inputs:
         containerRegistry: 'QSDockerRegistry'
