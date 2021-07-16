@@ -21,6 +21,6 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'QSDockerRegistry'
-        repository: 'qs.api'
-        command: 'buildAndPush'
+        repository: 'qs.web.api'
+        command: 'build'
         Dockerfile: '**/Dockerfile'
