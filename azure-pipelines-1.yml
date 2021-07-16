@@ -12,9 +12,6 @@ variables:
   tag: '$(Build.BuildId)'
   
 steps:
-  - task: Docker@2
+  - task: CmdLine@2
     inputs:
-      containerRegistry: 'QSDockerRegistry'
-      repository: 'qs.web.api'
-      command: 'buildAndPush'
-      Dockerfile: '**/Dockerfile'
+      script: 'docker build -t qs.web.api:latest .'
