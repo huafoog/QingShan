@@ -2,23 +2,20 @@
 # Build a Docker image 
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
-trigger:
-- master
-
 variables:
   tag: '$(Build.BuildId)'
+  imageName: 'qs.web.api'
 
-stages:
-- stage: Build
-  displayName: Build image
-  jobs:  
-  - job: Build
-    displayName: Build
-    pool: QSPool
-    steps:
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'qs_regisitry'
-        repository: 'qs.web'
-        command: 'build'
-        Dockerfile: '**/Dockerfile'
+steps:
+
+      - task: Docker@2
+        inputs:
+          containerRegistry: 'qs_regisitry'
+          command: 'login'
+      - task: Docker@2
+        inputs:
+          containerRegistry: 'qs_regisitry'
+          repository: 'qs.web.api'
+          command: 'buildAndPush'
+          Dockerfile: '**/Dockerfile'
+    
