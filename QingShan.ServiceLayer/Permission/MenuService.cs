@@ -12,6 +12,7 @@ using QingShan.Utilities;
 using QingShan.Core.FreeSql;
 using FreeSql;
 using System.Linq;
+using QingShan.Utilities;
 
 namespace QingShan.Services.Permission
 {
@@ -35,16 +36,34 @@ namespace QingShan.Services.Permission
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public async Task<PageOutputDto<MenuListOutputDto>> GetPageAsync(PageInputDto dto)
+        public async Task<PageOutputDto<PermissionListOutputDto>> GetPageAsync(PageInputDto dto)
         {
             var data = await _menuRepository
                .Select
-               .ToPageResultAsync<MenuEntity, MenuListOutputDto>(
+               .ToPageResultAsync<MenuEntity, PermissionListOutputDto>(
                    dto,
                    o => dto.Search.IsNull() || o.Code.Contains(dto.Search) || o.Name.Contains(dto.Search)
                );
             return data;
         }
+
+        /// <summary>
+        /// 获取菜单树形结构
+        /// </summary>
+        /// <returns></returns>
+        public async Task<StatusResult<List<PermissionListOutputDto>>> GetPageTreeAsync()
+        {
+            var result = new StatusResult<List<PermissionListOutputDto>>();
+            var data = await _menuRepository
+               .Select
+               .ToListAsync<PermissionListOutputDto>();
+
+            var tree = TreeHelper.GetTreeByParentId(data);
+
+            result.Data = tree;
+            return result;
+        }
+
 
         #region 菜单操作
         /// <summary>

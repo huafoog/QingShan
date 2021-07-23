@@ -20,6 +20,14 @@ namespace QingShan.Web.Areas.Admin.Controllers
         {
             _permissionContract = permissionContract;
         }
+
+
+        /// <summary>
+        /// 获取菜单树形结构
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet] public async Task<StatusResult<List<PermissionListOutputDto>>> GetPageTree() => await _permissionContract.GetPageTreeAsync();
+
         /// <summary>
         /// 添加权限
         /// </summary>
@@ -35,5 +43,13 @@ namespace QingShan.Web.Areas.Admin.Controllers
         /// <returns></returns>
         [HttpPost]
         public Task<StatusResult> UpdatePermission(UpdatePermissionInputDto dto) => _permissionContract.UpdatePermission(dto);
+
+        /// <summary>
+        /// 删除权限
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public Task<StatusResult> Delete(IdsInputDto dto) => _permissionContract.Delete(dto);
     }
 }

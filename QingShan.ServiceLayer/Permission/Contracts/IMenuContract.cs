@@ -18,7 +18,13 @@ namespace QingShan.Services.Permission
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task<PageOutputDto<MenuListOutputDto>> GetPageAsync(PageInputDto dto);
+        Task<PageOutputDto<PermissionListOutputDto>> GetPageAsync(PageInputDto dto);
+
+        /// <summary>
+        /// 获取菜单树形结构
+        /// </summary>
+        /// <returns></returns>
+        Task<StatusResult<List<PermissionListOutputDto>>> GetPageTreeAsync();
 
         /// <summary>
         /// 添加菜单

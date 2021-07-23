@@ -20,7 +20,7 @@ namespace QingShan.Web.Areas.Admin.Controllers
         public async Task<StatusResult<List<EnumDto>>> GetEnum([FromQuery]EnumInputDto dto)
         {
             var dic = EnumHelper.GetEnumListByCode(new[] { "QingShan.DataLayer" }, new[] { "QingShan.DataLayer.Enums" }, dto.Code);
-            if (dto.IsAll??true)
+            if (dto.IsAll.HasValue && dto.IsAll.Value)
             {
                 dic.Add(new EnumDto() { 
                     Code = "All",

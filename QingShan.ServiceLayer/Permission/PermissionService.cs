@@ -27,6 +27,24 @@ namespace QingShan.Services.Permission
         }
 
         #region 权限操作
+
+        /// <summary>
+        /// 获取菜单树形结构
+        /// </summary>
+        /// <returns></returns>
+        public async Task<StatusResult<List<PermissionListOutputDto>>> GetPageTreeAsync()
+        {
+            var result = new StatusResult<List<PermissionListOutputDto>>();
+            var data = await _modelRepository
+               .Select
+               .ToListAsync<PermissionListOutputDto>();
+
+            var tree = TreeHelper.GetTreeByParentId(data);
+
+            result.Data = tree;
+            return result;
+        }
+
         /// <summary>
         /// 添加权限
         /// </summary>
@@ -51,7 +69,7 @@ namespace QingShan.Services.Permission
             {
                 return new StatusResult("未获取到权限信息");
             }
-            var model = dto.Adapt<DataLayer.Entities.PermissionEntity>(); ;
+            var model = dto.Adapt<DataLayer.Entities.PermissionEntity>();
             var res = await _modelRepository.InsertOrUpdateAsync(model);
             return new StatusResult(res == null, "操作失败");
         }
@@ -71,11 +89,11 @@ namespace QingShan.Services.Permission
         /// <summary>
         /// 逻辑删除
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="dto"></param>
         /// <returns></returns>
-        public async Task<StatusResult> DeleteModule(string id)
+        public async Task<StatusResult> Delete(IdsInputDto dto)
         {
-            var res = await _modelRepository.DeleteAsync(id);
+            var res = await _modelRepository.DeleteAsync(dto.Ids);
             return new StatusResult(res > 0, "操作失败");
         }
 
@@ -88,6 +106,7 @@ namespace QingShan.Services.Permission
         /// <returns></returns>
         public async Task<bool> CheckPermission()
         {
+            await Task.CompletedTask;
             return true;
         }
     }

@@ -1,38 +1,31 @@
-﻿using QingShan.Attributes;
-using QingShan.Data.Enums;
-using QingShan.DataLayer.Entities;
-using QingShan.DataLayer.Enums;
+﻿using QingShan.DataLayer.Enums;
+using QingShan.Utilities;
 using System;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace QingShan.Services.Permission.Dto
 {
-    public class UpdatePermissionInputDto: PermissionInputDto
-    {
-        public string Id { get; set; }
-    }
-
-    public class PermissionInputDto
+    /// <summary>
+    /// 菜单
+    /// </summary>
+    public class PermissionListOutputDto:TreeNodeDto<PermissionListOutputDto>
     {
         /// <summary>
         /// 菜单编码 格式:system
         /// </summary>
-        [Required(ErrorMessage = "请输入菜单编码")]
         public string Code { get; set; }
 
         /// <summary>
         /// 自动生成 权限代码 格式:system.menu.add
         /// </summary>
-        [Required(ErrorMessage = "请输入权限代码")]
         public string PermissionCode { get; set; }
-        /// <summary>
-        /// 模块名称
-        /// </summary>
-        [Required(ErrorMessage = "请输入模块名称")] public string Name { get; set; }
         /// <summary>
         /// 路径
         /// </summary>
-        [Required(ErrorMessage = "请输入路径")] public string Path { get; set; }
+        public string Path { get; set; }
         /// <summary>
         /// 图标
         /// </summary>
@@ -50,10 +43,6 @@ namespace QingShan.Services.Permission.Dto
         /// </summary>
         public string Component { get; set; }
 
-        /// <summary>
-        /// 父级id
-        /// </summary>
-        public string ParentId { get; set; }
         /// <summary>
         /// 权限类型
         /// </summary>

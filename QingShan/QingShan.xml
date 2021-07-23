@@ -1519,6 +1519,29 @@
             <param name="url">保存文件的绝对路径</param>
             <returns></returns>
         </member>
+        <member name="T:QingShan.Utilities.TreeHelper">
+            <summary>
+            树形结构
+            </summary>
+        </member>
+        <member name="M:QingShan.Utilities.TreeHelper.GetTreeByParentId``1(System.Collections.Generic.List{``0})">
+            <summary>
+            获取无限极树形结构
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="list"></param>
+            <returns></returns>
+        </member>
+        <member name="P:QingShan.Utilities.TreeNodeDto`1.Id">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:QingShan.Utilities.TreeNodeDto`1.ParentId">
+            <summary>
+            父id
+            </summary>
+        </member>
         <member name="T:QingShan.Utilities.UtilConvert">
             <summary>
             数据类型转换

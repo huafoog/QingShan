@@ -72,6 +72,12 @@
             <param name="dto"></param>
             <returns></returns>
         </member>
+        <member name="M:QingShan.Web.Areas.Admin.Controllers.MenuController.GetPageTree">
+            <summary>
+            获取菜单树形结构
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:QingShan.Web.Areas.Admin.Controllers.MenuController.UpdateMenu(QingShan.Services.Permission.Dto.UpdateMenuInputDto)">
             <summary>
             修改菜单
@@ -91,6 +97,12 @@
             权限
             </summary>
         </member>
+        <member name="M:QingShan.Web.Areas.Admin.Controllers.PermissionController.GetPageTree">
+            <summary>
+            获取菜单树形结构
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:QingShan.Web.Areas.Admin.Controllers.PermissionController.InsertPermission(QingShan.Services.Permission.Dto.PermissionInputDto)">
             <summary>
             添加权限
@@ -101,6 +113,13 @@
         <member name="M:QingShan.Web.Areas.Admin.Controllers.PermissionController.UpdatePermission(QingShan.Services.Permission.Dto.UpdatePermissionInputDto)">
             <summary>
             修改权限
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Web.Areas.Admin.Controllers.PermissionController.Delete(QingShan.Services.Permission.Dto.IdsInputDto)">
+            <summary>
+            删除权限
             </summary>
             <param name="dto"></param>
             <returns></returns>

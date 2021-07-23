@@ -34,7 +34,14 @@ namespace QingShan.Web.Areas.Admin.Controllers
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<PageOutputDto<MenuListOutputDto>> GetPage([FromQuery]PageInputDto dto) => await _menuContract.GetPageAsync(dto);
+        public async Task<PageOutputDto<PermissionListOutputDto>> GetPage([FromQuery]PageInputDto dto) => await _menuContract.GetPageAsync(dto);
+
+        /// <summary>
+        /// 获取菜单树形结构
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<StatusResult<List<PermissionListOutputDto>>> GetPageTree() => await _menuContract.GetPageTreeAsync();
 
         /// <summary>
         /// 修改菜单

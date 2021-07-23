@@ -14,6 +14,13 @@ namespace QingShan.Services.Permission
     /// </summary>
     public interface IPermissionContract
     {
+
+        /// <summary>
+        /// 获取菜单树形结构
+        /// </summary>
+        /// <returns></returns>
+        Task<StatusResult<List<PermissionListOutputDto>>> GetPageTreeAsync();
+
         /// <summary>
         /// 添加权限
         /// </summary>
@@ -38,9 +45,9 @@ namespace QingShan.Services.Permission
         /// <summary>
         /// 逻辑删除
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="dto"></param>
         /// <returns></returns>
-        Task<StatusResult> DeleteModule(string id);
+        Task<StatusResult> Delete(IdsInputDto dto);
 
         /// <summary>
         /// 检查权限

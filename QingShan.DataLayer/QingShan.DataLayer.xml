@@ -46,27 +46,7 @@
         </member>
         <member name="P:QingShan.DataLayer.Entities.PermissionEntity.Code">
             <summary>
-            当前权限编码
-            </summary>
-        </member>
-        <member name="P:QingShan.DataLayer.Entities.PermissionEntity.Area">
-            <summary>
-            区域
-            </summary>
-        </member>
-        <member name="P:QingShan.DataLayer.Entities.PermissionEntity.IsArea">
-            <summary>
-            是否有区域
-            </summary>
-        </member>
-        <member name="P:QingShan.DataLayer.Entities.PermissionEntity.Controller">
-            <summary>
-            控制器
-            </summary>
-        </member>
-        <member name="P:QingShan.DataLayer.Entities.PermissionEntity.Action">
-            <summary>
-            操作
+            菜单编码
             </summary>
         </member>
         <member name="P:QingShan.DataLayer.Entities.PermissionEntity.Name">
@@ -89,9 +69,29 @@
             备注信息
             </summary>
         </member>
+        <member name="P:QingShan.DataLayer.Entities.PermissionEntity.Component">
+            <summary>
+            组件
+            </summary>
+        </member>
         <member name="P:QingShan.DataLayer.Entities.PermissionEntity.Sort">
             <summary>
             排序值
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.PermissionEntity.PermissionType">
+            <summary>
+            权限类型
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.PermissionEntity.PermissionCode">
+            <summary>
+            自动生成 权限代码 格式:system.menu.add
+            </summary>
+        </member>
+        <member name="P:QingShan.DataLayer.Entities.PermissionEntity.ParentId">
+            <summary>
+            父级id
             </summary>
         </member>
         <member name="T:QingShan.DataLayer.Entities.Product">
@@ -258,6 +258,26 @@
         <member name="T:QingShan.DataLayer.Enums.EAdministratorStatus">
             <summary>
             用户状态
+            </summary>
+        </member>
+        <member name="T:QingShan.DataLayer.Enums.PermissionType">
+            <summary>
+            权限类型
+            </summary>
+        </member>
+        <member name="F:QingShan.DataLayer.Enums.PermissionType.Directory">
+            <summary>
+            目录
+            </summary>
+        </member>
+        <member name="F:QingShan.DataLayer.Enums.PermissionType.Menu">
+            <summary>
+            菜单
+            </summary>
+        </member>
+        <member name="F:QingShan.DataLayer.Enums.PermissionType.Button">
+            <summary>
+            按钮
             </summary>
         </member>
     </members>
