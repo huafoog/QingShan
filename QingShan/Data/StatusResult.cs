@@ -77,5 +77,39 @@
         /// 获取或设置 结果数据
         /// </summary>
         public TData Data { get; set; }
+
+        /// <summary>
+        /// 设置错误消息
+        /// </summary>
+        /// <param name="message"></param>
+
+        public void SetErrorMessage(string message)
+        {
+            IsSuccess = false;
+            ResultType = StatusResultType.Error;
+            Message = message;
+        }
+        /// <summary>
+        /// 设置成功消息
+        /// </summary>
+        /// <param name="message"></param>
+
+        public void SetSuccessMessage(string message)
+        {
+            IsSuccess = true;
+            ResultType = StatusResultType.Success;
+            Message = message;
+        }
+        /// <summary>
+        /// 设置警告消息
+        /// </summary>
+        /// <param name="message"></param>
+
+        public void SetWarningMessage(string message)
+        {
+            IsSuccess = false;
+            ResultType = StatusResultType.Warnning;
+            Message = message;
+        }
     }
 }

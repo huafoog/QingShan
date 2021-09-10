@@ -12,7 +12,6 @@ using QingShan.Utilities;
 using QingShan.Core.FreeSql;
 using FreeSql;
 using System.Linq;
-using QingShan.Utilities;
 
 namespace QingShan.Services.Permission
 {

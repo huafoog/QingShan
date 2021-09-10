@@ -20,6 +20,7 @@ using System.IO;
 using System;
 using Microsoft.AspNetCore.Authorization;
 using QingShan.Web.Authorization;
+using Panda.DynamicWebApi;
 
 namespace QingShan.Core.Web
 {

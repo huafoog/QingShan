@@ -20,6 +20,17 @@ namespace QingShan.Services.Permission
         /// </summary>
         /// <returns></returns>
         Task<StatusResult<List<PermissionListOutputDto>>> GetPageTreeAsync();
+        /// <summary>
+        /// 获取角色权限树形结构
+        /// </summary>
+        /// <returns></returns>
+        Task<StatusResult<RoleTreeOutputDto>> GetRoleTreeAsync(RoleIdInputDto dto);
+        /// <summary>
+        /// 设置角色权限
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        Task<StatusResult> SetRolePermissionAsync(SetRolePermissionInputDto dto);
 
         /// <summary>
         /// 添加权限

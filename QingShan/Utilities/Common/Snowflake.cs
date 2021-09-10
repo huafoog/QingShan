@@ -20,8 +20,16 @@ namespace QingShan.Utilities
         public static long sequenceMask = -1L ^ -1L << sequenceBits; //一微秒内可以产生计数，如果达到该值则等到下一微妙在进行生成
         private long lastTimestamp = -1L;
 
+        private readonly static Snowflake snowflake;
+
+        static Snowflake()
+        {
+            snowflake = new Snowflake(1);
+        }
+
         /// <summary>
         /// 机器码
+        /// <para>单机下<see cref="Snowflake"/>应该以单实例模式运行，否则会出现重复Id。</para>
         /// </summary>
         /// <param name="workerId">当前机器码</param>
         public Snowflake(long workerId)
@@ -37,7 +45,7 @@ namespace QingShan.Utilities
         /// <returns></returns>
         public static string GenId()
         {
-            return new Snowflake(1).nextId().ToString();
+            return snowflake.nextId().ToString();
         }
 
         /// <summary>

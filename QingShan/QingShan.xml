@@ -673,6 +673,24 @@
             获取或设置 结果数据
             </summary>
         </member>
+        <member name="M:QingShan.Data.StatusResult`1.SetErrorMessage(System.String)">
+            <summary>
+            设置错误消息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:QingShan.Data.StatusResult`1.SetSuccessMessage(System.String)">
+            <summary>
+            设置成功消息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:QingShan.Data.StatusResult`1.SetWarningMessage(System.String)">
+            <summary>
+            设置警告消息
+            </summary>
+            <param name="message"></param>
+        </member>
         <member name="T:QingShan.Data.StatusResultType">
             <summary>
             表示业务操作结果的枚举
@@ -1462,6 +1480,7 @@
         <member name="M:QingShan.Utilities.Snowflake.#ctor(System.Int64)">
             <summary>
             机器码
+            <para>单机下<see cref="T:QingShan.Utilities.Snowflake"/>应该以单实例模式运行，否则会出现重复Id。</para>
             </summary>
             <param name="workerId">当前机器码</param>
         </member>

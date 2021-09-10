@@ -118,6 +118,19 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:QingShan.Services.Permission.IPermissionContract.GetRoleTreeAsync(QingShan.Services.Permission.Dto.RoleIdInputDto)">
+            <summary>
+            获取角色权限树形结构
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.IPermissionContract.SetRolePermissionAsync(QingShan.Services.Permission.Dto.SetRolePermissionInputDto)">
+            <summary>
+            设置角色权限
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
         <member name="M:QingShan.Services.Permission.IPermissionContract.InsertPermission(QingShan.Services.Permission.Dto.PermissionInputDto)">
             <summary>
             添加权限
@@ -167,21 +180,6 @@
             id集合
             </summary>
         </member>
-        <member name="T:QingShan.Services.Permission.Dto.MenuActionDto">
-            <summary>
-            菜单
-            </summary>
-        </member>
-        <member name="P:QingShan.Services.Permission.Dto.MenuActionDto.Name">
-            <summary>
-            菜单名称
-            </summary>
-        </member>
-        <member name="P:QingShan.Services.Permission.Dto.MenuActionDto.Code">
-            <summary>
-            权限值
-            </summary>
-        </member>
         <member name="T:QingShan.Services.Permission.Dto.MenuInputDto">
             <summary>
             菜单
@@ -220,6 +218,96 @@
         <member name="T:QingShan.Services.Permission.Dto.UpdateMenuInputDto">
             <summary>
             修改
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.Code">
+            <summary>
+            菜单编码 格式:system
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.PermissionCode">
+            <summary>
+            自动生成 权限代码 格式:system.menu.add
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.Name">
+            <summary>
+            模块名称
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.Path">
+            <summary>
+            路径
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.Remark">
+            <summary>
+            备注信息
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.Sort">
+            <summary>
+            排序值
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.Component">
+            <summary>
+            组件
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.ParentId">
+            <summary>
+            父级id
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.PermissionType">
+            <summary>
+            权限类型
+            </summary>
+        </member>
+        <member name="T:QingShan.Services.Permission.Dto.RoleIdInputDto">
+            <summary>
+            角色id
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.RoleIdInputDto.RoleId">
+            <summary>
+            角色id
+            </summary>
+        </member>
+        <member name="T:QingShan.Services.Permission.Dto.SetRolePermissionInputDto">
+            <summary>
+            设置角色权限
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.SetRolePermissionInputDto.RoleId">
+            <summary>
+            角色id
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.SetRolePermissionInputDto.PermissionIds">
+            <summary>
+            权限Id集合
+            </summary>
+        </member>
+        <member name="T:QingShan.Services.Permission.Dto.MenuActionDto">
+            <summary>
+            菜单
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.MenuActionDto.Name">
+            <summary>
+            菜单名称
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.MenuActionDto.Code">
+            <summary>
+            权限值
             </summary>
         </member>
         <member name="T:QingShan.Services.Permission.Dto.ModuleInfo">
@@ -287,56 +375,6 @@
             节点
             </summary>
         </member>
-        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.Code">
-            <summary>
-            菜单编码 格式:system
-            </summary>
-        </member>
-        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.PermissionCode">
-            <summary>
-            自动生成 权限代码 格式:system.menu.add
-            </summary>
-        </member>
-        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.Name">
-            <summary>
-            模块名称
-            </summary>
-        </member>
-        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.Path">
-            <summary>
-            路径
-            </summary>
-        </member>
-        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.Icon">
-            <summary>
-            图标
-            </summary>
-        </member>
-        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.Remark">
-            <summary>
-            备注信息
-            </summary>
-        </member>
-        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.Sort">
-            <summary>
-            排序值
-            </summary>
-        </member>
-        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.Component">
-            <summary>
-            组件
-            </summary>
-        </member>
-        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.ParentId">
-            <summary>
-            父级id
-            </summary>
-        </member>
-        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.PermissionType">
-            <summary>
-            权限类型
-            </summary>
-        </member>
         <member name="T:QingShan.Services.Permission.Dto.PermissionListOutputDto">
             <summary>
             菜单
@@ -380,6 +418,21 @@
         <member name="P:QingShan.Services.Permission.Dto.PermissionListOutputDto.PermissionType">
             <summary>
             权限类型
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.RoleTreeOutputDto.DefaultSelectedKeys">
+            <summary>
+            默认选中的树节点
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.RoleTreeOutputDto.Data">
+            <summary>
+            权限数据
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.RoleTreeOutputDto.List">
+            <summary>
+            权限原始数据集合
             </summary>
         </member>
         <member name="T:QingShan.Services.Permission.MenuService">
@@ -463,6 +516,19 @@
         <member name="M:QingShan.Services.Permission.PermissionService.Delete(QingShan.Services.Permission.Dto.IdsInputDto)">
             <summary>
             逻辑删除
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.PermissionService.GetRoleTreeAsync(QingShan.Services.Permission.Dto.RoleIdInputDto)">
+            <summary>
+            获取角色权限树形结构
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.PermissionService.SetRolePermissionAsync(QingShan.Services.Permission.Dto.SetRolePermissionInputDto)">
+            <summary>
+            设置角色权限
             </summary>
             <param name="dto"></param>
             <returns></returns>

@@ -951,6 +951,16 @@
             </summary>
             <param name="swaggerOptions">Swagger 全局配置</param>
         </member>
+        <member name="M:QingShan.Core.SpecificationDocument.Extensions.TypeExtensions.IsDynamicController(System.Type)">
+            <summary>
+            判断类型是否是动态Controller
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.SpecificationDocument.Extensions.TypeExtensions.IsDynamicController(System.Reflection.TypeInfo)">
+            <summary>
+            判断类型是否是动态Controller
+            </summary>
+        </member>
         <member name="T:QingShan.Core.SpecificationDocument.EnumSchemaFilter">
             <summary>
             修正 规范化文档 Enum 提示

@@ -10,7 +10,6 @@ namespace System
 {
     public static class TypeExtensions
     {
-
         #region WebApi
         /// <summary>
         /// 判断类型是否是Controller

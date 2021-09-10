@@ -6,7 +6,7 @@ namespace QingShan.DataLayer.Entities
     /// <summary>
     /// 角色模块
     /// </summary>
-    public class RolePermissionEntity : EntityBaseById<string>
+    public class RolePermissionEntity : EntityBase
     {
         /// <summary>
         /// 角色Id

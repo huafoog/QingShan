@@ -11,7 +11,7 @@ namespace QingShan.Services.Permission.Dto
     /// <summary>
     /// 菜单
     /// </summary>
-    public class PermissionListOutputDto:TreeNodeDto<PermissionListOutputDto>
+    public class PermissionListOutputDto : TreeNodeDto<PermissionListOutputDto>
     {
         /// <summary>
         /// 菜单编码 格式:system
@@ -42,7 +42,7 @@ namespace QingShan.Services.Permission.Dto
         /// 组件
         /// </summary>
         public string Component { get; set; }
-
+        public string Title => Name;
         /// <summary>
         /// 权限类型
         /// </summary>

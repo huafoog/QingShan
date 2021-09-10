@@ -103,6 +103,19 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:QingShan.Web.Areas.Admin.Controllers.PermissionController.GetRoleTreeAsync(QingShan.Services.Permission.Dto.RoleIdInputDto)">
+            <summary>
+            获取菜单树形结构
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Web.Areas.Admin.Controllers.PermissionController.SetRolePermissionAsync(QingShan.Services.Permission.Dto.SetRolePermissionInputDto)">
+            <summary>
+            设置角色权限
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
         <member name="M:QingShan.Web.Areas.Admin.Controllers.PermissionController.InsertPermission(QingShan.Services.Permission.Dto.PermissionInputDto)">
             <summary>
             添加权限

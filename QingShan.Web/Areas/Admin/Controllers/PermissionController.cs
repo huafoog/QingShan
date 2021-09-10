@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QingShan.Core.FreeSql.UnitOfWork.TransactionInterceptor;
 using QingShan.Data;
 using QingShan.Services.Permission;
 using QingShan.Services.Permission.Dto;
@@ -13,7 +14,7 @@ namespace QingShan.Web.Areas.Admin.Controllers
     /// 权限
     /// </summary>
     public class PermissionController : AdminBaseController
-    {   
+    {
         private readonly IPermissionContract _permissionContract;
 
         public PermissionController(IPermissionContract permissionContract)
@@ -27,6 +28,22 @@ namespace QingShan.Web.Areas.Admin.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet] public async Task<StatusResult<List<PermissionListOutputDto>>> GetPageTree() => await _permissionContract.GetPageTreeAsync();
+
+        /// <summary>
+        /// 获取菜单树形结构
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet] public async Task<StatusResult<RoleTreeOutputDto>> GetRoleTreeAsync([FromQuery] RoleIdInputDto dto) => await _permissionContract.GetRoleTreeAsync(dto);
+
+
+        /// <summary>
+        /// 设置角色权限
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [TransactionInterceptor]
+        public Task<StatusResult> SetRolePermissionAsync(SetRolePermissionInputDto dto) => _permissionContract.SetRolePermissionAsync(dto);
 
         /// <summary>
         /// 添加权限
