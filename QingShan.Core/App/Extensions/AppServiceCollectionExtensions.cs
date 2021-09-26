@@ -25,6 +25,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services
                 .AddSpecificationDocuments()
+                .AddCache()
                 .AddDatabaseAccessor();
 
             return services;

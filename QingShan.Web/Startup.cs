@@ -21,6 +21,7 @@ using System;
 using Microsoft.AspNetCore.Authorization;
 using QingShan.Web.Authorization;
 using Panda.DynamicWebApi;
+using AspNetCoreRateLimit;
 
 namespace QingShan.Core.Web
 {
@@ -42,6 +43,7 @@ namespace QingShan.Core.Web
             services.AddInject();
             services.AddStaticFile();
             services.AddJwt<JwtHandler>(enableGlobalAuthorize: true);
+            services.AddRateLimit();
             services.AddCorsAccessor();
             services.AddControllers(o =>
             {
@@ -69,7 +71,7 @@ namespace QingShan.Core.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
-
+            app.UseRateLimit();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -78,7 +80,7 @@ namespace QingShan.Core.Web
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseApp(options =>
+            app.UseApp(options =>  
             {
                 app.UseSpecificationDocuments();
                 app.UseCorsAccessor();

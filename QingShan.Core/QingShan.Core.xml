@@ -850,6 +850,71 @@
             <param name="options"></param>
             <param name="configuration"></param>
         </member>
+        <member name="T:QingShan.Core.RateLimit.RateLimitStore`1">
+            <summary>
+            重写Redis
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:QingShan.Core.Redis.Models.CacheInfo.Host">
+            <summary>
+            host
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.Redis.Models.CacheInfo.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.Redis.Models.CacheInfo.InstanceName">
+            <summary>
+            key前缀
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.Redis.Models.CacheInfo.DefaultDatabase">
+            <summary>
+            默认 库
+            </summary>
+        </member>
+        <member name="T:QingShan.Core.Redis.Options.CacheOption">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.Redis.Options.CacheOption.CacheWay">
+            <summary>
+            缓存方式 Redis
+            </summary>
+        </member>
+        <member name="M:QingShan.Core.Redis.RedisCache.GetAsync(System.String)">
+            <summary>
+            获取string类型
+            </summary>
+            <param name="key">缓存键</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.Redis.RedisCache.GetAsync``1(System.String)">
+            <summary>
+            获得给定键的值。
+            </summary>
+            <param name="key">缓存键</param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.Redis.RedisCache.SetAsync(System.String,System.Object,System.Int32)">
+            <summary>
+             设置指定 key 的值，所有写入参数object都支持string | byte[] | 数值 | 对象
+            </summary>
+            <param name="key"></param>
+            <param name="data"></param>
+            <param name="timeoutSeconds">过期(秒单位)</param>
+        </member>
+        <member name="M:QingShan.Core.Redis.RedisCache.DeleteAsync(System.String)">
+            <summary>
+            用于在 key 存在时删除 key
+            </summary>
+            <param name="key">缓存键</param>
+            <returns></returns>
+        </member>
         <member name="P:QingShan.Core.SpecificationDocument.SpecificationDocumentBuilder._specificationDocumentSettings">
             <summary>
             规范化文档配置
@@ -1330,7 +1395,7 @@
         </member>
         <member name="T:Microsoft.AspNetCore.Builder.RateLimitBuilderExtensions">
             <summary>
-            使用限流 --- 占时无用
+            使用限流
             </summary>
         </member>
         <member name="M:Microsoft.AspNetCore.Builder.RateLimitBuilderExtensions.UseRateLimit(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)">
@@ -1649,6 +1714,13 @@
             <param name="services">服务集合</param>
             <param name="configure">配置</param>
             <returns>服务集合</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.RedisCollectionExtension.AddCache(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加缓存
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
         </member>
         <member name="T:Microsoft.Extensions.DependencyInjection.SpecificationDocumentServiceCollectionExtensions">
             <summary>

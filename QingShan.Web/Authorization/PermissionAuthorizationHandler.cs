@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace QingShan.Web.Authorization
 {
+    /// <summary>
+    /// 自定义权限声明
+    /// </summary>
     public class PermissionAuthorizationHandler : AuthorizationHandler<PermissionAuthorizationRequirement>
     {
         private readonly IUserContract _userContract;

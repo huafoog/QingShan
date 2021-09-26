@@ -4,6 +4,41 @@
         <name>QingShan</name>
     </assembly>
     <members>
+        <member name="T:QingShan.Cache.ICache">
+            <summary>
+            缓存
+            </summary>
+        </member>
+        <member name="M:QingShan.Cache.ICache.GetAsync(System.String)">
+            <summary>
+            获取
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Cache.ICache.GetAsync``1(System.String)">
+            <summary>
+            获取
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Cache.ICache.SetAsync(System.String,System.Object,System.Int32)">
+            <summary>
+            设置
+            </summary>
+            <param name="key"></param>
+            <param name="t"></param>
+            <param name="expiresSec">过期（秒）</param>
+        </member>
+        <member name="M:QingShan.Cache.ICache.DeleteAsync(System.String)">
+            <summary>
+            用于在 key 存在时删除 key
+            </summary>
+            <param name="key">缓存键</param>
+            <returns></returns>
+        </member>
         <member name="T:QingShan.Collections.EnumerableExtensions">
             <summary>
             Enumerable集合扩展方法
@@ -464,6 +499,18 @@
             <summary>
             用户昵称
             </summary>
+        </member>
+        <member name="T:QingShan.Data.Constants.RateLimitConst">
+            <summary>
+            限流常量
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Constants.RateLimitConst.UserBehaviorCache">
+             <summary>
+             用户行为缓存
+            <para> <see cref="M:System.String.Format(System.String,System.Object)"/></para>
+             <para>string.Format(RateLimitConst.UserBehaviorCache,id)</para>
+             </summary>
         </member>
         <member name="T:QingShan.Data.Constants.SystemConst">
             <summary>
@@ -1666,6 +1713,13 @@
             <returns></returns>
         </member>
         <member name="M:QingShan.Utilities.UtilConvert.ToByte(System.Object)">
+            <summary>
+            转换为<see cref="T:System.Byte"/>
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Utilities.UtilConvert.ToBytes(System.Object)">
             <summary>
             转换为<see cref="T:System.Byte"/>
             </summary>
@@ -3245,6 +3299,41 @@
             </summary>
             <param name="val"></param>
             <param name="condition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.ToFormat(System.String,System.Object)">
+            <summary>
+            将字符串中的格式项替换为指定的字符串表示形式
+            </summary>
+            <param name="format"></param>
+            <param name="arg0"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.ToFormat(System.String,System.Object,System.Object)">
+            <summary>
+            将字符串中的格式项替换为指定的字符串表示形式
+            </summary>
+            <param name="format"></param>
+            <param name="arg0"></param>
+            <param name="arg1"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.ToFormat(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            将字符串中的格式项替换为指定的字符串表示形式  
+            </summary>
+            <param name="format"></param>
+            <param name="arg0"></param>
+            <param name="arg1"></param>
+            <param name="arg2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.ToFormat(System.String,System.Object[])">
+            <summary>
+            将字符串中的格式项替换为指定的字符串表示形式
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
             <returns></returns>
         </member>
         <member name="M:System.StringExtensions.IsNull(System.String)">

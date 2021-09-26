@@ -13,6 +13,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using QingShan.Core.FreeSql;
 using QingShan.Utilities;
+using QingShan.DataLayer;
+using QingShan.Common.Data;
+using QingShan.Cache;
 
 namespace QingShan.Services.User
 {
@@ -22,6 +25,7 @@ namespace QingShan.Services.User
     public class UserService : IUserContract, IScopeDependency
     {
         private readonly IUserInfo _user;
+        private readonly ICache _cache;
 
         /// <summary>
         /// 用户仓储
@@ -29,10 +33,12 @@ namespace QingShan.Services.User
         private readonly IRepository<UserEntity> _userRepository;
 
         public UserService(IUserInfo user,
+            ICache cache,
             IRepository<UserEntity> userRepository
             )
         {
             _user = user;
+            _cache = cache;
             _userRepository = userRepository;
         }
         /// <summary>
@@ -93,8 +99,9 @@ namespace QingShan.Services.User
         public async Task<IList<string>> GetPermissionsAsync()
         {
             await Task.CompletedTask;
-            //var key = string.Format(CacheKey.UserPermissions, _user.Id);
-            //if (await _cache.ExistsAsync(key))
+            var key = CacheKey.UserPermissions.ToFormat(_user.Id);
+            await _cache.GetAsync(key);
+            //if ()
             //{
             //    return await _cache.GetAsync<IList<string>>(key);
             //}

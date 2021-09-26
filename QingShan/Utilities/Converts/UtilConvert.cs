@@ -1,4 +1,7 @@
 ﻿using System;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
 namespace QingShan.Utilities
@@ -230,6 +233,23 @@ namespace QingShan.Utilities
 
             byte.TryParse(s.ToString(), out byte result);
             return result;
+        }
+
+        /// <summary>
+        /// 转换为<see cref="byte"/>
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static byte[] ToBytes(this object s)
+        {
+            if (s == null || s == DBNull.Value)
+            {
+                return Array.Empty<byte>();
+            }
+
+            var str = Newtonsoft.Json.JsonConvert.SerializeObject(s);
+            UnicodeEncoding uniEncoding = new UnicodeEncoding();
+            return uniEncoding.GetBytes(str);
         }
 
         #region ==字节转换==

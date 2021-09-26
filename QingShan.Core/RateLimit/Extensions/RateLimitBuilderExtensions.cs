@@ -4,11 +4,12 @@ using Microsoft.Extensions.Options;
 using Microsoft.Extensions.DependencyInjection;
 using QingShan.Core.RateLimit.Options;
 using AspNetCoreRateLimit;
+using QingShan.Core.RateLimit.Middlewares;
 
 namespace Microsoft.AspNetCore.Builder
 {
     /// <summary>
-    /// 使用限流 --- 占时无用
+    /// 使用限流
     /// </summary>
     [SkipScan]
     public static class RateLimitBuilderExtensions
@@ -21,7 +22,7 @@ namespace Microsoft.AspNetCore.Builder
         /// <returns></returns>
         public static IApplicationBuilder UseRateLimit(this IApplicationBuilder app, string routePrefix = default)
         {
-            app.UseMiddleware<IpRateLimitMiddleware>();
+            app.UseMiddleware<IPLimitMiddleware>();
             return app;
         }
     }

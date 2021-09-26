@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace QingShan.Core.RateLimit.Options
 {
+    [OptionsSettings("IpRateLimiting")]
     public class MineIpRateLimitOptions: IpRateLimitOptions,IConfigurableOptions<MineIpRateLimitOptions>
     {
         /// <summary>

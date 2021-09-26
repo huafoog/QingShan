@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net5.0;netcoreapp3.1</TargetFramework>
     <Authors>QingShan</Authors>
     <Description>QingShan.Core基础库</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -22,7 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AspNetCoreRateLimit" Version="4.0.0" />
+    <PackageReference Include="AspNetCoreRateLimit" Version="4.0.1" />
+    <PackageReference Include="CSRedisCore" Version="3.6.6" />
     <PackageReference Include="FreeSql" Version="2.3.200" />
     <PackageReference Include="FreeSql.Provider.MySql" Version="2.3.200" />
     <PackageReference Include="FreeSql.Provider.Sqlite" Version="2.3.200" />
@@ -33,6 +34,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="5.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0.0" />
     <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.8.0" />
@@ -55,5 +57,7 @@
 
 	<ItemGroup>
 	  <Folder Include="CorsAccessor\" />
+	  <Folder Include="Redis\Options\" />
+	  <Folder Include="Redis\Contract\" />
 	</ItemGroup>
 </Project>

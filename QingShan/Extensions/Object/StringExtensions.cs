@@ -23,6 +23,50 @@ namespace System
             }
             return "";
         }
+        /// <summary>
+        /// 将字符串中的格式项替换为指定的字符串表示形式
+        /// </summary>
+        /// <param name="format"></param>
+        /// <param name="arg0"></param>
+        /// <returns></returns>
+        public static string ToFormat(this string format,object? arg0)
+        {
+            return string.Format(format, arg0);
+        }
+        /// <summary>
+        /// 将字符串中的格式项替换为指定的字符串表示形式
+        /// </summary>
+        /// <param name="format"></param>
+        /// <param name="arg0"></param>
+        /// <param name="arg1"></param>
+        /// <returns></returns>
+        public static string ToFormat(this string format, object? arg0, object? arg1)
+        {
+            return string.Format(format, arg0, arg1);
+        }
+        /// <summary>
+        /// 将字符串中的格式项替换为指定的字符串表示形式  
+        /// </summary>
+        /// <param name="format"></param>
+        /// <param name="arg0"></param>
+        /// <param name="arg1"></param>
+        /// <param name="arg2"></param>
+        /// <returns></returns>
+        public static string ToFormat(this string format, object? arg0, object? arg1, object? arg2)
+        {
+            return string.Format(format, arg0, arg1, arg2);
+        }
+
+        /// <summary>
+        /// 将字符串中的格式项替换为指定的字符串表示形式
+        /// </summary>
+        /// <param name="format"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public static string ToFormat(this string format,params object[] args)
+        {
+            return string.Format(format, args);
+        }
 
         #region 空值转换
         /// <summary>

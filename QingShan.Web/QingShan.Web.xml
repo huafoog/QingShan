@@ -245,6 +245,11 @@
             <param name="httpContext"></param>
             <returns></returns>
         </member>
+        <member name="T:QingShan.Web.Authorization.PermissionAuthorizationHandler">
+            <summary>
+            自定义权限声明
+            </summary>
+        </member>
         <member name="M:QingShan.Web.Authorization.PermissionAuthorizationHandler.HandleRequirementAsync(Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext,QingShan.Web.Authorization.PermissionAuthorizationRequirement)">
             <summary>
              Makes a decision if authorization is allowed based on a specific requirement.

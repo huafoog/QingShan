@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\QingShan.Common\QingShan.Common.csproj" />
     <ProjectReference Include="..\QingShan.DataLayer\QingShan.DataLayer.csproj" />
   </ItemGroup>
 
