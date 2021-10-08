@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QingShan.Attributes;
 using QingShan.Core.FreeSql.UnitOfWork.TransactionInterceptor;
 using QingShan.Data;
-using QingShan.DatabaseAccessor;
 using QingShan.Permission;
 using QingShan.Permission.Authorization;
 using QingShan.Services.User;
@@ -69,10 +69,11 @@ namespace QingShan.Web.Areas.Admin.Controllers
         /// <returns></returns>
         [HttpPost]
         [Description("获取当前登录用户信息")]
+        [LoggedIn]
         [ModuleInfo]
-        public async Task<StatusResult<UserGetOutputDto>> GetUserInfo()
+        public async Task<StatusResult<UserPermissionOutputDto>> GetUserInfo()
         {
-            return await _userService.GetAsync(_userInfo.Id);
+            return await _userService.GetUserInfoAsync(_userInfo.Id);
         }
 
         /// <summary>

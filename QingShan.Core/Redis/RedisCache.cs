@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using QingShan.Cache;
 using QingShan.Core.Redis.Options;
+using System;
 using System.Threading.Tasks;
 
 namespace QingShan.Core.Redis
@@ -45,6 +46,16 @@ namespace QingShan.Core.Redis
         public async Task<bool> SetAsync(string key, object data, int timeoutSeconds = -1)
         {
             return await _redisClient.SetAsync(key, data, timeoutSeconds);
+        }
+        /// <summary>
+        ///  设置指定 key 的值，所有写入参数object都支持string | byte[] | 数值 | 对象
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="data"></param>
+        /// <param name="expirationTime">过期</param>
+        public async Task<bool> SetAsync(string key, object data, TimeSpan expirationTime)
+        {
+            return await _redisClient.SetAsync(key, data, expirationTime);
         }
         /// <summary>
         /// 用于在 key 存在时删除 key

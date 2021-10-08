@@ -22,6 +22,8 @@ namespace QingShan.Core.FreeSql
 
         public Repository(IFreeSql fsql, UnitOfWorkManager uowManger,IUserInfo userInfo) : base(uowManger?.Orm ?? fsql, null, null)
         {
+            ApplyDataFilter("DeleteTime", a => !a.DeleteTime.HasValue);
+            //filter.Apply<ISoftDeletable>("DeleteTime", a => !a.DeleteTime.HasValue)
             //事务管理绑定
             uowManger?.Binding(this);
             _fsql = fsql;
@@ -65,24 +67,61 @@ namespace QingShan.Core.FreeSql
         /// 逻辑删除
         /// </summary>
         /// <param name="ids">id集合</param>
+        /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<int> DeleteAsync(IEnumerable<string> ids)
+        public async Task<int> DeleteAsync(IEnumerable<string> ids, CancellationToken cancellationToken = default)
         {
             var entityList = new List<TEntity>();
             if (typeof(ISoftDeletable).IsAssignableFrom(typeof(TEntity)))
             {
-                await _fsql.Update<TEntity>()
-                      .Set(a => a.DeleteTime, DateTime.Now)
-                      .Where(a => ids.Contains(a.Id))
-                      .ExecuteAffrowsAsync();
-                return 1;
+                List<TEntity> list = new List<TEntity>();
+                foreach (var item in ids)
+                {
+                    var model = new TEntity() { Id = item };
+                    Attach(model);
+                    model.DeleteTime = DateTime.Now;
+                    list.Add(model);
+                }
+                return await UpdateAsync(list, cancellationToken);
             }
             else
             {
                 // 物理删除
-                return await base.DeleteAsync(o => ids.Contains(o.Id));
+                return await base.DeleteAsync(o => ids.Contains(o.Id), cancellationToken);
             }
         }
+
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public override async Task<int> DeleteAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
+        {
+            var entityList = new List<TEntity>();
+            if (typeof(ISoftDeletable).IsAssignableFrom(typeof(TEntity)))
+            {
+
+                var models = await Where(predicate).ToListAsync(o =>o.Id, cancellationToken);
+
+                List<TEntity> list = new List<TEntity>();
+                foreach (var item in models)
+                {
+                    var model = new TEntity() { Id = item };
+                    Attach(model);
+                    model.DeleteTime = DateTime.Now;
+                    list.Add(model);
+                }
+                return await UpdateAsync(list, cancellationToken);
+            }
+            else
+            {
+                // 物理删除
+                return await base.DeleteAsync(predicate, cancellationToken);
+            }
+        }
+
 
         /// <summary>
         /// 删除
@@ -129,12 +168,14 @@ namespace QingShan.Core.FreeSql
 
         public override Task<List<TEntity>> InsertAsync(IEnumerable<TEntity> entitys, CancellationToken cancellationToken = default)
         {
+            var list = new List<TEntity>();
             foreach (var entity in entitys)
             {
                 entity.CreateTime = DateTime.Now;
                 entity.CreatedId = _userInfo.Id;
+                list.Add(entity);
             }
-            return base.InsertAsync(entitys, cancellationToken);
+            return base.InsertAsync(list, cancellationToken);
         }
 
         #endregion

@@ -1,6 +1,9 @@
 ﻿using FreeSql;
 using QingShan.DatabaseAccessor;
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace QingShan.Core.FreeSql
@@ -15,7 +18,8 @@ namespace QingShan.Core.FreeSql
         /// 逻辑删除
         /// </summary>
         /// <param name="ids">id集合</param>
+        /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<int> DeleteAsync(IEnumerable<string> ids);
+        Task<int> DeleteAsync(IEnumerable<string> ids, CancellationToken cancellationToken = default);
     }
 }

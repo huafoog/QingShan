@@ -20,7 +20,7 @@ namespace QingShan.Test.Utilities.DEncrypt
         [TestMethod]
         public void MD5_Test()
         {
-            var result = MySecurity.MD5("123456");
+            var result = MySecurity.MD5(MySecurity.MD5Lower("123456"));
             Console.WriteLine(result);
         }
     }

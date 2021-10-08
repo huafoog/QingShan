@@ -19,10 +19,21 @@
             能够被扫描的类型
             </summary>
         </member>
+        <member name="F:QingShan.Core.App.LoggedCodes">
+            <summary>
+            只需要登录权限的code
+            </summary>
+        </member>
         <member name="M:QingShan.Core.App.#cctor">
             <summary>
             静态构造函数，只在程序启动时执行一次。
             </summary>
+        </member>
+        <member name="M:QingShan.Core.App.GetLoggedInCode">
+            <summary>
+            获取登录后访问的权限
+            </summary>
+            <returns></returns>
         </member>
         <member name="F:QingShan.Core.App.AppStartups">
             <summary>
@@ -292,11 +303,12 @@
             仓储
             </summary>
         </member>
-        <member name="M:QingShan.Core.FreeSql.IRepository`1.DeleteAsync(System.Collections.Generic.IEnumerable{System.String})">
+        <member name="M:QingShan.Core.FreeSql.IRepository`1.DeleteAsync(System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)">
             <summary>
             逻辑删除
             </summary>
             <param name="ids">id集合</param>
+            <param name="cancellationToken"></param>
             <returns></returns>
         </member>
         <member name="T:QingShan.Core.FreeSql.KeyRepository`2">
@@ -320,11 +332,20 @@
             </summary>
             <typeparam name="TEntity"></typeparam>
         </member>
-        <member name="M:QingShan.Core.FreeSql.Repository`1.DeleteAsync(System.Collections.Generic.IEnumerable{System.String})">
+        <member name="M:QingShan.Core.FreeSql.Repository`1.DeleteAsync(System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)">
             <summary>
             逻辑删除
             </summary>
             <param name="ids">id集合</param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.FreeSql.Repository`1.DeleteAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Threading.CancellationToken)">
+            <summary>
+            删除
+            </summary>
+            <param name="predicate"></param>
+            <param name="cancellationToken"></param>
             <returns></returns>
         </member>
         <member name="M:QingShan.Core.FreeSql.Repository`1.DeleteAsync(System.String,System.Threading.CancellationToken)">
@@ -907,6 +928,14 @@
             <param name="key"></param>
             <param name="data"></param>
             <param name="timeoutSeconds">过期(秒单位)</param>
+        </member>
+        <member name="M:QingShan.Core.Redis.RedisCache.SetAsync(System.String,System.Object,System.TimeSpan)">
+            <summary>
+             设置指定 key 的值，所有写入参数object都支持string | byte[] | 数值 | 对象
+            </summary>
+            <param name="key"></param>
+            <param name="data"></param>
+            <param name="expirationTime">过期</param>
         </member>
         <member name="M:QingShan.Core.Redis.RedisCache.DeleteAsync(System.String)">
             <summary>
@@ -1756,12 +1785,53 @@
             分页
             </summary>
             <typeparam name="TSoure">数据源</typeparam>
-            <typeparam name="TResult">映射Dto</typeparam>
+            <typeparam name="TReturn">映射Dto</typeparam>
             <param name="select"></param>
             <param name="pageInputDto"></param>
             <param name="where"></param>
             <param name="order"></param>
             <param name="sortType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreeSql.ISelectExtension.ToPageResultAsync``4(FreeSql.ISelect{``0,``1,``2},QingShan.Data.PageBaseInputDto,System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}},System.Linq.Expressions.Expression{System.Func{``0,``1,``2,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,``1,``2,System.Object}},QingShan.Core.Core.DatabaseAccessor.Enums.SortType)">
+            <summary>
+            分页
+            </summary>
+            <typeparam name="TReturn">映射Dto</typeparam>
+            <typeparam name="T1"></typeparam>
+            <typeparam name="T2"></typeparam>
+            <typeparam name="T3"></typeparam>
+            <param name="select"></param>
+            <param name="pageInputDto"></param>
+            <param name="where"></param>
+            <param name="order"></param>
+            <param name="sortType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreeSql.ISelectExtension.ToPageResultAsync``3(FreeSql.ISelect{``0,``1},QingShan.Data.PageBaseInputDto,System.Linq.Expressions.Expression{System.Func{``0,``1,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,``1,System.Object}},QingShan.Core.Core.DatabaseAccessor.Enums.SortType)">
+            <summary>
+            分页
+            </summary>
+            <typeparam name="TReturn">映射Dto</typeparam>
+            <typeparam name="T1"></typeparam>
+            <typeparam name="T2"></typeparam>
+            <param name="select"></param>
+            <param name="pageInputDto"></param>
+            <param name="where"></param>
+            <param name="order"></param>
+            <param name="sortType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FreeSql.ISelectExtension.ToListAsync``4(FreeSql.ISelect{``0,``1,``2},System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})">
+            <summary>
+            Tolist
+            </summary>
+            <typeparam name="T1"></typeparam>
+            <typeparam name="T2"></typeparam>
+            <typeparam name="T3"></typeparam>
+            <typeparam name="TReturn"></typeparam>
+            <param name="query"></param>
+            <param name="select"></param>
             <returns></returns>
         </member>
     </members>

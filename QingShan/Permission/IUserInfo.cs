@@ -19,5 +19,7 @@
         /// 昵称
         /// </summary>
         string NickName { get; }
+
+        bool IsSuper { get; }
     }
 }

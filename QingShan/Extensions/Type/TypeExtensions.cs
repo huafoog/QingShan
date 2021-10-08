@@ -205,6 +205,26 @@ namespace System
         }
 
         /// <summary>
+        /// 是否是动作方法
+        /// </summary>
+        /// <param name="method">方法</param>
+        /// <param name="declaringType">声明类型</param>
+        /// <returns></returns>
+        public static bool IsAction(this MethodInfo method, Type declaringType)
+        {
+            // 不是非公开、抽象、静态、泛型方法
+            if (!method.IsPublic || method.IsAbstract || method.IsStatic || method.IsGenericMethod) return false;
+
+            // 如果所在类型不是控制器，则该行为也被忽略
+            if (method.DeclaringType != declaringType) return false;
+
+            // 不是能被导出忽略的接方法
+            if (method.IsDefined(typeof(ApiExplorerSettingsAttribute), true) && method.GetCustomAttribute<ApiExplorerSettingsAttribute>(true).IgnoreApi) return false;
+
+            return true;
+        }
+
+        /// <summary>
         /// 判断类型是否为Nullable类型
         /// </summary>
         /// <param name="type"> 要处理的类型 </param>

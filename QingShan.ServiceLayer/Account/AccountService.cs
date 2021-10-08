@@ -49,8 +49,9 @@ namespace QingShan.Services.Account
             {
                 return new StatusResult<AuthLoginOutputDto>($"当前账号状态为：{user.Status.ToDescription()}");
             }
-            //前端加密
-            if (user.Password != dto.Password)
+
+            //前端小写加密 再用32位大写加密
+            if (user.Password != MySecurity.MD5(dto.Password))
             {
                 return new StatusResult<AuthLoginOutputDto>("账号或密码错误");
             }
@@ -59,7 +60,8 @@ namespace QingShan.Services.Account
             {
                 Id = user.Id,
                 NickName = user.NickName,
-                UserName = user.UserName
+                UserName = user.UserName,
+                IsSuper = user.IsSuper
             };
             return new StatusResult<AuthLoginOutputDto>(model);
         }

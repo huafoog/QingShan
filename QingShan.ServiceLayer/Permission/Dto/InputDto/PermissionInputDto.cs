@@ -21,9 +21,8 @@ namespace QingShan.Services.Permission.Dto
         public string Code { get; set; }
 
         /// <summary>
-        /// 自动生成 权限代码 格式:system.menu.add
+        /// 权限代码 格式:menu.add
         /// </summary>
-        [Required(ErrorMessage = "请输入权限代码")]
         public string PermissionCode { get; set; }
         /// <summary>
         /// 模块名称

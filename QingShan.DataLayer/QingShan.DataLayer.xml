@@ -208,6 +208,7 @@
         <member name="P:QingShan.DataLayer.Entities.UserEntity.Password">
             <summary>
             密码
+            <para>两次加密 第一次32位小写 第二次32位大写</para>
             </summary>
         </member>
         <member name="P:QingShan.DataLayer.Entities.UserEntity.Status">

@@ -49,7 +49,7 @@ namespace QingShan.Services.User.Dtos.InputDto
         /// <summary>
         /// 角色
         /// </summary>
-        public int[] RoleIds { get; set; }
+        public RoleRequestDto[] RoleIds { get; set; }
 
         /// <summary>
         /// 版本

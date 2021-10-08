@@ -32,6 +32,14 @@
             <param name="t"></param>
             <param name="expiresSec">过期（秒）</param>
         </member>
+        <member name="M:QingShan.Cache.ICache.SetAsync(System.String,System.Object,System.TimeSpan)">
+            <summary>
+            设置
+            </summary>
+            <param name="key"></param>
+            <param name="t"></param>
+            <param name="expirationTime">过期</param>
+        </member>
         <member name="M:QingShan.Cache.ICache.DeleteAsync(System.String)">
             <summary>
             用于在 key 存在时删除 key
@@ -500,6 +508,11 @@
             用户昵称
             </summary>
         </member>
+        <member name="F:QingShan.Data.Constants.ClaimConst.QINGSHANUSERISSUPER">
+            <summary>
+            是否超级管理员
+            </summary>
+        </member>
         <member name="T:QingShan.Data.Constants.RateLimitConst">
             <summary>
             限流常量
@@ -689,7 +702,7 @@
         </member>
         <member name="M:QingShan.Data.StatusResult.#ctor(System.Boolean,System.String)">
             <summary>
-            
+            失败时显示的消息
             </summary>
             <param name="isFail">是否失败</param>
             <param name="message">失败显示的消息</param>
@@ -1352,6 +1365,11 @@
             </summary>
         </member>
         <member name="P:QingShan.Permission.UserInfo.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:QingShan.Permission.UserInfo.IsSuper">
             <summary>
             昵称
             </summary>
@@ -2061,6 +2079,12 @@
         <member name="M:QingShan.Utilities.MySecurity.MD5(System.String)">
             <summary>
             MD5加密（32位大写）
+            </summary>
+            <param name="text">要加密的字符串</param>    
+        </member>
+        <member name="M:QingShan.Utilities.MySecurity.MD5Lower(System.String)">
+            <summary>
+            MD5加密（32位小写）
             </summary>
             <param name="text">要加密的字符串</param>    
         </member>
@@ -2994,6 +3018,12 @@
             <param name="list"></param>
             <returns></returns>
         </member>
+        <member name="M:System.Collections.Generic.EnumerableExtensions.ToStringJoin``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            使用指定的分隔符连接对象数组的元素  
+            <see cref="M:System.String.Join(System.String,System.Object[])"/>
+            </summary>
+        </member>
         <member name="M:System.Collections.Generic.ListExtension.GetArrayStr(System.Collections.Generic.List{System.String},System.String)">
             <summary>
             把 数组 按照分隔符组装成 string
@@ -3590,6 +3620,14 @@
             </summary>
             <param name="method">要判断的方法信息</param>
             <returns>是否是重写方法</returns>
+        </member>
+        <member name="M:System.TypeExtensions.IsAction(System.Reflection.MethodInfo,System.Type)">
+            <summary>
+            是否是动作方法
+            </summary>
+            <param name="method">方法</param>
+            <param name="declaringType">声明类型</param>
+            <returns></returns>
         </member>
         <member name="M:System.TypeExtensions.IsNullableType(System.Type)">
             <summary>

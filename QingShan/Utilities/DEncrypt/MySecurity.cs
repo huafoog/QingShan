@@ -250,6 +250,19 @@ namespace QingShan.Utilities
             string result = BitConverter.ToString(md5.ComputeHash(bytes));
             return result.Replace("-", "");
         }
+
+        /// <summary>
+        /// MD5加密（32位小写）
+        /// </summary>
+        /// <param name="text">要加密的字符串</param>    
+        public static string MD5Lower(string text)
+        {
+
+            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+            byte[] bytes = Encoding.UTF8.GetBytes(text);
+            string result = BitConverter.ToString(md5.ComputeHash(bytes));
+            return result.Replace("-", "").ToLower();
+        }
         #endregion
 
         #region Base64加密

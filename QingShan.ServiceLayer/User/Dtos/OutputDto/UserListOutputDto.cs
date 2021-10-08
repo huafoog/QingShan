@@ -1,5 +1,6 @@
 ﻿using QingShan.DatabaseAccessor;
 using QingShan.DataLayer.Enums;
+using QingShan.Services.User.Dtos.InputDto;
 using System;
 
 namespace QingShan.Services.User.Dtos.OutputDto
@@ -27,11 +28,6 @@ namespace QingShan.Services.User.Dtos.OutputDto
         public EAdministratorStatus Status { get; set; }
 
         /// <summary>
-        /// 角色
-        /// </summary>
-        public string[] RoleNames { get; set; }
-
-        /// <summary>
         /// 备注
         /// </summary>
         public string Remark { get; set; }
@@ -49,5 +45,14 @@ namespace QingShan.Services.User.Dtos.OutputDto
         /// 手机号
         /// </summary>
         public string Phone { get; set; }
+
+        /// <summary>
+        /// 角色id
+        /// </summary>
+        public RoleRequestDto[] RoleIds { get; set; }
+        /// <summary>
+        /// 角色
+        /// </summary>
+        public string RoleNames { get; set; }
     }
 }

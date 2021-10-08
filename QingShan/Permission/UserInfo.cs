@@ -60,5 +60,19 @@ namespace QingShan.Permission
                 return name;
             }
         }
+
+        /// <summary>
+        /// 昵称
+        /// </summary>
+        public bool IsSuper
+        {
+            get
+            {
+                var isSuper = _accessor?.HttpContext?.User?.FindFirstValue(ClaimConst.USERNICKNAME);
+                bool.TryParse(isSuper,out bool super);
+                return super;
+            }
+        }
+
     }
 }

@@ -74,6 +74,7 @@ namespace QingShan.Web.Areas.Admin.Controllers
                 { ClaimConst.USERID, result.Data.Id },  // 存储Id
                 { ClaimConst.USERNAME,result.Data.UserName }, // 存储用户名
                 { ClaimConst.USERNICKNAME,result.Data.NickName },
+                { ClaimConst.QINGSHANUSERISSUPER,result.Data.IsSuper},
             });
             return new StatusResult<string>() { Data = "Bearer "+accessToken };
         }

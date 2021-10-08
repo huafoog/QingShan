@@ -41,6 +41,11 @@
             姓名
             </summary>
         </member>
+        <member name="P:QingShan.Services.Account.Dto.OutputDto.AuthLoginOutputDto.IsSuper">
+            <summary>
+            是否超级管理员
+            </summary>
+        </member>
         <member name="M:QingShan.Services.Account.IAccountService.LoginAsync(QingShan.Services.Account.Dto.LoginInputDto)">
             <summary>
             用户登录
@@ -159,9 +164,21 @@
             <param name="dto"></param>
             <returns></returns>
         </member>
-        <member name="M:QingShan.Services.Permission.IPermissionContract.CheckPermission">
+        <member name="M:QingShan.Services.Permission.IPermissionContract.CheckPermission(System.String)">
             <summary>
             检查权限
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.IPermissionContract.GetPermissionsAsync">
+            <summary>
+            获取登录用户权限信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.IPermissionContract.GetUserMeunAsync">
+            <summary>
+            获取用户菜单信息
             </summary>
             <returns></returns>
         </member>
@@ -227,7 +244,7 @@
         </member>
         <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.PermissionCode">
             <summary>
-            自动生成 权限代码 格式:system.menu.add
+            权限代码 格式:menu.add
             </summary>
         </member>
         <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.Name">
@@ -533,9 +550,21 @@
             <param name="dto"></param>
             <returns></returns>
         </member>
-        <member name="M:QingShan.Services.Permission.PermissionService.CheckPermission">
+        <member name="M:QingShan.Services.Permission.PermissionService.CheckPermission(System.String)">
             <summary>
             检查权限
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.PermissionService.GetPermissionsAsync">
+            <summary>
+            获取权限信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.PermissionService.GetUserMeunAsync">
+            <summary>
+            获取用户菜单信息
             </summary>
             <returns></returns>
         </member>
@@ -785,6 +814,11 @@
             角色
             </summary>
         </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.RoleRequestDto.key">
+            <summary>
+            角色id
+            </summary>
+        </member>
         <member name="T:QingShan.Services.User.Dtos.InputDto.UserChangePasswordInputDto">
             <summary>
             修改密码
@@ -900,6 +934,21 @@
             版本
             </summary>
         </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.RoleOutputDto.UserId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.RoleOutputDto.RoleId">
+            <summary>
+            角色id
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.RoleOutputDto.Name">
+            <summary>
+            角色名称
+            </summary>
+        </member>
         <member name="P:QingShan.Services.User.Dtos.OutputDto.UserGetOutputDto.Id">
             <summary>
             主键Id
@@ -965,11 +1014,6 @@
             状态
             </summary>
         </member>
-        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserListOutputDto.RoleNames">
-            <summary>
-            角色
-            </summary>
-        </member>
         <member name="P:QingShan.Services.User.Dtos.OutputDto.UserListOutputDto.Remark">
             <summary>
             备注
@@ -990,7 +1034,39 @@
             手机号
             </summary>
         </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserListOutputDto.RoleIds">
+            <summary>
+            角色id
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserListOutputDto.RoleNames">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="T:QingShan.Services.User.Dtos.OutputDto.UserPermissionOutputDto">
+            <summary>
+            用户权限输出参数
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserPermissionOutputDto.UserInfo">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserPermissionOutputDto.Codes">
+            <summary>
+            权限
+            </summary>
+        </member>
         <member name="M:QingShan.Services.User.IUserContract.GetAsync(System.String)">
+            <summary>
+            获取用户信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.User.IUserContract.GetUserInfoAsync(System.String)">
             <summary>
             获取用户信息
             </summary>
@@ -1062,15 +1138,16 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:QingShan.Services.User.UserService.GetUserInfoAsync(System.String)">
+            <summary>
+            获取用户信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:QingShan.Services.User.UserService.Init">
             <summary>
             用户登录
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Services.User.UserService.GetPermissionsAsync">
-            <summary>
-            获取权限信息
             </summary>
             <returns></returns>
         </member>

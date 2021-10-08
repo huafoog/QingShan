@@ -3,6 +3,7 @@ using Panda.DynamicWebApi.Attributes;
 using QingShan.Data;
 using QingShan.DataLayer.Entities;
 using QingShan.Services.Permission.Dto;
+using QingShan.Services.Permission.Dto.OutputDto;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -64,6 +65,20 @@ namespace QingShan.Services.Permission
         /// 检查权限
         /// </summary>
         /// <returns></returns>
-        Task<bool> CheckPermission();
+        Task<bool> CheckPermission(string code);
+
+
+        /// <summary>
+        /// 获取登录用户权限信息
+        /// </summary>
+        /// <returns></returns>
+        Task<List<string>> GetPermissionsAsync();
+
+
+        /// <summary>
+        /// 获取用户菜单信息
+        /// </summary>
+        /// <returns></returns>
+        Task<List<string>> GetUserMeunAsync();
     }   
 }

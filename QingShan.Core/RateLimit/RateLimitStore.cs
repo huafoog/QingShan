@@ -26,7 +26,7 @@ namespace QingShan.Core.RateLimit
 
         public Task SetAsync(string id, T entry, TimeSpan? expirationTime = null, CancellationToken cancellationToken = default)
         {
-            return _cache.SetAsync(RateLimitConst.UserBehaviorCache.ToFormat(id), entry);
+            return _cache.SetAsync(RateLimitConst.UserBehaviorCache.ToFormat(id), entry, expirationTime?? TimeSpan.FromDays(1));
         }
 
         public async Task<bool> ExistsAsync(string id, CancellationToken cancellationToken = default)

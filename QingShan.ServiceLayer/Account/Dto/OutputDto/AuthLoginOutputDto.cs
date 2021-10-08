@@ -16,5 +16,9 @@
         /// 姓名
         /// </summary>
         public string NickName { get; set; }
+        /// <summary>
+        /// 是否超级管理员
+        /// </summary>
+        public bool IsSuper { get; set; }
     }
 }

@@ -24,11 +24,6 @@ namespace QingShan.Authorization
             {
                 await AuthorizeHandleAsync(context);
             }
-            else
-            {
-                var httpContext = context.GetCurrentHttpContext();
-                httpContext.Response.Headers["access-token"] = "invalid token"; // 退出Swagger登录
-            }
         }
 
         /// <summary>

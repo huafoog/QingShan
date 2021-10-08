@@ -13,6 +13,13 @@ namespace QingShan.Services.User
         /// <param name="id"></param>
         /// <returns></returns>
         Task<StatusResult<UserGetOutputDto>> GetAsync(string id);
+
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<StatusResult<UserPermissionOutputDto>> GetUserInfoAsync(string id);
         /// <summary>
         /// 获取用户信息
         /// </summary>

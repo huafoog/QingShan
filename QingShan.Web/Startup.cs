@@ -71,24 +71,23 @@ namespace QingShan.Core.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UseRateLimit();
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseRouting();
-            app.UseAuthentication();
-            app.UseAuthorization();
             app.UseApp(options =>  
             {
+                app.UseRateLimit();
+                if (env.IsDevelopment())
+                {
+                    app.UseDeveloperExceptionPage();
+                }
+                app.UseRouting();
+                app.UseAuthentication();
+                app.UseAuthorization();
                 app.UseSpecificationDocuments();
                 app.UseCorsAccessor();
-            });
-            app.UseStaticFile();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
+                app.UseStaticFile();
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllers();
+                });
             });
         }
     }

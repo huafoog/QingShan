@@ -16,6 +16,8 @@ using QingShan.Utilities;
 using QingShan.DataLayer;
 using QingShan.Common.Data;
 using QingShan.Cache;
+using QingShan.Services.Permission;
+using System.Linq;
 
 namespace QingShan.Services.User
 {
@@ -31,15 +33,21 @@ namespace QingShan.Services.User
         /// 用户仓储
         /// </summary>
         private readonly IRepository<UserEntity> _userRepository;
+        private readonly IRepository<UserRoleEntity> _userRoleRepository;
+        private readonly IPermissionContract _permissionService;
 
         public UserService(IUserInfo user,
             ICache cache,
-            IRepository<UserEntity> userRepository
+            IRepository<UserEntity> userRepository,
+            IRepository<UserRoleEntity> userRoleRepository,
+            IPermissionContract permissionService
             )
         {
             _user = user;
             _cache = cache;
             _userRepository = userRepository;
+            _userRoleRepository = userRoleRepository;
+            _permissionService = permissionService;
         }
         /// <summary>
         /// 获取用户信息
@@ -52,17 +60,30 @@ namespace QingShan.Services.User
                 .Select
                 .Where(o=>o.Id == id)
                 .FirstAsync<UserGetOutputDto>();
-
-
-
-            //var entity = await _userRepository.Select
-            //.WhereDynamic(id)
-            //.IncludeMany(a => a.Roles.Select(b => new RoleEntity { Id = b.Id }))
-            //.ToOneAsync();
-
-            //var entityDto = await _context.Users.ProjectTo<UserGetOutputDto>(_configurationProvider).FirstOrDefaultAsync(o => o.Id == id);
-            //var entityDto = _mapper.Map<UserGetOutputDto>(entity);
             return new StatusResult<UserGetOutputDto>(user);
+        }
+
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<StatusResult<UserPermissionOutputDto>> GetUserInfoAsync(string id)
+        {
+
+            var user = new  UserPermissionOutputDto();
+            user.UserInfo = await _userRepository
+                .Select
+                .Where(o => o.Id == id)
+                .FirstAsync<UserGetOutputDto>();
+            if (user.UserInfo == null)
+            {
+                return new StatusResult<UserPermissionOutputDto>();
+            }
+            user.Codes = await _permissionService.GetPermissionsAsync();
+            user.Menu = await _permissionService.GetUserMeunAsync();
+
+            return new StatusResult<UserPermissionOutputDto>(user);
         }
         /// <summary>
         /// 用户登录
@@ -76,7 +97,7 @@ namespace QingShan.Services.User
             {
                 return new StatusResult("当前已存在人员信息，无法初始化");
             }
-            var password = MD5Encrypt.Encrypt32("123456");
+            var password = MySecurity.MD5(MySecurity.MD5Lower("123456"));
             var model = new UserEntity()
             {
                 Id = Snowflake.GenId(),
@@ -93,45 +114,41 @@ namespace QingShan.Services.User
         }
 
         /// <summary>
-        /// 获取权限信息
-        /// </summary>
-        /// <returns></returns>
-        public async Task<IList<string>> GetPermissionsAsync()
-        {
-            await Task.CompletedTask;
-            var key = CacheKey.UserPermissions.ToFormat(_user.Id);
-            await _cache.GetAsync(key);
-            //if ()
-            //{
-            //    return await _cache.GetAsync<IList<string>>(key);
-            //}
-            //else
-            //{
-
-            //}
-            //这里加缓存
-
-            //var userPermissoins = await (from rp in _userRepository.Select.RoleModules
-            //                             join ur in _context.UserRole on rp.RoleId equals ur.RoleId
-            //                             join p in _context.Modules on rp.ModuleId equals p.Id
-            //                             select p.Id.ToString()).ToListAsync();
-            //return userPermissoins;
-            return new List<string>();
-        }
-
-        /// <summary>
         /// 获取数据
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
         public async Task<PageOutputDto<UserListOutputDto>> PageAsync(SearchUserInputDto dto)
         {
-            
+
             var data = await _userRepository
-                .Select
-                .WhereIf(dto.Status.HasValue, o => o.Status == dto.Status)
-                .WhereIf(dto.Search.NotNull(),o=>o.UserName.Contains(dto.Search) || o.NickName.Contains(dto.Search))
+                .WhereIf(dto.Status.HasValue, a => a.Status == dto.Status)
+                .WhereIf(dto.Search.NotNull(), a => a.UserName.Contains(dto.Search) || a.NickName.Contains(dto.Search))
                 .ToPageResultAsync<UserEntity,UserListOutputDto>(dto);
+            if (data.Data.Count > 0)
+            {
+                var ids = data.Data.Select(o => o.Id);
+                var roleData = await _userRoleRepository.Select
+                    .From<RoleEntity>((s, b) => s.InnerJoin(a => a.RoleId == b.Id))
+                    .Where((a, b) => ids.Contains(a.UserId))
+                    .ToListAsync((a, b) => new RoleOutputDto()
+                    {
+                        RoleId = a.RoleId,
+                        Name = b.Name,
+                        UserId = a.UserId
+                    });
+                foreach (var item in data.Data)
+                {
+                    var roles = roleData.Where(o => o.UserId == item.Id).ToList();
+                    item.RoleIds = roles.Select(o=>new RoleRequestDto() { 
+                        key = o.RoleId,
+                        label = o.Name,
+                        value = o.RoleId
+                    }).ToArray();
+                    item.RoleNames = roles.Select(o => o.Name).ToStringJoin(",");
+                }
+            }
+
             return data;
 
 
@@ -148,11 +165,18 @@ namespace QingShan.Services.User
                 return new StatusResult("账号或手机号已存在");
             }
 
-            var password = MD5Encrypt.Encrypt32("123456");
+            var password = MySecurity.MD5(MySecurity.MD5Lower("123456"));
             var entity = input.Adapt<UserEntity>();
             entity.Id = Snowflake.GenId();
             entity.Password = password;
             var res = await _userRepository.InsertOrUpdateAsync(entity);
+
+            var userRoles = input.RoleIds.Select(o=>new UserRoleEntity() { 
+                RoleId = o.key,
+                UserId = entity.Id,
+                Id = Snowflake.GenId()
+            });
+            await _userRoleRepository.InsertAsync(userRoles);
             return new StatusResult(res == null, "添加失败");
         }
 
@@ -178,6 +202,15 @@ namespace QingShan.Services.User
             thisUser.Phone = input.Phone;
             thisUser.RealName = input.RealName;
             int res = await _userRepository.UpdateAsync(thisUser);
+            await _userRoleRepository.DeleteAsync(o=>o.UserId == user.Id);
+            var userRoles = input.RoleIds.Select(o => new UserRoleEntity()
+            {
+                RoleId = o.key,
+                UserId = user.Id,
+                Id = Snowflake.GenId()
+            });
+            await _userRoleRepository.InsertAsync(userRoles);
+
             return new StatusResult(res == 0, "修改失败");
         }
 

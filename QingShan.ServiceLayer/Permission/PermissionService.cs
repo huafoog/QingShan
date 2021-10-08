@@ -12,6 +12,11 @@ using QingShan.Core.FreeSql;
 using QingShan.Utilities;
 using Panda.DynamicWebApi.Attributes;
 using Microsoft.AspNetCore.Mvc;
+using QingShan.Services.User;
+using QingShan.Common.Data;
+using QingShan.Cache;
+using QingShan.Permission;
+using QingShan.Services.Permission.Dto.OutputDto;
 
 namespace QingShan.Services.Permission
 {
@@ -25,16 +30,22 @@ namespace QingShan.Services.Permission
         private readonly IRepository<DataLayer.Entities.PermissionEntity> _modelRepository;
         private readonly IRepository<RolePermissionEntity> _rolePermissionRepository;
         private readonly IRepository<RoleEntity> _roleRepository;
+        private readonly ICache _cache;
+        private readonly IUserInfo _user;
 
         public PermissionService(
             IRepository<DataLayer.Entities.PermissionEntity> modelRepository,
             IRepository<RolePermissionEntity> rolePermissionRepository,
-            IRepository<RoleEntity> roleRepository
+            IRepository<RoleEntity> roleRepository,
+            ICache cache,
+             IUserInfo user
             )
         {
             _modelRepository = modelRepository;
             _rolePermissionRepository = rolePermissionRepository;
             _roleRepository = roleRepository;
+            _cache = cache;
+            _user = user;
         }
 
         #region 权限操作
@@ -63,6 +74,13 @@ namespace QingShan.Services.Permission
         /// <returns></returns>
         public async Task<StatusResult> InsertPermission(PermissionInputDto dto)
         {
+            if (dto.PermissionType == DataLayer.Enums.PermissionType.Button)
+            {
+                if (dto.PermissionCode.IsNull())
+                {
+                    return new StatusResult("请输入权限编码");
+                }
+            }
             var model = dto.Adapt<PermissionEntity>();
             model.Id = Snowflake.GenId();
             var res = await _modelRepository.InsertOrUpdateAsync(model);
@@ -79,6 +97,13 @@ namespace QingShan.Services.Permission
             if (dto.Id.IsNull())
             {
                 return new StatusResult("未获取到权限信息");
+            }
+            if (dto.PermissionType == DataLayer.Enums.PermissionType.Button)
+            {
+                if (dto.PermissionCode.IsNull())
+                {
+                    return new StatusResult("请输入权限编码");
+                }
             }
             var model = dto.Adapt<DataLayer.Entities.PermissionEntity>();
             var res = await _modelRepository.InsertOrUpdateAsync(model);
@@ -104,8 +129,15 @@ namespace QingShan.Services.Permission
         /// <returns></returns>
         public async Task<StatusResult> Delete(IdsInputDto dto)
         {
+
+            var checkRoot = await _modelRepository.Where(o => dto.Ids.Contains(o.ParentId)).AnyAsync();
+
+            if (checkRoot)
+            {
+                return new StatusResult("根目录下存在数据无法删除");
+            }
             var res = await _modelRepository.DeleteAsync(dto.Ids);
-            return new StatusResult(res > 0, "操作失败");
+            return new StatusResult(res == 0, "操作失败");
         }
 
         #endregion
@@ -137,7 +169,7 @@ namespace QingShan.Services.Permission
             };
             return result;
         }
-        
+
         /// <summary>
         /// 设置角色权限
         /// </summary>
@@ -152,7 +184,7 @@ namespace QingShan.Services.Permission
                 result.SetErrorMessage("未获取到角色信息");
                 return result;
             }
-            await _rolePermissionRepository.DeleteAsync(o=>o.RoleId == dto.RoleId);
+            await _rolePermissionRepository.DeleteAsync(o => o.RoleId == dto.RoleId);
             var data = new List<RolePermissionEntity>();
             foreach (var item in dto.PermissionIds)
             {
@@ -167,17 +199,58 @@ namespace QingShan.Services.Permission
             await _rolePermissionRepository.InsertAsync(data);
             return result;
         }
-        
+
         #endregion
 
         /// <summary>
         /// 检查权限
         /// </summary>
         /// <returns></returns>
-        public async Task<bool> CheckPermission()
+        public async Task<bool> CheckPermission(string code)
         {
-            await Task.CompletedTask;
-            return true;
+            var permission = await GetPermissionsAsync();
+            return permission.Contains(code);
+        }
+
+
+        /// <summary>
+        /// 获取权限信息
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<string>> GetPermissionsAsync()
+        {
+            var key = CacheKey.UserPermissions.ToFormat(_user.Id);
+            var userPermissoins = await _cache.GetAsync<List<string>>(key);
+            if (userPermissoins == null)
+            {
+                //当前有权限的操作
+                userPermissoins = await _rolePermissionRepository.Orm.Select<UserEntity, UserRoleEntity, RoleEntity, RolePermissionEntity, PermissionEntity>()
+                    .InnerJoin((a, b, c, d, e) => a.Id == b.UserId)
+                    .InnerJoin((a, b, c, d, e) => b.RoleId == c.Id)
+                    .InnerJoin((a, b, c, d, e) => c.Id == d.RoleId)
+                    .InnerJoin((a, b, c, d, e) => d.PermissionId == e.Id)
+                    .Where((a, b, c, d, e) => a.Id == _user.Id && e.PermissionType == DataLayer.Enums.PermissionType.Button)
+                    .ToListAsync((a, b, c, d, e) => e.PermissionCode);
+                await _cache.SetAsync(key, userPermissoins, 60 * 60 * 24);
+            }
+            return userPermissoins;
+        }
+
+        /// <summary>
+        /// 获取用户菜单信息
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<string>> GetUserMeunAsync()
+        {
+            //当前权限
+            var data = await _rolePermissionRepository.Orm.Select<UserEntity, UserRoleEntity, RoleEntity, RolePermissionEntity, PermissionEntity>()
+                    .InnerJoin((a, b, c, d, e) => a.Id == b.UserId)
+                    .InnerJoin((a, b, c, d, e) => b.RoleId == c.Id)
+                    .InnerJoin((a, b, c, d, e) => c.Id == d.RoleId)
+                    .InnerJoin((a, b, c, d, e) => d.PermissionId == e.Id)
+                    .Where((a, b, c, d, e) => a.Id == _user.Id && e.PermissionType != DataLayer.Enums.PermissionType.Button)
+                    .ToListAsync((a, b, c, d, e) => e.Path);
+            return data;
         }
     }
 }

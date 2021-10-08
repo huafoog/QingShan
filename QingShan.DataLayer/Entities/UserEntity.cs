@@ -47,6 +47,7 @@ namespace QingShan.DataLayer.Entities
 
         /// <summary>
         /// 密码
+        /// <para>两次加密 第一次32位小写 第二次32位大写</para>
         /// </summary>
         public string Password { get; set; }
 

@@ -33,6 +33,13 @@ namespace QingShan.Cache
         /// <param name="t"></param>
         /// <param name="expiresSec">过期（秒）</param>
         Task<bool> SetAsync(string key, object t, int expiresSec = -1);
+        /// <summary>
+        /// 设置
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="t"></param>
+        /// <param name="expirationTime">过期</param>
+        Task<bool> SetAsync(string key, object t, TimeSpan expirationTime);
 
         /// <summary>
         /// 用于在 key 存在时删除 key

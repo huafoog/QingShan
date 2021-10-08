@@ -43,7 +43,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddSingleton<IFreeSql>(fsql);
             if (dbConfig.GlobalFilter)
             {
-                services.AddFreeRepository(filter => filter.Apply<ISoftDeletable>("DeleteTime", a => !a.DeleteTime.HasValue));
+                //全局过滤
+                fsql.GlobalFilter.Apply<ISoftDeletable>("DeleteTime", a => !a.DeleteTime.HasValue);
             }
             if (dbConfig.PrintingSQL)
             {

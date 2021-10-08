@@ -21,5 +21,10 @@
         /// 用户昵称
         /// </summary>
         public const string USERNICKNAME = "QingShanUSERNICKNAME";
+        /// <summary>
+        /// 是否超级管理员
+        /// </summary>
+        public const string QINGSHANUSERISSUPER = "QINGSHANUSERISSUPER";
+        
     }
 }

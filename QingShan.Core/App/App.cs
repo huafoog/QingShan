@@ -15,6 +15,7 @@ using System.Reflection;
 using System.Runtime.Loader;
 using System.Threading;
 using QingShan.Utilities;
+using QingShan.Attributes;
 
 namespace QingShan.Core
 {
@@ -34,6 +35,12 @@ namespace QingShan.Core
         /// </summary>
         public static readonly IEnumerable<Type> CanBeScanTypes;
 
+
+        /// <summary>
+        /// 只需要登录权限的code
+        /// </summary>
+        public static readonly IEnumerable<string> LoggedCodes;
+
         /// <summary>
         /// 静态构造函数，只在程序启动时执行一次。
         /// </summary>
@@ -43,6 +50,48 @@ namespace QingShan.Core
             Assemblies = GetAssemblies();
             CanBeScanTypes = Assemblies.SelectMany(u => u.GetTypes().Where(u => u.IsPublic && !u.IsDefined(typeof(SkipScanAttribute), false)));
             AppStartups = new ConcurrentBag<AppStartup>();
+
+            LoggedCodes = GetLoggedInCode();
+
+        }
+
+        /// <summary>
+        /// 获取登录后访问的权限
+        /// </summary>
+        /// <returns></returns>
+        private static List<string> GetLoggedInCode()
+        {
+            List<string> code = new();
+            //所有的控制器
+            var controllers = CanBeScanTypes.Where(u=>u.IsController());
+            foreach (var controller in controllers)
+            {
+                var areaName = "";
+                //区域代码
+                var area = controller.GetAttribute<AreaInfoAttribute>();
+                if (area != null)
+                {
+                    areaName = $"{area.RouteValue}.";
+                }
+
+
+                var isLogged = controller.GetType().IsDefined(typeof(LoggedInAttribute));
+                var actions = controller.GetMethods().Where(o => o.IsAction(controller));
+                foreach (var action in actions)
+                {
+                    if (isLogged)
+                    {
+                        code.Add($"{areaName}{controller.Name.Replace("Controller", "")}.{action.Name}".ToLower());
+                        continue;
+                    }
+                    if (action.IsDefined(typeof(LoggedInAttribute)))
+                    {
+                        code.Add($"{areaName}{controller.Name.Replace("Controller", "")}.{action.Name}".ToLower());
+                    }
+                }
+
+            }
+            return code;
         }
 
         /// <summary>

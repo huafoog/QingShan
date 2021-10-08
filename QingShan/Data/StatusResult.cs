@@ -11,7 +11,7 @@
         }
 
         /// <summary>
-        /// 
+        /// 失败时显示的消息
         /// </summary>
         /// <param name="isFail">是否失败</param>
         /// <param name="message">失败显示的消息</param>
