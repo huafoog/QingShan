@@ -1,38 +1,27 @@
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
-using QingShan.Utilities;
 using System;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace QingShan.Test
 {
+
     [TestClass]
     public class UnitTest1
     {
-        [TestMethod]
-        public void TestMethod1()
+        /// <summary>
+        /// 测试
+        /// </summary>
+        [TestMethod]public void Test()
         {
+            //var build = new WebHostBuilder().Configure(confgi=> {
+            //}).UseStartup<OptionStartup>();
 
-            for (int i = 0; i < 1000; i++)
-            {
-                System.Console.WriteLine(Snowflake.GenId());
-            }
-            System.Console.WriteLine("123");
+            //build.Build();
         }
-        [TestMethod]
-        public void TestMethod2()
-        {
-            object obj = new
-            {
-                a = "1234534",
-                b = "346456456",
-                c = "3445346346"
-            };
-            var buff = obj.ToBytes();
-            System.Console.WriteLine(); 
-        }
-        
     }
 }

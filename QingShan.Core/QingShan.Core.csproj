@@ -22,6 +22,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="CodeGenerator\Pages\Codegen.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="CodeGenerator\Pages\Codegen.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspectCore.Core" Version="2.2.0" />
+    <PackageReference Include="AspectCore.Extensions.DependencyInjection" Version="2.2.0" />
     <PackageReference Include="AspNetCoreRateLimit" Version="4.0.1" />
     <PackageReference Include="CSRedisCore" Version="3.6.6" />
     <PackageReference Include="FreeSql" Version="2.3.200" />
@@ -56,6 +70,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="App\Attributes\" />
+	  <Folder Include="App\Consts\" />
+	  <Folder Include="App\Core\" />
 	  <Folder Include="CorsAccessor\" />
 	  <Folder Include="Redis\Options\" />
 	  <Folder Include="Redis\Contract\" />

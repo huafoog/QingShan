@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QingShan.Attributes;
 using QingShan.Data;
 using QingShan.Services.Common.Dto.InputDto;
 using QingShan.Utilities;
@@ -17,6 +18,7 @@ namespace QingShan.Web.Areas.Admin.Controllers
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpGet]
+        [LoggedIn]
         public async Task<StatusResult<List<EnumDto>>> GetEnum([FromQuery]EnumInputDto dto)
         {
             var dic = EnumHelper.GetEnumListByCode(new[] { "QingShan.DataLayer" }, new[] { "QingShan.DataLayer.Enums" }, dto.Code);

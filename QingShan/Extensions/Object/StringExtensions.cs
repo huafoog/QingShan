@@ -29,7 +29,7 @@ namespace System
         /// <param name="format"></param>
         /// <param name="arg0"></param>
         /// <returns></returns>
-        public static string ToFormat(this string format,object? arg0)
+        public static string ToFormat(this string format, object? arg0)
         {
             return string.Format(format, arg0);
         }

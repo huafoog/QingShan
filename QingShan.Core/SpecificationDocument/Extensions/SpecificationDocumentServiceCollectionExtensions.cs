@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.IO;
 using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.Extensions.Configuration;
 
 namespace Microsoft.Extensions.DependencyInjection
 {

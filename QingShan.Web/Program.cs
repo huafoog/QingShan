@@ -1,3 +1,4 @@
+using AspectCore.Extensions.DependencyInjection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -29,35 +30,33 @@ namespace QingShan.Core.Web
             }
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args)
-        {
-            return Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
+        //public static IHostBuilder CreateHostBuilder(string[] args)
+        //{
+        //    return Host.CreateDefaultBuilder(args)
+        //    .ConfigureWebHostDefaults(webBuilder =>
+        //    {
+        //        webBuilder.UseStartup<Startup>();
+        //    })
+        //    .ConfigureLogging(logging =>
+        //    {
+        //        logging.ClearProviders();
+        //        logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+        //    })
+        //    .UseNLog();  // NLog: Setup NLog for Dependency injection;
+        //}
+        #region Kestrel
+        public static IWebHostBuilder CreateHostBuilder(string[] args) =>
+           WebHost.
+           CreateDefaultBuilder(args)
+           .UseStartup<Startup>()
+           .UseKestrel()
+           .ConfigureLogging(logging =>
+           {
+               logging.ClearProviders();
+               logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+           })
+           .UseNLog();  // NLog: Setup NLog for Dependency injection;
+        #endregion
 
-                //QingShan.Core基础功能注入
-                webBuilder.Inject()
-                .UseStartup<Startup>();
-            })
-            .ConfigureLogging(logging =>
-            {
-                logging.ClearProviders();
-                logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
-            })
-            .UseNLog();  // NLog: Setup NLog for Dependency injection;
-        }
-
-        //public static IWebHostBuilder CreateHostBuilder(string[] args) =>
-        //   WebHost.
-        //   CreateDefaultBuilder(args)
-        //   .UseSetting(WebHostDefaults.HostingStartupAssembliesKey, "QingShan.Core")
-        //   .UseStartup<Startup>()
-        //   .UseKestrel()
-        //   .ConfigureLogging(logging =>
-        //   {
-        //       logging.ClearProviders();
-        //       logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
-        //   })
-        //   .UseNLog();  // NLog: Setup NLog for Dependency injection;
     }
 }

@@ -42,10 +42,9 @@ namespace QingShan.Services.System.Role
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public async Task<PageOutputDto<RoleOutputDto>> PageAsync(PageInputDto dto)
+        public async Task<PageOutputDto<RoleOutputDto>> PageAsync(PageRoleInputDto dto)
         {
-
-            return await _roleRepository.Select.ToPageResultAsync<RoleEntity,RoleOutputDto>(dto
+            return await _roleRepository.Select.WhereIf(dto.Enabled.HasValue,o=>o.Enabled == dto.Enabled).ToPageResultAsync<RoleEntity,RoleOutputDto>(dto
                 , o => dto.Search.IsNull()  || o.Name.Contains(dto.Search)  || o.Description.Contains(dto.Search)
                 ,o=>o.OrderSort, Core.Core.DatabaseAccessor.Enums.SortType.ASC
             );

@@ -22,8 +22,6 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddRateLimit(this IServiceCollection services, Action<IServiceCollection> configure = null)
         {
             services.AddConfigurableOptions<MineIpRateLimitOptions>();
-
-
             services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
             //注入计数器和规则存储
             services.AddSingleton<IIpPolicyStore, RedisIpPolicyStore>();

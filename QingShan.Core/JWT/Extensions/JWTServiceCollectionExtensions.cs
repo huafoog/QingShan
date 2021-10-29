@@ -37,7 +37,8 @@ namespace Microsoft.Extensions.DependencyInjection
             ConfigureJWTOptions(services);
 
             // 获取配置选项
-            var jwtSettings = services.BuildServiceProvider().GetService<IOptions<JWTSettingsOptions>>().Value;
+
+            var jwtSettings = QingShan.QingShanApplication.Configuration.GetDefultOptions<JWTSettingsOptions>();
 
             // 添加授权
             authenticationBuilder.AddJwtBearer(options =>

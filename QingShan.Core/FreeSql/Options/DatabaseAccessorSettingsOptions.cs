@@ -44,7 +44,6 @@ namespace QingShan.Core.FreeSql.Options
         /// <param name="configuration"></param>
         public void PostConfigure(DatabaseAccessorSettingsOptions options, IConfiguration configuration)
         {
-            PrintingSQL = true;
             GlobalFilter = true;
         }
     }

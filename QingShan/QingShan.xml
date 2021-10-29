@@ -47,88 +47,6 @@
             <param name="key">缓存键</param>
             <returns></returns>
         </member>
-        <member name="T:QingShan.Collections.EnumerableExtensions">
-            <summary>
-            Enumerable集合扩展方法
-            </summary>
-        </member>
-        <member name="M:QingShan.Collections.EnumerableExtensions.Shuffle``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            打乱一个集合的项顺序
-            </summary>
-        </member>
-        <member name="M:QingShan.Collections.EnumerableExtensions.ExpandAndToString``1(System.Collections.Generic.IEnumerable{``0},System.String)">
-            <summary>
-            将集合展开并分别转换成字符串，再以指定的分隔符衔接，拼成一个字符串返回。默认分隔符为逗号
-            </summary>
-            <param name="collection"> 要处理的集合 </param>
-            <param name="separator"> 分隔符，默认为逗号 </param>
-            <returns> 拼接后的字符串 </returns>
-        </member>
-        <member name="M:QingShan.Collections.EnumerableExtensions.ExpandAndToString``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String},System.String)">
-            <summary>
-            循环集合的每一项，调用委托生成字符串，返回合并后的字符串。默认分隔符为逗号
-            </summary>
-            <param name="collection">待处理的集合</param>
-            <param name="itemFormatFunc">单个集合项的转换委托</param>
-            <param name="separator">分隔符，默认为逗号</param>
-            <typeparam name="T">泛型类型</typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Collections.EnumerableExtensions.IsEmpty``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            集合是否为空
-            </summary>
-            <param name="collection"> 要处理的集合 </param>
-            <typeparam name="T"> 动态类型 </typeparam>
-            <returns> 为空返回True，不为空返回False </returns>
-        </member>
-        <member name="M:QingShan.Collections.EnumerableExtensions.WhereIf``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean},System.Boolean)">
-            <summary>
-            根据第三方条件是否为真来决定是否执行指定条件的查询
-            </summary>
-            <param name="source"> 要查询的源 </param>
-            <param name="predicate"> 查询条件 </param>
-            <param name="condition"> 第三方条件 </param>
-            <typeparam name="T"> 动态类型 </typeparam>
-            <returns> 查询的结果 </returns>
-        </member>
-        <member name="M:QingShan.Collections.EnumerableExtensions.OrderByPrefixes``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String},System.String[])">
-            <summary>
-            将字符串集合按指定前缀排序
-            </summary>
-        </member>
-        <member name="M:QingShan.Collections.EnumerableExtensions.DistinctBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
-            <summary>
-            根据指定条件返回集合中不重复的元素
-            </summary>
-            <typeparam name="T">动态类型</typeparam>
-            <typeparam name="TKey">动态筛选条件类型</typeparam>
-            <param name="source">要操作的源</param>
-            <param name="keySelector">重复数据筛选条件</param>
-            <returns>不重复元素的集合</returns>
-        </member>
-        <member name="T:QingShan.Collections.EqualityHelper`1">
-            <summary>
-            相等比较辅助类，用于快速创建<see cref="T:System.Collections.Generic.IEqualityComparer`1"/>的实例
-            </summary>
-            <example>
-            var equalityComparer1 = EqualityHelper[Person].CreateComparer(p => p.ID);
-            var equalityComparer2 = EqualityHelper[Person].CreateComparer(p => p.Name);
-            var equalityComparer3 = EqualityHelper[Person].CreateComparer(p => p.Birthday.Year);
-            </example>
-            <typeparam name="T"> </typeparam>
-        </member>
-        <member name="M:QingShan.Collections.EqualityHelper`1.CreateComparer``1(System.Func{`0,``0})">
-            <summary>
-            创建指定对比委托<paramref name="keySelector"/>的实例
-            </summary>
-        </member>
-        <member name="M:QingShan.Collections.EqualityHelper`1.CreateComparer``1(System.Func{`0,``0},System.Collections.Generic.IEqualityComparer{``0})">
-            <summary>
-            创建指定对比委托<paramref name="keySelector"/>与结果二次比较器<paramref name="comparer"/>的实例
-            </summary>
-        </member>
         <member name="T:QingShan.Core.ConfigurableOptions.OptionsSettingsAttribute">
             <summary>
             选项配置特性
@@ -168,27 +86,6 @@
             对所有配置实例进行后期配置
             </summary>
         </member>
-        <member name="T:QingShan.Core.ConfigurableOptions.ConfigurableOptionsServiceCollectionExtensions">
-            <summary>
-            可变选项服务拓展类
-            </summary>
-        </member>
-        <member name="M:QingShan.Core.ConfigurableOptions.ConfigurableOptionsServiceCollectionExtensions.AddConfigurableOptions``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            添加选项配置
-            </summary>
-            <typeparam name="TOptions">选项类型</typeparam>
-            <param name="services">服务集合</param>
-            <returns>服务集合</returns>
-        </member>
-        <member name="M:QingShan.Core.ConfigurableOptions.ConfigurableOptionsServiceCollectionExtensions.GetOptionsJsonKey(QingShan.Core.ConfigurableOptions.OptionsSettingsAttribute,System.Type)">
-            <summary>
-            获取选项键
-            </summary>
-            <param name="optionsSettings">选项配置特性</param>
-            <param name="optionsType">选项类型</param>
-            <returns></returns>
-        </member>
         <member name="T:QingShan.Core.ConfigurableOptions.IConfigurableOptions">
             <summary>
             应用选项依赖接口
@@ -214,19 +111,6 @@
             <typeparam name="TOptions"></typeparam>
             <typeparam name="TOptionsValidation"></typeparam>
         </member>
-        <member name="T:QingShan.Core.ConfigurableOptions.IConfigurableOptionsListener`1">
-            <summary>
-            带监听的应用选项依赖接口
-            </summary>
-            <typeparam name="TOptions"></typeparam>
-        </member>
-        <member name="M:QingShan.Core.ConfigurableOptions.IConfigurableOptionsListener`1.OnListener(`0,Microsoft.Extensions.Configuration.IConfiguration)">
-            <summary>
-            监听
-            </summary>
-            <param name="options"></param>
-            <param name="configuration"></param>
-        </member>
         <member name="T:QingShan.Core.Core.DatabaseAccessor.Enums.SortType">
             <summary>
             排序类型
@@ -241,6 +125,14 @@
             <summary>
             降序
             </summary>
+        </member>
+        <member name="M:QingShan.ConfigurableOptions.JsonKey.GetOptionsJsonKey(QingShan.Core.ConfigurableOptions.OptionsSettingsAttribute,System.Type)">
+            <summary>
+            获取选项键
+            </summary>
+            <param name="optionsSettings">选项配置特性</param>
+            <param name="optionsType">选项类型</param>
+            <returns></returns>
         </member>
         <member name="T:QingShan.DatabaseAccessor.DataState">
             <summary>
@@ -555,25 +447,6 @@
             指定角色可访问
             </summary>
         </member>
-        <member name="T:QingShan.Data.Enums.ModuleEnum">
-            <summary>
-            模块
-            <para>该枚举值包含 Name,Code,Sort</para>
-            <para>其中 code为 枚举<see cref="T:System.String"/>值</para>
-            <para>Name为枚举的<see cref="T:System.ComponentModel.DescriptionAttribute"/></para>
-            <para>Sort为枚举<see cref="T:System.Int32"/>值</para>
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.Enums.ModuleEnum.System">
-            <summary>
-            系统管理
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.Enums.ModuleEnum.Null">
-            <summary>
-            默认值 空
-            </summary>
-        </member>
         <member name="T:QingShan.Data.Enums.ModuleLevel">
             <summary>
             模块节点
@@ -806,103 +679,15 @@
             主键类型名称
             </summary>
         </member>
-        <member name="T:QingShan.DependencyInjection.InjectionAttribute">
-            <summary>
-            设置依赖注入方式
-            </summary>
-        </member>
-        <member name="M:QingShan.DependencyInjection.InjectionAttribute.#ctor">
-            <summary>
-            构造函数
-            </summary>
-        </member>
-        <member name="M:QingShan.DependencyInjection.InjectionAttribute.#ctor(QingShan.DependencyInjection.InjectionActions)">
-            <summary>
-            构造函数
-            </summary>
-            <param name="action">添加服务方式</param>
-        </member>
-        <member name="P:QingShan.DependencyInjection.InjectionAttribute.Action">
-            <summary>
-            添加服务方式，存在不添加，或继续添加
-            </summary>
-        </member>
-        <member name="P:QingShan.DependencyInjection.InjectionAttribute.Pattern">
-            <summary>
-            注册选项
-            </summary>
-        </member>
-        <member name="P:QingShan.DependencyInjection.InjectionAttribute.Named">
-            <summary>
-            注册别名
-            </summary>
-            <remarks>多服务时使用</remarks>
-        </member>
-        <member name="P:QingShan.DependencyInjection.InjectionAttribute.Order">
-            <summary>
-            排序，排序越大，则在后面注册
-            </summary>
-        </member>
-        <member name="P:QingShan.DependencyInjection.InjectionAttribute.Proxy">
-            <summary>
-            代理类型，必须继承 DispatchProxy、IDispatchProxy
-            </summary>
-        </member>
         <member name="T:QingShan.DependencyInjection.SkipScanAttribute">
             <summary>
             不被扫描和发现的特性
             </summary>
             <remarks>用于程序集扫描类型或方法时候</remarks>
         </member>
-        <member name="T:QingShan.DependencyInjection.ExternalService">
+        <member name="T:QingShan.DependencyInjection.IDependency">
             <summary>
-            外部注册类型模型
-            </summary>
-        </member>
-        <member name="P:QingShan.DependencyInjection.ExternalService.Interface">
-            <summary>
-            接口类型，格式："程序集名称;接口完整名称"
-            </summary>
-        </member>
-        <member name="P:QingShan.DependencyInjection.ExternalService.Service">
-            <summary>
-            实例类型，格式："程序集名称;接口完整名称"
-            </summary>
-        </member>
-        <member name="P:QingShan.DependencyInjection.ExternalService.RegisterType">
-            <summary>
-            注册类型
-            </summary>
-        </member>
-        <member name="P:QingShan.DependencyInjection.ExternalService.Action">
-            <summary>
-            添加服务方式，存在不添加，或继续添加
-            </summary>
-        </member>
-        <member name="P:QingShan.DependencyInjection.ExternalService.Pattern">
-            <summary>
-            注册选项
-            </summary>
-        </member>
-        <member name="P:QingShan.DependencyInjection.ExternalService.Named">
-            <summary>
-            注册别名
-            </summary>
-            <remarks>多服务时使用</remarks>
-        </member>
-        <member name="P:QingShan.DependencyInjection.ExternalService.Order">
-            <summary>
-            排序，排序越大，则在后面注册
-            </summary>
-        </member>
-        <member name="P:QingShan.DependencyInjection.ExternalService.Proxy">
-            <summary>
-            代理类型，格式："程序集名称;接口完整名称"
-            </summary>
-        </member>
-        <member name="T:QingShan.DependencyInjection.IPrivateDependency">
-            <summary>
-            依赖空接口（禁止外部继承）
+            依赖空接口
             </summary>
         </member>
         <member name="T:QingShan.DependencyInjection.IScopeDependency">
@@ -921,51 +706,6 @@
             <summary>
             暂时服务注册依赖
             <para>实现此接口的类型将自动注册为<see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Transient"/>模式</para>
-            </summary>
-        </member>
-        <member name="T:QingShan.DependencyInjection.InjectionActions">
-            <summary>
-            服务注册方式
-            </summary>
-        </member>
-        <member name="F:QingShan.DependencyInjection.InjectionActions.Add">
-            <summary>
-            如果存在则覆盖
-            </summary>
-        </member>
-        <member name="F:QingShan.DependencyInjection.InjectionActions.TryAdd">
-            <summary>
-            如果存在则跳过，默认方式
-            </summary>
-        </member>
-        <member name="T:QingShan.DependencyInjection.InjectionPatterns">
-            <summary>
-            注册范围
-            </summary>
-        </member>
-        <member name="F:QingShan.DependencyInjection.InjectionPatterns.Self">
-            <summary>
-            只注册自己
-            </summary>
-        </member>
-        <member name="F:QingShan.DependencyInjection.InjectionPatterns.FirstInterface">
-            <summary>
-            第一个接口，默认值
-            </summary>
-        </member>
-        <member name="F:QingShan.DependencyInjection.InjectionPatterns.SelfWithFirstInterface">
-            <summary>
-            自己和第一个接口，默认值
-            </summary>
-        </member>
-        <member name="F:QingShan.DependencyInjection.InjectionPatterns.ImplementedInterfaces">
-            <summary>
-            所有接口
-            </summary>
-        </member>
-        <member name="F:QingShan.DependencyInjection.InjectionPatterns.All">
-            <summary>
-            注册自己包括所有接口
             </summary>
         </member>
         <member name="T:QingShan.DependencyInjection.RegisterType">
@@ -1020,112 +760,45 @@
             <param name="services">服务集合</param>
             <returns>服务集合</returns>
         </member>
-        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.AddScopedDispatchProxyForInterface``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            添加接口代理
-            </summary>
-            <typeparam name="TDispatchProxy">代理类</typeparam>
-            <typeparam name="TIDispatchProxy">被代理接口依赖</typeparam>
-            <param name="services">服务集合</param>
-            <returns>服务集合</returns>
-        </member>
-        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.AddAutoScanInjection(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.AddAutoInjection(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             添加自动扫描注入
             </summary>
             <param name="services">服务集合</param>
             <returns>服务集合</returns>
         </member>
-        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterService(Microsoft.Extensions.DependencyInjection.IServiceCollection,QingShan.DependencyInjection.RegisterType,System.Type,QingShan.DependencyInjection.InjectionAttribute,System.Collections.Generic.IEnumerable{System.Type})">
-            <summary>
-            注册服务
-            </summary>
-            <param name="services">服务集合</param>
-            <param name="registerType">类型作用域</param>
-            <param name="type">类型</param>
-            <param name="injectionAttribute">注入特性</param>
-            <param name="canInjectInterfaces">能被注册的接口</param>
-        </member>
-        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterType(Microsoft.Extensions.DependencyInjection.IServiceCollection,QingShan.DependencyInjection.RegisterType,System.Type,QingShan.DependencyInjection.InjectionAttribute,System.Type)">
+        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterType(Microsoft.Extensions.DependencyInjection.IServiceCollection,QingShan.DependencyInjection.RegisterType,System.Type,System.Type)">
             <summary>
             注册类型
             </summary>
             <param name="services">服务</param>
             <param name="registerType">注册类型</param>
             <param name="type">类型</param>
-            <param name="injectionAttribute">注入特性</param>
             <param name="inter">接口</param>
         </member>
-        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterTransientType(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,QingShan.DependencyInjection.InjectionAttribute,System.Type)">
+        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterTransientType(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,System.Type)">
             <summary>
             注册瞬时接口实例类型
             </summary>
             <param name="services">服务</param>
             <param name="type">类型</param>
-            <param name="injectionAttribute">注入特性</param>
             <param name="inter">接口</param>
         </member>
-        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterScopeType(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,QingShan.DependencyInjection.InjectionAttribute,System.Type)">
+        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterScopeType(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,System.Type)">
             <summary>
             注册作用域接口实例类型
             </summary>
             <param name="services">服务</param>
             <param name="type">类型</param>
-            <param name="injectionAttribute">注入特性</param>
             <param name="inter">接口</param>
         </member>
-        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterSingletonType(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,QingShan.DependencyInjection.InjectionAttribute,System.Type)">
+        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterSingletonType(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,System.Type)">
             <summary>
             注册单例接口实例类型
             </summary>
             <param name="services">服务</param>
             <param name="type">类型</param>
-            <param name="injectionAttribute">注入特性</param>
             <param name="inter">接口</param>
-        </member>
-        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.AddTransientDispatchProxy(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,System.Type,System.Type,System.Boolean)">
-            <summary>
-            创建暂时瞬时代理
-            </summary>
-            <param name="services">服务集合</param>
-            <param name="type">拦截的类型</param>
-            <param name="proxyType">代理类型</param>
-            <param name="inter">代理接口</param>
-            <param name="hasTarget">是否有实现类</param>
-        </member>
-        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.AddScopedDispatchProxy(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,System.Type,System.Type,System.Boolean)">
-            <summary>
-            创建作用域代理
-            </summary>
-            <param name="services">服务集合</param>
-            <param name="type">被代理类型</param>
-            <param name="proxyType">代理类型</param>
-            <param name="inter">拦截接口</param>
-            <param name="hasTarget">是否有实例</param>
-        </member>
-        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.AddSingletonDispatchProxy(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,System.Type,System.Type,System.Boolean)">
-            <summary>
-            创建作用域代理
-            </summary>
-            <param name="services">服务集合</param>
-            <param name="type">被代理类型</param>
-            <param name="proxyType">代理类型</param>
-            <param name="inter">拦截接口</param>
-            <param name="hasTarget">是否有实例</param>
-        </member>
-        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterDispatchProxy(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,System.Type)">
-            <summary>
-            注册代理类型
-            </summary>
-            <param name="services"></param>
-            <param name="lifetime"></param>
-            <param name="proxyType"></param>
-        </member>
-        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterNamed(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            注册命名服务
-            </summary>
-            <param name="services">服务集合</param>
         </member>
         <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.FixedGenericType(System.Type)">
             <summary>
@@ -1134,13 +807,6 @@
             <param name="type">类型</param>
             <returns></returns>
         </member>
-        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.GetOrder(System.Type)">
-            <summary>
-            获取 注册 排序
-            </summary>
-            <param name="type">排序类型</param>
-            <returns>int</returns>
-        </member>
         <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.LoadStringType(System.String)">
             <summary>
             加载字符串类型
@@ -1148,34 +814,9 @@
             <param name="str"></param>
             <returns></returns>
         </member>
-        <member name="F:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.TypeNamedCollection">
-            <summary>
-            类型名称集合
-            </summary>
-        </member>
-        <member name="F:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterDispatchProxies">
-            <summary>
-            已经注册的代理类
-            </summary>
-        </member>
-        <member name="F:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.DispatchCreateMethod">
-            <summary>
-            创建代理方法
-            </summary>
-        </member>
-        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.#cctor">
-            <summary>
-            静态构造函数
-            </summary>
-        </member>
         <member name="T:QingShan.DependencyInjection.DependencyInjectionSettingsOptions">
             <summary>
             依赖注入配置选项
-            </summary>
-        </member>
-        <member name="P:QingShan.DependencyInjection.DependencyInjectionSettingsOptions.Definitions">
-            <summary>
-            外部注册定义
             </summary>
         </member>
         <member name="M:QingShan.DependencyInjection.DependencyInjectionSettingsOptions.PostConfigure(QingShan.DependencyInjection.DependencyInjectionSettingsOptions,Microsoft.Extensions.Configuration.IConfiguration)">
@@ -1241,75 +882,6 @@
             <param name="info">保存序列化对象数据的对象。</param>
             <param name="context">有关源或目标的上下文信息。</param>
         </member>
-        <member name="T:QingShan.Permission.Authorization.ModuleInfoAttribute">
-            <summary>
-            模型描述
-            </summary>
-        </member>
-        <member name="P:QingShan.Permission.Authorization.ModuleInfoAttribute.URL">
-            <summary>
-            当前URL路径 当前模块为菜单时需要填写url
-            <para>若不填写将选择以下方式</para>
-            <para>方式1：父级Code+当前code</para>
-            <para>方式2：类名+当前code</para>
-            <para>方式3：当前code</para>
-            </summary>
-        </member>
-        <member name="P:QingShan.Permission.Authorization.ModuleInfoAttribute.Module">
-            <summary>
-            当前模块
-            <para>该字段在菜单时使用</para>
-            </summary>
-        </member>
-        <member name="P:QingShan.Permission.Authorization.ModuleInfoAttribute.P_Code">
-            <summary>
-            上级代码
-            <para>模块类型为菜单时自动生成上级信息</para>
-            <para>模块类型为操作时若未填写上级代码则区当前方法的code</para>
-            <para>填写方法名称</para>
-            </summary>
-        </member>
-        <member name="P:QingShan.Permission.Authorization.ModuleInfoAttribute.P_Name">
-            <summary>
-            上级名称
-            </summary>
-        </member>
-        <member name="P:QingShan.Permission.Authorization.ModuleInfoAttribute.P_Url">
-            <summary>
-            上级跳转地址
-            </summary>
-        </member>
-        <member name="P:QingShan.Permission.Authorization.ModuleInfoAttribute.Code">
-            <summary>
-            方法代码
-            <para>若不填则取当前方法名称</para>
-            </summary>
-        </member>
-        <member name="P:QingShan.Permission.Authorization.ModuleInfoAttribute.Name">
-            <summary>
-            名称
-            <para>请使用<see cref="T:System.ComponentModel.DescriptionAttribute"/>特性 为空去功能名称</para>
-            </summary>
-        </member>
-        <member name="P:QingShan.Permission.Authorization.ModuleInfoAttribute.Sort">
-            <summary>
-            排序字段
-            </summary>
-        </member>
-        <member name="M:QingShan.Permission.IJwtFactory.Create(System.Security.Claims.Claim[])">
-            <summary>
-            创建用户jwt
-            </summary>
-            <param name="claims"></param>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Permission.IJwtFactory.Decode(System.String)">
-            <summary>
-            获取jwt信息
-            </summary>
-            <param name="jwtToken"></param>
-            <returns></returns>
-        </member>
         <member name="T:QingShan.Permission.IUserInfo">
             <summary>
             用户信息接口服务
@@ -1328,25 +900,6 @@
         <member name="P:QingShan.Permission.IUserInfo.NickName">
             <summary>
             昵称
-            </summary>
-        </member>
-        <member name="M:QingShan.Permission.JwtFactory.Create(System.Security.Claims.Claim[])">
-            <summary>
-            创建jwt 授权 token
-            </summary>
-            <param name="claims">用户标识</param>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Permission.JwtFactory.Decode(System.String)">
-            <summary>
-            解析Jwt Token
-            </summary>
-            <param name="jwtToken"></param>
-            <returns></returns>
-        </member>
-        <member name="T:QingShan.Permission.ResponseAuthenticationHandler">
-            <summary>
-            响应认证处理器
             </summary>
         </member>
         <member name="T:QingShan.Permission.UserInfo">
@@ -1371,7 +924,13 @@
         </member>
         <member name="P:QingShan.Permission.UserInfo.IsSuper">
             <summary>
-            昵称
+            是否超级管理员
+            </summary>
+        </member>
+        <member name="P:QingShan.QingShanApplication.Configuration">
+            <summary>
+            配置
+            <para>使用依赖注入时自动注入</para>
             </summary>
         </member>
         <member name="T:QingShan.AppAssembly">
@@ -1484,63 +1043,6 @@
             <summary>
             强密码(必须包含大小写字母和数字的组合，可以使用特殊字符，长度在8-10之间)
             </summary>
-        </member>
-        <member name="P:QingShan.StaticFile.Models.StaticFileFolderModel.Folder">
-            <summary>
-            文件夹
-            </summary>
-        </member>
-        <member name="P:QingShan.StaticFile.Models.StaticFileFolderModel.DefaultContentType">
-            <summary>
-            设置未识别的MIME类型一个默认z值
-            </summary>
-        </member>
-        <member name="P:QingShan.StaticFile.Models.StaticFileFolderModel.ServeUnknownFileTypes">
-            <summary>
-            如果文件不是可识别的内容类型，是否应该提供该文件?默认值:false。
-            </summary>
-        </member>
-        <member name="P:QingShan.StaticFile.Models.StaticFileFolderModel.RequestPath">
-            <summary>
-            请求路径 默认文件夹路径
-            </summary>
-        </member>
-        <member name="T:QingShan.StaticFile.Models.StaticFileMapModel">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:QingShan.StaticFile.Models.StaticFileMapModel.Suffix">
-            <summary>
-            文件后缀名
-            </summary>
-        </member>
-        <member name="P:QingShan.StaticFile.Models.StaticFileMapModel.FileType">
-            <summary>
-            文件类型
-            </summary>
-        </member>
-        <member name="T:QingShan.StaticFile.StaticFileSettingsOption">
-            <summary>
-            静态文件配置类
-            </summary>
-        </member>
-        <member name="P:QingShan.StaticFile.StaticFileSettingsOption.StaticFileMap">
-            <summary>
-            映射
-            </summary>
-        </member>
-        <member name="P:QingShan.StaticFile.StaticFileSettingsOption.StaticFileFolder">
-            <summary>
-            文件夹
-            </summary>
-        </member>
-        <member name="M:QingShan.StaticFile.StaticFileSettingsOption.PostConfigure(QingShan.StaticFile.StaticFileSettingsOption,Microsoft.Extensions.Configuration.IConfiguration)">
-            <summary>
-            后期配置
-            </summary>
-            <param name="options"></param>
-            <param name="configuration"></param>
         </member>
         <member name="M:QingShan.Utilities.Snowflake.#ctor(System.Int64)">
             <summary>
@@ -2954,6 +2456,36 @@
             </summary>
             <param name="data">要验证的对象</param>
         </member>
+        <member name="T:Microsoft.Extensions.Configuration.ConfiguableOptionExtension">
+            <summary>
+            选项拓展
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Configuration.ConfiguableOptionExtension.GetDefultOptions``1(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+            直接获取选项配置
+            <para>该方式未通过依赖注入实现，无法使用热更新</para>
+            <para></para>
+            </summary>
+            <typeparam name="TOptions"></typeparam>
+            <param name="configuation"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.ConfigurableOptionsServiceCollectionExtensions">
+            <summary>
+            可变选项服务拓展类
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ConfigurableOptionsServiceCollectionExtensions.AddConfigurableOptions``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+            添加选项配置
+            </summary>
+            <typeparam name="TOptions">选项类型</typeparam>
+            <param name="services">服务集合</param>
+            <param name="key"></param>
+            <returns>服务集合</returns>
+        </member>
         <member name="T:System.Collections.Generic.CollectionExtensions">
             <summary>
             集合扩展方法
@@ -3657,20 +3189,6 @@
             <param name="type">类型</param>
             <param name="generic">泛型类型</param>
             <returns>bool</returns>
-        </member>
-        <member name="M:Microsoft.AspNetCore.Builder.StaticFileApplicationBuilderExtensions.UseStaticFile(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
-            <summary>
-            添加静态文件
-            </summary>
-            <param name="app"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.StaticFileServiceCollectionExtensions.AddStaticFile(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            添加静态文件资源
-            </summary>
-            <param name="service"></param>
-            <returns></returns>
         </member>
     </members>
 </doc>

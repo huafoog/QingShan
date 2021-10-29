@@ -62,13 +62,13 @@ namespace QingShan.Permission
         }
 
         /// <summary>
-        /// 昵称
+        /// 是否超级管理员
         /// </summary>
         public bool IsSuper
         {
             get
             {
-                var isSuper = _accessor?.HttpContext?.User?.FindFirstValue(ClaimConst.USERNICKNAME);
+                var isSuper = _accessor?.HttpContext?.User?.FindFirstValue(ClaimConst.QINGSHANUSERISSUPER);
                 bool.TryParse(isSuper,out bool super);
                 return super;
             }

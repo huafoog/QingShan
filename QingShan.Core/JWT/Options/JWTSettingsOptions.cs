@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QingShan.Core.ConfigurableOptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QingShan.Core.JWT
 {
-    public class JWTSettingsOptions
+    public class JWTSettingsOptions:IConfigurableOptions
     {
         /// <summary>
         /// 验证签发方密钥

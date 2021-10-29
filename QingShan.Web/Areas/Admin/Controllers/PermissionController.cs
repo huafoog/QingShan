@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QingShan.Core.FreeSql.UnitOfWork.Attributes;
 using QingShan.Core.FreeSql.UnitOfWork.TransactionInterceptor;
 using QingShan.Data;
 using QingShan.Services.Permission;
@@ -42,7 +43,7 @@ namespace QingShan.Web.Areas.Admin.Controllers
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost]
-        [TransactionInterceptor]
+        [Transaction]
         public Task<StatusResult> SetRolePermissionAsync(SetRolePermissionInputDto dto) => _permissionContract.SetRolePermissionAsync(dto);
 
         /// <summary>

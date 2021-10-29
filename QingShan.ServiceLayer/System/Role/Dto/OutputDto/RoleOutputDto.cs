@@ -7,7 +7,6 @@ namespace QingShan.Services.System.Role.Dto.OutputDto
     /// <summary>
     /// 角色输出参数
     /// </summary>
-    [MapFrom(typeof(RoleEntity))]
     public class RoleOutputDto
     {
 

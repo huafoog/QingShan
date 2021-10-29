@@ -34,7 +34,7 @@ namespace QingShan.Services.System.Role
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task<PageOutputDto<RoleOutputDto>> PageAsync(PageInputDto dto);
+        Task<PageOutputDto<RoleOutputDto>> PageAsync(PageRoleInputDto dto);
 
         /// <summary>
         /// 删除用户

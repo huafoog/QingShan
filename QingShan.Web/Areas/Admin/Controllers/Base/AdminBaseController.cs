@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QingShan.Attributes;
-using QingShan.Attributes.Permission;
 
 namespace QingShan.Web.Areas.Admin.Controllers
 {

@@ -6,7 +6,6 @@ namespace QingShan.Services.ProductService.Dtos
     /// <summary>
     /// 商品输入参数
     /// </summary>
-    [MapTo(typeof(Product))]
     public class ProductInputDto
     {
         /// <summary>
@@ -26,7 +25,6 @@ namespace QingShan.Services.ProductService.Dtos
     /// <summary>
     /// 商品输入参数
     /// </summary>
-    [MapFrom(typeof(Product))]
     public class ProductOutputDto
     {
 

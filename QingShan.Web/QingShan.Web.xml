@@ -162,7 +162,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:QingShan.Web.Areas.Admin.Controllers.RoleController.GetPage(QingShan.Data.PageInputDto)">
+        <member name="M:QingShan.Web.Areas.Admin.Controllers.RoleController.GetPage(QingShan.Services.System.Role.Dto.InputDto.PageRoleInputDto)">
             <summary>
             获取角色列表
             </summary>
@@ -218,6 +218,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:QingShan.Web.Areas.Admin.Controllers.UserController.GetUserRoleData">
+            <summary>
+            获取角色列表
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:QingShan.Web.Areas.Admin.Controllers.UserController.Delete(QingShan.Data.CommonIdInputDto)">
             <summary>
             删除用户信息
@@ -245,19 +251,6 @@
             <param name="httpContext"></param>
             <returns></returns>
         </member>
-        <member name="T:QingShan.Web.Authorization.PermissionAuthorizationHandler">
-            <summary>
-            自定义权限声明
-            </summary>
-        </member>
-        <member name="M:QingShan.Web.Authorization.PermissionAuthorizationHandler.HandleRequirementAsync(Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext,QingShan.Web.Authorization.PermissionAuthorizationRequirement)">
-            <summary>
-             Makes a decision if authorization is allowed based on a specific requirement.
-            </summary>
-            <param name="context"></param>
-            <param name="requirement"></param>
-            <returns></returns>
-        </member>
         <member name="T:QingShan.Web.Controllers.TestController">
             <summary>
             测试
@@ -268,38 +261,6 @@
             获取数据
             </summary>
             <returns></returns>
-        </member>
-        <member name="M:QingShan.Core.Web.Authorization.IModuleManager.GetModules">
-            <summary>
-            收集模块信息
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:QingShan.Core.Web.Authorization.ModuleManager">
-            <summary>
-            模块管理
-            </summary>
-        </member>
-        <member name="M:QingShan.Core.Web.Authorization.ModuleManager.GetModules">
-            <summary>
-            收集模块
-            </summary>
-        </member>
-        <member name="M:QingShan.Core.Web.Authorization.ModuleManager.GetModule(System.Type)">
-            <summary>
-            获取当前类中所有数据
-            </summary>
-            <param name="type"></param>
-        </member>
-        <member name="M:QingShan.Core.Web.Authorization.ModuleManager.GetModule(System.Reflection.MethodInfo,QingShan.Services.Permission.Dto.ModuleInfo,System.Type,System.Int32)">
-            <summary>
-            重写以实现从方法信息中提取模块信息
-            </summary>
-            <param name="method">方法信息</param>
-            <param name="moduleInfo">所在类型模块信息</param>
-            <param name="index">序号</param>
-            <param name="type"></param>
-            <returns>提取到的模块信息</returns>
         </member>
         <member name="T:QingShan.Core.Web.Controllers.UploadController">
             <summary>
@@ -317,84 +278,6 @@
             </summary>
             <param name="file"></param>
             <returns></returns>
-        </member>
-        <member name="T:QingShan.Core.Web.Filter.InternalServerErrorObjectResult">
-            <summary>
-            服务器异常返回
-            </summary>
-        </member>
-        <member name="T:QingShan.Core.Web.Permission.PermissionMiddleware">
-            <summary>
-            权限中间件
-            </summary>
-        </member>
-        <member name="M:QingShan.Core.Web.Permission.Permission.UsePermission(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
-            <summary>
-            使用权限收集
-            </summary>
-            <param name="app"></param>
-            <returns></returns>
-        </member>
-        <member name="T:QingShan.Core.Web.Permission.PolicyRequirement">
-            <summary>
-            权限承载实体
-            <para>该类主要用于获取所有权限</para>
-            </summary>
-        </member>
-        <member name="P:QingShan.Core.Web.Permission.PolicyRequirement.UserPermissions">
-            <summary>
-            用户权限集合
-            </summary>
-        </member>
-        <member name="P:QingShan.Core.Web.Permission.PolicyRequirement.DeniedAction">
-            <summary>
-            无权限action
-            </summary>
-        </member>
-        <member name="M:QingShan.Core.Web.Permission.PolicyRequirement.#ctor">
-            <summary>
-            构造
-            </summary>
-        </member>
-        <member name="T:QingShan.Core.Web.Permission.UserPermission">
-            <summary>
-            用户权限承载实体
-            </summary>
-        </member>
-        <member name="P:QingShan.Core.Web.Permission.UserPermission.UserName">
-            <summary>
-            用户名
-            </summary>
-        </member>
-        <member name="P:QingShan.Core.Web.Permission.UserPermission.Url">
-            <summary>
-            请求Url
-            </summary>
-        </member>
-        <member name="M:QingShan.Core.Web.Services.AuthorizationService.AddAuthorizationService(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
-            <summary>
-            添加授权
-            </summary>
-            <param name="services"></param>
-            <param name="configuration"></param>
-        </member>
-        <member name="T:QingShan.Core.Web.Services.CacheService">
-            <summary>
-            缓存服务
-            </summary>
-        </member>
-        <member name="M:QingShan.Core.Web.Services.CacheService.AddCacheService(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
-            <summary>
-            添加缓存服务
-            </summary>
-            <param name="services"></param>
-            <param name="configuration"></param>
-        </member>
-        <member name="M:QingShan.Core.Web.Services.CorsService.AddCorsService(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            跨域
-            </summary>
-            <param name="services"></param>
         </member>
     </members>
 </doc>

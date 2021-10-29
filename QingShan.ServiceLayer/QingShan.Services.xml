@@ -710,7 +710,7 @@
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:QingShan.Services.System.Role.IRoleService.PageAsync(QingShan.Data.PageInputDto)">
+        <member name="M:QingShan.Services.System.Role.IRoleService.PageAsync(QingShan.Services.System.Role.Dto.InputDto.PageRoleInputDto)">
             <summary>
             获取数据
             </summary>
@@ -731,7 +731,7 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:QingShan.Services.System.Role.RoleService.PageAsync(QingShan.Data.PageInputDto)">
+        <member name="M:QingShan.Services.System.Role.RoleService.PageAsync(QingShan.Services.System.Role.Dto.InputDto.PageRoleInputDto)">
             <summary>
             获取数据
             </summary>

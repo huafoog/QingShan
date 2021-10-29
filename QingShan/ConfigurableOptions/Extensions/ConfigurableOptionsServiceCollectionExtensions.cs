@@ -1,14 +1,14 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
+﻿using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Primitives;
+using QingShan;
+using QingShan.ConfigurableOptions;
+using QingShan.Core.ConfigurableOptions;
 using QingShan.DependencyInjection;
 using System;
 using System.Linq;
 using System.Reflection;
 
-namespace QingShan.Core.ConfigurableOptions
+namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
     /// 可变选项服务拓展类
@@ -21,33 +21,19 @@ namespace QingShan.Core.ConfigurableOptions
         /// </summary>
         /// <typeparam name="TOptions">选项类型</typeparam>
         /// <param name="services">服务集合</param>
+        /// <param name="key"></param>
         /// <returns>服务集合</returns>
-        public static IServiceCollection AddConfigurableOptions<TOptions>(this IServiceCollection services)
+        public static IServiceCollection AddConfigurableOptions<TOptions>(this IServiceCollection services,string key = null)
             where TOptions : class, IConfigurableOptions
         {
             var optionsType = typeof(TOptions);
             var optionsSettings = optionsType.GetCustomAttribute<OptionsSettingsAttribute>(false);
 
             // 获取键名
-            var jsonKey = GetOptionsJsonKey(optionsSettings, optionsType);
-            IServiceProvider provider = services.BuildServiceProvider();
+            var jsonKey = JsonKey.GetOptionsJsonKey(optionsSettings, optionsType);
             // 配置选项（含验证信息）
-            var configurationRoot = provider.GetService<IConfiguration>();
-            var optionsConfiguration = configurationRoot.GetSection(jsonKey);
-
-            // 配置选项监听
-            if (typeof(IConfigurableOptionsListener<TOptions>).IsAssignableFrom(optionsType))
-            {
-                var onListenerMethod = optionsType.GetMethod(nameof(IConfigurableOptionsListener<TOptions>.OnListener));
-                if (onListenerMethod != null)
-                {
-                    ChangeToken.OnChange(() => configurationRoot.GetReloadToken(), () =>
-                    {
-                        var options = optionsConfiguration.Get<TOptions>();
-                        onListenerMethod.Invoke(options, new object[] { options, optionsConfiguration });
-                    });
-                }
-            }
+            var configurationRoot = QingShanApplication.Configuration;
+            var optionsConfiguration = configurationRoot.GetSection(key ?? jsonKey);
 
             services.AddOptions<TOptions>()
                 .Bind(optionsConfiguration, options =>
@@ -73,7 +59,7 @@ namespace QingShan.Core.ConfigurableOptions
                 if (postConfigureMethod != null)
                 {
                     if (optionsSettings?.PostConfigureAll != true)
-                    {
+                    {  
                         services.PostConfigure<TOptions>(options => postConfigureMethod.Invoke(options, new object[] { options, optionsConfiguration }));
                     }
                     else
@@ -84,26 +70,6 @@ namespace QingShan.Core.ConfigurableOptions
             }
 
             return services;
-        }
-
-        /// <summary>
-        /// 获取选项键
-        /// </summary>
-        /// <param name="optionsSettings">选项配置特性</param>
-        /// <param name="optionsType">选项类型</param>
-        /// <returns></returns>
-        private static string GetOptionsJsonKey(OptionsSettingsAttribute optionsSettings, Type optionsType)
-        {
-            // 默认后缀
-            var defaultStuffx = nameof(Options);
-
-            return optionsSettings switch
-            {
-                // // 没有贴 [OptionsSettings]，如果选项类以 `Options` 结尾，则移除，否则返回类名称
-                null => optionsType.Name.EndsWith(defaultStuffx) ? optionsType.Name[0..^defaultStuffx.Length] : optionsType.Name,
-                // 如果贴有 [OptionsSettings] 特性，但未指定 JsonKey 参数，则直接返回类名，否则返回 JsonKey
-                _ => optionsSettings != null && string.IsNullOrEmpty(optionsSettings.JsonKey) ? optionsType.Name : optionsSettings.JsonKey,
-            };
         }
     }
 }

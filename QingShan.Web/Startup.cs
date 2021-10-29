@@ -1,27 +1,14 @@
+using AspectCore.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
 using QingShan.Attributes;
-using QingShan.Core.ConfigurableOptions;
-using QingShan.DatabaseAccessor;
-using QingShan.Utilities;
-using QingShan.Reflection;
-using QingShan.Core.Web.Filter;
-using QingShan.Core.Web.Permission;
-using QingShan.Core.Web.Services;
-using System.IO;
-using System;
-using Microsoft.AspNetCore.Authorization;
+using QingShan.Core.Filter;
 using QingShan.Web.Authorization;
-using Panda.DynamicWebApi;
-using AspNetCoreRateLimit;
 
 namespace QingShan.Core.Web
 {
@@ -40,7 +27,10 @@ namespace QingShan.Core.Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddInject();
+
+            services.AddApp(Configuration);
+
+
             services.AddStaticFile();
             services.AddJwt<JwtHandler>(enableGlobalAuthorize: true);
             services.AddRateLimit();
@@ -65,29 +55,31 @@ namespace QingShan.Core.Web
                 //关闭默认模型验证
                 option.SuppressModelStateInvalidFilter = true;
             });
+            services.AddRazorPages(options =>
+            {
+                options.RootDirectory = "/CodeGenerator/Pages";
+            });
         }
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UseApp(options =>  
+            app.UseRateLimit();
+            if (env.IsDevelopment())
             {
-                app.UseRateLimit();
-                if (env.IsDevelopment())
-                {
-                    app.UseDeveloperExceptionPage();
-                }
-                app.UseRouting();
-                app.UseAuthentication();
-                app.UseAuthorization();
-                app.UseSpecificationDocuments();
-                app.UseCorsAccessor();
-                app.UseStaticFile();
-                app.UseEndpoints(endpoints =>
-                {
-                    endpoints.MapControllers();
-                });
+                app.UseDeveloperExceptionPage();
+            }
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseSpecificationDocuments();
+            app.UseCorsAccessor();
+            app.UseStaticFile();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapRazorPages();
             });
         }
     }

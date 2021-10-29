@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using QingShan.Core.CorsAccessor;
 using QingShan.DependencyInjection;
@@ -18,8 +19,7 @@ namespace Microsoft.AspNetCore.Builder
         /// <returns></returns>
         public static IApplicationBuilder UseCorsAccessor(this IApplicationBuilder app)
         {
-            // 获取选项
-            var corsAccessorSettings = app.ApplicationServices.GetService<IOptions<CorsAccessorSettingsOptions>>().Value;
+            var corsAccessorSettings = QingShan.QingShanApplication.Configuration.GetDefultOptions<CorsAccessorSettingsOptions>();
 
             // 配置跨域中间件
             app.UseCors(corsAccessorSettings.PolicyName);

@@ -1,4 +1,5 @@
 ﻿using FreeSql;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using QingShan.Core;
@@ -26,10 +27,9 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns>服务集合</returns>
         public static IServiceCollection AddDatabaseAccessor(this IServiceCollection services, Action<IServiceCollection> configure = null)
         {
-            services.AddConfigurableOptions<DatabaseAccessorSettingsOptions>();
-            var build = services.BuildServiceProvider();
 
-            var dbConfig = services.GetOptions<DatabaseAccessorSettingsOptions>();
+            var dbConfig = QingShan.QingShanApplication.Configuration.GetDefultOptions<DatabaseAccessorSettingsOptions>();
+
 
             var freeSqlBuilder = new FreeSqlBuilder()
                     .UseConnectionString(dbConfig.Type, dbConfig.ConnectionString)
@@ -58,8 +58,6 @@ namespace Microsoft.Extensions.DependencyInjection
             // 注册仓储
             services.TryAddScoped(typeof(IKeyRepository<,>), typeof(KeyRepository<,>));
             services.AddScoped<UnitOfWorkManager>();
-            services.TryAddScoped(typeof(TransactionInterceptorFilterImpl));
-            services.TryAddScoped(typeof(TransactionInterceptorAttribute));
 
 
             configure?.Invoke(services);

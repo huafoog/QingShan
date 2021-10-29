@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QingShan.Cache;
+using QingShan.Services.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using QingShan.Core.FreeSql.UnitOfWork.Attributes;
 
 namespace QingShan.Web.Controllers
 {
@@ -18,10 +20,12 @@ namespace QingShan.Web.Controllers
     public class TestController
     {
         private readonly ICache _cache;
+        private readonly IUserContract _userContract;
 
-        public TestController(ICache cache)
+        public TestController(ICache cache, IUserContract userContract)
         {
             _cache = cache;
+            _userContract = userContract;
         }
 
         public static List<Object> Data { get; set; } = new List<object>();
@@ -30,6 +34,12 @@ namespace QingShan.Web.Controllers
         public async Task SetData(string name)
         {
             await _cache.SetAsync("key_123",name);
+        }
+        [HttpGet]
+        [Transaction]
+        public async Task Test()
+        {
+            await _userContract.GetAsync("123");
         }
 
         /// <summary>

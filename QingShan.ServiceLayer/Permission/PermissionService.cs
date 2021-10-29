@@ -221,7 +221,7 @@ namespace QingShan.Services.Permission
         {
             var key = CacheKey.UserPermissions.ToFormat(_user.Id);
             var userPermissoins = await _cache.GetAsync<List<string>>(key);
-            if (userPermissoins == null)
+            if (userPermissoins == null || userPermissoins.Count == 0)
             {
                 //当前有权限的操作
                 userPermissoins = await _rolePermissionRepository.Orm.Select<UserEntity, UserRoleEntity, RoleEntity, RolePermissionEntity, PermissionEntity>()

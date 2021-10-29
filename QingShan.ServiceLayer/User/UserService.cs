@@ -18,6 +18,7 @@ using QingShan.Common.Data;
 using QingShan.Cache;
 using QingShan.Services.Permission;
 using System.Linq;
+using QingShan.Core.FreeSql.UnitOfWork.Attributes;
 
 namespace QingShan.Services.User
 {

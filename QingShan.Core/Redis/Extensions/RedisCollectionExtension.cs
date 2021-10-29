@@ -1,5 +1,6 @@
 ﻿using CSRedis;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Configuration;
 using QingShan.Cache;
 using QingShan.Core.ConfigurableOptions;
 using QingShan.Core.Redis;
@@ -21,8 +22,8 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns></returns>
         public static IServiceCollection AddCache(this IServiceCollection services)
         {
-            services.AddConfigurableOptions<CacheOption>();
-            var cacheOption = services.GetOptions<CacheOption>();
+            var cacheOption = QingShan.QingShanApplication.Configuration.GetDefultOptions<CacheOption>();
+
             if (cacheOption.CacheWay.IsNull())
             {
                 throw new CacheErrorException("错误的缓存方式");

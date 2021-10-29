@@ -26,5 +26,9 @@
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Collections\" />
+    <Folder Include="DependencyInjection\Core\" />
+  </ItemGroup>
 
 </Project>

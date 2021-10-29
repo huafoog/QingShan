@@ -19,6 +19,7 @@ namespace Microsoft.AspNetCore.Builder
         public static IApplicationBuilder UseSpecificationDocuments(this IApplicationBuilder app, string routePrefix = default)
         {
             var config = app.ApplicationServices.GetService<IOptions<SpecificationDocumentSettingsOptions>>().Value;
+
             SpecificationDocumentBuilder.Init(config);
             // 配置 Swagger 全局参数
             app.UseSwagger(options =>

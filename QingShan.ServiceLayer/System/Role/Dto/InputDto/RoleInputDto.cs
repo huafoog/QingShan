@@ -7,7 +7,6 @@ namespace QingShan.Services.System.Role.Dto.InputDto
     /// <summary>
     /// 角色
     /// </summary>
-    [MapTo(typeof(RoleEntity))]
     public class RoleInputDto
     {
         public string Id { get; set; }

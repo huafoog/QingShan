@@ -76,12 +76,12 @@ namespace QingShan.Web.Authorization
 
 
             var _permissionContract = serviceProvider.GetService<IPermissionContract>();
-            // 检查权限，如果方法时异步的就不用 Task.FromResult 包裹，直接使用 async/await 即可
-            //var check = await _permissionContract.CheckPermission(routeName);
-            //if (!check)
-            //{
-            //    return false;
-            //}
+            // 检查权限
+            var check = await _permissionContract.CheckPermission(routeName);
+            if (!check)
+            {
+                return false;
+            }
             return true;
         }
     }

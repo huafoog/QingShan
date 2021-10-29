@@ -49,7 +49,6 @@ namespace QingShan.Core
             // 编译配置
             Assemblies = GetAssemblies();
             CanBeScanTypes = Assemblies.SelectMany(u => u.GetTypes().Where(u => u.IsPublic && !u.IsDefined(typeof(SkipScanAttribute), false)));
-            AppStartups = new ConcurrentBag<AppStartup>();
 
             LoggedCodes = GetLoggedInCode();
 
@@ -93,12 +92,6 @@ namespace QingShan.Core
             }
             return code;
         }
-
-        /// <summary>
-        /// 应用所有启动配置对象
-        /// </summary>
-        internal static ConcurrentBag<AppStartup> AppStartups;
-
 
         #region 选项
         #endregion

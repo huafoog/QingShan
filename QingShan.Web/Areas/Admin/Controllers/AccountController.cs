@@ -25,16 +25,13 @@ namespace QingShan.Web.Areas.Admin.Controllers
 
         private readonly IAccountService _accountService;
 
-        private readonly IJwtFactory _userToken;
 
         private readonly IUserContract _userService;
 
         public AccountController(IAccountService accountService,
-            IJwtFactory userToken,
             IUserContract userService)
         {
             _accountService = accountService;
-            _userToken = userToken;
             _userService = userService;
         }
         [HttpGet]
