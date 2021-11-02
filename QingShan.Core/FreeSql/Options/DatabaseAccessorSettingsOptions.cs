@@ -16,10 +16,17 @@ namespace QingShan.Core.FreeSql.Options
         /// </summary>
         public DataType Type { get; set; }
 
-        /// <summary>
-        /// 连接字符串
-        /// </summary>
-        public string ConnectionString { get; set; }
+
+        public string Host { get; set; }
+        public int Port { get; set; }
+
+        public string User { get; set; }
+
+        public string Password { get; set; }
+
+        public string QingShan { get; set; }
+
+        public string Extension { get; set; }
 
         /// <summary>
         /// 【开发环境必备】自动同步实体结构到数据库，程序运行中检查实体表是否存在，然后创建或修改
@@ -36,6 +43,7 @@ namespace QingShan.Core.FreeSql.Options
         /// 全局过滤
         /// </summary>
         public bool GlobalFilter { get; set; }
+        public string Database { get; set; }
 
         /// <summary>
         /// 选项后期配置

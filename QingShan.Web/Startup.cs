@@ -1,4 +1,3 @@
-using AspectCore.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -30,7 +29,7 @@ namespace QingShan.Core.Web
 
             services.AddApp(Configuration);
 
-
+            services.AddCodeGenerator();
             services.AddStaticFile();
             services.AddJwt<JwtHandler>(enableGlobalAuthorize: true);
             services.AddRateLimit();
@@ -41,7 +40,7 @@ namespace QingShan.Core.Web
                 o.Filters.Add<GlobalExceptionFilter>();
                 //注册模型验证过滤器到全局
                 o.Filters.Add<ApiResponseFilterAttribute>();
-            }).AddNewtonsoftJson(
+            }).AddRazorRuntimeCompilation().AddNewtonsoftJson(
                 options =>
                 {
                     options.SerializerSettings.ContractResolver = new DefaultContractResolver()
@@ -55,10 +54,8 @@ namespace QingShan.Core.Web
                 //关闭默认模型验证
                 option.SuppressModelStateInvalidFilter = true;
             });
-            services.AddRazorPages(options =>
-            {
-                options.RootDirectory = "/CodeGenerator/Pages";
-            });
+
+            services.AddRazorPages();
         }
 
 
@@ -76,6 +73,7 @@ namespace QingShan.Core.Web
             app.UseSpecificationDocuments();
             app.UseCorsAccessor();
             app.UseStaticFile();
+            app.UseCodeGenerator();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -1,6 +1,4 @@
-﻿using QingShan.Core.Aop;
-using QingShan.Core.FreeSql.UnitOfWork.Attributes;
-using QingShan.Data;
+﻿using QingShan.Data;
 using QingShan.Services.User.Dtos.InputDto;
 using QingShan.Services.User.Dtos.OutputDto;
 using System.Threading.Tasks;
@@ -14,7 +12,6 @@ namespace QingShan.Services.User
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [TestOne]
         Task<StatusResult<UserGetOutputDto>> GetAsync(string id);
 
         /// <summary>

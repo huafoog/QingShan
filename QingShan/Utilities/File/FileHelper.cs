@@ -349,7 +349,7 @@ namespace QingShan.Utilities
             {
                 thisPath = thisPath.Replace("\\","/");
             }
-            StreamWriter sw = new StreamWriter(thisPath, false, Encoding.GetEncoding("GB2312"));
+            using StreamWriter sw = new StreamWriter(thisPath, false, Encoding.GetEncoding("UTF-8"));
             sw.Write(pagestr);
             sw.Close();
         }
@@ -370,7 +370,7 @@ namespace QingShan.Utilities
             {
                 path = path.Replace("\\", "/");
             }
-            StreamWriter sw = new StreamWriter(path, false, Encoding.GetEncoding("GB2312"));
+            using StreamWriter sw = new StreamWriter(path, false, Encoding.GetEncoding("UTF-8"));
             sw.Write(content);
             sw.Close();
         }

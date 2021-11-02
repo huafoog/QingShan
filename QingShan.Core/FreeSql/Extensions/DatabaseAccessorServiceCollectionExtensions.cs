@@ -27,12 +27,12 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns>服务集合</returns>
         public static IServiceCollection AddDatabaseAccessor(this IServiceCollection services, Action<IServiceCollection> configure = null)
         {
-
+            services.AddConfigurableOptions<DatabaseAccessorSettingsOptions>();
             var dbConfig = QingShan.QingShanApplication.Configuration.GetDefultOptions<DatabaseAccessorSettingsOptions>();
 
-
+            var connectionString = $"Data Source={dbConfig.Host};Port={dbConfig.Port};{$"User ID={dbConfig.User};".IF(dbConfig.User.NotNull())}{$"Password={dbConfig.Password};".IF(dbConfig.Password.NotNull())} Initial Catalog={dbConfig.Database};{dbConfig.Extension}";
             var freeSqlBuilder = new FreeSqlBuilder()
-                    .UseConnectionString(dbConfig.Type, dbConfig.ConnectionString)
+                    .UseConnectionString(dbConfig.Type, connectionString)
 # if DEBUG
                     .UseAutoSyncStructure(dbConfig.SyncStructure)
 # endif
