@@ -1,0 +1,1197 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QingShan.Services</name>
+    </assembly>
+    <members>
+        <member name="M:QingShan.Services.Account.AccountService.LoginAsync(QingShan.Services.Account.Dto.LoginInputDto)">
+            <summary>
+            用户登录
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Services.Account.Dto.LoginInputDto">
+            <summary>
+            用户登录
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Account.Dto.LoginInputDto.Account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Account.Dto.LoginInputDto.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Account.Dto.OutputDto.AuthLoginOutputDto.Id">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Account.Dto.OutputDto.AuthLoginOutputDto.UserName">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Account.Dto.OutputDto.AuthLoginOutputDto.NickName">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Account.Dto.OutputDto.AuthLoginOutputDto.IsSuper">
+            <summary>
+            是否超级管理员
+            </summary>
+        </member>
+        <member name="M:QingShan.Services.Account.IAccountService.LoginAsync(QingShan.Services.Account.Dto.LoginInputDto)">
+            <summary>
+            用户登录
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Services.Common.Dto.InputDto.EnumInputDto">
+            <summary>
+            枚举输入参数
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Common.Dto.InputDto.EnumInputDto.Code">
+            <summary>
+            枚举代码
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Common.Dto.InputDto.EnumInputDto.IsAll">
+            <summary>
+            是否显示全部
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Common.Dto.InputDto.GetUrlInputDto.Url">
+            <summary>
+            获取图片url
+            </summary>
+        </member>
+        <member name="T:QingShan.Services.Permission.IMenuContract">
+            <summary>
+            菜单服务
+            </summary>
+        </member>
+        <member name="M:QingShan.Services.Permission.IMenuContract.GetPageAsync(QingShan.Data.PageInputDto)">
+            <summary>
+            获取分页数据
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.IMenuContract.GetPageTreeAsync">
+            <summary>
+            获取菜单树形结构
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.IMenuContract.InsertMenu(QingShan.Services.Permission.Dto.MenuInputDto)">
+            <summary>
+            添加菜单
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.IMenuContract.UpdateMenu(QingShan.Services.Permission.Dto.UpdateMenuInputDto)">
+            <summary>
+            修改菜单
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.IMenuContract.DeleteMenu(QingShan.Services.Permission.Dto.IdsInputDto)">
+            <summary>
+            删除菜单
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Services.Permission.IPermissionContract">
+            <summary>
+            权限
+            </summary>
+        </member>
+        <member name="M:QingShan.Services.Permission.IPermissionContract.GetPageTreeAsync">
+            <summary>
+            获取菜单树形结构
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.IPermissionContract.GetRoleTreeAsync(QingShan.Services.Permission.Dto.RoleIdInputDto)">
+            <summary>
+            获取角色权限树形结构
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.IPermissionContract.SetRolePermissionAsync(QingShan.Services.Permission.Dto.SetRolePermissionInputDto)">
+            <summary>
+            设置角色权限
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.IPermissionContract.InsertPermission(QingShan.Services.Permission.Dto.PermissionInputDto)">
+            <summary>
+            添加权限
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.IPermissionContract.UpdatePermission(QingShan.Services.Permission.Dto.UpdatePermissionInputDto)">
+            <summary>
+            修改权限
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.IPermissionContract.InsertPermission(QingShan.Services.Permission.Dto.PermissionInputDto[])">
+            <summary>
+            添加权限集合
+            </summary>
+            <param name="models"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.IPermissionContract.Delete(QingShan.Services.Permission.Dto.IdsInputDto)">
+            <summary>
+            逻辑删除
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.IPermissionContract.CheckPermission(System.String)">
+            <summary>
+            检查权限
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.IPermissionContract.GetPermissionsAsync">
+            <summary>
+            获取登录用户权限信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.IPermissionContract.GetUserMeunAsync">
+            <summary>
+            获取用户菜单信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Services.Permission.Dto.CheckPermissionInputDto">
+            <summary>
+            检查权限
+            </summary>
+        </member>
+        <member name="T:QingShan.Services.Permission.Dto.IdsInputDto">
+            <summary>
+            id集合
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.IdsInputDto.Ids">
+            <summary>
+            id集合
+            </summary>
+        </member>
+        <member name="T:QingShan.Services.Permission.Dto.MenuInputDto">
+            <summary>
+            菜单
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.MenuInputDto.Code">
+            <summary>
+            菜单code
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.MenuInputDto.Name">
+            <summary>
+            菜单名称
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.MenuInputDto.Redirect">
+            <summary>
+            跳转地址
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.MenuInputDto.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.MenuInputDto.Component">
+            <summary>
+            组件
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.MenuInputDto.ParentId">
+            <summary>
+            父级id
+            </summary>
+        </member>
+        <member name="T:QingShan.Services.Permission.Dto.UpdateMenuInputDto">
+            <summary>
+            修改
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.Code">
+            <summary>
+            菜单编码 格式:system
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.PermissionCode">
+            <summary>
+            权限代码 格式:menu.add
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.Name">
+            <summary>
+            模块名称
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.Path">
+            <summary>
+            路径
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.Remark">
+            <summary>
+            备注信息
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.Sort">
+            <summary>
+            排序值
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.Component">
+            <summary>
+            组件
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.ParentId">
+            <summary>
+            父级id
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionInputDto.PermissionType">
+            <summary>
+            权限类型
+            </summary>
+        </member>
+        <member name="T:QingShan.Services.Permission.Dto.RoleIdInputDto">
+            <summary>
+            角色id
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.RoleIdInputDto.RoleId">
+            <summary>
+            角色id
+            </summary>
+        </member>
+        <member name="T:QingShan.Services.Permission.Dto.SetRolePermissionInputDto">
+            <summary>
+            设置角色权限
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.SetRolePermissionInputDto.RoleId">
+            <summary>
+            角色id
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.SetRolePermissionInputDto.PermissionIds">
+            <summary>
+            权限Id集合
+            </summary>
+        </member>
+        <member name="T:QingShan.Services.Permission.Dto.MenuActionDto">
+            <summary>
+            菜单
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.MenuActionDto.Name">
+            <summary>
+            菜单名称
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.MenuActionDto.Code">
+            <summary>
+            权限值
+            </summary>
+        </member>
+        <member name="T:QingShan.Services.Permission.Dto.ModuleInfo">
+            <summary>
+            模型详情
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.ModuleInfo.Code">
+            <summary>
+             模块代码
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.ModuleInfo.Area">
+            <summary>
+            区域
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.ModuleInfo.Controller">
+            <summary>
+            控制器
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.ModuleInfo.Action">
+            <summary>
+            操作
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.ModuleInfo.Name">
+            <summary>
+            模块名称
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.ModuleInfo.Path">
+            <summary>
+            路径
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.ModuleInfo.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.ModuleInfo.Remark">
+            <summary>
+            备注信息
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.ModuleInfo.Sort">
+            <summary>
+            排序值
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.ModuleInfo.Pid">
+            <summary>
+            父节点Id
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.ModuleInfo.PCode">
+            <summary>
+            上级code
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.ModuleInfo.Level">
+            <summary>
+            节点
+            </summary>
+        </member>
+        <member name="T:QingShan.Services.Permission.Dto.PermissionListOutputDto">
+            <summary>
+            菜单
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionListOutputDto.Code">
+            <summary>
+            菜单编码 格式:system
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionListOutputDto.PermissionCode">
+            <summary>
+            自动生成 权限代码 格式:system.menu.add
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionListOutputDto.Path">
+            <summary>
+            路径
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionListOutputDto.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionListOutputDto.Remark">
+            <summary>
+            备注信息
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionListOutputDto.Sort">
+            <summary>
+            排序值
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionListOutputDto.Component">
+            <summary>
+            组件
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.PermissionListOutputDto.PermissionType">
+            <summary>
+            权限类型
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.RoleTreeOutputDto.DefaultSelectedKeys">
+            <summary>
+            默认选中的树节点
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.RoleTreeOutputDto.Data">
+            <summary>
+            权限数据
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Permission.Dto.RoleTreeOutputDto.List">
+            <summary>
+            权限原始数据集合
+            </summary>
+        </member>
+        <member name="T:QingShan.Services.Permission.MenuService">
+            <summary>
+            菜单服务实现
+            </summary>
+        </member>
+        <member name="M:QingShan.Services.Permission.MenuService.GetPageAsync(QingShan.Data.PageInputDto)">
+            <summary>
+            获取分页数据
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.MenuService.GetPageTreeAsync">
+            <summary>
+            获取菜单树形结构
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.MenuService.InsertMenu(QingShan.Services.Permission.Dto.MenuInputDto)">
+            <summary>
+            添加菜单
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.MenuService.UpdateMenu(QingShan.Services.Permission.Dto.UpdateMenuInputDto)">
+            <summary>
+            修改菜单
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.MenuService.InsertMenu(QingShan.Services.Permission.Dto.MenuInputDto[])">
+            <summary>
+            添加菜单集合
+            </summary>
+            <param name="models"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.MenuService.DeleteMenu(QingShan.Services.Permission.Dto.IdsInputDto)">
+            <summary>
+            逻辑删除
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Services.Permission.PermissionService">
+            <summary>
+            权限服务
+            </summary>
+        </member>
+        <member name="M:QingShan.Services.Permission.PermissionService.GetPageTreeAsync">
+            <summary>
+            获取菜单树形结构
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.PermissionService.InsertPermission(QingShan.Services.Permission.Dto.PermissionInputDto)">
+            <summary>
+            添加权限
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.PermissionService.UpdatePermission(QingShan.Services.Permission.Dto.UpdatePermissionInputDto)">
+            <summary>
+            修改权限
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.PermissionService.InsertPermission(QingShan.Services.Permission.Dto.PermissionInputDto[])">
+            <summary>
+            添加权限集合
+            </summary>
+            <param name="models"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.PermissionService.Delete(QingShan.Services.Permission.Dto.IdsInputDto)">
+            <summary>
+            逻辑删除
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.PermissionService.GetRoleTreeAsync(QingShan.Services.Permission.Dto.RoleIdInputDto)">
+            <summary>
+            获取角色权限树形结构
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.PermissionService.SetRolePermissionAsync(QingShan.Services.Permission.Dto.SetRolePermissionInputDto)">
+            <summary>
+            设置角色权限
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.PermissionService.CheckPermission(System.String)">
+            <summary>
+            检查权限
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.PermissionService.GetPermissionsAsync">
+            <summary>
+            获取权限信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Permission.PermissionService.GetUserMeunAsync">
+            <summary>
+            获取用户菜单信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Services.ProductService.Dtos.ProductInputDto">
+            <summary>
+            商品输入参数
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.ProductService.Dtos.ProductInputDto.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.ProductService.Dtos.ProductInputDto.Price">
+            <summary>
+            价格
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.ProductService.Dtos.ProductInputDto.Address">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="T:QingShan.Services.ProductService.Dtos.ProductOutputDto">
+            <summary>
+            商品输入参数
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.ProductService.Dtos.ProductOutputDto.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.ProductService.Dtos.ProductOutputDto.Price">
+            <summary>
+            价格
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.ProductService.Dtos.ProductOutputDto.Address">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="T:QingShan.Services.ProductService.Dtos.IdDto">
+            <summary>
+            id输入
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.ProductService.Dtos.IdDto.Id">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="M:QingShan.Services.ProductService.IProductService.Delete(System.String)">
+            <summary>
+            删除指定数据
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.ProductService.ProductService.Delete(System.String)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.ProductService.ProductService.Add(QingShan.Services.ProductService.Dtos.ProductInputDto)">
+            <summary>
+            添加
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Services.Systems.Role.Dto.InputDto.RoleInputDto">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Systems.Role.Dto.InputDto.RoleInputDto.Name">
+            <summary>
+            角色名
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Systems.Role.Dto.InputDto.RoleInputDto.Description">
+             <summary>
+            描述
+             </summary>
+        </member>
+        <member name="P:QingShan.Services.Systems.Role.Dto.InputDto.RoleInputDto.OrderSort">
+             <summary>
+            排序
+             </summary>
+        </member>
+        <member name="P:QingShan.Services.Systems.Role.Dto.InputDto.RoleInputDto.Enabled">
+            <summary>
+            是否激活
+            </summary>
+        </member>
+        <member name="T:QingShan.Services.Systems.Role.Dto.OutputDto.RoleOutputDto">
+            <summary>
+            角色输出参数
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Systems.Role.Dto.OutputDto.RoleOutputDto.Name">
+            <summary>
+            角色名
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.Systems.Role.Dto.OutputDto.RoleOutputDto.Description">
+             <summary>
+            描述
+             </summary>
+        </member>
+        <member name="P:QingShan.Services.Systems.Role.Dto.OutputDto.RoleOutputDto.OrderSort">
+             <summary>
+            排序
+             </summary>
+        </member>
+        <member name="P:QingShan.Services.Systems.Role.Dto.OutputDto.RoleOutputDto.Enabled">
+            <summary>
+            是否激活
+            </summary>
+        </member>
+        <member name="M:QingShan.Services.Systems.Role.IRoleService.GetAsync(System.String)">
+            <summary>
+            获取用户信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Systems.Role.IRoleService.AddAsync(QingShan.Services.Systems.Role.Dto.InputDto.RoleInputDto)">
+            <summary>
+            添加用户信息
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Systems.Role.IRoleService.UpdateAsync(QingShan.Services.Systems.Role.Dto.InputDto.RoleInputDto)">
+            <summary>
+            修改用户信息
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Systems.Role.IRoleService.PageAsync(QingShan.Services.Systems.Role.Dto.InputDto.PageRoleInputDto)">
+            <summary>
+            获取数据
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Systems.Role.IRoleService.DeleteAsync(System.String)">
+            <summary>
+            删除用户
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Systems.Role.RoleService.GetAsync(System.String)">
+            <summary>
+            获取角色信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Systems.Role.RoleService.PageAsync(QingShan.Services.Systems.Role.Dto.InputDto.PageRoleInputDto)">
+            <summary>
+            获取数据
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Systems.Role.RoleService.AddAsync(QingShan.Services.Systems.Role.Dto.InputDto.RoleInputDto)">
+            <summary>
+            添加
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Systems.Role.RoleService.UpdateAsync(QingShan.Services.Systems.Role.Dto.InputDto.RoleInputDto)">
+            <summary>
+            修改用户
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.Systems.Role.RoleService.DeleteAsync(System.String)">
+            <summary>
+            删除角色
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.SaveInfoInputDto.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.SaveInfoInputDto.Avatar">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.SaveInfoInputDto.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:QingShan.Services.User.Dtos.InputDto.UserAddInputDto">
+            <summary>
+            添加
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserAddInputDto.UserName">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserAddInputDto.Phone">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserAddInputDto.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserAddInputDto.Avatar">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserAddInputDto.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserAddInputDto.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserAddInputDto.RoleIds">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.RoleRequestDto.key">
+            <summary>
+            角色id
+            </summary>
+        </member>
+        <member name="T:QingShan.Services.User.Dtos.InputDto.UserChangePasswordInputDto">
+            <summary>
+            修改密码
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserChangePasswordInputDto.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserChangePasswordInputDto.OldPassword">
+            <summary>
+            旧密码
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserChangePasswordInputDto.NewPassword">
+            <summary>
+            新密码
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserChangePasswordInputDto.ConfirmPassword">
+            <summary>
+            确认新密码
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserChangePasswordInputDto.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserChangePasswordInputDto.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="T:QingShan.Services.User.Dtos.InputDto.UserUpdateBasicInputDto">
+            <summary>
+            更新基本信息
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserUpdateBasicInputDto.Avatar">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserUpdateBasicInputDto.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserUpdateBasicInputDto.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserUpdateBasicInputDto.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserUpdateBasicInputDto.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="T:QingShan.Services.User.Dtos.InputDto.UserUpdateInputDto">
+            <summary>
+            修改
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserUpdateInputDto.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserUpdateInputDto.UserName">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserUpdateInputDto.Phone">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserUpdateInputDto.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserUpdateInputDto.Avatar">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserUpdateInputDto.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserUpdateInputDto.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserUpdateInputDto.RoleIds">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.InputDto.UserUpdateInputDto.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.RoleOutputDto.UserId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.RoleOutputDto.RoleId">
+            <summary>
+            角色id
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.RoleOutputDto.Name">
+            <summary>
+            角色名称
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserGetOutputDto.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserGetOutputDto.UserName">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserGetOutputDto.Phone">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserGetOutputDto.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserGetOutputDto.Avatar">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserGetOutputDto.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserGetOutputDto.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserGetOutputDto.RoleIds">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserGetOutputDto.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserListOutputDto.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserListOutputDto.UserName">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserListOutputDto.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserListOutputDto.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserListOutputDto.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserListOutputDto.CreatedTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserListOutputDto.Avatar">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserListOutputDto.Phone">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserListOutputDto.RoleIds">
+            <summary>
+            角色id
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserListOutputDto.RoleNames">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="T:QingShan.Services.User.Dtos.OutputDto.UserPermissionOutputDto">
+            <summary>
+            用户权限输出参数
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserPermissionOutputDto.UserInfo">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:QingShan.Services.User.Dtos.OutputDto.UserPermissionOutputDto.Codes">
+            <summary>
+            权限
+            </summary>
+        </member>
+        <member name="M:QingShan.Services.User.IUserContract.GetAsync(System.String)">
+            <summary>
+            获取用户信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.User.IUserContract.GetUserInfoAsync(System.String)">
+            <summary>
+            获取用户信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.User.IUserContract.Init">
+            <summary>
+            获取用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.User.IUserContract.AddAsync(QingShan.Services.User.Dtos.InputDto.UserAddInputDto)">
+            <summary>
+            添加用户信息
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.User.IUserContract.UpdateAsync(QingShan.Services.User.Dtos.InputDto.UserUpdateInputDto)">
+            <summary>
+            修改用户信息
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.User.IUserContract.SaveInfoAsync(QingShan.Services.User.Dtos.InputDto.SaveInfoInputDto)">
+            <summary>
+            修改自身信息
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.User.IUserContract.PageAsync(QingShan.Services.User.Dtos.InputDto.SearchUserInputDto)">
+            <summary>
+            获取数据
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.User.IUserContract.DeleteAsync(System.String)">
+            <summary>
+            删除用户
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.User.IUserContract.DisableAsync(System.String)">
+            <summary>
+            禁用
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:QingShan.Services.User.UserService">
+            <summary>
+            用户管理-
+            </summary>
+        </member>
+        <member name="F:QingShan.Services.User.UserService._userRepository">
+            <summary>
+            用户仓储
+            </summary>
+        </member>
+        <member name="M:QingShan.Services.User.UserService.GetAsync(System.String)">
+            <summary>
+            获取用户信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.User.UserService.GetUserInfoAsync(System.String)">
+            <summary>
+            获取用户信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.User.UserService.Init">
+            <summary>
+            用户登录
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.User.UserService.PageAsync(QingShan.Services.User.Dtos.InputDto.SearchUserInputDto)">
+            <summary>
+            获取数据
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.User.UserService.AddAsync(QingShan.Services.User.Dtos.InputDto.UserAddInputDto)">
+            <summary>
+            添加
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.User.UserService.UpdateAsync(QingShan.Services.User.Dtos.InputDto.UserUpdateInputDto)">
+            <summary>
+            修改用户
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.User.UserService.SaveInfoAsync(QingShan.Services.User.Dtos.InputDto.SaveInfoInputDto)">
+            <summary>
+            修改自身信息
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.User.UserService.DeleteAsync(System.String)">
+            <summary>
+            删除用户
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Services.User.UserService.DisableAsync(System.String)">
+            <summary>
+            禁用
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,30 @@
+﻿//QS Code Generation Template 1.0
+//author:QS
+//blog:www.cnblogs.com/qs315
+//此代码由工具自动生成，请勿修改
+
+using System;
+
+namespace @Model.Namespace
+{
+    /// <summary>
+	/// @Model.Remark
+    /// </summary>
+	public class @(Model.Name)OutputDto
+    {
+    @foreach (var item in Model.ColumnConfig)
+{
+    if (item.PropName != "CreateTime"||item.PropName != "DeleteTime"||item.PropName != "CreatedId")
+    {
+        <text>
+        /// <summary>
+		/// @item.Remark
+        /// </summary>
+        public @item.CsType @item.PropName { get; set; }
+        </text>
+    }
+        
+    }
+
+    }
+}

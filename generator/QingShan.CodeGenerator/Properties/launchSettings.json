@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "QingShan.CodeGenerator": {
+      "commandName": "Project",
+      "commandLineArgs": "\"Data Source=101.35.101.237;Port=3306;User ID=root;Password=qsP@ssw0rd33..; Initial Catalog=QingShan;Charset=utf8; SslMode=none;Min pool size=1;AllowPublicKeyRetrieval=True;\" \"QingShan.Web.Areas.Admin.Controllers\" \"QingShan.Services\" \"QingShan.Services\" \"QingShan.Services\" \"QingShan.DataLayer.Entities\" \"D:\\Code\\dotnet\\QingShan\""
+    }
+  }
+}

@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>.\QingShan.Services.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591;</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FreeSql" Version="2.5.100" />
+    <PackageReference Include="FreeSql.Extensions.JsonMap" Version="2.5.100" />
+    <PackageReference Include="FreeSql.Provider.MySql" Version="2.5.100" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\QingShan.Core\QingShan.Core.csproj" />
+    <ProjectReference Include="..\..\src\QingShan\QingShan.csproj" />
+    <ProjectReference Include="..\QingShan.Common\QingShan.Common.csproj" />
+    <ProjectReference Include="..\QingShan.DataLayer\QingShan.DataLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="UserRole\" />
+  </ItemGroup>
+
+</Project>

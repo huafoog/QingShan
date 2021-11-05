@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<PackAsTool>true</PackAsTool>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="CodeGenerator\Pages\Codegen.cshtml" />
+	  <None Remove="CodeGenerator\Pages\Message.cshtml" />
+	  <None Remove="CodeGenerator\Templates\Controller.cshtml" />
+	  <None Remove="CodeGenerator\Templates\IContract.cshtml" />
+	  <None Remove="CodeGenerator\Templates\InputDto.cshtml" />
+	  <None Remove="CodeGenerator\Templates\OutputDto.cshtml" />
+	  <None Remove="CodeGenerator\Templates\Service.cshtml" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="RazorEngineCore" Version="2021.7.1" />
+		<PackageReference Include="FreeSql" Version="2.3.200" />
+		<PackageReference Include="FreeSql.Provider.MySql" Version="2.3.200" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Include="CodeGenerator\Pages\Codegen.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Include="CodeGenerator\Pages\Message.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="CodeGenerator\Templates\Controller.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="CodeGenerator\Templates\IContract.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="CodeGenerator\Templates\InputDto.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="CodeGenerator\Templates\OutputDto.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="CodeGenerator\Templates\Service.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\src\QingShan\QingShan.csproj" />
+	</ItemGroup>
+
+</Project>
