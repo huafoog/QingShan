@@ -26,12 +26,19 @@ namespace QingShan.Core.Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddApp(Configuration);
+            //注入配置信息
+            services.AddConfigurable(Configuration);
+            // 添加 HttContext 访问器
+            services.AddHttpContextAccessor();
+            // 注册全局依赖注入
+            services.AddDependencyInjection();
+            services.AddSpecificationDocuments();
+            services.AddCache();
+            services.AddDatabaseAccessor();
             services.AddStaticFile();
-            services.AddJwt<JwtHandler>(enableGlobalAuthorize: true);
             services.AddRateLimit();
             services.AddCorsAccessor();
+            services.AddJwt<JwtHandler>(enableGlobalAuthorize: true);
             services.AddDefaultController();
         }
 

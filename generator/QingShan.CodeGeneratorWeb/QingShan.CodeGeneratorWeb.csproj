@@ -9,12 +9,17 @@
 		<PackageReference Include="RazorEngineCore" Version="2021.7.1" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\src\QingShan.Core\QingShan.Core.csproj" />
+	  <ProjectReference Include="..\..\src\QingShan.Core\QingShan.Core.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<Content Update="CodeGenerator\Templates\Controller.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="CodeGenerator\Templates\Entity.cshtml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 		</Content>
 		<Content Update="CodeGenerator\Templates\IContract.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>

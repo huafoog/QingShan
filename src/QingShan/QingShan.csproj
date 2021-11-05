@@ -6,7 +6,7 @@
     <Description>青杉基础NuGet表</Description>
     <PackageId>QingShan</PackageId>
     <Authors>青杉</Authors>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <PackageProjectUrl>https://gitee.com/ZYX315/QingShan</PackageProjectUrl>
     <RepositoryUrl>https://gitee.com/ZYX315/QingShan</RepositoryUrl>
   </PropertyGroup>

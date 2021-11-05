@@ -14,7 +14,7 @@ namespace @Model.Namespace
     {
     @foreach (var item in Model.ColumnConfig)
 {
-    if (item.PropName != "CreateTime"||item.PropName != "DeleteTime"||item.PropName != "CreatedId")
+    if (!(item.PropName == "CreateTime"||item.PropName == "DeleteTime"||item.PropName == "CreatedId"))
     {
         <text>
         /// <summary>

@@ -94,26 +94,6 @@
             父级id
             </summary>
         </member>
-        <member name="T:QingShan.DataLayer.Entities.Product">
-            <summary>
-            商品
-            </summary>
-        </member>
-        <member name="P:QingShan.DataLayer.Entities.Product.Name">
-            <summary>
-            名称
-            </summary>
-        </member>
-        <member name="P:QingShan.DataLayer.Entities.Product.Price">
-            <summary>
-            价格
-            </summary>
-        </member>
-        <member name="P:QingShan.DataLayer.Entities.Product.Address">
-            <summary>
-            添加地址
-            </summary>
-        </member>
         <member name="T:QingShan.DataLayer.Entities.RoleEntity">
             <summary>
             角色模型

@@ -141,6 +141,11 @@
             全局过滤
             </summary>
         </member>
+        <member name="P:QingShan.Core.FreeSql.Options.DatabaseAccessorSettingsOptions.ReturnCreateSql">
+            <summary>
+            返回创建sql
+            </summary>
+        </member>
         <member name="M:QingShan.Core.FreeSql.Options.DatabaseAccessorSettingsOptions.PostConfigure(QingShan.Core.FreeSql.Options.DatabaseAccessorSettingsOptions,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             选项后期配置
@@ -985,14 +990,6 @@
             应用服务集合拓展类
             </summary>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.AppServiceCollectionExtensions.AddInject(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
-            <summary>
-            服务注入基础配置
-            </summary>
-            <param name="services">服务集合</param>
-            <param name="Configuration">配置文件</param>
-            <returns>IMvcBuilder</returns>
-        </member>
         <member name="M:Microsoft.Extensions.DependencyInjection.AppServiceCollectionExtensions.AddDefaultController(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             默认的控制器服务
@@ -1000,7 +997,17 @@
             <param name="services">服务集合</param>
             <returns>IMvcBuilder</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.AppServiceCollectionExtensions.AddApp(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.AppServiceCollectionExtensions.AddInject(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})">
+            <summary>
+            添加服务
+            <para>服务包含 配置 依赖注入 缓存 数据库 跨域</para>
+            </summary>
+            <param name="services">服务集合</param>
+            <param name="configure">配置</param>
+            <param name="configuration">服务配置</param>
+            <returns>服务集合</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AppServiceCollectionExtensions.AddApp``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})">
             <summary>
             添加应用配置
             </summary>

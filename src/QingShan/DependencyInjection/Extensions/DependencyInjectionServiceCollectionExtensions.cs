@@ -1,14 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using QingShan.Core.ConfigurableOptions;
-using QingShan.DependencyInjection.Exceptions;
+﻿using QingShan;
+using QingShan.DependencyInjection;
 using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace QingShan.DependencyInjection.Extensions
+namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
     /// 依赖注入拓展类

@@ -9,6 +9,7 @@ namespace QingShan.DataLayer.Entities
     /// <summary>
     /// 用户表
     /// </summary>
+    [FreeSql.DataAnnotations.Table(Name = "user")]
     public class UserEntity : EntityBase
     {
         /// <summary>

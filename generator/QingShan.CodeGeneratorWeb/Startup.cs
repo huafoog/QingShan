@@ -26,8 +26,7 @@ namespace QingShan.CodeGeneratorWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddApp(Configuration);
+            services.AddInject(Configuration);
             services.AddCodeGenerator();
             services.AddMvc();
         }

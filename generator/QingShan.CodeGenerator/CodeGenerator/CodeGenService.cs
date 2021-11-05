@@ -91,6 +91,9 @@ namespace QingShan.CodeGenerator
                 model.Namespace = $"{dto.DtoNamespace}.{name}.Dto";
                 await Generator(model, "InputDto", path);
                 await Generator(model, "OutputDto", path);
+
+                model.Namespace = $"{dto.EntityNamespace}";
+                await Generator(model, "Entity", path);
             }
             return dto.Output + "\\Gen";
 
@@ -107,12 +110,13 @@ namespace QingShan.CodeGenerator
             List<TableConfig> list_table = new List<TableConfig>();
             foreach (var table in db)
             {
+                var name = table.Name.LineToCamelCase();
                 TableConfig tableConfig = new TableConfig()
                 {
                     Id = Guid.NewGuid().ToString(),
-                    TableName = table.Name,
-                    FullName = table.Name.GetFirstLowercase(),
-                    Name = table.Name.Replace("Entity",""),
+                    TableName = name,
+                    FullName = name.GetFirstLowercase(),
+                    Name = name.Replace("Entity",""),
                     Remark = table.Comment.Replace("\r\n", ""),
                     ColumnConfig = new List<ColumnConfig>()
                 };
@@ -120,7 +124,7 @@ namespace QingShan.CodeGenerator
                 {
                     tableConfig.ColumnConfig.Add(new ColumnConfig()
                     {
-                        ColumnName = column.Name,
+                        ColumnName = column.Name.LineToCamelCase(),
                         CsType = column.CsType.ToString(),
                         Remark = column.Coment.Replace("\r\n", "")
                     });

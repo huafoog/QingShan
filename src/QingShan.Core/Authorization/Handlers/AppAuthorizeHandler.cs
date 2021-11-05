@@ -18,6 +18,7 @@ namespace QingShan.Authorization
         /// <returns></returns>
         public virtual async Task HandleAsync(AuthorizationHandlerContext context)
         {
+
             // 判断是否授权
             var isAuthenticated = context.User.Identity.IsAuthenticated;
             if (isAuthenticated)

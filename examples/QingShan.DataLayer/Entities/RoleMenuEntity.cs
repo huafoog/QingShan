@@ -1,4 +1,5 @@
-﻿using QingShan.DatabaseAccessor;
+﻿using FreeSql.DataAnnotations;
+using QingShan.DatabaseAccessor;
 using System;
 
 namespace QingShan.DataLayer.Entities
@@ -6,6 +7,7 @@ namespace QingShan.DataLayer.Entities
     /// <summary>
     /// 角色菜单
     /// </summary>
+    [Table(Name = "role_menu")]
     public class RoleMenuEntity : EntityBase
     {
         /// <summary>

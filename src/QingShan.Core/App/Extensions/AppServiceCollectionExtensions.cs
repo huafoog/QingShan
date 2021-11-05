@@ -1,5 +1,4 @@
 ﻿using QingShan.DependencyInjection;
-using QingShan.DependencyInjection.Extensions;
 using System;
 using Microsoft.Extensions.Configuration;
 using QingShan.Core.Filter;
@@ -14,22 +13,6 @@ namespace Microsoft.Extensions.DependencyInjection
     [SkipScan]
     public static class AppServiceCollectionExtensions
     {
-        /// <summary>
-        /// 服务注入基础配置
-        /// </summary>
-        /// <param name="services">服务集合</param>
-        /// <param name="Configuration">配置文件</param>
-        /// <returns>IMvcBuilder</returns>
-        public static IServiceCollection AddInject(this IServiceCollection services, IConfiguration Configuration)
-        {
-            QingShan.QingShanApplication.Configuration = Configuration;
-            services
-                .AddSpecificationDocuments()
-                .AddCache()
-                .AddDatabaseAccessor();
-            return services;
-        }
-
         /// <summary>
         /// 默认的控制器服务
         /// </summary>
@@ -54,9 +37,34 @@ namespace Microsoft.Extensions.DependencyInjection
                }
            ).ConfigureApiBehaviorOptions(option =>
            {
-                //关闭默认模型验证
-                option.SuppressModelStateInvalidFilter = true;
+               //关闭默认模型验证
+               option.SuppressModelStateInvalidFilter = true;
            });
+            return services;
+        }
+
+        /// <summary>
+        /// 添加服务
+        /// <para>服务包含 配置 依赖注入 缓存 数据库 跨域</para>
+        /// </summary>
+        /// <param name="services">服务集合</param>
+        /// <param name="configure">配置</param>
+        /// <param name="configuration">服务配置</param>
+        /// <returns>服务集合</returns>
+        public static IServiceCollection AddInject(this IServiceCollection services, IConfiguration configuration, Action<IServiceCollection> configure = null)
+        {
+            //注入配置信息
+            services.AddConfigurable(configuration);
+            // 添加 HttContext 访问器
+            services.AddHttpContextAccessor();
+            // 注册全局依赖注入
+            services.AddDependencyInjection();
+            services.AddCache();
+            services.AddDatabaseAccessor();
+            services.AddCorsAccessor();
+            services.AddDefaultController();
+            // 自定义服务
+            configure?.Invoke(services);
             return services;
         }
 
@@ -67,19 +75,25 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="configure">配置</param>
         /// <param name="configuration">服务配置</param>
         /// <returns>服务集合</returns>
-        public static IServiceCollection AddApp(this IServiceCollection services, IConfiguration configuration, Action<IServiceCollection> configure = null)
+        public static IServiceCollection AddApp<JwtHandler>(this IServiceCollection services, IConfiguration configuration, Action<IServiceCollection> configure = null)
+            where JwtHandler : class, AspNetCore.Authorization.IAuthorizationHandler
         {
+            //注入配置信息
+            services.AddConfigurable(configuration);
             // 添加 HttContext 访问器
             services.AddHttpContextAccessor();
-
             // 注册全局依赖注入
             services.AddDependencyInjection();
-
-            services.AddInject(configuration);
-
+            services.AddSpecificationDocuments();
+            services.AddCache();
+            services.AddDatabaseAccessor();
+            services.AddStaticFile();
+            services.AddRateLimit();
+            services.AddCorsAccessor();
+            services.AddJwt<JwtHandler>(enableGlobalAuthorize: true);
+            services.AddDefaultController();
             // 自定义服务
             configure?.Invoke(services);
-
             return services;
         }
     }

@@ -16,12 +16,28 @@ namespace QingShan.Test
         /// <summary>
         /// 测试
         /// </summary>
-        [TestMethod]public void Test()
+        [TestMethod]
+        public void LineToCamelCaseTest()
         {
-            //var build = new WebHostBuilder().Configure(confgi=> {
-            //}).UseStartup<OptionStartup>();
-
-            //build.Build();
+            var str = "asfsf_gfhrty_tyjyti_ryeret_werwer_qwe";
+            Console.WriteLine("QingShan".LineToCamelCase());
+            Console.WriteLine(str.LineToCamelCase());
+            Console.WriteLine("qing_shan".LineToCamelCase());
+            Assert.AreEqual("QingShan","qing_shan".LineToCamelCase());
+            Assert.AreEqual("Qing", "qing".LineToCamelCase());
+            //Assert.AreEqual("QingShan", "QingShan".LineToCamelCase());
         }
+        /// <summary>
+        /// 测试
+        /// </summary>
+        [TestMethod]
+        public void Test1()
+        {
+            var str = "CreateTime";
+
+
+            Console.WriteLine(!(str == "CreateTime" || str == "DeleteTime" || str == "CreatedId" || str == "Id"));
+        }
+        
     }
 }

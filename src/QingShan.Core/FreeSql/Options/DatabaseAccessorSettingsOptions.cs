@@ -43,6 +43,12 @@ namespace QingShan.Core.FreeSql.Options
         /// 全局过滤
         /// </summary>
         public bool GlobalFilter { get; set; }
+
+        /// <summary>
+        /// 返回创建sql
+        /// </summary>
+		public bool ReturnCreateSql { get; set; }
+
         public string Database { get; set; }
 
         /// <summary>

@@ -5,6 +5,7 @@ namespace QingShan.DataLayer.Entities
     /// <summary>
     /// 用户角色实体
     /// </summary>
+    [FreeSql.DataAnnotations.Table(Name = "user_role")]
     public class UserRoleEntity : EntityBase
     {
         /// <summary>

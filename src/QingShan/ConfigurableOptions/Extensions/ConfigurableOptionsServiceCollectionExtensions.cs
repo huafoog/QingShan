@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection.Extensions;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using QingShan;
 using QingShan.ConfigurableOptions;
@@ -69,6 +70,19 @@ namespace Microsoft.Extensions.DependencyInjection
                 }
             }
 
+            return services;
+        }
+
+        /// <summary>
+        /// 注入配置文件
+        /// <para></para>
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuation"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddConfigurable(this IServiceCollection services, IConfiguration configuation)
+        {
+            QingShanApplication.Configuration = configuation;
             return services;
         }
     }

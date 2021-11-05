@@ -8,7 +8,7 @@ namespace System
 {
     public static class StringExtension
     {
-        public static String GetValue(this string[] str,int index,string defult)
+        public static String GetValue(this string[] str,int index,string defult = "")
         {
             if (str.Length < index + 1)
             {

@@ -748,72 +748,6 @@
             <typeparam name="TService"></typeparam>
             <returns></returns>
         </member>
-        <member name="T:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions">
-            <summary>
-            依赖注入拓展类
-            </summary>
-        </member>
-        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.AddDependencyInjection(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            添加依赖注入接口
-            </summary>
-            <param name="services">服务集合</param>
-            <returns>服务集合</returns>
-        </member>
-        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.AddAutoInjection(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            添加自动扫描注入
-            </summary>
-            <param name="services">服务集合</param>
-            <returns>服务集合</returns>
-        </member>
-        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterType(Microsoft.Extensions.DependencyInjection.IServiceCollection,QingShan.DependencyInjection.RegisterType,System.Type,System.Type)">
-            <summary>
-            注册类型
-            </summary>
-            <param name="services">服务</param>
-            <param name="registerType">注册类型</param>
-            <param name="type">类型</param>
-            <param name="inter">接口</param>
-        </member>
-        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterTransientType(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,System.Type)">
-            <summary>
-            注册瞬时接口实例类型
-            </summary>
-            <param name="services">服务</param>
-            <param name="type">类型</param>
-            <param name="inter">接口</param>
-        </member>
-        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterScopeType(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,System.Type)">
-            <summary>
-            注册作用域接口实例类型
-            </summary>
-            <param name="services">服务</param>
-            <param name="type">类型</param>
-            <param name="inter">接口</param>
-        </member>
-        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.RegisterSingletonType(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,System.Type)">
-            <summary>
-            注册单例接口实例类型
-            </summary>
-            <param name="services">服务</param>
-            <param name="type">类型</param>
-            <param name="inter">接口</param>
-        </member>
-        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.FixedGenericType(System.Type)">
-            <summary>
-            修复泛型类型注册类型问题
-            </summary>
-            <param name="type">类型</param>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.DependencyInjection.Extensions.DependencyInjectionServiceCollectionExtensions.LoadStringType(System.String)">
-            <summary>
-            加载字符串类型
-            </summary>
-            <param name="str"></param>
-            <returns></returns>
-        </member>
         <member name="T:QingShan.DependencyInjection.DependencyInjectionSettingsOptions">
             <summary>
             依赖注入配置选项
@@ -2486,6 +2420,81 @@
             <param name="key"></param>
             <returns>服务集合</returns>
         </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ConfigurableOptionsServiceCollectionExtensions.AddConfigurable(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            注入配置文件
+            <para></para>
+            </summary>
+            <param name="services"></param>
+            <param name="configuation"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.DependencyInjectionServiceCollectionExtensions">
+            <summary>
+            依赖注入拓展类
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.DependencyInjectionServiceCollectionExtensions.AddDependencyInjection(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加依赖注入接口
+            </summary>
+            <param name="services">服务集合</param>
+            <returns>服务集合</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.DependencyInjectionServiceCollectionExtensions.AddAutoInjection(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加自动扫描注入
+            </summary>
+            <param name="services">服务集合</param>
+            <returns>服务集合</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.DependencyInjectionServiceCollectionExtensions.RegisterType(Microsoft.Extensions.DependencyInjection.IServiceCollection,QingShan.DependencyInjection.RegisterType,System.Type,System.Type)">
+            <summary>
+            注册类型
+            </summary>
+            <param name="services">服务</param>
+            <param name="registerType">注册类型</param>
+            <param name="type">类型</param>
+            <param name="inter">接口</param>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.DependencyInjectionServiceCollectionExtensions.RegisterTransientType(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,System.Type)">
+            <summary>
+            注册瞬时接口实例类型
+            </summary>
+            <param name="services">服务</param>
+            <param name="type">类型</param>
+            <param name="inter">接口</param>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.DependencyInjectionServiceCollectionExtensions.RegisterScopeType(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,System.Type)">
+            <summary>
+            注册作用域接口实例类型
+            </summary>
+            <param name="services">服务</param>
+            <param name="type">类型</param>
+            <param name="inter">接口</param>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.DependencyInjectionServiceCollectionExtensions.RegisterSingletonType(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,System.Type)">
+            <summary>
+            注册单例接口实例类型
+            </summary>
+            <param name="services">服务</param>
+            <param name="type">类型</param>
+            <param name="inter">接口</param>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.DependencyInjectionServiceCollectionExtensions.FixedGenericType(System.Type)">
+            <summary>
+            修复泛型类型注册类型问题
+            </summary>
+            <param name="type">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.DependencyInjectionServiceCollectionExtensions.LoadStringType(System.String)">
+            <summary>
+            加载字符串类型
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
         <member name="T:System.Collections.Generic.CollectionExtensions">
             <summary>
             集合扩展方法
@@ -2929,6 +2938,13 @@
         <member name="M:System.StringExtensions.SplitCamelCase(System.String)">
             <summary>
             切割骆驼命名式字符串
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.LineToCamelCase(System.String)">
+            <summary>
+            下划线转驼峰
             </summary>
             <param name="str"></param>
             <returns></returns>

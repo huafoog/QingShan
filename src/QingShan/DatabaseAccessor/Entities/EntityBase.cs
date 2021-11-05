@@ -34,7 +34,6 @@ namespace QingShan.DatabaseAccessor
         /// <summary>
         /// 获取或设置 编号
         /// </summary>
-        [DisplayName("编号")]
         [Key]
         public TKey Id { get; set; }
         /// <summary>

@@ -28,36 +28,6 @@ namespace QingShan.Test.DependencyInjection
             Console.WriteLine("=======================================");
             proxy.Receive("中午好");
         }
-
-        [TestMethod]
-        public void Test2()
-        {
-            var poxy1 = (targetInterface)ProxyGenerator.Create(typeof(targetInterface), new SampleProxy("coreproxy1"));
-            poxy1.Write("here was invoked"); //---> "here was invoked by coreproxy1"
-
-            var poxy2 = (targetInterface)ProxyGenerator.Create(typeof(targetInterface), typeof(SampleProxy), "coreproxy2");
-            poxy2.Write("here was invoked"); //---> "here was invoked by coreproxy2"
-
-            var poxy3 = ProxyGenerator.Create<targetInterface, SampleProxy>("coreproxy3");
-            poxy3.Write("here was invoked"); //---> "here was invoked by coreproxy3"
-        }
-
-        public class SampleProxy : IInterceptor
-        {
-            private string proxyName { get; }
-
-            public SampleProxy(string name)
-            {
-                this.proxyName = name;
-            }
-
-            public object Intercept(object target, MethodInfo method, object[] parameters)
-            {
-                Console.WriteLine($"目标：{target}"+parameters[0] + " by " + proxyName);
-                return null;
-            }
-        }
-
         public interface targetInterface
         {
             void Write(string writesome);

@@ -1,4 +1,5 @@
-﻿using QingShan.DatabaseAccessor;
+﻿using FreeSql.DataAnnotations;
+using QingShan.DatabaseAccessor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace QingShan.DataLayer.Entities
     /// <summary>
     /// 菜单
     /// </summary>
+    [Table(Name ="menu")]
     public class MenuEntity: EntityBase
     {
         /// <summary>

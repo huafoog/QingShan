@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace System
 {
@@ -166,6 +167,27 @@ namespace System
                 .Where(u => u.Length > 0)
                 .ToArray();
         }
+        /// <summary>
+        /// 下划线转驼峰
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string LineToCamelCase(this string str)
+        {
+            if (string.IsNullOrEmpty(str)) return str;
+            StringBuilder builder = new StringBuilder();
+            var sp = str.Split(new[] { '_' }, StringSplitOptions.RemoveEmptyEntries);
+            if (sp.Length>1)
+            {
+                foreach (var s in str.Split(new[] { '_' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    builder.Append(Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(s));
+                }
+                return builder.ToString();
+            }
+            return str.Substring(0,1).ToUpper() + str.Substring(1);
+        }
+
 
         /// <summary>
         /// 获取骆驼命名第一个单词

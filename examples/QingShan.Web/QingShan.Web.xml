@@ -33,26 +33,6 @@
             首页
             </summary>
         </member>
-        <member name="M:QingShan.Web.Areas.Admin.Controllers.HomeController.Index">
-            <summary>
-            获取
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Web.Areas.Admin.Controllers.HomeController.Add(QingShan.Services.ProductService.Dtos.ProductInputDto)">
-            <summary>
-            添加
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Web.Areas.Admin.Controllers.HomeController.Delete(QingShan.Services.ProductService.Dtos.IdDto)">
-            <summary>
-            删除
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
         <member name="T:QingShan.Web.Areas.Admin.Controllers.MenuController">
             <summary>
             菜单

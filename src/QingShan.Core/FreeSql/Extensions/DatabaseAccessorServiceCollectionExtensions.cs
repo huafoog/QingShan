@@ -1,4 +1,5 @@
 ﻿using FreeSql;
+using FreeSql.DataAnnotations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
@@ -10,6 +11,9 @@ using QingShan.Core.FreeSql.UnitOfWork.TransactionInterceptor;
 using QingShan.DatabaseAccessor;
 using QingShan.DependencyInjection;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -46,6 +50,10 @@ namespace Microsoft.Extensions.DependencyInjection
                 //全局过滤
                 fsql.GlobalFilter.Apply<ISoftDeletable>("DeleteTime", a => !a.DeleteTime.HasValue);
             }
+
+
+
+#if DEBUG
             if (dbConfig.PrintingSQL)
             {
                 //监听生成的sql语句
@@ -54,6 +62,16 @@ namespace Microsoft.Extensions.DependencyInjection
                     Console.WriteLine(e.Sql);
                 };
             }
+#endif
+
+            if (dbConfig.ReturnCreateSql)
+             {
+                var entities = App.CanBeScanTypes.Where(o => o.IsEntityType());
+                Console.WriteLine(fsql.CodeFirst.GetComparisonDDLStatements(entities.ToArray()));
+            }
+
+            //fsql.CodeFirst.GetComparisonDDLStatements<Topic>()
+
             services.TryAddScoped(typeof(IRepository<>), typeof(Repository<>));
             // 注册仓储
             services.TryAddScoped(typeof(IKeyRepository<,>), typeof(KeyRepository<,>));
@@ -63,5 +81,6 @@ namespace Microsoft.Extensions.DependencyInjection
             configure?.Invoke(services);
             return services;
         }
+
     }
 }
