@@ -80,11 +80,14 @@ namespace QingShan.Core.CodeGenerator
             {
                 var name = model.TableName.Replace("Entity", "");
                 model.FullName = name.GetFirstLowercase();
+                model.ContractNamespace = $"{dto.IContractNamespace}.{name}";
+                model.DtoNamespace = $"{dto.DtoNamespace}.{name}.Dto";
+                model.EntityNamespace = dto.EntityNamespace;
+
                 if (dto.Controller.NotNull())
                 {
                     model.Namespace = dto.ControllerNamespace;
-                    model.ContractNamespace = $"{dto.IContractNamespace}.{name}";
-                    await Generator(model,"Controller", path, true);
+                    await Generator(model,"Controller", path);
                 }
                 if (dto.IContract.NotNull())
                 {
@@ -94,9 +97,6 @@ namespace QingShan.Core.CodeGenerator
                 if (dto.Service.NotNull())
                 {
                     model.Namespace = $"{dto.ServiceNamespace}.{name}";
-                    model.ContractNamespace = $"{dto.IContractNamespace}.{name}";
-                    model.DtoNamespace = $"{dto.DtoNamespace}.{name}.Dto";
-                    model.EntityNamespace = dto.EntityNamespace;
                     await Generator(model, "Service", path);
                 }
                 if (dto.Dto.NotNull())

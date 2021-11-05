@@ -25,6 +25,7 @@ namespace QingShan.CodeGenerator
             };
             var result = await CodeGenService.Generator(data);
             Console.WriteLine($"操作成功！输出目录【{result}】");
+            Console.ReadKey();
         }
     }
 }

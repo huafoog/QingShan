@@ -66,13 +66,13 @@ namespace @Model.Namespace
             {
                 return new StatusResult("数据不存在！");
             }
-            _@(Model.FullName)Repository.Attach(roleModel);
             @foreach (var item in Model.ColumnConfig)
-                if (item.PropName != "CreateTime"||item.PropName != "DeleteTime"||item.PropName != "CreatedId"||item.PropName != "Id")
+            {
+                if (!(item.PropName == "CreateTime"||item.PropName == "DeleteTime"||item.PropName == "CreatedId"||item.PropName == "Id"))
                 {
-                    <text>
-                    data.@(item.PropName) = input.@(item.PropName)
-                    </text>
+            <text>
+            data.@(item.PropName) = input.@(item.PropName);
+            </text>
                 }
             }
             int res = await _@(Model.FullName)Repository.UpdateAsync(data);

@@ -6,27 +6,27 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using @(Model.ContractNamespace);
-using @Model.DtoNamespace;
+using Demo.Services.User;
+using Demo.Services.User.Dto;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using QingShan.Data;
 
-namespace @(Model.Namespace)
+namespace Demo.Controllers
 {
     /// <summary>
-	/// @Model.Remark
+	/// 用户表
     /// </summary>
 	[ApiController]
     [Route("[controller]/[action]")]
-    public class @(Model.Name)Controller
+    public class UserController
 	{
 
-        private readonly I@(Model.Name)Contract _i@(Model.Name)Contract;
+        private readonly IUserContract _iUserContract;
 
-        public @(Model.Name)Controller(I@(Model.Name)Contract i@(Model.Name)Contract)
+        public UserController(IUserContract iUserContract)
         {
-            _i@(Model.Name)Contract = i@(Model.Name)Contract;
+            _iUserContract = iUserContract;
         }
 
         /// <summary>
@@ -35,24 +35,24 @@ namespace @(Model.Namespace)
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<PageOutputDto<@(Model.Name)OutputDto>> PageAsync(Page@(Model.Name)InputDto dto)
-            => await _i@(Model.Name)Contract.PageAsync(dto);
+        public async Task<PageOutputDto<UserOutputDto>> PageAsync(PageUserInputDto dto)
+            => await _iUserContract.PageAsync(dto);
 
         /// <summary>
         /// 添加
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost]public async Task<StatusResult> AddAsync(@(Model.Name)InputDto input)
-            => await _i@(Model.Name)Contract.AddAsync(input);
+        [HttpPost]public async Task<StatusResult> AddAsync(UserInputDto input)
+            => await _iUserContract.AddAsync(input);
 
         /// <summary>
         /// 修改
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost]public async Task<StatusResult> UpdateAsync(@(Model.Name)InputDto input)
-            => await _i@(Model.Name)Contract.UpdateAsync(input);
+        [HttpPost]public async Task<StatusResult> UpdateAsync(UserInputDto input)
+            => await _iUserContract.UpdateAsync(input);
 
         /// <summary>
         /// 删除
@@ -60,6 +60,6 @@ namespace @(Model.Namespace)
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost]public async Task<StatusResult> DeleteAsync(string id)
-            => await _i@(Model.Name)Contract.DeleteAsync(id);
+            => await _iUserContract.DeleteAsync(id);
 	}
 }

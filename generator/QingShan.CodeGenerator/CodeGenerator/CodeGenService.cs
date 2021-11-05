@@ -73,18 +73,17 @@ namespace QingShan.CodeGenerator
                 var name = model.TableName.Replace("Entity", "");
                 model.FullName = name.GetFirstLowercase();
 
+                model.ContractNamespace = $"{dto.IContractNamespace}.{name}";
+                model.DtoNamespace = $"{dto.DtoNamespace}.{name}.Dto";
+                model.EntityNamespace = dto.EntityNamespace;
 
                 model.Namespace = dto.ControllerNamespace;
-                model.ContractNamespace = $"{dto.IContractNamespace}.{name}";
-                await Generator(model, "Controller", path, true);
+                await Generator(model, "Controller", path);
 
                 model.Namespace = $"{dto.IContractNamespace}.{name}";
                 await Generator(model, "IContract", path, true);
 
                 model.Namespace = $"{dto.ServiceNamespace}.{name}";
-                model.ContractNamespace = $"{dto.IContractNamespace}.{name}";
-                model.DtoNamespace = $"{dto.DtoNamespace}.{name}.Dto";
-                model.EntityNamespace = dto.EntityNamespace;
                 await Generator(model, "Service", path);
 
 

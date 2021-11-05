@@ -6,39 +6,39 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using @Model.ContractNamespace;
-using @Model.DtoNamespace;
-using @Model.EntityNamespace;
+using Demo.Services.Role;
+using Demo.Services.Role.Dto;
+using Demo.Data.Entities;
 using QingShan.Data;
 using System.Threading.Tasks;
 
-namespace @Model.Namespace
+namespace Demo.Services.Role
 {
 	/// <summary>
-	/// @Model.Remark
+	/// 角色模型
     /// </summary>
-	public interface I@(Model.Name)Contract
+	public interface IRoleContract
 	{
 		/// <summary>
         /// 获取数据
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task<PageOutputDto<@(Model.Name)OutputDto>> PageAsync(Page@(Model.Name)InputDto dto);
+        Task<PageOutputDto<RoleOutputDto>> PageAsync(PageRoleInputDto dto);
 
         /// <summary>
         /// 添加
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task<StatusResult> AddAsync(@(Model.Name)InputDto input);
+        Task<StatusResult> AddAsync(RoleInputDto input);
 
         /// <summary>
         /// 修改
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task<StatusResult> UpdateAsync(@(Model.Name)InputDto input);
+        Task<StatusResult> UpdateAsync(RoleInputDto input);
 
         /// <summary>
         /// 删除

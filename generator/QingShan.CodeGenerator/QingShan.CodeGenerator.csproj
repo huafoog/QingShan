@@ -4,7 +4,7 @@
 		<OutputType>Exe</OutputType>
 		<PackAsTool>true</PackAsTool>
 		<TargetFramework>net5.0</TargetFramework>
-		<Version>1.0.1</Version>
+		<Version>1.0.2</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -33,9 +33,13 @@
 	  </Content>
 	  <Content Include="CodeGenerator\Templates\Controller.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 	  </Content>
 	  <Content Include="CodeGenerator\Templates\IContract.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 	  </Content>
 	  <Content Include="CodeGenerator\Templates\Entity.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -54,6 +58,8 @@
 	  </Content>
 	  <Content Include="CodeGenerator\Templates\Service.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 	  </Content>
 	</ItemGroup>
 	<ItemGroup>

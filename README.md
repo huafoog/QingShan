@@ -66,5 +66,25 @@ public async Task<StatusResult> Add(UserAddInputDto input)
 ```
 若出现以下问题请检查 方法内是否开启了事务 
 > The connection is already in a transaction and cannot participate in another transaction.
-如需手动添加事务就不需要打上该标记
+> 如需手动添加事务就不需要打上该标记
+
+# 一键搭建
+
+下载dotnet 模板
+
+`dotnet new --install QingShan.Template.NetCore::1.0.0`
+
+运行模板文件
+
+```
+dotnet new qswebapi -n 项目名 -o 路径
+```
+
+例如 
+
+当前项目为demo 输出到当前目录
+
+```
+dotnet new qswebapi -n Demo -o .
+```
 

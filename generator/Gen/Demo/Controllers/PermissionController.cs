@@ -6,27 +6,27 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using @(Model.ContractNamespace);
-using @Model.DtoNamespace;
+using Demo.Services.Permission;
+using Demo.Services.Permission.Dto;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using QingShan.Data;
 
-namespace @(Model.Namespace)
+namespace Demo.Controllers
 {
     /// <summary>
-	/// @Model.Remark
+	/// 权限
     /// </summary>
 	[ApiController]
     [Route("[controller]/[action]")]
-    public class @(Model.Name)Controller
+    public class PermissionController
 	{
 
-        private readonly I@(Model.Name)Contract _i@(Model.Name)Contract;
+        private readonly IPermissionContract _iPermissionContract;
 
-        public @(Model.Name)Controller(I@(Model.Name)Contract i@(Model.Name)Contract)
+        public PermissionController(IPermissionContract iPermissionContract)
         {
-            _i@(Model.Name)Contract = i@(Model.Name)Contract;
+            _iPermissionContract = iPermissionContract;
         }
 
         /// <summary>
@@ -35,24 +35,24 @@ namespace @(Model.Namespace)
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<PageOutputDto<@(Model.Name)OutputDto>> PageAsync(Page@(Model.Name)InputDto dto)
-            => await _i@(Model.Name)Contract.PageAsync(dto);
+        public async Task<PageOutputDto<PermissionOutputDto>> PageAsync(PagePermissionInputDto dto)
+            => await _iPermissionContract.PageAsync(dto);
 
         /// <summary>
         /// 添加
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost]public async Task<StatusResult> AddAsync(@(Model.Name)InputDto input)
-            => await _i@(Model.Name)Contract.AddAsync(input);
+        [HttpPost]public async Task<StatusResult> AddAsync(PermissionInputDto input)
+            => await _iPermissionContract.AddAsync(input);
 
         /// <summary>
         /// 修改
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpPost]public async Task<StatusResult> UpdateAsync(@(Model.Name)InputDto input)
-            => await _i@(Model.Name)Contract.UpdateAsync(input);
+        [HttpPost]public async Task<StatusResult> UpdateAsync(PermissionInputDto input)
+            => await _iPermissionContract.UpdateAsync(input);
 
         /// <summary>
         /// 删除
@@ -60,6 +60,6 @@ namespace @(Model.Namespace)
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost]public async Task<StatusResult> DeleteAsync(string id)
-            => await _i@(Model.Name)Contract.DeleteAsync(id);
+            => await _iPermissionContract.DeleteAsync(id);
 	}
 }

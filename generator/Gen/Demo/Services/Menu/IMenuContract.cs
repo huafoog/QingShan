@@ -6,39 +6,39 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using @Model.ContractNamespace;
-using @Model.DtoNamespace;
-using @Model.EntityNamespace;
+using Demo.Services.Menu;
+using Demo.Services.Menu.Dto;
+using Demo.Data.Entities;
 using QingShan.Data;
 using System.Threading.Tasks;
 
-namespace @Model.Namespace
+namespace Demo.Services.Menu
 {
 	/// <summary>
-	/// @Model.Remark
+	/// 菜单
     /// </summary>
-	public interface I@(Model.Name)Contract
+	public interface IMenuContract
 	{
 		/// <summary>
         /// 获取数据
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task<PageOutputDto<@(Model.Name)OutputDto>> PageAsync(Page@(Model.Name)InputDto dto);
+        Task<PageOutputDto<MenuOutputDto>> PageAsync(PageMenuInputDto dto);
 
         /// <summary>
         /// 添加
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task<StatusResult> AddAsync(@(Model.Name)InputDto input);
+        Task<StatusResult> AddAsync(MenuInputDto input);
 
         /// <summary>
         /// 修改
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task<StatusResult> UpdateAsync(@(Model.Name)InputDto input);
+        Task<StatusResult> UpdateAsync(MenuInputDto input);
 
         /// <summary>
         /// 删除
