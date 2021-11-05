@@ -26,10 +26,12 @@ namespace System
         /// <summary>
         /// 将字符串中的格式项替换为指定的字符串表示形式
         /// </summary>
-        /// <param name="format"></param>
-        /// <param name="arg0"></param>
+        /// <param name="format">需要替换的字符串</param>
+        /// <param name="arg0">参数1</param>
         /// <returns></returns>
+#pragma warning disable CS8632 // 只能在 "#nullable" 注释上下文内的代码中使用可为 null 的引用类型的注释。
         public static string ToFormat(this string format, object? arg0)
+#pragma warning restore CS8632 // 只能在 "#nullable" 注释上下文内的代码中使用可为 null 的引用类型的注释。
         {
             return string.Format(format, arg0);
         }
@@ -40,7 +42,9 @@ namespace System
         /// <param name="arg0"></param>
         /// <param name="arg1"></param>
         /// <returns></returns>
+#pragma warning disable CS8632 // 只能在 "#nullable" 注释上下文内的代码中使用可为 null 的引用类型的注释。
         public static string ToFormat(this string format, object? arg0, object? arg1)
+#pragma warning restore CS8632 // 只能在 "#nullable" 注释上下文内的代码中使用可为 null 的引用类型的注释。
         {
             return string.Format(format, arg0, arg1);
         }
@@ -52,7 +56,9 @@ namespace System
         /// <param name="arg1"></param>
         /// <param name="arg2"></param>
         /// <returns></returns>
+#pragma warning disable CS8632 // 只能在 "#nullable" 注释上下文内的代码中使用可为 null 的引用类型的注释。
         public static string ToFormat(this string format, object? arg0, object? arg1, object? arg2)
+#pragma warning restore CS8632 // 只能在 "#nullable" 注释上下文内的代码中使用可为 null 的引用类型的注释。
         {
             return string.Format(format, arg0, arg1, arg2);
         }

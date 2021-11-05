@@ -68,17 +68,6 @@
             <param name="options"></param>
             <param name="configuration"></param>
         </member>
-        <member name="T:QingShan.Core.HostingStartup">
-            <summary>
-            配置程序启动时自动注入
-            </summary>
-        </member>
-        <member name="M:QingShan.Core.HostingStartup.Configure(Microsoft.AspNetCore.Hosting.IWebHostBuilder)">
-            <summary>
-            配置应用启动
-            </summary>
-            <param name="builder"></param>
-        </member>
         <member name="T:QingShan.Core.CorsAccessor.CorsAccessorSettingsOptions">
             <summary>
             跨域配置选项

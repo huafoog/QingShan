@@ -35,11 +35,6 @@ namespace Microsoft.Extensions.DependencyInjection
                     services.AddSingleton<ICache, RedisCache>();
                 }
             }
-            else
-            {
-                services.AddMemoryCache();
-                services.AddSingleton<ICache, Cache>();
-            }
           
             return services;
         }
