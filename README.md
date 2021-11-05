@@ -72,7 +72,7 @@ public async Task<StatusResult> Add(UserAddInputDto input)
 
 下载dotnet 模板
 
-`dotnet new --install QingShan.Template.NetCore::1.0.0`
+`dotnet new --install QingShan.Template.NetCore::*`
 
 运行模板文件
 
