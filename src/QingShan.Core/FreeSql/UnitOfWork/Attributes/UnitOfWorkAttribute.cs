@@ -74,19 +74,16 @@ namespace QingShan.Core.FreeSql.UnitOfWork.Attributes
             var _logger = serviceProvider.GetRequiredService<ILogger<UnitOfWorkAttribute>>();
 
             //事务
-            Console.WriteLine("开启事务");
             using var trans = _unitOfWorkManager.Begin(Propagation, IsolationLevel);
             // 继续执行
             var resultContext = await next();
             // 判断是否出现异常
             if (resultContext.Exception == null)
             {
-                Console.WriteLine("提交事务");
                 trans.Commit();
             }
             else
             {
-                Console.WriteLine("事务回滚");
                 trans.Rollback();
                 _logger.LogError(resultContext.Exception, "提交事务出错");
                 throw resultContext.Exception;

@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
-using QingShan;
 using QingShan.ConfigurableOptions;
+using QingShan.Core;
 using QingShan.Core.ConfigurableOptions;
 using QingShan.DependencyInjection;
-using System;
+using QingShan.Exceptions;
 using System.Linq;
 using System.Reflection;
 
@@ -33,7 +33,11 @@ namespace Microsoft.Extensions.DependencyInjection
             // 获取键名
             var jsonKey = JsonKey.GetOptionsJsonKey(optionsSettings, optionsType);
             // 配置选项（含验证信息）
-            var configurationRoot = QingShanApplication.Configuration;
+            var configurationRoot = App.Configuration;
+            if (configurationRoot == null)
+            {
+                throw new QingShanException("您需要在服务中添加`services.AddConfigurable(Configuration);`");
+            }
             var optionsConfiguration = configurationRoot.GetSection(key ?? jsonKey);
 
             services.AddOptions<TOptions>()
@@ -82,7 +86,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns></returns>
         public static IServiceCollection AddConfigurable(this IServiceCollection services, IConfiguration configuation)
         {
-            QingShanApplication.Configuration = configuation;
+            App.Configuration = configuation;
             return services;
         }
     }

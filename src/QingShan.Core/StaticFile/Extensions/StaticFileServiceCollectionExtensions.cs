@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using QingShan.Core;
 using QingShan.Core.StaticFile;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -12,8 +12,8 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns></returns>
         public static IServiceCollection AddStaticFile(this IServiceCollection service)
         {
-
-            var staticFileSettings  = QingShan.QingShanApplication.Configuration.GetDefultOptions<StaticFileSettingsOption>();
+            service.AddConfigurableOptions<StaticFileSettingsOption>();
+            var staticFileSettings  = App.GetDefultOptions<StaticFileSettingsOption>();
             if (staticFileSettings.UseDirectoryBrowser)
                 service.AddDirectoryBrowser();
             return service;

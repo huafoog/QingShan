@@ -1,18 +1,12 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 using QingShan.Core.StaticFile;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using QingShan.Utilities;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
-using Microsoft.AspNetCore.Hosting;
 
 namespace Microsoft.AspNetCore.Builder
 {
@@ -25,9 +19,7 @@ namespace Microsoft.AspNetCore.Builder
         /// <returns></returns>
         public static IApplicationBuilder UseStaticFile(this IApplicationBuilder app)
         {
-            var pro = app.ApplicationServices;
-            var staticFileSettings = pro.GetService<IOptions<StaticFileSettingsOption>>().Value;
-            //var env = pro.GetService<IWebHostEnvironment>();
+            var staticFileSettings = app.ApplicationServices.GetOptions<StaticFileSettingsOption>(); ;
             var path = AppDomain.CurrentDomain.BaseDirectory;
             if (staticFileSettings.StaticFileFolder?.Length > 0)
             {

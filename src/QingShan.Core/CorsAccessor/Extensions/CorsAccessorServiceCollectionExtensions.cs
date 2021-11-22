@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
-using QingShan.Core.ConfigurableOptions;
+using QingShan.Core;
 using QingShan.Core.CorsAccessor;
 using QingShan.DependencyInjection;
 using System;
@@ -21,7 +21,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             // 添加跨域配置选项
             // 获取选项
-            var corsAccessorSettings = QingShan.QingShanApplication.Configuration.GetDefultOptions<CorsAccessorSettingsOptions>();
+            var corsAccessorSettings = App.GetDefultOptions<CorsAccessorSettingsOptions>();
 
             // 添加跨域服务
             services.AddCors(options =>

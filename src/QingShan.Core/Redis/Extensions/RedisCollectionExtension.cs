@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using QingShan.Cache;
+using QingShan.Core;
 using QingShan.Core.ConfigurableOptions;
 using QingShan.Core.Redis;
 using QingShan.Core.Redis.Options;
@@ -22,7 +23,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns></returns>
         public static IServiceCollection AddCache(this IServiceCollection services)
         {
-            var cacheOption = QingShan.QingShanApplication.Configuration.GetDefultOptions<CacheOption>();
+            var cacheOption = App.GetDefultOptions<CacheOption>();
             if (cacheOption != null)
             {
                 if (cacheOption.CacheWay.IsNull())

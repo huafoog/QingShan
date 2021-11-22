@@ -65,7 +65,7 @@ namespace QingShan.Utilities
             fs.Close();
             return strRet;
         }
-
+         
         /// <summary>
         /// Base64字符串转换成文件
         /// <para>使用<see cref="IsBase64(string, out byte[])"/>验证是否是base64字符串</para>

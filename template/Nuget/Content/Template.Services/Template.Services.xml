@@ -4,5 +4,25 @@
         <name>Template.Services</name>
     </assembly>
     <members>
+        <member name="T:Template.Services.Demo.Dto.DemoInputDto">
+            <summary>
+            demo
+            </summary>
+        </member>
+        <member name="P:Template.Services.Demo.Dto.DemoInputDto.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="T:Template.Services.Demo.Dto.OutputDto.DemoOutputDto">
+            <summary>
+            Demo
+            </summary>
+        </member>
+        <member name="P:Template.Services.Demo.Dto.OutputDto.DemoOutputDto.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
     </members>
 </doc>

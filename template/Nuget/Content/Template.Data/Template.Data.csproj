@@ -2,9 +2,20 @@
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
+
 	<ItemGroup>
-		<PackageReference Include="QingShan.Core" Version="1.1.1" />
+	  <None Remove="Template.Data.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Template.Data.xml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="QingShan.Core" Version="1.2.1" />
 	</ItemGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DocumentationFile>.\Template.Data.xml</DocumentationFile>

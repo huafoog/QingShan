@@ -42,7 +42,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Services", "templa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Data", "template\Nuget\Content\Template.Data\Template.Data.csproj", "{289ED6F5-46AA-4E5F-ADB7-48D4DEDC7C37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Web", "template\Nuget\Content\Template.Web\Template.Web.csproj", "{B80D6A8B-39DA-41ED-96EA-1EF3648F2428}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Web", "template\Nuget\Content\Template.Web\Template.Web.csproj", "{B80D6A8B-39DA-41ED-96EA-1EF3648F2428}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

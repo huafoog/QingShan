@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Template.Services.Demo.Dto
+namespace Template.Services.Demo.Dto.OutputDto
 {
     /// <summary>
-    /// demo
+    /// Demo
     /// </summary>
-    public class DemoInputDto
+    public class DemoOutputDto
     {
         /// <summary>
         /// 名称
         /// </summary>
-		[Required(ErrorMessage ="请输入名称")]
-        public string Name { get; set; }
+		public string Name { get; set; }
     }
 }

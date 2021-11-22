@@ -6,13 +6,12 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using QingShan.Core;
 using QingShan.Core.JWT;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -38,7 +37,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
             // 获取配置选项
 
-            var jwtSettings = QingShan.QingShanApplication.Configuration.GetDefultOptions<JWTSettingsOptions>();
+            var jwtSettings = App.GetDefultOptions<JWTSettingsOptions>();
 
             // 添加授权
             authenticationBuilder.AddJwtBearer(options =>

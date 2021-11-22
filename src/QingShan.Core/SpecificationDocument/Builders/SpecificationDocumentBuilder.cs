@@ -152,7 +152,7 @@ namespace QingShan.Core.SpecificationDocument
         private static IEnumerable<string> ReadGroups()
         {
             // 获取所有的控制器和动作方法
-            var controllers = AppAssembly.CanBeScanTypes.Where(u => u.IsController());
+            var controllers = App.CanBeScanTypes.Where(u => u.IsController());
             var actions = controllers.SelectMany(c => c.GetMethods().Where(u => IsAction(u, c)));
 
             // 合并所有分组

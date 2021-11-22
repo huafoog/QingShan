@@ -24,22 +24,38 @@
             只需要登录权限的code
             </summary>
         </member>
+        <member name="P:QingShan.Core.App.Configuration">
+            <summary>
+            配置
+            <para>使用依赖注入时添加</para>
+            </summary>
+        </member>
         <member name="M:QingShan.Core.App.#cctor">
             <summary>
             静态构造函数，只在程序启动时执行一次。
             </summary>
+        </member>
+        <member name="M:QingShan.Core.App.GetDefultOptions``1(System.String)">
+            <summary>
+            直接获取选项配置
+            <para>该方式未通过依赖注入实现，无法使用热更新</para>
+            <para></para>
+            </summary>
+            <typeparam name="TOptions"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Core.App.GetAssemblies">
+            <summary>
+            获取项目程序集
+            </summary>
+            <returns>IEnumerable</returns>
         </member>
         <member name="M:QingShan.Core.App.GetLoggedInCode">
             <summary>
             获取登录后访问的权限
             </summary>
             <returns></returns>
-        </member>
-        <member name="M:QingShan.Core.App.GetAssemblies">
-            <summary>
-            获取应用有效程序集
-            </summary>
-            <returns>IEnumerable</returns>
         </member>
         <member name="T:QingShan.Core.Filter.InternalServerErrorObjectResult">
             <summary>
@@ -1406,6 +1422,16 @@
             </summary>
             <typeparam name="TOptions"></typeparam>
             <param name="configuation"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Configuration.ConfiguableOptionExtension.GetOptions``1(System.IServiceProvider,System.String)">
+            <summary>
+            获取选项配置--不支持： - 在应用启动后读取配置数据。
+            <para></para>
+            </summary>
+            <typeparam name="TOptions"></typeparam>
+            <param name="provider"></param>
             <param name="key"></param>
             <returns></returns>
         </member>

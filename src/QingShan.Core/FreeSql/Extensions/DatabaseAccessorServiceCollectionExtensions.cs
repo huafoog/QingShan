@@ -1,19 +1,12 @@
 ﻿using FreeSql;
-using FreeSql.DataAnnotations;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.Options;
 using QingShan.Core;
-using QingShan.Core.ConfigurableOptions;
 using QingShan.Core.FreeSql;
 using QingShan.Core.FreeSql.Options;
-using QingShan.Core.FreeSql.UnitOfWork.TransactionInterceptor;
 using QingShan.DatabaseAccessor;
 using QingShan.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -32,7 +25,7 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddDatabaseAccessor(this IServiceCollection services, Action<IServiceCollection> configure = null)
         {
             services.AddConfigurableOptions<DatabaseAccessorSettingsOptions>();
-            var dbConfig = QingShan.QingShanApplication.Configuration.GetDefultOptions<DatabaseAccessorSettingsOptions>();
+            var dbConfig = App.GetDefultOptions<DatabaseAccessorSettingsOptions>();
 
             var connectionString = $"Data Source={dbConfig.Host};Port={dbConfig.Port};{$"User ID={dbConfig.User};".IF(dbConfig.User.NotNull())}{$"Password={dbConfig.Password};".IF(dbConfig.Password.NotNull())} Initial Catalog={dbConfig.Database};{dbConfig.Extension}";
             var freeSqlBuilder = new FreeSqlBuilder()

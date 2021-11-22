@@ -76,619 +76,6 @@
             <param name="key">缓存键</param>
             <returns></returns>
         </member>
-        <member name="T:QingShan.DatabaseAccessor.DataState">
-            <summary>
-            数据状态
-            </summary>
-        </member>
-        <member name="F:QingShan.DatabaseAccessor.DataState.Normal">
-            <summary>
-            正常
-            </summary>
-        </member>
-        <member name="F:QingShan.DatabaseAccessor.DataState.Abnormal">
-            <summary>
-            异常
-            </summary>
-        </member>
-        <member name="F:QingShan.DatabaseAccessor.DataState.Delete">
-            <summary>
-            删除
-            </summary>
-        </member>
-        <member name="T:QingShan.DatabaseAccessor.EntityBaseById`1">
-            <summary>
-            实体类基类
-            <para>只包含<see cref="T:QingShan.DatabaseAccessor.IEntity`1"/>接口类</para>
-            </summary>
-        </member>
-        <member name="P:QingShan.DatabaseAccessor.EntityBaseById`1.Id">
-            <summary>
-            获取或设置 编号
-            </summary>
-        </member>
-        <member name="T:QingShan.DatabaseAccessor.EntityBase`1">
-            <summary>
-            实体基类
-            <para>包含<see cref="T:QingShan.DatabaseAccessor.IEntity`1"/>|<see cref="T:QingShan.DatabaseAccessor.ICreatedTime"/>|<see cref="T:QingShan.DatabaseAccessor.IDataState"/>接口类</para>
-            </summary>
-            <typeparam name="TKey"></typeparam>
-        </member>
-        <member name="P:QingShan.DatabaseAccessor.EntityBase`1.Id">
-            <summary>
-            获取或设置 编号
-            </summary>
-        </member>
-        <member name="P:QingShan.DatabaseAccessor.EntityBase`1.CreateTime">
-            <summary>
-            获取或设置 创建时间
-            </summary>
-        </member>
-        <member name="P:QingShan.DatabaseAccessor.EntityBase`1.DeleteTime">
-            <summary>
-            获取或设置 数据状态
-            </summary>
-        </member>
-        <member name="P:QingShan.DatabaseAccessor.EntityBase`1.CreatedId">
-            <summary>
-            创建人id
-            </summary>
-        </member>
-        <member name="P:QingShan.DatabaseAccessor.ICreatedId`1.CreatedId">
-            <summary>
-            创建人
-            </summary>
-        </member>
-        <member name="T:QingShan.DatabaseAccessor.ICreatedTime">
-            <summary>
-            创建时间
-            </summary>
-        </member>
-        <member name="P:QingShan.DatabaseAccessor.ICreatedTime.CreateTime">
-            <summary>
-            获取或设置 创建时间
-            </summary>
-        </member>
-        <member name="T:QingShan.DatabaseAccessor.ICreationAudited`1">
-            <summary>
-            定义创建审计信息
-            </summary>
-        </member>
-        <member name="P:QingShan.DatabaseAccessor.ICreationAudited`1.CreatorId">
-            <summary>
-            获取或设置 创建者编号
-            </summary>
-        </member>
-        <member name="T:QingShan.DatabaseAccessor.IDataState">
-            <summary>
-            数据状态
-            </summary>
-        </member>
-        <member name="P:QingShan.DatabaseAccessor.IDataState.DataState">
-            <summary>
-            数据状态
-            </summary>
-        </member>
-        <member name="T:QingShan.DatabaseAccessor.IEntity`1">
-            <summary>
-            实体基类
-            </summary>
-            <typeparam name="TKey">主键id</typeparam>
-        </member>
-        <member name="P:QingShan.DatabaseAccessor.IEntity`1.Id">
-            <summary>
-            获取或设置 编号
-            </summary>
-        </member>
-        <member name="T:QingShan.DatabaseAccessor.IEntityNotKey">
-            <summary>
-            无键实体基接口
-            </summary>
-        </member>
-        <member name="P:QingShan.DatabaseAccessor.IEntityNotKey.DEFINED_NAME">
-            <summary>
-            数据库中定义名
-            </summary>
-        </member>
-        <member name="T:QingShan.DatabaseAccessor.IExpirable">
-            <summary>
-            定义可过期性，包含生效时间和过期时间
-            </summary>
-        </member>
-        <member name="P:QingShan.DatabaseAccessor.IExpirable.BeginTime">
-            <summary>
-            获取或设置 生效时间
-            </summary>
-        </member>
-        <member name="P:QingShan.DatabaseAccessor.IExpirable.EndTime">
-            <summary>
-            获取或设置 过期时间
-            </summary>
-        </member>
-        <member name="T:QingShan.DatabaseAccessor.ILockable">
-            <summary>
-            定义可锁定功能
-            </summary>
-        </member>
-        <member name="P:QingShan.DatabaseAccessor.ILockable.IsLocked">
-            <summary>
-            获取或设置 是否锁定当前信息
-            </summary>
-        </member>
-        <member name="T:QingShan.DatabaseAccessor.ISoftDeletable">
-            <summary>
-            逻辑删除
-            </summary>
-        </member>
-        <member name="P:QingShan.DatabaseAccessor.ISoftDeletable.DeleteTime">
-            <summary>
-            删除时间
-            </summary>
-        </member>
-        <member name="T:QingShan.DatabaseAccessor.IUpdateAudited`1">
-            <summary>
-            定义更新审计的信息
-            </summary>
-        </member>
-        <member name="P:QingShan.DatabaseAccessor.IUpdateAudited`1.LastUpdaterId">
-            <summary>
-            获取或设置 更新者编号
-            </summary>
-        </member>
-        <member name="P:QingShan.DatabaseAccessor.IUpdateAudited`1.LastUpdatedTime">
-            <summary>
-            获取或设置 最后更新时间
-            </summary>
-        </member>
-        <member name="T:QingShan.DatabaseAccessor.DatabaseType">
-            <summary>
-            数据库类型
-            </summary>
-        </member>
-        <member name="F:QingShan.DatabaseAccessor.DatabaseType.SqlServer">
-            <summary>
-            SqlServer数据库类型
-            </summary>
-        </member>
-        <member name="F:QingShan.DatabaseAccessor.DatabaseType.Sqlite">
-            <summary>
-            Sqlite数据库类型
-            </summary>
-        </member>
-        <member name="F:QingShan.DatabaseAccessor.DatabaseType.MySql">
-            <summary>
-            MySql数据库类型
-            </summary>
-        </member>
-        <member name="F:QingShan.DatabaseAccessor.DatabaseType.PostgreSql">
-            <summary>
-            PostgreSql数据库类型
-            </summary>
-        </member>
-        <member name="F:QingShan.DatabaseAccessor.DatabaseType.Oracle">
-            <summary>
-            Oracle数据库类型
-            </summary>
-        </member>
-        <member name="T:QingShan.DatabaseAccessor.DbFunctionType">
-            <summary>
-            数据库函数类型
-            </summary>
-        </member>
-        <member name="F:QingShan.DatabaseAccessor.DbFunctionType.Scalar">
-            <summary>
-            标量函数
-            </summary>
-        </member>
-        <member name="F:QingShan.DatabaseAccessor.DbFunctionType.Table">
-            <summary>
-            表值函数
-            </summary>
-        </member>
-        <member name="T:QingShan.Core.Core.DatabaseAccessor.Enums.SortType">
-            <summary>
-            排序类型
-            </summary>
-        </member>
-        <member name="F:QingShan.Core.Core.DatabaseAccessor.Enums.SortType.ASC">
-            <summary>
-            升序
-            </summary>
-        </member>
-        <member name="F:QingShan.Core.Core.DatabaseAccessor.Enums.SortType.DESC">
-            <summary>
-            降序
-            </summary>
-        </member>
-        <member name="T:QingShan.Entity.IInputDto`1">
-            <summary>
-            定义输入DTO
-            </summary>
-            <typeparam name="TKey"></typeparam>
-        </member>
-        <member name="P:QingShan.Entity.IInputDto`1.Id">
-            <summary>
-            获取或设置 主键，唯一标识
-            </summary>
-        </member>
-        <member name="T:QingShan.Entity.IOutputDto">
-            <summary>
-            定义输出DTO
-            </summary>
-        </member>
-        <member name="T:QingShan.Entity.IDataAuthEnabled">
-            <summary>
-            定义数据权限的更新，删除状态
-            </summary>
-        </member>
-        <member name="P:QingShan.Entity.IDataAuthEnabled.Updatable">
-            <summary>
-            获取或设置 是否可更新的数据权限状态
-            </summary>
-        </member>
-        <member name="P:QingShan.Entity.IDataAuthEnabled.Deletable">
-            <summary>
-            获取或设置 是否可删除的数据权限状态
-            </summary>
-        </member>
-        <member name="T:QingShan.Permission.IUserInfo">
-            <summary>
-            用户信息接口服务
-            </summary>
-        </member>
-        <member name="P:QingShan.Permission.IUserInfo.Id">
-            <summary>
-            主键
-            </summary>
-        </member>
-        <member name="P:QingShan.Permission.IUserInfo.Name">
-            <summary>
-            用户名
-            </summary>
-        </member>
-        <member name="P:QingShan.Permission.IUserInfo.NickName">
-            <summary>
-            昵称
-            </summary>
-        </member>
-        <member name="T:QingShan.Data.CommonIdInputDto">
-            <summary>
-            公共查询 Id
-            </summary>
-        </member>
-        <member name="T:QingShan.Data.Constants.ClaimConst">
-            <summary>
-            用户标识常量
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.Constants.ClaimConst.USERID">
-            <summary>
-            用户id
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.Constants.ClaimConst.USERNAME">
-            <summary>
-            用户名
-            <para>登录账号</para>
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.Constants.ClaimConst.USERNICKNAME">
-            <summary>
-            用户昵称
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.Constants.ClaimConst.QINGSHANUSERISSUPER">
-            <summary>
-            是否超级管理员
-            </summary>
-        </member>
-        <member name="T:QingShan.Data.Constants.RateLimitConst">
-            <summary>
-            限流常量
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.Constants.RateLimitConst.UserBehaviorCache">
-             <summary>
-             用户行为缓存
-            <para> <see cref="M:System.String.Format(System.String,System.Object)"/></para>
-             <para>string.Format(RateLimitConst.UserBehaviorCache,id)</para>
-             </summary>
-        </member>
-        <member name="T:QingShan.Data.Constants.SystemConst">
-            <summary>
-            系统常量
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.Constants.SystemConst.SYS_FILE_FOLDER_ROOT">
-            <summary>
-            系统文件根节点
-            </summary>
-        </member>
-        <member name="T:QingShan.Data.Enums.FunctionAccessType">
-            <summary>
-            功能访问类型
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.Enums.FunctionAccessType.Anonymous">
-            <summary>
-            匿名用户可访问
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.Enums.FunctionAccessType.LoggedIn">
-            <summary>
-            登录用户可访问
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.Enums.FunctionAccessType.RoleLimit">
-            <summary>
-            指定角色可访问
-            </summary>
-        </member>
-        <member name="T:QingShan.Data.Enums.ModuleLevel">
-            <summary>
-            模块节点
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.Enums.ModuleLevel.Module">
-            <summary>
-            模块
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.Enums.ModuleLevel.Menu">
-            <summary>
-            菜单
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.Enums.ModuleLevel.Function">
-            <summary>
-            方法
-            </summary>
-        </member>
-        <member name="T:QingShan.Data.Enums.StatusCodes">
-            <summary>
-            状态码枚举
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.Enums.StatusCodes.Status0NotOk">
-            <summary>
-            操作失败
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.Enums.StatusCodes.Status1Ok">
-            <summary>
-            操作成功
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.Enums.StatusCodes.Status401Unauthorized">
-            <summary>
-            未登录（需要重新登录）
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.Enums.StatusCodes.Status403Forbidden">
-            <summary>
-            权限不足
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.Enums.StatusCodes.Status404NotFound">
-            <summary>
-            资源不存在
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.Enums.StatusCodes.Status500InternalServerError">
-            <summary>
-            系统内部错误（非业务代码里显式抛出的异常，例如由于数据不正确导致空指针异常、数据库异常等等）
-            </summary>
-        </member>
-        <member name="T:QingShan.Data.IResponseOutput">
-            <summary>
-            响应数据输出接口
-            </summary>
-        </member>
-        <member name="T:QingShan.Data.IResponseOutput`1">
-            <summary>
-            响应数据输出泛型接口
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="P:QingShan.Data.IResponseOutput`1.ResultType">
-            <summary>
-            结果状态
-            </summary>
-        </member>
-        <member name="P:QingShan.Data.IResponseOutput`1.Data">
-            <summary>
-            返回数据
-            </summary>
-        </member>
-        <member name="P:QingShan.Data.IResponseOutput`1.IsSuccess">
-            <summary>
-            是否成功
-            </summary>
-        </member>
-        <member name="P:QingShan.Data.IResponseOutput`1.Message">
-            <summary>
-            消息
-            </summary>
-        </member>
-        <member name="T:QingShan.Data.PageInputDto">
-            <summary>
-            分页输入参数
-            </summary>
-        </member>
-        <member name="P:QingShan.Data.PageInputDto.Search">
-            <summary>
-            关键字
-            </summary>
-        </member>
-        <member name="P:QingShan.Data.PageBaseInputDto.PageNo">
-            <summary>
-            当前页标
-            </summary>
-        </member>
-        <member name="P:QingShan.Data.PageBaseInputDto.PageSize">
-            <summary>
-            每页大小
-            </summary>
-        </member>
-        <member name="T:QingShan.Data.PageOutputDto`1">
-            <summary>
-            分页信息输出
-            </summary>
-        </member>
-        <member name="P:QingShan.Data.PageOutputDto`1.TotalCount">
-            <summary>
-            数据总数
-            </summary>
-        </member>
-        <member name="P:QingShan.Data.PageOutputDto`1.Data">
-            <summary>
-            数据
-            </summary>
-        </member>
-        <member name="T:QingShan.Data.StatusResult">
-            <summary>
-            业务操作信息信息类
-            </summary>
-        </member>
-        <member name="M:QingShan.Data.StatusResult.#ctor(System.Boolean,System.String)">
-            <summary>
-            失败时显示的消息
-            </summary>
-            <param name="isFail">是否失败</param>
-            <param name="message">失败显示的消息</param>
-        </member>
-        <member name="M:QingShan.Data.StatusResult.#ctor(System.String)">
-            <summary>
-            设置错误消息
-            </summary>
-            <param name="message"></param>
-        </member>
-        <member name="P:QingShan.Data.StatusResult`1.ResultType">
-            <summary>
-            获取或设置 结果类型
-            </summary>
-        </member>
-        <member name="P:QingShan.Data.StatusResult`1.Message">
-            <summary>
-            获取或设置 返回消息
-            </summary>
-        </member>
-        <member name="P:QingShan.Data.StatusResult`1.IsSuccess">
-            <summary>
-            是否成功    
-            </summary>
-        </member>
-        <member name="P:QingShan.Data.StatusResult`1.Data">
-            <summary>
-            获取或设置 结果数据
-            </summary>
-        </member>
-        <member name="M:QingShan.Data.StatusResult`1.SetErrorMessage(System.String)">
-            <summary>
-            设置错误消息
-            </summary>
-            <param name="message"></param>
-        </member>
-        <member name="M:QingShan.Data.StatusResult`1.SetSuccessMessage(System.String)">
-            <summary>
-            设置成功消息
-            </summary>
-            <param name="message"></param>
-        </member>
-        <member name="M:QingShan.Data.StatusResult`1.SetWarningMessage(System.String)">
-            <summary>
-            设置警告消息
-            </summary>
-            <param name="message"></param>
-        </member>
-        <member name="T:QingShan.Data.StatusResultType">
-            <summary>
-            表示业务操作结果的枚举
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.StatusResultType.Success">
-            <summary>
-              操作成功
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.StatusResultType.Error">
-            <summary>
-              操作引发错误
-            </summary>
-        </member>
-        <member name="F:QingShan.Data.StatusResultType.Warnning">
-            <summary>
-            警告
-            </summary>
-        </member>
-        <member name="T:QingShan.Exceptions.QingShanException">
-            <summary>
-            框架异常类
-            </summary>
-        </member>
-        <member name="M:QingShan.Exceptions.QingShanException.#ctor">
-            <summary>
-            初始化<see cref="T:QingShan.Exceptions.QingShanException"/>类的新实例
-            </summary>
-        </member>
-        <member name="M:QingShan.Exceptions.QingShanException.#ctor(System.String)">
-            <summary>
-            使用指定错误消息初始化<see cref="T:QingShan.Exceptions.QingShanException"/>类的新实例。
-            </summary>
-            <param name="message">描述错误的消息</param>
-        </member>
-        <member name="M:QingShan.Exceptions.QingShanException.#ctor(System.String,System.Exception)">
-            <summary>
-            使用异常消息与一个内部异常实例化一个<see cref="T:QingShan.Exceptions.QingShanException"/>类的新实例
-            </summary>
-            <param name="message">异常消息</param>
-            <param name="inner">用于封装在<see cref="T:QingShan.Exceptions.QingShanException"/>内部的异常实例</param>
-        </member>
-        <member name="M:QingShan.Exceptions.QingShanException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            使用可序列化数据实例化一个<see cref="T:QingShan.Exceptions.QingShanException"/>类的新实例
-            </summary>
-            <param name="info">保存序列化对象数据的对象。</param>
-            <param name="context">有关源或目标的上下文信息。</param>
-        </member>
-        <member name="P:QingShan.QingShanApplication.Configuration">
-            <summary>
-            配置
-            <para>使用依赖注入时自动注入</para>
-            </summary>
-        </member>
-        <member name="M:QingShan.Snowflake.#ctor(System.Int64)">
-            <summary>
-            机器码
-            <para>单机下<see cref="T:QingShan.Snowflake"/>应该以单实例模式运行，否则会出现重复Id。</para>
-            </summary>
-            <param name="workerId">当前机器码</param>
-        </member>
-        <member name="M:QingShan.Snowflake.GenId">
-            <summary>
-            雪花算法生成一个ID -- 单机下使用
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Snowflake.nextId">
-            <summary>
-            雪花算法生成一个ID
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Snowflake.tillNextMillis(System.Int64)">
-            <summary>
-            获取下一微秒时间戳
-            </summary>
-            <param name="lastTimestamp"></param>
-            <returns></returns>
-        </member>
-        <member name="M:QingShan.Snowflake.timeGen">
-            <summary>
-            生成当前时间戳
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:QingShan.Utilities.Base64Convert">
             <summary>
             Base64转换
@@ -2069,6 +1456,613 @@
             </summary>
             <param name="data">要验证的对象</param>
         </member>
+        <member name="T:QingShan.DatabaseAccessor.DataState">
+            <summary>
+            数据状态
+            </summary>
+        </member>
+        <member name="F:QingShan.DatabaseAccessor.DataState.Normal">
+            <summary>
+            正常
+            </summary>
+        </member>
+        <member name="F:QingShan.DatabaseAccessor.DataState.Abnormal">
+            <summary>
+            异常
+            </summary>
+        </member>
+        <member name="F:QingShan.DatabaseAccessor.DataState.Delete">
+            <summary>
+            删除
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.EntityBaseById`1">
+            <summary>
+            实体类基类
+            <para>只包含<see cref="T:QingShan.DatabaseAccessor.IEntity`1"/>接口类</para>
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.EntityBaseById`1.Id">
+            <summary>
+            获取或设置 编号
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.EntityBase`1">
+            <summary>
+            实体基类
+            <para>包含<see cref="T:QingShan.DatabaseAccessor.IEntity`1"/>|<see cref="T:QingShan.DatabaseAccessor.ICreatedTime"/>|<see cref="T:QingShan.DatabaseAccessor.IDataState"/>接口类</para>
+            </summary>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.EntityBase`1.Id">
+            <summary>
+            获取或设置 编号
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.EntityBase`1.CreateTime">
+            <summary>
+            获取或设置 创建时间
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.EntityBase`1.DeleteTime">
+            <summary>
+            获取或设置 数据状态
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.EntityBase`1.CreatedId">
+            <summary>
+            创建人id
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.ICreatedId`1.CreatedId">
+            <summary>
+            创建人
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.ICreatedTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.ICreatedTime.CreateTime">
+            <summary>
+            获取或设置 创建时间
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.ICreationAudited`1">
+            <summary>
+            定义创建审计信息
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.ICreationAudited`1.CreatorId">
+            <summary>
+            获取或设置 创建者编号
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.IDataState">
+            <summary>
+            数据状态
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.IDataState.DataState">
+            <summary>
+            数据状态
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.IEntity`1">
+            <summary>
+            实体基类
+            </summary>
+            <typeparam name="TKey">主键id</typeparam>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.IEntity`1.Id">
+            <summary>
+            获取或设置 编号
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.IEntityNotKey">
+            <summary>
+            无键实体基接口
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.IEntityNotKey.DEFINED_NAME">
+            <summary>
+            数据库中定义名
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.IExpirable">
+            <summary>
+            定义可过期性，包含生效时间和过期时间
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.IExpirable.BeginTime">
+            <summary>
+            获取或设置 生效时间
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.IExpirable.EndTime">
+            <summary>
+            获取或设置 过期时间
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.ILockable">
+            <summary>
+            定义可锁定功能
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.ILockable.IsLocked">
+            <summary>
+            获取或设置 是否锁定当前信息
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.ISoftDeletable">
+            <summary>
+            逻辑删除
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.ISoftDeletable.DeleteTime">
+            <summary>
+            删除时间
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.IUpdateAudited`1">
+            <summary>
+            定义更新审计的信息
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.IUpdateAudited`1.LastUpdaterId">
+            <summary>
+            获取或设置 更新者编号
+            </summary>
+        </member>
+        <member name="P:QingShan.DatabaseAccessor.IUpdateAudited`1.LastUpdatedTime">
+            <summary>
+            获取或设置 最后更新时间
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.DatabaseType">
+            <summary>
+            数据库类型
+            </summary>
+        </member>
+        <member name="F:QingShan.DatabaseAccessor.DatabaseType.SqlServer">
+            <summary>
+            SqlServer数据库类型
+            </summary>
+        </member>
+        <member name="F:QingShan.DatabaseAccessor.DatabaseType.Sqlite">
+            <summary>
+            Sqlite数据库类型
+            </summary>
+        </member>
+        <member name="F:QingShan.DatabaseAccessor.DatabaseType.MySql">
+            <summary>
+            MySql数据库类型
+            </summary>
+        </member>
+        <member name="F:QingShan.DatabaseAccessor.DatabaseType.PostgreSql">
+            <summary>
+            PostgreSql数据库类型
+            </summary>
+        </member>
+        <member name="F:QingShan.DatabaseAccessor.DatabaseType.Oracle">
+            <summary>
+            Oracle数据库类型
+            </summary>
+        </member>
+        <member name="T:QingShan.DatabaseAccessor.DbFunctionType">
+            <summary>
+            数据库函数类型
+            </summary>
+        </member>
+        <member name="F:QingShan.DatabaseAccessor.DbFunctionType.Scalar">
+            <summary>
+            标量函数
+            </summary>
+        </member>
+        <member name="F:QingShan.DatabaseAccessor.DbFunctionType.Table">
+            <summary>
+            表值函数
+            </summary>
+        </member>
+        <member name="T:QingShan.Core.Core.DatabaseAccessor.Enums.SortType">
+            <summary>
+            排序类型
+            </summary>
+        </member>
+        <member name="F:QingShan.Core.Core.DatabaseAccessor.Enums.SortType.ASC">
+            <summary>
+            升序
+            </summary>
+        </member>
+        <member name="F:QingShan.Core.Core.DatabaseAccessor.Enums.SortType.DESC">
+            <summary>
+            降序
+            </summary>
+        </member>
+        <member name="T:QingShan.Entity.IInputDto`1">
+            <summary>
+            定义输入DTO
+            </summary>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="P:QingShan.Entity.IInputDto`1.Id">
+            <summary>
+            获取或设置 主键，唯一标识
+            </summary>
+        </member>
+        <member name="T:QingShan.Entity.IOutputDto">
+            <summary>
+            定义输出DTO
+            </summary>
+        </member>
+        <member name="T:QingShan.Entity.IDataAuthEnabled">
+            <summary>
+            定义数据权限的更新，删除状态
+            </summary>
+        </member>
+        <member name="P:QingShan.Entity.IDataAuthEnabled.Updatable">
+            <summary>
+            获取或设置 是否可更新的数据权限状态
+            </summary>
+        </member>
+        <member name="P:QingShan.Entity.IDataAuthEnabled.Deletable">
+            <summary>
+            获取或设置 是否可删除的数据权限状态
+            </summary>
+        </member>
+        <member name="T:QingShan.Permission.IUserInfo">
+            <summary>
+            用户信息接口服务
+            </summary>
+        </member>
+        <member name="P:QingShan.Permission.IUserInfo.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:QingShan.Permission.IUserInfo.Name">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:QingShan.Permission.IUserInfo.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.CommonIdInputDto">
+            <summary>
+            公共查询 Id
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.Constants.ClaimConst">
+            <summary>
+            用户标识常量
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Constants.ClaimConst.USERID">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Constants.ClaimConst.USERNAME">
+            <summary>
+            用户名
+            <para>登录账号</para>
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Constants.ClaimConst.USERNICKNAME">
+            <summary>
+            用户昵称
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Constants.ClaimConst.QINGSHANUSERISSUPER">
+            <summary>
+            是否超级管理员
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.Constants.RateLimitConst">
+            <summary>
+            限流常量
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Constants.RateLimitConst.UserBehaviorCache">
+             <summary>
+             用户行为缓存
+            <para> <see cref="M:System.String.Format(System.String,System.Object)"/></para>
+             <para>string.Format(RateLimitConst.UserBehaviorCache,id)</para>
+             </summary>
+        </member>
+        <member name="T:QingShan.Data.Constants.SystemConst">
+            <summary>
+            系统常量
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Constants.SystemConst.SYS_FILE_FOLDER_ROOT">
+            <summary>
+            系统文件根节点
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.Enums.FunctionAccessType">
+            <summary>
+            功能访问类型
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.FunctionAccessType.Anonymous">
+            <summary>
+            匿名用户可访问
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.FunctionAccessType.LoggedIn">
+            <summary>
+            登录用户可访问
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.FunctionAccessType.RoleLimit">
+            <summary>
+            指定角色可访问
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.Enums.ModuleLevel">
+            <summary>
+            模块节点
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.ModuleLevel.Module">
+            <summary>
+            模块
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.ModuleLevel.Menu">
+            <summary>
+            菜单
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.ModuleLevel.Function">
+            <summary>
+            方法
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.Enums.StatusCodes">
+            <summary>
+            状态码枚举
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.StatusCodes.Status0NotOk">
+            <summary>
+            操作失败
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.StatusCodes.Status1Ok">
+            <summary>
+            操作成功
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.StatusCodes.Status401Unauthorized">
+            <summary>
+            未登录（需要重新登录）
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.StatusCodes.Status403Forbidden">
+            <summary>
+            权限不足
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.StatusCodes.Status404NotFound">
+            <summary>
+            资源不存在
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.Enums.StatusCodes.Status500InternalServerError">
+            <summary>
+            系统内部错误（非业务代码里显式抛出的异常，例如由于数据不正确导致空指针异常、数据库异常等等）
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.IResponseOutput">
+            <summary>
+            响应数据输出接口
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.IResponseOutput`1">
+            <summary>
+            响应数据输出泛型接口
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:QingShan.Data.IResponseOutput`1.ResultType">
+            <summary>
+            结果状态
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.IResponseOutput`1.Data">
+            <summary>
+            返回数据
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.IResponseOutput`1.IsSuccess">
+            <summary>
+            是否成功
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.IResponseOutput`1.Message">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.PageInputDto">
+            <summary>
+            分页输入参数
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.PageInputDto.Search">
+            <summary>
+            关键字
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.PageBaseInputDto.PageNo">
+            <summary>
+            当前页标
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.PageBaseInputDto.PageSize">
+            <summary>
+            每页大小
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.PageOutputDto`1">
+            <summary>
+            分页信息输出
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.PageOutputDto`1.TotalCount">
+            <summary>
+            数据总数
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.PageOutputDto`1.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="T:QingShan.Data.StatusResult">
+            <summary>
+            业务操作信息信息类
+            </summary>
+        </member>
+        <member name="M:QingShan.Data.StatusResult.#ctor(System.Boolean,System.String)">
+            <summary>
+            失败时显示的消息
+            </summary>
+            <param name="isFail">是否失败</param>
+            <param name="message">失败显示的消息</param>
+        </member>
+        <member name="M:QingShan.Data.StatusResult.#ctor(System.String)">
+            <summary>
+            设置错误消息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="P:QingShan.Data.StatusResult`1.ResultType">
+            <summary>
+            获取或设置 结果类型
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.StatusResult`1.Message">
+            <summary>
+            获取或设置 返回消息
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.StatusResult`1.IsSuccess">
+            <summary>
+            是否成功    
+            </summary>
+        </member>
+        <member name="P:QingShan.Data.StatusResult`1.Data">
+            <summary>
+            获取或设置 结果数据
+            </summary>
+        </member>
+        <member name="M:QingShan.Data.StatusResult`1.SetErrorMessage(System.String)">
+            <summary>
+            设置错误消息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:QingShan.Data.StatusResult`1.SetSuccessMessage(System.String)">
+            <summary>
+            设置成功消息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:QingShan.Data.StatusResult`1.SetWarningMessage(System.String)">
+            <summary>
+            设置警告消息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:QingShan.Data.StatusResultType">
+            <summary>
+            表示业务操作结果的枚举
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.StatusResultType.Success">
+            <summary>
+              操作成功
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.StatusResultType.Error">
+            <summary>
+              操作引发错误
+            </summary>
+        </member>
+        <member name="F:QingShan.Data.StatusResultType.Warnning">
+            <summary>
+            警告
+            </summary>
+        </member>
+        <member name="T:QingShan.Exceptions.QingShanException">
+            <summary>
+            框架异常类
+            </summary>
+        </member>
+        <member name="M:QingShan.Exceptions.QingShanException.#ctor">
+            <summary>
+            初始化<see cref="T:QingShan.Exceptions.QingShanException"/>类的新实例
+            </summary>
+        </member>
+        <member name="M:QingShan.Exceptions.QingShanException.#ctor(System.String)">
+            <summary>
+            使用指定错误消息初始化<see cref="T:QingShan.Exceptions.QingShanException"/>类的新实例。
+            </summary>
+            <param name="message">描述错误的消息</param>
+        </member>
+        <member name="M:QingShan.Exceptions.QingShanException.#ctor(System.String,System.Exception)">
+            <summary>
+            使用异常消息与一个内部异常实例化一个<see cref="T:QingShan.Exceptions.QingShanException"/>类的新实例
+            </summary>
+            <param name="message">异常消息</param>
+            <param name="inner">用于封装在<see cref="T:QingShan.Exceptions.QingShanException"/>内部的异常实例</param>
+        </member>
+        <member name="M:QingShan.Exceptions.QingShanException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            使用可序列化数据实例化一个<see cref="T:QingShan.Exceptions.QingShanException"/>类的新实例
+            </summary>
+            <param name="info">保存序列化对象数据的对象。</param>
+            <param name="context">有关源或目标的上下文信息。</param>
+        </member>
+        <member name="M:QingShan.Snowflake.#ctor(System.Int64)">
+            <summary>
+            机器码
+            <para>单机下<see cref="T:QingShan.Snowflake"/>应该以单实例模式运行，否则会出现重复Id。</para>
+            </summary>
+            <param name="workerId">当前机器码</param>
+        </member>
+        <member name="M:QingShan.Snowflake.GenId">
+            <summary>
+            雪花算法生成一个ID -- 单机下使用
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Snowflake.nextId">
+            <summary>
+            雪花算法生成一个ID
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Snowflake.tillNextMillis(System.Int64)">
+            <summary>
+            获取下一微秒时间戳
+            </summary>
+            <param name="lastTimestamp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:QingShan.Snowflake.timeGen">
+            <summary>
+            生成当前时间戳
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:QingShan.Encryption.MD5Encrypt">
             <summary>
             MD5加密
@@ -2094,57 +2088,6 @@
             </summary>
             <param name="password"></param>
             <returns></returns>
-        </member>
-        <member name="T:QingShan.AppAssembly">
-            <summary>
-            站点程序集
-            </summary>
-        </member>
-        <member name="F:QingShan.AppAssembly.Assemblies">
-            <summary>
-            应用有效程序集
-            </summary>
-        </member>
-        <member name="F:QingShan.AppAssembly.CanBeScanTypes">
-            <summary>
-            能够被扫描的类型
-            </summary>
-        </member>
-        <member name="M:QingShan.AppAssembly.#cctor">
-            <summary>
-            静态构造函数，只在程序启动时执行一次。
-            </summary>
-        </member>
-        <member name="M:QingShan.AppAssembly.GetAssemblies">
-            <summary>
-            获取应用有效程序集
-            </summary>
-            <returns>IEnumerable</returns>
-        </member>
-        <member name="T:QingShan.Reflection.ReflectionHelper">
-            <summary>
-            反射帮助类
-            </summary>
-        </member>
-        <member name="M:QingShan.Reflection.ReflectionHelper.GetClassInterfacePairs(System.String)">
-            <summary>
-            获取类以及类实现的接口键值对
-            </summary>
-            <param name="assemblyName">程序集名称</param>
-            <returns>类以及类实现的接口键值对</returns>
-        </member>
-        <member name="M:QingShan.Reflection.ReflectionHelper.GetAssembly(System.String)">
-            <summary>
-            获取指定的程序集
-            </summary>
-            <param name="assemblyName">程序集名称</param>
-            <returns>程序集</returns>
-        </member>
-        <member name="M:QingShan.Reflection.ReflectionHelper.GetAllAssemblies">
-            <summary>
-            获取所有的程序集
-            </summary>
-            <returns>程序集集合</returns>
         </member>
         <member name="T:QingShan.Regular.RegexHelper">
             <summary>

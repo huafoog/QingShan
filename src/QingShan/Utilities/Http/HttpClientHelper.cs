@@ -1,11 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace QingShan.Utilities
@@ -172,7 +172,7 @@ namespace QingShan.Utilities
                     System.IO.StreamReader reader = new System.IO.StreamReader(dataStream);
                     string s = reader.ReadToEnd();
 
-                    result = JsonConvert.DeserializeObject<T>(s);
+                    result = JsonSerializer.Deserialize<T>(s);
 
                 }
                 //}
@@ -299,7 +299,7 @@ namespace QingShan.Utilities
                 httpClient.DefaultRequestHeaders.Add("user-agent", userAgen);
                 httpClient.CancelPendingRequests();
                 httpClient.DefaultRequestHeaders.Clear();
-                string postData = JsonConvert.SerializeObject(obj);
+                string postData = JsonSerializer.Serialize(obj);
                 HttpContent httpContent = new StringContent(postData);
                 httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                 Task<HttpResponseMessage> taskResponse = httpClient.PostAsync(url, httpContent);
@@ -380,7 +380,7 @@ namespace QingShan.Utilities
                     System.IO.Stream dataStream = taskStream.Result;
                     System.IO.StreamReader reader = new System.IO.StreamReader(dataStream);
                     string s = reader.ReadToEnd();
-                    result = JsonConvert.DeserializeObject<T>(s);
+                    result = JsonSerializer.Deserialize<T>(s);
                 }
                 //}
                 return result;
@@ -424,7 +424,7 @@ namespace QingShan.Utilities
                 httpClient.DefaultRequestHeaders.Add("user-agent", userAgen);
                 httpClient.CancelPendingRequests();
                 httpClient.DefaultRequestHeaders.Clear();
-                string postData = JsonConvert.SerializeObject(obj);
+                string postData = JsonSerializer.Serialize(obj);
                 HttpContent httpContent = new StringContent(postData);
 
                 httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
@@ -443,7 +443,7 @@ namespace QingShan.Utilities
                     System.IO.StreamReader reader = new System.IO.StreamReader(dataStream);
                     string s = reader.ReadToEnd();
 
-                    result = JsonConvert.DeserializeObject<T>(s);
+                    result = JsonSerializer.Deserialize<T>(s);
                 }
                 //}
                 return result;
@@ -486,7 +486,7 @@ namespace QingShan.Utilities
                 httpClient.DefaultRequestHeaders.Add("user-agent", userAgen);
                 httpClient.CancelPendingRequests();
                 httpClient.DefaultRequestHeaders.Clear();
-                string postData = JsonConvert.SerializeObject(obj);
+                string postData = JsonSerializer.Serialize(obj);
                 HttpContent httpContent = new StringContent(postData);
                 httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                 Task<HttpResponseMessage> taskResponse = httpClient.PutAsync(url, httpContent);

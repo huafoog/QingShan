@@ -3,6 +3,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Text.Json;
 
 namespace QingShan.Utilities
 {
@@ -247,7 +248,7 @@ namespace QingShan.Utilities
                 return Array.Empty<byte>();
             }
 
-            var str = Newtonsoft.Json.JsonConvert.SerializeObject(s);
+            var str = JsonSerializer.Serialize(s);
             UnicodeEncoding uniEncoding = new UnicodeEncoding();
             return uniEncoding.GetBytes(str);
         }

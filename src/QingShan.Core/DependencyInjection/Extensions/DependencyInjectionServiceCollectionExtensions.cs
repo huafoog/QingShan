@@ -1,8 +1,7 @@
-﻿using QingShan;
+﻿using QingShan.Core;
 using QingShan.DependencyInjection;
 using System;
 using System.Linq;
-using System.Reflection;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -32,7 +31,7 @@ namespace Microsoft.Extensions.DependencyInjection
         private static IServiceCollection AddAutoInjection(this IServiceCollection services)
         {
             // 查找所有需要依赖注入的类型
-            var injectTypes = AppAssembly.CanBeScanTypes
+            var injectTypes = App.CanBeScanTypes
                 .Where(u => typeof(IDependency).IsAssignableFrom(u) && u.IsClass && !u.IsInterface && !u.IsAbstract);
 
             // 执行依赖注入
@@ -155,7 +154,7 @@ namespace Microsoft.Extensions.DependencyInjection
         private static Type LoadStringType(string str)
         {
             var typeDefinitions = str.Split(";");
-            var assembly = AppAssembly.Assemblies.First(u => u.GetName().Name == typeDefinitions[0]);
+            var assembly = App.Assemblies.First(u => u.GetName().Name == typeDefinitions[0]);
             return assembly.GetType(typeDefinitions[1], true, true);
         }
     }
