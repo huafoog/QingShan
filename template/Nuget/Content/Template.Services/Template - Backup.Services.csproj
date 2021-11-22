@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DocumentationFile>.\</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Template.Data\Template.Data.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="QingShan.Core" Version="1.1.1" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Demo\Dto\OutputDto\" />
+	</ItemGroup>
+
+</Project>

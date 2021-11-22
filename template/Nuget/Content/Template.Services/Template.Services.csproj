@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DocumentationFile>.\Template.Services</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Template.Data\Template.Data.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="QingShan.Core" Version="1.1.1" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Demo\Dto\OutputDto\" />
+	</ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>.\Template.Services.xml</DocumentationFile>
+	</PropertyGroup>
+
+</Project>

@@ -458,7 +458,7 @@ namespace QingShan.Utilities
             var path = $"/{folder ?? "Uploads"}/{DateTime.Now:yyyy}/{DateTime.Now:MM}/{DateTime.Now:dd}/";
             if (!isDate)
             {
-                path = $"/{folder ?? "Uploads"}/{DateTime.Now:yyyy/MM/dd}";
+                path = $"/{folder ?? "Uploads"}/{DateTime.Now:yyyy-MM-dd}/";
             }
             CreateDirectory(MapPath(path));
             return path;

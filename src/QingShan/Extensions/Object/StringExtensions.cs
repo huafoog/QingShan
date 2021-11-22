@@ -120,7 +120,6 @@ namespace System
 
                 }
                 return string.Concat(Directory.GetCurrentDirectory(), path);
-
             }
             return path;
         }

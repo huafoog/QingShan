@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "qingshan", // 作者必须
+  "classifications": [ "WEB","WEBAPI" ], //必须，这个对应模板的Tags
+  "name": "QingShan Template", //必须，模板的名称,这个东西不需要和项目名称一样，就是单纯的模板名称
+  "identity": "QingShan Web API Template", //模板的唯一标识，
+  "shortName": "qswebapi", //必须，模板的简称，
+  "tags": { // 适用语言
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "Happy", // 可选，这个值是模板项目的名称，在使用项目的如果没有指定名称就是该名称，如果指定了就是用户指定的名称
+  "preferNameDirectory": true // 可选，创建目录
+}
