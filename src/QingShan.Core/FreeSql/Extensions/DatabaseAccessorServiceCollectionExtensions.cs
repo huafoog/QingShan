@@ -36,16 +36,11 @@ namespace Microsoft.Extensions.DependencyInjection
                     .UseLazyLoading(false)
                     .UseNoneCommandParameter(true);
             var fsql = freeSqlBuilder.Build();
-            // 注册FreeSql   IFreeSql必须使用单例注入
-            services.AddSingleton<IFreeSql>(fsql);
             if (dbConfig.GlobalFilter)
             {
                 //全局过滤
                 fsql.GlobalFilter.Apply<ISoftDeletable>("DeleteTime", a => !a.DeleteTime.HasValue);
             }
-
-
-
 #if DEBUG
             if (dbConfig.PrintingSQL)
             {
@@ -55,16 +50,14 @@ namespace Microsoft.Extensions.DependencyInjection
                     Console.WriteLine(e.Sql);
                 };
             }
-#endif
-
             if (dbConfig.ReturnCreateSql)
-             {
+            {
                 var entities = App.CanBeScanTypes.Where(o => o.IsEntityType());
                 Console.WriteLine(fsql.CodeFirst.GetComparisonDDLStatements(entities.ToArray()));
             }
-
-            //fsql.CodeFirst.GetComparisonDDLStatements<Topic>()
-
+#endif
+            // 注册FreeSql   IFreeSql必须使用单例注入
+            services.AddSingleton<IFreeSql>(fsql);
             services.TryAddScoped(typeof(IRepository<>), typeof(Repository<>));
             // 注册仓储
             services.TryAddScoped(typeof(IKeyRepository<,>), typeof(KeyRepository<,>));

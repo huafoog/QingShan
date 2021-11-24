@@ -843,6 +843,11 @@
             格式化为V2版本
             </summary>
         </member>
+        <member name="P:QingShan.Core.SpecificationDocument.SpecificationDocumentSettingsOptions.IsView">
+            <summary>
+            是否显示文档
+            </summary>
+        </member>
         <member name="P:QingShan.Core.SpecificationDocument.SpecificationDocumentSettingsOptions.RoutePrefix">
             <summary>
             配置规范化文档地址

@@ -40,11 +40,8 @@ namespace Microsoft.Extensions.DependencyInjection
             }
             var optionsConfiguration = configurationRoot.GetSection(key ?? jsonKey);
 
-            services.AddOptions<TOptions>()
-                .Bind(optionsConfiguration, options =>
-                {
-                    options.BindNonPublicProperties = true; // 绑定私有变量
-                }).ValidateDataAnnotations();
+            services.Configure<TOptions>(optionsConfiguration);
+
 
             // 配置复杂验证后后期配置
             var validateInterface = optionsType.GetInterfaces()

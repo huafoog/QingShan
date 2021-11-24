@@ -9,6 +9,7 @@ using System.Reflection;
 using System.IO;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.Extensions.Configuration;
+using QingShan.Core;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -25,6 +26,11 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddSpecificationDocuments(this IServiceCollection services)
         {
             services.AddConfigurableOptions<SpecificationDocumentSettingsOptions>();
+            var config = App.GetDefultOptions<SpecificationDocumentSettingsOptions>();
+            if (config.IsView == false)
+            {
+                return services;
+            }
             services.AddSwaggerGen(c =>
             {
                 SpecificationDocumentBuilder.BuildGen(c);

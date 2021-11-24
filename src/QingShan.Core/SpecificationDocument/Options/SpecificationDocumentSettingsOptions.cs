@@ -34,6 +34,11 @@ namespace QingShan.Core.SpecificationDocument
         public bool? FormatAsV2 { get; set; }
 
         /// <summary>
+        /// 是否显示文档
+        /// </summary>
+        public bool? IsView { get; set; }
+
+        /// <summary>
         /// 配置规范化文档地址
         /// </summary>
         public string RoutePrefix { get; set; }
@@ -68,6 +73,8 @@ namespace QingShan.Core.SpecificationDocument
             options.DefaultGroupName ??= "Default";
             options.FormatAsV2 ??= false;
             options.RoutePrefix ??= "";
+            options.IsView ??= true;
+            
             options.DocExpansionState ??= DocExpansion.List;
             XmlComments ??= App.Assemblies.Where(u => u.GetName().Name != "QingShan").Select(t => t.GetName().Name).ToArray();
             GroupOpenApiInfos ??= new SpecificationOpenApiInfo[]
