@@ -105,32 +105,40 @@ namespace QingShan.CodeGenerator
         /// <returns></returns>
         private static List<TableConfig> GetDbTable(string database)
         {
-            var db = DB.MySql.DbFirst.GetTablesByDatabase(database);
-            List<TableConfig> list_table = new List<TableConfig>();
-            foreach (var table in db)
+            try
             {
-                var name = table.Name.LineToCamelCase();
-                TableConfig tableConfig = new TableConfig()
+                var db = DB.MySql.DbFirst.GetTablesByDatabase(database);
+                List<TableConfig> list_table = new List<TableConfig>();
+                foreach (var table in db)
                 {
-                    Id = Guid.NewGuid().ToString(),
-                    TableName = name,
-                    FullName = name.GetFirstLowercase(),
-                    Name = name.Replace("Entity",""),
-                    Remark = table.Comment.Replace("\r\n", ""),
-                    ColumnConfig = new List<ColumnConfig>()
-                };
-                foreach (var column in table.Columns)
-                {
-                    tableConfig.ColumnConfig.Add(new ColumnConfig()
+                    var name = table.Name.LineToCamelCase();
+                    TableConfig tableConfig = new TableConfig()
                     {
-                        ColumnName = column.Name.LineToCamelCase(),
-                        CsType = column.CsType.ToString(),
-                        Remark = column.Coment.Replace("\r\n", "")
-                    });
+                        Id = Guid.NewGuid().ToString(),
+                        TableName = name,
+                        FullName = name.GetFirstLowercase(),
+                        Name = name.Replace("Entity", ""),
+                        Remark = table.Comment.Replace("\r\n", ""),
+                        ColumnConfig = new List<ColumnConfig>()
+                    };
+                    foreach (var column in table.Columns)
+                    {
+                        tableConfig.ColumnConfig.Add(new ColumnConfig()
+                        {
+                            ColumnName = column.Name.LineToCamelCase(),
+                            CsType = column.CsType.ToString(),
+                            Remark = column.Coment.Replace("\r\n", "")
+                        });
+                    }
+                    list_table.Add(tableConfig);
                 }
-                list_table.Add(tableConfig);
+                return list_table;
             }
-            return list_table;
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
     }
 }

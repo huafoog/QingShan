@@ -6,16 +6,12 @@ using System.Threading.Tasks;
 
 namespace QingShan.CodeGenerator
 {
-    internal class DB
+    public class DB
     {
-        static Lazy<IFreeSql> mysqlLazy;
-
+        public static IFreeSql MySql;
         public static void Init(string connectionString)
         {
-            mysqlLazy = new Lazy<IFreeSql>(() => new FreeSql.FreeSqlBuilder().UseConnectionString(FreeSql.DataType.MySql, connectionString).Build());
+            MySql = new FreeSql.FreeSqlBuilder().UseConnectionString(FreeSql.DataType.MySql, connectionString).Build();
         }
-
-
-        public static IFreeSql MySql => mysqlLazy.Value;
     }
 }

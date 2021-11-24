@@ -12,7 +12,7 @@ namespace QingShan.CodeGenerator
             var db = args.GetValue(0,"");
             CodeGeneratorCode.Init();
             DB.Init(db);
-
+            var freeSql = DB.MySql;
             var data = new Dto.CodegeneratorInputDto()
             {
                 ControllerNamespace= args.GetValue(1, ""),

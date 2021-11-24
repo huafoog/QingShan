@@ -2,7 +2,7 @@
   "profiles": {
     "QingShan.CodeGenerator": {
       "commandName": "Project",
-      "commandLineArgs": "\"Data Source=localhost;Port=3306;User ID=root;Password=123456; Initial Catalog=spring_boot_test;Charset=utf8; SslMode=none;Min pool size=1;AllowPublicKeyRetrieval=True;\" \"Demo.Web.Controllers\" \"Demo.Services\" \"Demo.Services\" \"Demo.Services\" \"Demo.Data.Entities\" \"D:\\Code\\dotnet\\Demo\""
+      "commandLineArgs": "\"Data Source=localhost;Port=3306;User ID=root;Password=123456; Initial Catalog=qyy;Charset=utf8; SslMode=none;Min pool size=1;AllowPublicKeyRetrieval=True;\" \"Demo.Web.Controllers\" \"Demo.Services\" \"Demo.Services\" \"Demo.Services\" \"Demo.Data.Entities\" \"D:\\Code\\dotnet\\Demo\" \"qyy\""
     }
   }
 }
