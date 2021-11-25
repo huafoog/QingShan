@@ -56,6 +56,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 Console.WriteLine(fsql.CodeFirst.GetComparisonDDLStatements(entities.ToArray()));
             }
 #endif
+            services.TryAddScoped<QingShan.Permission.IUserInfo, QingShan.Permission.UserInfo>();
             // 注册FreeSql   IFreeSql必须使用单例注入
             services.AddSingleton<IFreeSql>(fsql);
             services.TryAddScoped(typeof(IRepository<>), typeof(Repository<>));

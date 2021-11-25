@@ -75,11 +75,11 @@ namespace QingShan.Core
         /// <returns>IEnumerable</returns>
         private static IEnumerable<Assembly> GetAssemblies()
         {
-            var list = new List<Assembly>();
             var deps = DependencyContext.Default;
-            list = deps.CompileLibraries.Where(lib => !lib.Serviceable && lib.Type != "package" && lib.Type == "project")
-                    .Select(u => AssemblyLoadContext.Default.LoadFromAssemblyName(new AssemblyName(u.Name)))
-                    .ToList();//排除所有的系统程序集、Nuget下载包
+            var list = deps.CompileLibraries
+              .Where(u => u.Type == "project" || (u.Type == "package" && u.Name.StartsWith(nameof(QingShan))))    // 判断是否启用引用程序集扫描
+              .Select(u => AssemblyLoadContext.Default.LoadFromAssemblyName(new AssemblyName(u.Name)))
+              .ToList();//排除所有的系统程序集、Nuget下载包
             return list;
         }
 

@@ -8,7 +8,7 @@
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<OutputType>Library</OutputType>
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-		<Version>1.2.1</Version>
+		<Version>1.2.5</Version>
 		<IsPublishable>False</IsPublishable>
 	</PropertyGroup>
 
@@ -56,7 +56,8 @@
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
+
 	<ItemGroup>
-		<ProjectReference Include="..\QingShan\QingShan.csproj" />
+	  <ProjectReference Include="..\QingShan\QingShan.csproj" />
 	</ItemGroup>
 </Project>

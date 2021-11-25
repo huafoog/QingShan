@@ -937,31 +937,6 @@
             <param name="options"></param>
             <param name="configuration"></param>
         </member>
-        <member name="T:QingShan.Permission.UserInfo">
-            <summary>
-            用户信息接口
-            </summary>
-        </member>
-        <member name="P:QingShan.Permission.UserInfo.Id">
-            <summary>
-            用户Id
-            </summary>
-        </member>
-        <member name="P:QingShan.Permission.UserInfo.Name">
-            <summary>
-            用户名
-            </summary>
-        </member>
-        <member name="P:QingShan.Permission.UserInfo.NickName">
-            <summary>
-            昵称
-            </summary>
-        </member>
-        <member name="P:QingShan.Permission.UserInfo.IsSuper">
-            <summary>
-            是否超级管理员
-            </summary>
-        </member>
         <member name="T:QingShan.Attributes.ApiResponseFilterAttribute">
             <summary>
             Api action统一处理过滤器
@@ -1093,6 +1068,31 @@
         <member name="P:QingShan.Authorization.AppAuthorizeRequirement.Policies">
             <summary>
             策略
+            </summary>
+        </member>
+        <member name="T:QingShan.Permission.UserInfo">
+            <summary>
+            用户信息接口
+            </summary>
+        </member>
+        <member name="P:QingShan.Permission.UserInfo.Id">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:QingShan.Permission.UserInfo.Name">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:QingShan.Permission.UserInfo.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:QingShan.Permission.UserInfo.IsSuper">
+            <summary>
+            是否超级管理员
             </summary>
         </member>
         <member name="M:QingShan.ConfigurableOptions.JsonKey.GetOptionsJsonKey(QingShan.Core.ConfigurableOptions.OptionsSettingsAttribute,System.Type)">

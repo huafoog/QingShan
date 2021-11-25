@@ -13,7 +13,7 @@ namespace QingShan.Permission
     /// <summary>
     /// 用户信息接口
     /// </summary>
-    public class UserInfo : IUserInfo, IScopeDependency
+    public class UserInfo : IUserInfo
     {
         private readonly IHttpContextAccessor _accessor;
 
