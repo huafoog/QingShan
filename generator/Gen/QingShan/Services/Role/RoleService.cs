@@ -1,9 +1,4 @@
-﻿//QS Code Generation Template 1.0
-//author:QS
-//blog:www.cnblogs.com/qs315
-//此代码由工具自动生成
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
@@ -25,8 +20,8 @@ namespace QingShan.Services.Role
     /// </summary>
     public class RoleService:IRoleContract,IScopeDependency
     {
-        private readonly IRepository<RoleEntity> _roleRepository;
-        public RoleService(IRepository<RoleEntity> roleRepository)
+        private readonly IRepository<Role> _roleRepository;
+        public RoleService(IRepository<Role> roleRepository)
         {
             _roleRepository = roleRepository;
         }
@@ -38,7 +33,7 @@ namespace QingShan.Services.Role
         /// <returns></returns>
         public async Task<PageOutputDto<RoleOutputDto>> PageAsync(PageRoleInputDto dto)
         {
-            return await _roleRepository.Select.ToPageResultAsync<RoleEntity,RoleOutputDto>(dto,null);
+            return await _roleRepository.Select.ToPageResultAsync<Role,RoleOutputDto>(dto,null);
         }
 
         /// <summary>
@@ -48,7 +43,7 @@ namespace QingShan.Services.Role
         /// <returns></returns>
         public async Task<StatusResult> AddAsync(RoleInputDto input)
         {
-            var entity = input.Adapt<RoleEntity>();
+            var entity = input.Adapt<Role>();
             entity.Id = Snowflake.GenId();
             var result = await _roleRepository.InsertAsync(entity);
             return new StatusResult(result == null, "添加失败");
@@ -66,25 +61,15 @@ namespace QingShan.Services.Role
             {
                 return new StatusResult("数据不存在！");
             }
-            _roleRepository.Attach(roleModel);
 
-                    data.Id = input.Id
-                    
-                    data.CreatedId = input.CreatedId
-                    
-                    data.CreateTime = input.CreateTime
-                    
-                    data.DeleteTime = input.DeleteTime
-                    
-                    data.Description = input.Description
-                    
-                    data.Enabled = input.Enabled
-                    
-                    data.Name = input.Name
-                    
-                    data.OrderSort = input.OrderSort
-                                }
-            int res = await _roleRepository.UpdateAsync(data);
+            data.Description = input.Description;
+            
+            data.Enabled = input.Enabled;
+            
+            data.Name = input.Name;
+            
+            data.OrderSort = input.OrderSort;
+                        int res = await _roleRepository.UpdateAsync(data);
             return new StatusResult(res == 0, "修改失败");
         }
 

@@ -50,6 +50,9 @@ namespace QingShan.CodeGenerator.Models
         public string Remark { get; set; }
         public string DtoNamespace { get; internal set; }
         public string EntityNamespace { get; internal set; }
+
+
+        public string RealName { get; set; }
     }
 
 

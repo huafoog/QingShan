@@ -1,9 +1,4 @@
-﻿//QS Code Generation Template 1.0
-//author:QS
-//blog:www.cnblogs.com/qs315
-//此代码由工具自动生成
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
@@ -25,8 +20,8 @@ namespace QingShan.Services.User
     /// </summary>
     public class UserService:IUserContract,IScopeDependency
     {
-        private readonly IRepository<UserEntity> _userRepository;
-        public UserService(IRepository<UserEntity> userRepository)
+        private readonly IRepository<User> _userRepository;
+        public UserService(IRepository<User> userRepository)
         {
             _userRepository = userRepository;
         }
@@ -38,7 +33,7 @@ namespace QingShan.Services.User
         /// <returns></returns>
         public async Task<PageOutputDto<UserOutputDto>> PageAsync(PageUserInputDto dto)
         {
-            return await _userRepository.Select.ToPageResultAsync<UserEntity,UserOutputDto>(dto,null);
+            return await _userRepository.Select.ToPageResultAsync<User,UserOutputDto>(dto,null);
         }
 
         /// <summary>
@@ -48,7 +43,7 @@ namespace QingShan.Services.User
         /// <returns></returns>
         public async Task<StatusResult> AddAsync(UserInputDto input)
         {
-            var entity = input.Adapt<UserEntity>();
+            var entity = input.Adapt<User>();
             entity.Id = Snowflake.GenId();
             var result = await _userRepository.InsertAsync(entity);
             return new StatusResult(result == null, "添加失败");
@@ -66,43 +61,33 @@ namespace QingShan.Services.User
             {
                 return new StatusResult("数据不存在！");
             }
-            _userRepository.Attach(roleModel);
 
-                    data.Id = input.Id
-                    
-                    data.Avatar = input.Avatar
-                    
-                    data.CreatedId = input.CreatedId
-                    
-                    data.CreateTime = input.CreateTime
-                    
-                    data.DeleteTime = input.DeleteTime
-                    
-                    data.DepartmentId = input.DepartmentId
-                    
-                    data.IsSuper = input.IsSuper
-                    
-                    data.LastLoginIp = input.LastLoginIp
-                    
-                    data.LastLoginTime = input.LastLoginTime
-                    
-                    data.NickName = input.NickName
-                    
-                    data.Password = input.Password
-                    
-                    data.Phone = input.Phone
-                    
-                    data.RealName = input.RealName
-                    
-                    data.Remark = input.Remark
-                    
-                    data.Status = input.Status
-                    
-                    data.UpdateDateTime = input.UpdateDateTime
-                    
-                    data.UserName = input.UserName
-                                }
-            int res = await _userRepository.UpdateAsync(data);
+            data.Avatar = input.Avatar;
+            
+            data.DepartmentId = input.DepartmentId;
+            
+            data.IsSuper = input.IsSuper;
+            
+            data.LastLoginIp = input.LastLoginIp;
+            
+            data.LastLoginTime = input.LastLoginTime;
+            
+            data.NickName = input.NickName;
+            
+            data.Password = input.Password;
+            
+            data.Phone = input.Phone;
+            
+            data.RealName = input.RealName;
+            
+            data.Remark = input.Remark;
+            
+            data.Status = input.Status;
+            
+            data.UpdateDateTime = input.UpdateDateTime;
+            
+            data.UserName = input.UserName;
+                        int res = await _userRepository.UpdateAsync(data);
             return new StatusResult(res == 0, "修改失败");
         }
 

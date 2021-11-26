@@ -1,9 +1,4 @@
-﻿//QS Code Generation Template 1.0
-//author:QS
-//blog:www.cnblogs.com/qs315
-//此代码由工具自动生成，请勿修改
-
-using System;
+﻿using System;
 
 namespace QingShan.Services.Permission.Dto
 {
@@ -27,21 +22,6 @@ namespace QingShan.Services.Permission.Dto
 		/// 组件
         /// </summary>
         public System.String Component { get; set; }
-        
-        /// <summary>
-		/// 创建人id
-        /// </summary>
-        public System.String CreatedId { get; set; }
-        
-        /// <summary>
-		/// 获取或设置 创建时间
-        /// </summary>
-        public System.DateTime CreateTime { get; set; }
-        
-        /// <summary>
-		/// 获取或设置 数据状态
-        /// </summary>
-        public System.DateTime DeleteTime { get; set; }
         
         /// <summary>
 		/// 图标

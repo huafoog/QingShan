@@ -1,9 +1,4 @@
-﻿//QS Code Generation Template 1.0
-//author:QS
-//blog:www.cnblogs.com/qs315
-//此代码由工具自动生成
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
@@ -25,8 +20,8 @@ namespace QingShan.Services.Permission
     /// </summary>
     public class PermissionService:IPermissionContract,IScopeDependency
     {
-        private readonly IRepository<PermissionEntity> _permissionRepository;
-        public PermissionService(IRepository<PermissionEntity> permissionRepository)
+        private readonly IRepository<Permission> _permissionRepository;
+        public PermissionService(IRepository<Permission> permissionRepository)
         {
             _permissionRepository = permissionRepository;
         }
@@ -38,7 +33,7 @@ namespace QingShan.Services.Permission
         /// <returns></returns>
         public async Task<PageOutputDto<PermissionOutputDto>> PageAsync(PagePermissionInputDto dto)
         {
-            return await _permissionRepository.Select.ToPageResultAsync<PermissionEntity,PermissionOutputDto>(dto,null);
+            return await _permissionRepository.Select.ToPageResultAsync<Permission,PermissionOutputDto>(dto,null);
         }
 
         /// <summary>
@@ -48,7 +43,7 @@ namespace QingShan.Services.Permission
         /// <returns></returns>
         public async Task<StatusResult> AddAsync(PermissionInputDto input)
         {
-            var entity = input.Adapt<PermissionEntity>();
+            var entity = input.Adapt<Permission>();
             entity.Id = Snowflake.GenId();
             var result = await _permissionRepository.InsertAsync(entity);
             return new StatusResult(result == null, "添加失败");
@@ -66,37 +61,27 @@ namespace QingShan.Services.Permission
             {
                 return new StatusResult("数据不存在！");
             }
-            _permissionRepository.Attach(roleModel);
 
-                    data.Id = input.Id
-                    
-                    data.Code = input.Code
-                    
-                    data.Component = input.Component
-                    
-                    data.CreatedId = input.CreatedId
-                    
-                    data.CreateTime = input.CreateTime
-                    
-                    data.DeleteTime = input.DeleteTime
-                    
-                    data.Icon = input.Icon
-                    
-                    data.Name = input.Name
-                    
-                    data.ParentId = input.ParentId
-                    
-                    data.Path = input.Path
-                    
-                    data.PermissionCode = input.PermissionCode
-                    
-                    data.PermissionType = input.PermissionType
-                    
-                    data.Remark = input.Remark
-                    
-                    data.Sort = input.Sort
-                                }
-            int res = await _permissionRepository.UpdateAsync(data);
+            data.Code = input.Code;
+            
+            data.Component = input.Component;
+            
+            data.Icon = input.Icon;
+            
+            data.Name = input.Name;
+            
+            data.ParentId = input.ParentId;
+            
+            data.Path = input.Path;
+            
+            data.PermissionCode = input.PermissionCode;
+            
+            data.PermissionType = input.PermissionType;
+            
+            data.Remark = input.Remark;
+            
+            data.Sort = input.Sort;
+                        int res = await _permissionRepository.UpdateAsync(data);
             return new StatusResult(res == 0, "修改失败");
         }
 

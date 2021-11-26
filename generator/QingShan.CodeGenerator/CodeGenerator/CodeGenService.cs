@@ -119,6 +119,7 @@ namespace QingShan.CodeGenerator
                         FullName = name.GetFirstLowercase(),
                         Name = name.Replace("Entity", ""),
                         Remark = table.Comment.Replace("\r\n", ""),
+                        RealName = table.Name,
                         ColumnConfig = new List<ColumnConfig>()
                     };
                     foreach (var column in table.Columns)

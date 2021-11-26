@@ -133,6 +133,7 @@ namespace QingShan.Core.CodeGenerator
                     TableName = name,
                     FullName = name.GetFirstLowercase(),
                     Name = name.Replace("Entity",""),
+                    RealName = table.Name,
                     Remark = table.Comment.Replace("\r\n", ""),
                     ColumnConfig = new List<ColumnConfig>()
                 };

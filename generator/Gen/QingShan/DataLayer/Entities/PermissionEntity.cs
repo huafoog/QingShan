@@ -1,17 +1,14 @@
-﻿//QS Code Generation Template 1.0
-//author:QS
-//blog:www.cnblogs.com/qs315
-//此代码由工具自动生成，请勿修改
-
-using System;
+﻿using System;
 using QingShan.Data;
+using FreeSql.DataAnnotations;
 
 namespace QingShan.DataLayer.Entities
 {
     /// <summary>
 	/// 权限
     /// </summary>
-	public class PermissionEntity : QingShan.DatabaseAccessor.EntityBase
+	[Table(Name ="permission")]
+    public class PermissionEntity : QingShan.DatabaseAccessor.EntityBase
     {
 
             /// <summary>

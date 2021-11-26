@@ -1,18 +1,13 @@
-﻿//QS Code Generation Template 1.0
-//author:QS
-//blog:www.cnblogs.com/qs315
-//此代码由工具自动生成，请勿修改
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Demo.Services.User;
-using Demo.Services.User.Dto;
+using QingShan.Services.User;
+using QingShan.Services.User.Dto;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using QingShan.Data;
 
-namespace Demo.Controllers
+namespace QingShan.Web.Areas.Admin.Controllers
 {
     /// <summary>
 	/// 用户表

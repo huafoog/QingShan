@@ -9,7 +9,7 @@ namespace QingShan.CodeGeneratorWeb.CodeGenerator.Models
     {
         public string Id { get; set; }
         /// <summary>
-        /// 表名
+        /// 表名 - _转驼峰
         /// </summary>
         public string TableName { get; set; }
 
@@ -22,7 +22,7 @@ namespace QingShan.CodeGeneratorWeb.CodeGenerator.Models
         /// <summary>
         /// 命名空间
         /// </summary>
-        public string Namespace { get; set; }
+        public string Namespace { get; set; }   
 
         /// <summary>
         /// Contract命名空间
@@ -50,6 +50,10 @@ namespace QingShan.CodeGeneratorWeb.CodeGenerator.Models
         public string Remark { get; set; }
         public string DtoNamespace { get; internal set; }
         public string EntityNamespace { get; internal set; }
+        /// <summary>
+        /// 真实表名
+        /// </summary>
+        public string RealName { get; set; }
     }
 
 

@@ -1,9 +1,4 @@
-﻿//QS Code Generation Template 1.0
-//author:QS
-//blog:www.cnblogs.com/qs315
-//此代码由工具自动生成
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
@@ -25,8 +20,8 @@ namespace QingShan.Services.UserRole
     /// </summary>
     public class UserRoleService:IUserRoleContract,IScopeDependency
     {
-        private readonly IRepository<UserRoleEntity> _userRoleRepository;
-        public UserRoleService(IRepository<UserRoleEntity> userRoleRepository)
+        private readonly IRepository<UserRole> _userRoleRepository;
+        public UserRoleService(IRepository<UserRole> userRoleRepository)
         {
             _userRoleRepository = userRoleRepository;
         }
@@ -38,7 +33,7 @@ namespace QingShan.Services.UserRole
         /// <returns></returns>
         public async Task<PageOutputDto<UserRoleOutputDto>> PageAsync(PageUserRoleInputDto dto)
         {
-            return await _userRoleRepository.Select.ToPageResultAsync<UserRoleEntity,UserRoleOutputDto>(dto,null);
+            return await _userRoleRepository.Select.ToPageResultAsync<UserRole,UserRoleOutputDto>(dto,null);
         }
 
         /// <summary>
@@ -48,7 +43,7 @@ namespace QingShan.Services.UserRole
         /// <returns></returns>
         public async Task<StatusResult> AddAsync(UserRoleInputDto input)
         {
-            var entity = input.Adapt<UserRoleEntity>();
+            var entity = input.Adapt<UserRole>();
             entity.Id = Snowflake.GenId();
             var result = await _userRoleRepository.InsertAsync(entity);
             return new StatusResult(result == null, "添加失败");
@@ -66,21 +61,11 @@ namespace QingShan.Services.UserRole
             {
                 return new StatusResult("数据不存在！");
             }
-            _userRoleRepository.Attach(roleModel);
 
-                    data.Id = input.Id
-                    
-                    data.CreatedId = input.CreatedId
-                    
-                    data.CreateTime = input.CreateTime
-                    
-                    data.DeleteTime = input.DeleteTime
-                    
-                    data.RoleId = input.RoleId
-                    
-                    data.UserId = input.UserId
-                                }
-            int res = await _userRoleRepository.UpdateAsync(data);
+            data.RoleId = input.RoleId;
+            
+            data.UserId = input.UserId;
+                        int res = await _userRoleRepository.UpdateAsync(data);
             return new StatusResult(res == 0, "修改失败");
         }
 

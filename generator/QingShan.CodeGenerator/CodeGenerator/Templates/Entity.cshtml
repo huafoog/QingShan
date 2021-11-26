@@ -6,7 +6,8 @@ namespace @Model.Namespace
     /// <summary>
 	/// @Model.Remark
     /// </summary>
-	public class @(Model.Name)Entity : QingShan.DatabaseAccessor.EntityBase
+	[Table(Name ="@(Model.RealName)")]
+    public class @(Model.Name)Entity : QingShan.DatabaseAccessor.EntityBase
     {
     @foreach (var item in Model.ColumnConfig)
     {

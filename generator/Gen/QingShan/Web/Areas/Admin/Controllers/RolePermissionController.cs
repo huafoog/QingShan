@@ -1,18 +1,13 @@
-﻿//QS Code Generation Template 1.0
-//author:QS
-//blog:www.cnblogs.com/qs315
-//此代码由工具自动生成，请勿修改
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Demo.Services.RolePermission;
-using Demo.Services.RolePermission.Dto;
+using QingShan.Services.RolePermission;
+using QingShan.Services.RolePermission.Dto;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using QingShan.Data;
 
-namespace Demo.Controllers
+namespace QingShan.Web.Areas.Admin.Controllers
 {
     /// <summary>
 	/// 角色模块

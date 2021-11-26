@@ -1,9 +1,4 @@
-﻿//QS Code Generation Template 1.0
-//author:QS
-//blog:www.cnblogs.com/qs315
-//此代码由工具自动生成
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
@@ -25,8 +20,8 @@ namespace QingShan.Services.RolePermission
     /// </summary>
     public class RolePermissionService:IRolePermissionContract,IScopeDependency
     {
-        private readonly IRepository<RolePermissionEntity> _rolePermissionRepository;
-        public RolePermissionService(IRepository<RolePermissionEntity> rolePermissionRepository)
+        private readonly IRepository<RolePermission> _rolePermissionRepository;
+        public RolePermissionService(IRepository<RolePermission> rolePermissionRepository)
         {
             _rolePermissionRepository = rolePermissionRepository;
         }
@@ -38,7 +33,7 @@ namespace QingShan.Services.RolePermission
         /// <returns></returns>
         public async Task<PageOutputDto<RolePermissionOutputDto>> PageAsync(PageRolePermissionInputDto dto)
         {
-            return await _rolePermissionRepository.Select.ToPageResultAsync<RolePermissionEntity,RolePermissionOutputDto>(dto,null);
+            return await _rolePermissionRepository.Select.ToPageResultAsync<RolePermission,RolePermissionOutputDto>(dto,null);
         }
 
         /// <summary>
@@ -48,7 +43,7 @@ namespace QingShan.Services.RolePermission
         /// <returns></returns>
         public async Task<StatusResult> AddAsync(RolePermissionInputDto input)
         {
-            var entity = input.Adapt<RolePermissionEntity>();
+            var entity = input.Adapt<RolePermission>();
             entity.Id = Snowflake.GenId();
             var result = await _rolePermissionRepository.InsertAsync(entity);
             return new StatusResult(result == null, "添加失败");
@@ -66,21 +61,11 @@ namespace QingShan.Services.RolePermission
             {
                 return new StatusResult("数据不存在！");
             }
-            _rolePermissionRepository.Attach(roleModel);
 
-                    data.Id = input.Id
-                    
-                    data.CreatedId = input.CreatedId
-                    
-                    data.CreateTime = input.CreateTime
-                    
-                    data.DeleteTime = input.DeleteTime
-                    
-                    data.PermissionId = input.PermissionId
-                    
-                    data.RoleId = input.RoleId
-                                }
-            int res = await _rolePermissionRepository.UpdateAsync(data);
+            data.PermissionId = input.PermissionId;
+            
+            data.RoleId = input.RoleId;
+                        int res = await _rolePermissionRepository.UpdateAsync(data);
             return new StatusResult(res == 0, "修改失败");
         }
 

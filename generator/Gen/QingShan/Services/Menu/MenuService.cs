@@ -1,9 +1,4 @@
-﻿//QS Code Generation Template 1.0
-//author:QS
-//blog:www.cnblogs.com/qs315
-//此代码由工具自动生成
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
@@ -25,8 +20,8 @@ namespace QingShan.Services.Menu
     /// </summary>
     public class MenuService:IMenuContract,IScopeDependency
     {
-        private readonly IRepository<MenuEntity> _menuRepository;
-        public MenuService(IRepository<MenuEntity> menuRepository)
+        private readonly IRepository<Menu> _menuRepository;
+        public MenuService(IRepository<Menu> menuRepository)
         {
             _menuRepository = menuRepository;
         }
@@ -38,7 +33,7 @@ namespace QingShan.Services.Menu
         /// <returns></returns>
         public async Task<PageOutputDto<MenuOutputDto>> PageAsync(PageMenuInputDto dto)
         {
-            return await _menuRepository.Select.ToPageResultAsync<MenuEntity,MenuOutputDto>(dto,null);
+            return await _menuRepository.Select.ToPageResultAsync<Menu,MenuOutputDto>(dto,null);
         }
 
         /// <summary>
@@ -48,7 +43,7 @@ namespace QingShan.Services.Menu
         /// <returns></returns>
         public async Task<StatusResult> AddAsync(MenuInputDto input)
         {
-            var entity = input.Adapt<MenuEntity>();
+            var entity = input.Adapt<Menu>();
             entity.Id = Snowflake.GenId();
             var result = await _menuRepository.InsertAsync(entity);
             return new StatusResult(result == null, "添加失败");
@@ -66,29 +61,19 @@ namespace QingShan.Services.Menu
             {
                 return new StatusResult("数据不存在！");
             }
-            _menuRepository.Attach(roleModel);
 
-                    data.Id = input.Id
-                    
-                    data.Code = input.Code
-                    
-                    data.Component = input.Component
-                    
-                    data.CreatedId = input.CreatedId
-                    
-                    data.CreateTime = input.CreateTime
-                    
-                    data.DeleteTime = input.DeleteTime
-                    
-                    data.Icon = input.Icon
-                    
-                    data.Name = input.Name
-                    
-                    data.ParentId = input.ParentId
-                    
-                    data.Redirect = input.Redirect
-                                }
-            int res = await _menuRepository.UpdateAsync(data);
+            data.Code = input.Code;
+            
+            data.Component = input.Component;
+            
+            data.Icon = input.Icon;
+            
+            data.Name = input.Name;
+            
+            data.ParentId = input.ParentId;
+            
+            data.Redirect = input.Redirect;
+                        int res = await _menuRepository.UpdateAsync(data);
             return new StatusResult(res == 0, "修改失败");
         }
 
