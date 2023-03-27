@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using QingShan.Attributes;
 using QingShan.Data;
 using QingShan.Services.Common.Dto.InputDto;
@@ -13,15 +14,20 @@ namespace QingShan.Web.Areas.Admin.Controllers
     public class CommonController : AdminBaseController
     {
         /// <summary>
-        /// 添加菜单
+        /// 获取枚举
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpGet]
-        [LoggedIn]
+        [AllowAnonymous]
+        //[LoggedIn]
         public async Task<StatusResult<List<EnumDto>>> GetEnum([FromQuery]EnumInputDto dto)
         {
-            var dic = EnumHelper.GetEnumListByCode(new[] { "QingShan.DataLayer" }, new[] { "QingShan.DataLayer.Enums" }, dto.Code);
+            var dic = EnumHelper.GetEnumListByCode(dto.Code);
+            if (dic == null)
+            {
+                return new StatusResult<List<EnumDto>>();
+            }
             if (dto.IsAll.HasValue && dto.IsAll.Value)
             {
                 dic.Add(new EnumDto() { 

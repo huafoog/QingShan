@@ -615,35 +615,6 @@
             <param name="xmlKeys"></param>
             <param name="xmlPublicKey"></param>
         </member>
-        <member name="P:QingShan.Utilities.EnumDto.Code">
-            <summary>
-            枚举code
-            </summary>
-        </member>
-        <member name="P:QingShan.Utilities.EnumDto.Value">
-            <summary>
-            值
-            </summary>
-        </member>
-        <member name="P:QingShan.Utilities.EnumDto.Label">
-            <summary>
-            描述
-            </summary>
-        </member>
-        <member name="T:QingShan.Utilities.EnumHelper">
-            <summary>
-            枚举帮助类
-            </summary>
-        </member>
-        <member name="M:QingShan.Utilities.EnumHelper.GetEnumListByCode(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String)">
-            <summary>
-            根据枚举代码获取枚举列表
-            </summary>
-            <param name="assemblys">程序集名称集合</param>
-            <param name="namespaces">命名空间名称集合</param>
-            <param name="enumCode">枚举名称</param>
-            <returns></returns>
-        </member>
         <member name="T:QingShan.Utilities.FileAppHelper">
             <summary>
             应用文件帮助类
@@ -1073,6 +1044,12 @@
             </summary>
             <param name="dir">要删除的目录路径和名称</param>
             <param name="path">文件夹路径 默认使用<see cref="F:QingShan.Utilities.FileHelper._path"/></param>
+        </member>
+        <member name="M:QingShan.Utilities.FileHelper.DeleteFilesInFolder(System.String)">
+            <summary>
+            删除文件夹下的所有文件
+            </summary>
+            <param name="folderPath"></param>
         </member>
         <member name="M:QingShan.Utilities.FileHelper.DeleteFile(System.String,System.String)">
             <summary>
@@ -2219,7 +2196,7 @@
             <see cref="M:System.String.Join(System.String,System.Object[])"/>
             </summary>
         </member>
-        <member name="M:System.Collections.Generic.ListExtension.GetArrayStr(System.Collections.Generic.List{System.String},System.String)">
+        <member name="M:System.Collections.Generic.ListExtension.GetArrayStr(System.Collections.Generic.List{System.Object},System.String)">
             <summary>
             把 数组 按照分隔符组装成 string
             </summary>
@@ -2227,7 +2204,7 @@
             <param name="speater"></param>
             <returns></returns>
         </member>
-        <member name="M:System.Collections.Generic.ListExtension.GetArrayStr(System.Collections.Generic.List{System.Int32})">
+        <member name="M:System.Collections.Generic.ListExtension.GetArrayStr(System.Collections.Generic.List{System.Object})">
             <summary>
             得到数组列表以逗号分隔的字符串
             </summary>

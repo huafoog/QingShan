@@ -23,7 +23,7 @@
         </member>
         <member name="M:QingShan.Web.Areas.Admin.Controllers.CommonController.GetEnum(QingShan.Services.Common.Dto.InputDto.EnumInputDto)">
             <summary>
-            添加菜单
+            获取枚举
             </summary>
             <param name="dto"></param>
             <returns></returns>

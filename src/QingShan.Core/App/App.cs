@@ -34,12 +34,6 @@ namespace QingShan.Core
         public static readonly IEnumerable<string> LoggedCodes;
 
         /// <summary>
-        /// 配置
-        /// <para>使用依赖注入时添加</para>
-        /// </summary>
-        public static IConfiguration Configuration { get; set; }
-
-        /// <summary>
         /// 静态构造函数，只在程序启动时执行一次。
         /// </summary>
         static App()
@@ -49,24 +43,6 @@ namespace QingShan.Core
             CanBeScanTypes = Assemblies.SelectMany(u => u.GetTypes().Where(u => u.IsPublic && !u.IsDefined(typeof(SkipScanAttribute), false)));
 
             LoggedCodes = GetLoggedInCode();
-        }
-
-        /// <summary>
-        /// 直接获取选项配置
-        /// <para>该方式未通过依赖注入实现，无法使用热更新</para>
-        /// <para></para>
-        /// </summary>
-        /// <typeparam name="TOptions"></typeparam>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public static TOptions GetDefultOptions<TOptions>(string key = null)
-            where TOptions : IConfigurableOptions, new()
-        {
-            if (Configuration == null)
-            {
-                throw new QingShanException("您需要在服务中添加`services.AddConfigurable(Configuration);`");
-            }
-            return Configuration.GetDefultOptions<TOptions>();
         }
 
         /// <summary>

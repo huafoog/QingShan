@@ -20,7 +20,7 @@ namespace Microsoft.AspNetCore.Builder
         /// <returns></returns>
         public static IApplicationBuilder UseCorsAccessor(this IApplicationBuilder app)
         {
-            var corsAccessorSettings = App.GetDefultOptions<CorsAccessorSettingsOptions>();
+            var corsAccessorSettings = app.ApplicationServices.GetOptions<CorsAccessorSettingsOptions>(); 
 
             // 配置跨域中间件
             app.UseCors(corsAccessorSettings.PolicyName);

@@ -53,15 +53,13 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns>服务集合</returns>
         public static IServiceCollection AddInject(this IServiceCollection services, IConfiguration configuration, Action<IServiceCollection> configure = null)
         {
-            //注入配置信息
-            services.AddConfigurable(configuration);
             // 添加 HttContext 访问器
             services.AddHttpContextAccessor();
             // 注册全局依赖注入
             services.AddDependencyInjection();
-            services.AddCache();
-            services.AddDatabaseAccessor();
-            services.AddCorsAccessor();
+            services.AddCache(configuration);
+            services.AddDatabaseAccessor(configuration);
+            services.AddCorsAccessor(configuration);
             services.AddDefaultController();
             // 自定义服务
             configure?.Invoke(services);
@@ -78,18 +76,16 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddApp<JwtHandler>(this IServiceCollection services, IConfiguration configuration, Action<IServiceCollection> configure = null)
             where JwtHandler : class, AspNetCore.Authorization.IAuthorizationHandler
         {
-            //注入配置信息
-            services.AddConfigurable(configuration);
             // 添加 HttContext 访问器
             services.AddHttpContextAccessor();
             // 注册全局依赖注入
             services.AddDependencyInjection();
-            services.AddSpecificationDocuments();
-            services.AddCache();
-            services.AddDatabaseAccessor();
-            services.AddStaticFile();
-            services.AddRateLimit();
-            services.AddCorsAccessor();
+            services.AddSpecificationDocuments(configuration);
+            services.AddCache(configuration);
+            services.AddDatabaseAccessor(configuration);
+            services.AddStaticFile(configuration);
+            services.AddRateLimit(configuration);
+            services.AddCorsAccessor(configuration);
             services.AddJwt<JwtHandler>(enableGlobalAuthorize: true);
             services.AddDefaultController();
             // 自定义服务

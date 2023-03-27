@@ -16,12 +16,14 @@ namespace Microsoft.Extensions.DependencyInjection
         /// 配置跨域
         /// </summary>
         /// <param name="services">服务集合</param>
+        /// <param name="configuration">配置</param>
         /// <returns>服务集合</returns>
-        public static IServiceCollection AddCorsAccessor(this IServiceCollection services)
+        public static IServiceCollection AddCorsAccessor(this IServiceCollection services,IConfiguration configuration)
         {
+            services.AddConfigurableOptions<CorsAccessorSettingsOptions>(configuration);
             // 添加跨域配置选项
             // 获取选项
-            var corsAccessorSettings = App.GetDefultOptions<CorsAccessorSettingsOptions>();
+            var corsAccessorSettings = configuration.GetDefultOptions<CorsAccessorSettingsOptions>();
 
             // 添加跨域服务
             services.AddCors(options =>

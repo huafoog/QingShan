@@ -300,6 +300,33 @@ namespace QingShan.Utilities
                 Directory.Delete(thisPath);
             }
         }
+
+        /// <summary>
+        /// 删除文件夹下的所有文件
+        /// </summary>
+        /// <param name="folderPath"></param>
+        public static void DeleteFilesInFolder(string folderPath)
+        {
+
+            string[] dics = Directory.GetDirectories(folderPath);
+            if (dics.Length == 0)
+            {
+                return;
+            }
+            foreach (var dic in dics)
+            {
+                // 获取文件夹下的所有文件
+                string[] fileEntries = Directory.GetFiles(dic);
+                // 遍历并逐一删除文件
+                foreach (string filePath in fileEntries)
+                {
+                    File.Delete(filePath);
+                }
+                DeleteFilesInFolder(dic);
+            }
+            Directory.Delete(folderPath, true);
+            
+        }
         #endregion
 
         #region 删除文件

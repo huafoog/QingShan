@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using QingShan.Core.FreeSql.UnitOfWork.Attributes;
+using QingShan.Data;
 
 namespace QingShan.Web.Controllers
 {
@@ -66,6 +67,14 @@ namespace QingShan.Web.Controllers
             return new { 
                 code = 200
             };
+        }
+
+        [HttpPut]
+        public async Task<StatusResult> GetAsync([FromBody] SysUser entity)
+        {
+            await Task.CompletedTask;
+
+            return new StatusResult();
         }
     }
 }

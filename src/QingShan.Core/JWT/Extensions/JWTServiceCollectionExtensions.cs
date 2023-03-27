@@ -26,9 +26,10 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="authenticationBuilder"></param>
         /// <param name="tokenValidationParameters">token 验证参数</param>
         /// <param name="jwtBearerConfigure"></param>
+        /// <param name="configuration">配置</param>
         /// <param name="enableGlobalAuthorize">启动全局授权</param>
         /// <returns></returns>
-        public static AuthenticationBuilder AddJwt(this AuthenticationBuilder authenticationBuilder, object tokenValidationParameters = default, Action<JwtBearerOptions> jwtBearerConfigure = null, bool enableGlobalAuthorize = false)
+        public static AuthenticationBuilder AddJwt(this AuthenticationBuilder authenticationBuilder,IConfiguration configuration, object tokenValidationParameters = default, Action<JwtBearerOptions> jwtBearerConfigure = null, bool enableGlobalAuthorize = false)
         {
             var services = authenticationBuilder.Services;
 
@@ -37,7 +38,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
             // 获取配置选项
 
-            var jwtSettings = App.GetDefultOptions<JWTSettingsOptions>();
+            var jwtSettings = configuration.GetDefultOptions<JWTSettingsOptions>();
 
             // 添加授权
             authenticationBuilder.AddJwtBearer(options =>

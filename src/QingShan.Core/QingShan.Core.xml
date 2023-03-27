@@ -24,26 +24,10 @@
             只需要登录权限的code
             </summary>
         </member>
-        <member name="P:QingShan.Core.App.Configuration">
-            <summary>
-            配置
-            <para>使用依赖注入时添加</para>
-            </summary>
-        </member>
         <member name="M:QingShan.Core.App.#cctor">
             <summary>
             静态构造函数，只在程序启动时执行一次。
             </summary>
-        </member>
-        <member name="M:QingShan.Core.App.GetDefultOptions``1(System.String)">
-            <summary>
-            直接获取选项配置
-            <para>该方式未通过依赖注入实现，无法使用热更新</para>
-            <para></para>
-            </summary>
-            <typeparam name="TOptions"></typeparam>
-            <param name="key"></param>
-            <returns></returns>
         </member>
         <member name="M:QingShan.Core.App.GetAssemblies">
             <summary>
@@ -203,6 +187,11 @@
         <member name="P:QingShan.Core.FreeSql.Options.DatabaseAccessorSettingsOptions.Type">
             <summary>
             数据库类型
+            </summary>
+        </member>
+        <member name="P:QingShan.Core.FreeSql.Options.DatabaseAccessorSettingsOptions.ConnectionString">
+            <summary>
+            连接字符串
             </summary>
         </member>
         <member name="P:QingShan.Core.FreeSql.Options.DatabaseAccessorSettingsOptions.SyncStructure">
@@ -937,6 +926,38 @@
             <param name="options"></param>
             <param name="configuration"></param>
         </member>
+        <member name="P:QingShan.Utilities.EnumDto.Code">
+            <summary>
+            枚举code
+            </summary>
+        </member>
+        <member name="P:QingShan.Utilities.EnumDto.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="P:QingShan.Utilities.EnumDto.Label">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="T:QingShan.Utilities.EnumHelper">
+            <summary>
+            枚举帮助类
+            </summary>
+        </member>
+        <member name="F:QingShan.Utilities.EnumHelper.EnumTypeList">
+            <summary>
+            能够被扫描的类型
+            </summary>
+        </member>
+        <member name="M:QingShan.Utilities.EnumHelper.GetEnumListByCode(System.String)">
+            <summary>
+            根据枚举代码获取枚举列表
+            </summary>
+            <param name="enumCode">枚举名称</param>
+            <returns></returns>
+        </member>
         <member name="T:QingShan.Attributes.ApiResponseFilterAttribute">
             <summary>
             Api action统一处理过滤器
@@ -1186,10 +1207,27 @@
             <param name="configuration">服务配置</param>
             <returns>服务集合</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtension.GetOptions``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-             <summary>
-            获取选项
-             </summary>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtension.GetConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            获取配置
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtension.GetSingletonInstanceOrNull``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            获取一个注册实例（可为空）
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtension.GetSingletonInstance``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            获取一个注册实例
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="services"></param>
+            <returns></returns>
+            <exception cref="T:System.InvalidOperationException"></exception>
         </member>
         <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtension.GetOptions``1(Microsoft.Extensions.DependencyInjection.ServiceProvider)">
              <summary>
@@ -1216,12 +1254,14 @@
             可变选项服务拓展类
             </summary>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.ConfigurableOptionsServiceCollectionExtensions.AddConfigurableOptions``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+        <member name="M:Microsoft.Extensions.DependencyInjection.ConfigurableOptionsServiceCollectionExtensions.AddConfigurableOptions``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,System.Action{Microsoft.Extensions.Configuration.BinderOptions},System.String)">
             <summary>
             添加选项配置
             </summary>
             <typeparam name="TOptions">选项类型</typeparam>
             <param name="services">服务集合</param>
+            <param name="configureBinder"></param>
+            <param name="configurationRoot">配置</param>
             <param name="key"></param>
             <returns>服务集合</returns>
         </member>
@@ -1239,11 +1279,12 @@
             跨域访问服务拓展类
             </summary>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.CorsAccessorServiceCollectionExtensions.AddCorsAccessor(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Microsoft.Extensions.DependencyInjection.CorsAccessorServiceCollectionExtensions.AddCorsAccessor(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             配置跨域
             </summary>
             <param name="services">服务集合</param>
+            <param name="configuration">配置</param>
             <returns>服务集合</returns>
         </member>
         <member name="T:Microsoft.Extensions.DependencyInjection.DependencyInjectionServiceCollectionExtensions">
@@ -1317,12 +1358,13 @@
             数据库访问器服务拓展类
             </summary>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.DatabaseAccessorServiceCollectionExtensions.AddDatabaseAccessor(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.DatabaseAccessorServiceCollectionExtensions.AddDatabaseAccessor(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})">
             <summary>
             添加数据库上下文
             </summary>
             <param name="services">服务集合</param>
-            <param name="configure">配置</param>
+            <param name="configuration">配置</param>
+            <param name="configure">配置委托</param>
             <returns>服务集合</returns>
         </member>
         <member name="T:Microsoft.Extensions.DependencyInjection.JWTServiceCollectionExtensions">
@@ -1330,13 +1372,14 @@
             JWT 授权服务拓展类
             </summary>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.JWTServiceCollectionExtensions.AddJwt(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.Object,System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions},System.Boolean)">
+        <member name="M:Microsoft.Extensions.DependencyInjection.JWTServiceCollectionExtensions.AddJwt(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,Microsoft.Extensions.Configuration.IConfiguration,System.Object,System.Action{Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions},System.Boolean)">
             <summary>
             添加 JWT 授权
             </summary>
             <param name="authenticationBuilder"></param>
             <param name="tokenValidationParameters">token 验证参数</param>
             <param name="jwtBearerConfigure"></param>
+            <param name="configuration">配置</param>
             <param name="enableGlobalAuthorize">启动全局授权</param>
             <returns></returns>
         </member>
@@ -1368,19 +1411,21 @@
             </summary>
             <param name="services"></param>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.RateLimitServiceCollection.AddRateLimit(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.RateLimitServiceCollection.AddRateLimit(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})">
             <summary>
             添加限流
             </summary>
             <param name="services">服务集合</param>
-            <param name="configure">配置</param>
+            <param name="configure">配置委托</param>
+            <param name="configuration">配置</param>
             <returns>服务集合</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.RedisCollectionExtension.AddCache(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Microsoft.Extensions.DependencyInjection.RedisCollectionExtension.AddCache(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             添加缓存
             </summary>
             <param name="services"></param>
+            <param name="configuration">配置</param>
             <returns></returns>
         </member>
         <member name="T:Microsoft.Extensions.DependencyInjection.SpecificationDocumentServiceCollectionExtensions">
@@ -1388,17 +1433,19 @@
             规范化接口服务拓展类
             </summary>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.SpecificationDocumentServiceCollectionExtensions.AddSpecificationDocuments(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Microsoft.Extensions.DependencyInjection.SpecificationDocumentServiceCollectionExtensions.AddSpecificationDocuments(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             添加规范化文档服务
             </summary>
             <param name="services"></param>
+            <param name="configuration">配置</param>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.StaticFileServiceCollectionExtensions.AddStaticFile(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Microsoft.Extensions.DependencyInjection.StaticFileServiceCollectionExtensions.AddStaticFile(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             添加静态文件资源
             </summary>
-            <param name="service"></param>
+            <param name="service">服务</param>
+            <param name="configuration">配置</param>
             <returns></returns>
         </member>
         <member name="T:Microsoft.Extensions.Hosting.HostBuilderExtensions">

@@ -16,7 +16,10 @@ namespace QingShan.Core.FreeSql.Options
         /// </summary>
         public DataType Type { get; set; }
 
-
+         /// <summary>
+        /// 连接字符串
+        /// </summary>
+        public string ConnectionString { get; set; }
         public string Host { get; set; }
         public int Port { get; set; }
 

@@ -23,10 +23,11 @@ namespace Microsoft.Extensions.DependencyInjection
         /// 添加规范化文档服务
         /// </summary>
         /// <param name="services"></param>
-        public static IServiceCollection AddSpecificationDocuments(this IServiceCollection services)
+        /// <param name="configuration">配置</param>
+        public static IServiceCollection AddSpecificationDocuments(this IServiceCollection services,IConfiguration configuration)
         {
-            services.AddConfigurableOptions<SpecificationDocumentSettingsOptions>();
-            var config = App.GetDefultOptions<SpecificationDocumentSettingsOptions>();
+            services.AddConfigurableOptions<SpecificationDocumentSettingsOptions>(configuration);
+            var config = configuration.GetDefultOptions<SpecificationDocumentSettingsOptions>();
             if (config.IsView == false)
             {
                 return services;

@@ -1,0 +1,75 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="CodeGenerator\Templates\Controller.cs" />
+    <Compile Remove="CodeGenerator\Templates\Entity.cs" />
+    <Compile Remove="CodeGenerator\Templates\IContract.cs" />
+    <Compile Remove="CodeGenerator\Templates\InputDto.cs" />
+    <Compile Remove="CodeGenerator\Templates\OutputDto.cs" />
+    <Compile Remove="CodeGenerator\Templates\Service.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="CodeGenerator\Templates\Controller.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="CodeGenerator\Templates\Entity.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="CodeGenerator\Templates\IContract.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="CodeGenerator\Templates\InputDto.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="CodeGenerator\Templates\OutputDto.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="CodeGenerator\Templates\Service.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JinianNet.JNTemplate" Version="2.3.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="CodeGenerator\Templates\web\AddOrUpdate.vue">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="CodeGenerator\Templates\web\api.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="CodeGenerator\Templates\web\index.vue">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="CodeGenerator\Extensions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\QingShan.Core\QingShan.Core.csproj" />
+  </ItemGroup>
+
+</Project>

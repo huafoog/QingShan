@@ -8,6 +8,7 @@ using Newtonsoft.Json.Serialization;
 using QingShan.Attributes;
 using QingShan.Core.Filter;
 using QingShan.Web.Authorization;
+using System.Configuration;
 
 namespace QingShan.Core.Web
 {
@@ -26,18 +27,16 @@ namespace QingShan.Core.Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            //注入配置信息
-            services.AddConfigurable(Configuration);
             // 添加 HttContext 访问器
             services.AddHttpContextAccessor();
             // 注册全局依赖注入
             services.AddDependencyInjection();
-            services.AddSpecificationDocuments();
-            services.AddCache();
-            services.AddDatabaseAccessor();
-            services.AddStaticFile();
-            services.AddRateLimit();
-            services.AddCorsAccessor();
+            services.AddSpecificationDocuments(Configuration);
+            services.AddCache(Configuration);
+            services.AddDatabaseAccessor(Configuration);
+            services.AddStaticFile(Configuration);
+            services.AddRateLimit(Configuration);
+            services.AddCorsAccessor(Configuration);
             services.AddJwt<JwtHandler>(enableGlobalAuthorize: true);
             services.AddDefaultController();
         }
@@ -51,6 +50,7 @@ namespace QingShan.Core.Web
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

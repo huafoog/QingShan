@@ -8,7 +8,10 @@
             <h2>代码生成器</h2>
             <p class="lead">请选择你要生成的项目.</p>
         </div>
-
+        @foreach (var item in ViewBag.TableList)
+        {
+            <input type="checkbox" name="Tables" value="@item" /> @item
+        }
         <div class="row g-5">
             <div class="col-md-5 col-lg-4 order-md-last">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -47,35 +50,43 @@
                 <div class="row g-3">
                     <div class="col-sm-6">
                         <label for="controllerNamespace" class="form-label">Controller命名空间</label>
-                        <input type="text" name="controllerNamespace" class="form-control" id="controllerNamespace" placeholder="" value="" required>
+                        <input type="text" name="controllerNamespace" class="form-control" id="controllerNamespace" placeholder="" value="" >
                         <div class="invalid-feedback">
                             必填字段
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <label for="dtoNamespace" class="form-label">Dto命名空间</label>
-                        <input type="text" name="dtoNamespace" class="form-control" id="dtoNamespace" placeholder="" value="" required>
+                        <input type="text" name="dtoNamespace" class="form-control" id="dtoNamespace" placeholder="" value="" >
                         <div class="invalid-feedback">
                             必填字段
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <label for="serviceNamespace" class="form-label">Service命名空间</label>
-                        <input type="text" name="serviceNamespace" class="form-control" id="serviceNamespace" placeholder="" value="" required>
+                        <input type="text" name="serviceNamespace" class="form-control" id="serviceNamespace" placeholder="" value="" >
                         <div class="invalid-feedback">
                             必填字段
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <label for="iContractNamespace" class="form-label">IContract命名空间</label>
-                        <input type="text" name="iContractNamespace" class="form-control" id="iContractNamespace" placeholder="" value="" required>
+                        <input type="text" name="iContractNamespace" class="form-control" id="iContractNamespace" placeholder="" value="" >
                         <div class="invalid-feedback">
                             必填字段
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <label for="EntityNamespace" class="form-label">实体命名空间</label>
-                        <input type="text" name="EntityNamespace" class="form-control" id="EntityNamespace" placeholder="" value="" required>
+                        <input type="text" name="EntityNamespace" class="form-control" id="EntityNamespace" placeholder="" value="" >
+                        <div class="invalid-feedback">
+                            必填字段
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <label for="Namespace" class="form-label">总命名空间</label>
+                        <input type="text" name="Namespace" class="form-control" id="Namespace" placeholder="" value="" >
                         <div class="invalid-feedback">
                             必填字段
                         </div>

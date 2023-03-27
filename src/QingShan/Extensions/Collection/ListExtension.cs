@@ -14,7 +14,7 @@ namespace System.Collections.Generic
         /// <param name="list"></param>
         /// <param name="speater"></param>
         /// <returns></returns>
-        public static string GetArrayStr(List<string> list, string speater)
+        public static string GetArrayStr(List<Object> list, string speater)
         {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < list.Count; i++)
@@ -36,22 +36,9 @@ namespace System.Collections.Generic
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
-        public static string GetArrayStr(List<int> list)
+        public static string GetArrayStr(List<Object> list)
         {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (i == list.Count - 1)
-                {
-                    sb.Append(list[i].ToString());
-                }
-                else
-                {
-                    sb.Append(list[i]);
-                    sb.Append(",");
-                }
-            }
-            return sb.ToString();
+            return GetArrayStr(list, ",");
         }
     }
 }

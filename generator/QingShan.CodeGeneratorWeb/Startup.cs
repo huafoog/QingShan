@@ -1,3 +1,4 @@
+using HuaFoog.CodeGenerator.CodeGenerator.Builders;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -9,6 +10,7 @@ using QingShan.Attributes;
 using QingShan.Core.Filter;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -26,8 +28,16 @@ namespace QingShan.CodeGeneratorWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddInject(Configuration);
-            services.AddCodeGenerator();
+            CodeGeneratorBuilder.CreateTemplate();
+            // Ìí¼Ó HttContext ·ÃÎÊÆ÷
+            services.AddHttpContextAccessor();
+            // ×¢²áÈ«¾ÖÒÀÀµ×¢Èë
+            services.AddDependencyInjection();
+            services.AddCache(Configuration);
+            services.AddDatabaseAccessor(Configuration);
+            services.AddCorsAccessor(Configuration);
+            //services.AddDefaultController();
+
             services.AddMvc();
         }
 
@@ -51,7 +61,6 @@ namespace QingShan.CodeGeneratorWeb
             app.UseRouting();
 
             app.UseAuthorization();
-            app.UseCodeGenerator();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

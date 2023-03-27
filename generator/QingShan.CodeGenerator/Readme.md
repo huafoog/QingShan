@@ -1,7 +1,7 @@
 ﻿# 代码生成工具
 
 > 该代码生成工具主要用于生成`Services` 、`Dto`、`Conotract`和`Controller` 
->
+> 
 > 默认增删改查功能
 
 ## 下载代码生成工具
@@ -38,10 +38,6 @@ QingShan.CodeGenerator "Data Source=127.0.0.1;Port=3306;User ID=root;Password=ro
 7. 输出位置 `D:\Code\dotnet\QingShan\ADC`
 8. 数据库名称
 
-
-
-
-
 `dotnet tool`命令如下
 
 ```
@@ -56,4 +52,3 @@ QingShan.CodeGenerator "Data Source=127.0.0.1;Port=3306;User ID=root;Password=ro
   update <PACKAGE_ID>      将工具更新为最新稳定版本以供使用。
   list                     列出当前开发环境中的已安装工具。
 ```
-

@@ -6,8 +6,10 @@ using QingShan.Core;
 using QingShan.Core.ConfigurableOptions;
 using QingShan.Core.Redis;
 using QingShan.Core.Redis.Options;
+using QingShan.Core.StaticFile;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,10 +22,11 @@ namespace Microsoft.Extensions.DependencyInjection
         /// 添加缓存
         /// </summary>
         /// <param name="services"></param>
+        /// <param name="configuration">配置</param>
         /// <returns></returns>
-        public static IServiceCollection AddCache(this IServiceCollection services)
+        public static IServiceCollection AddCache(this IServiceCollection services,IConfiguration configuration)
         {
-            var cacheOption = App.GetDefultOptions<CacheOption>();
+            var cacheOption = configuration.GetDefultOptions<CacheOption>(); 
             if (cacheOption != null)
             {
                 if (cacheOption.CacheWay.IsNull())
