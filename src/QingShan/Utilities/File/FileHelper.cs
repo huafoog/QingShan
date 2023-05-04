@@ -307,25 +307,28 @@ namespace QingShan.Utilities
         /// <param name="folderPath"></param>
         public static void DeleteFilesInFolder(string folderPath)
         {
-
-            string[] dics = Directory.GetDirectories(folderPath);
-            if (dics.Length == 0)
+            if (Directory.Exists(folderPath))
             {
-                return;
-            }
-            foreach (var dic in dics)
-            {
-                // 获取文件夹下的所有文件
-                string[] fileEntries = Directory.GetFiles(dic);
-                // 遍历并逐一删除文件
-                foreach (string filePath in fileEntries)
+                string[] dics = Directory.GetDirectories(folderPath);
+                if (dics.Length == 0)
                 {
-                    File.Delete(filePath);
+                    return;
                 }
-                DeleteFilesInFolder(dic);
+                foreach (var dic in dics)
+                {
+                    // 获取文件夹下的所有文件
+                    string[] fileEntries = Directory.GetFiles(dic);
+                    // 遍历并逐一删除文件
+                    foreach (string filePath in fileEntries)
+                    {
+                        File.Delete(filePath);
+                    }
+                    DeleteFilesInFolder(dic);
+                }
+                Directory.Delete(folderPath, true);
             }
-            Directory.Delete(folderPath, true);
-            
+
+
         }
         #endregion
 
@@ -378,7 +381,7 @@ namespace QingShan.Utilities
             var thisPath = path + "\\" + dir;
             if (IsLinux)
             {
-                thisPath = thisPath.Replace("\\","/");
+                thisPath = thisPath.Replace("\\", "/");
             }
             using StreamWriter sw = new StreamWriter(thisPath, false, Encoding.GetEncoding("UTF-8"));
             sw.Write(pagestr);
@@ -417,7 +420,7 @@ namespace QingShan.Utilities
         {
             dir1 = dir1.Replace("/", "\\");
             dir2 = dir2.Replace("/", "\\");
-          
+
 
             var path1 = _path + "\\" + dir1;
             var path2 = _path + "\\" + dir2;

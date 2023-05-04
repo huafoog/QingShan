@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,18 @@ namespace QingShan.Test
 
             Console.WriteLine(!(str == "CreateTime" || str == "DeleteTime" || str == "CreatedId" || str == "Id"));
         }
-        
+
+        [TestMethod]
+        public void Test2()
+        {
+            var services = new ServiceCollection();
+            services.AddDependencyInjection();
+            IServiceProvider serviceProvider = services.BuildServiceProvider();
+            using (IServiceScope serviceScope = serviceProvider.CreateScope())
+            {
+                //var personOne = serviceScope.ServiceProvider.GetService<Person>();
+                //Console.WriteLine(person.Name);
+            }
+        }
     }
 }

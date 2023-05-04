@@ -2408,6 +2408,13 @@
             <param name="val"></param>
             <returns></returns>
         </member>
+        <member name="M:System.DecimalExtension.ToWanYuan(System.Decimal)">
+            <summary>
+            转换为万元
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
         <member name="T:System.EnumExtensions">
             <summary>
             枚举拓展
@@ -2588,6 +2595,13 @@
             <returns>首单词</returns>
         </member>
         <member name="M:System.StringExtensions.GetFirstLowercase(System.String)">
+            <summary>
+            获取首字母小写
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.GetFirstUppercase(System.String)">
             <summary>
             获取首字母小写
             </summary>

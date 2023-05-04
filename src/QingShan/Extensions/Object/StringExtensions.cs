@@ -1,4 +1,5 @@
-﻿using QingShan.Utilities;
+﻿using Microsoft.Extensions.Primitives;
+using QingShan.Utilities;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -180,7 +181,7 @@ namespace System
             {
                 foreach (var s in str.Split(new[] { '_' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    builder.Append(Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(s));
+                    builder.Append(s.GetFirstUppercase());
                 }
                 return builder.ToString();
             }
@@ -206,6 +207,16 @@ namespace System
         public static string GetFirstLowercase(this string str)
         {
             return str.Substring(0, 1).ToLower() + str.Substring(1);
+        }
+
+        /// <summary>
+        /// 获取首字母小写
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string GetFirstUppercase(this string str)
+        {
+            return str.Substring(0, 1).ToUpper() + str.Substring(1);
         }
         #endregion
 

@@ -11,7 +11,8 @@ namespace System
         /// </summary>
         public static decimal ToRound(this decimal val)
         {
-            return decimal.Round(val, 2);
+
+            return val.ToRound(2);
         }
         /// <summary>
         /// 四舍五入
@@ -20,7 +21,7 @@ namespace System
         /// <param name="decimals">保留小数位数</param>
         public static decimal ToRound(this decimal val, int decimals)
         {
-            return decimal.Round(val, decimals);
+            return Math.Round(val,decimals, MidpointRounding.AwayFromZero);
         }
 
         /// <summary>
@@ -76,7 +77,7 @@ namespace System
         /// <returns></returns>
         public static decimal ToZero(this decimal? val)
         {
-            return val??0;
+            return val ?? 0;
         }
 
         /// <summary>
@@ -97,6 +98,16 @@ namespace System
         public static decimal Floor(this decimal val)
         {
             return Math.Floor(val);
+        }
+
+        /// <summary>
+        /// 转换为万元
+        /// </summary>
+        /// <param name="val"></param>
+        /// <returns></returns>
+        public static decimal ToWanYuan(this decimal val)
+        {
+            return val.Division(10000);
         }
     }
 }

@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\QingShan.Core\QingShan.Core.csproj" />
     <ProjectReference Include="..\..\src\QingShan\QingShan.csproj" />
   </ItemGroup>
 
