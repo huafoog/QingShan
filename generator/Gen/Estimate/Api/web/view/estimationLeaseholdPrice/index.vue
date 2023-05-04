@@ -12,11 +12,27 @@
             </el-form-item>
         </el-form>
         <el-table border :data="list">
-            $foreach(item in model.ColumnConfig)
-            $if(checkField.IsShowWithId(item.PropName))
-            <el-table-column prop="${checkField.GetFirstLowerName(item.PropName)}" label="${item.Remark}" />
-            $end
-            $end
+            
+            
+            
+            
+            <el-table-column prop="areaId" label="区域" />
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <el-table-column prop="number" label="数量" />
+            
+            
+            
+            <el-table-column prop="unit" label="单位" />
+            
+            
             <el-table-column label="操作">
                 <template slot-scope="scope">
                     <el-button type="text" @click="handleEdit(scope.row)">编辑</el-button>
@@ -40,7 +56,7 @@
 </template>
 
 <script>
-import { getList, del } from '@/api/${model.Name}'
+import { getList, del } from '@/api/estimationLeaseholdPrice'
 import AddOrUpdate from './form/AddOrUpdate.vue'
 export default {
     components: { AddOrUpdate },
@@ -98,7 +114,7 @@ export default {
         },
         handleDelete(row) {
             // 删除用户信息
-            this.${"$"}confirm('您确定要删除此条数据吗?', '提示', {
+            this.$confirm('您确定要删除此条数据吗?', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning'
@@ -107,9 +123,9 @@ export default {
                 del({id: row.id }).then(res => {
                     this.fetchData()
                     if (res.isSuccess) {
-                        this.${"$"}message.success('操作成功')
+                        this.$message.success('操作成功')
                     } else {
-                        this.${"$"}message.error(res.message)
+                        this.$message.error(res.message)
                     }
                 })
             }).catch(() => { })

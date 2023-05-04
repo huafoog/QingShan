@@ -28,7 +28,7 @@ namespace HuaFoog.CodeGenerator.CodeGenerator
             CodeGeneratorBuilder.TemplateCache.TryGetValue(fileName, out var fileText);
             var template = Engine.CreateTemplate(fileName, fileText);
             template.Set("model", config);
-
+            template.SetStaticType("checkField", typeof(CheckField));
             return await template.RenderAsync();
         }
 
@@ -94,9 +94,9 @@ namespace HuaFoog.CodeGenerator.CodeGenerator
                 model.FullName = name.GetFirstLowercase();
                 if (!dto.Namespace.IsNullOrEmpty())
                 {
-                    dto.IContractNamespace = $"{dto.Namespace}";
-                    dto.DtoNamespace = $"{dto.Namespace}";
-                    dto.ServiceNamespace = $"{dto.Namespace}";
+                    dto.IContractNamespace = $"{dto.Namespace}.Services";
+                    dto.DtoNamespace = $"{dto.Namespace}.Services";
+                    dto.ServiceNamespace = $"{dto.Namespace}.Services";
                     dto.EntityNamespace = $"{dto.Namespace}.Data.Entities";
                     dto.ControllerNamespace = $"{dto.Namespace}.Controllers";
                 }

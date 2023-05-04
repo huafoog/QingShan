@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using $model.ContractNamespace;
-using @Model.DtoNamespace;
+using $model.DtoNamespace;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using QingShan.Data;
@@ -30,8 +30,18 @@ namespace $model.Namespace
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<PageOutputDto<${model.Name}OutputDto>> PageAsync(Page${model.Name}InputDto dto)
+        public async Task<PageOutputDto<${model.Name}OutputDto>> PageAsync([FromQuery]Page${model.Name}InputDto dto)
             => await _i${model.Name}Contract.PageAsync(dto);
+        
+        /// <summary>
+        /// 获取详情数据
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<StatusResult<${model.Name}OutputDto>> GetByIdAsync(string id)
+            => await _i${model.Name}Contract.GetByIdAsync(id);
+
 
         /// <summary>
         /// 添加
@@ -54,7 +64,7 @@ namespace $model.Namespace
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPost]public async Task<StatusResult> DeleteAsync(string id)
-            => await _i${model.Name}Contract.DeleteAsync(id);
-	}
-}
+        [HttpPost]public async Task<StatusResult> DeleteAsync([FromBody]CommonIdInputDto dto)
+            => await _i${model.Name}Contract.DeleteAsync(dto.Id);
+        }
+    }

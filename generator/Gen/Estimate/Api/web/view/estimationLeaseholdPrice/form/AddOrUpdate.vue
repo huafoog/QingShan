@@ -2,13 +2,33 @@
     <div>
         <myDialog :visible.sync="showDialog" :title="initParams.title" width="1000px" top="10vh">
             <el-form ref="form" :model="form" label-width="100px">
-                $foreach(item in model.ColumnConfig)
-                $if(checkField.IsShowWithId(item.PropName))
-                <el-form-item label="${item.Remark}">
-                    <el-input v-model="form.${checkField.GetFirstLowerName(item.PropName)}" />
+                
+                
+                
+                
+                <el-form-item label="区域">
+                    <el-input v-model="form.areaId" />
                 </el-form-item>
-                $end
-                $end
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <el-form-item label="数量">
+                    <el-input v-model="form.number" />
+                </el-form-item>
+                
+                
+                
+                <el-form-item label="单位">
+                    <el-input v-model="form.unit" />
+                </el-form-item>
+                
+                
             </el-form>
             <div class="flex justify-end margin-top-xs">
                 <el-button plain @click="()=>{ this.showDialog = false }">取消</el-button>
@@ -21,7 +41,7 @@
 <script>
 import MyDialog from '@/components/system/MyDialog'
 import dialogMixin from '@/mixins/dialogMixin'
-import { add, update, getById } from '@/api/${model.Name}'
+import { add, update, getById } from '@/api/estimationLeaseholdPrice'
 export default {
   components: {
     MyDialog
@@ -46,11 +66,27 @@ export default {
       ],
       saveLoading: false,
       form: {
-          $foreach(item in model.ColumnConfig)
-          $if(checkField.IsShowWithId(item.PropName))
-        ${ checkField.GetFirstLowerName(item.PropName) }: '',
-          $end
-          $end
+          
+          
+          
+          
+        areaId: '',
+          
+          
+          
+          
+          
+          
+          
+          
+          
+        number: '',
+          
+          
+          
+        unit: '',
+          
+          
       }
     }
   },
@@ -76,9 +112,9 @@ export default {
             if (res.isSuccess) {
                 this.showDialog = false
                 this.initParams.cb()
-                this.${"$"}message.success('操作成功')
+                this.$message.success('操作成功')
             } else {
-                this.${"$"}message.error(res.message)
+                this.$message.error(res.message)
             }
          
         }).catch((err) => {
@@ -90,9 +126,9 @@ export default {
         if (res.isSuccess) {
             this.showDialog = false
             this.initParams.cb()
-            this.${ "$" }message.success('操作成功')
+            this.$message.success('操作成功')
         } else {
-            this.${ "$" }message.error(res.message)
+            this.$message.error(res.message)
         }
         }).catch((err) => {
             this.saveLoading = false

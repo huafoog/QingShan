@@ -6,9 +6,8 @@
                 
                 
                 
-                
-                <el-form-item label="合价">
-                    <el-input v-model="form.CombinedPrice" />
+                <el-form-item label="区域">
+                    <el-input v-model="form.areaId" />
                 </el-form-item>
                 
                 
@@ -19,41 +18,14 @@
                 
                 
                 
-                
-                
-                
-                <el-form-item label="费用">
-                    <el-input v-model="form.Fee" />
+                <el-form-item label="征租地（万元）">
+                    <el-input v-model="form.fee" />
                 </el-form-item>
                 
                 
                 
-                <el-form-item label="井口数">
-                    <el-input v-model="form.Number" />
-                </el-form-item>
-                
-                
-                
-                <el-form-item label="备注">
-                    <el-input v-model="form.Remark" />
-                </el-form-item>
-                
-                
-                
-                <el-form-item label="钻机Id">
-                    <el-input v-model="form.TypeId" />
-                </el-form-item>
-                
-                
-                
-                <el-form-item label="井台id">
-                    <el-input v-model="form.WellbayId" />
-                </el-form-item>
-                
-                
-                
-                <el-form-item label="">
-                    <el-input v-model="form.WellId" />
+                <el-form-item label="单位（井口）">
+                    <el-input v-model="form.unit" />
                 </el-form-item>
                 
                 
@@ -69,7 +41,7 @@
 <script>
 import MyDialog from '@/components/system/MyDialog'
 import dialogMixin from '@/mixins/dialogMixin'
-import { add, update, getById } from '@/api/estimationPredrilling'
+import { add, update, getById } from '@/api/estimationLeaseholdWorkload'
 export default {
   components: {
     MyDialog
@@ -95,44 +67,24 @@ export default {
       saveLoading: false,
       form: {
           
-              
-      
-          
-              
-            CombinedPrice: '',
           
           
-              
-         
           
-              
-              
-          
-              
-         
-          
-              
-            Fee: '',
+        areaId: '',
           
           
-              
-            Number: '',
           
           
-              
-            Remark: '',
           
           
-              
-            TypeId: '',
           
           
-              
-            WellbayId: '',
+          
+        fee: '',
           
           
-              
-            WellId: '',
+          
+        unit: '',
           
           
       }
@@ -149,13 +101,6 @@ export default {
         })
       }
     },
-    findTypeList(type) {
-      var arr = this.types.filter(item => item.type === type)
-      if (arr != null && arr.length > 0) {
-        return arr[0].typeList
-      }
-      return []
-    },
     handleReset() {
 
     },
@@ -164,14 +109,29 @@ export default {
       if (this.initParams.type === 0) {
         add(this.form).then(res => {
           this.saveLoading = false
-          this.showDialog = false
-          this.initParams.cb()
+            if (res.isSuccess) {
+                this.showDialog = false
+                this.initParams.cb()
+                this.$message.success('操作成功')
+            } else {
+                this.$message.error(res.message)
+            }
+         
+        }).catch((err) => {
+            this.saveLoading = false
         })
       } else {
         update(this.form).then(res => {
           this.saveLoading = false
-          this.showDialog = false
-          this.initParams.cb()
+        if (res.isSuccess) {
+            this.showDialog = false
+            this.initParams.cb()
+            this.$message.success('操作成功')
+        } else {
+            this.$message.error(res.message)
+        }
+        }).catch((err) => {
+            this.saveLoading = false
         })
       }
     }

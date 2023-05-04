@@ -37,6 +37,15 @@ namespace $model.Namespace
         }
 
         /// <summary>
+        /// 获取数据
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        public async Task<StatusResult<${model.Name}OutputDto>> GetByIdAsync(string id) => new StatusResult<${model.Name}OutputDto>(await  _${model.FullName}Repository.Select.Where(o => o.Id == id).FirstAsync<${model.Name}OutputDto>());
+
+
+
+        /// <summary>
         /// 添加
         /// </summary>
         /// <param name="input"></param>
@@ -50,7 +59,7 @@ namespace $model.Namespace
         }
 
         /// <summary>
-        /// 修改用户
+        /// 修改
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -62,12 +71,8 @@ namespace $model.Namespace
                 return new StatusResult("数据不存在！");
             }
             $foreach(item in model.ColumnConfig)
-            $if(item.PropName == "CreateTime")
-            ${ elif(item.PropName == "DeleteTime")}
-             ${ elif(item.PropName == "CreatedId")}
-             ${ elif(item.PropName == "Id")}
-            $else
-            data.@(item.PropName) = input.@(item.PropName);
+            $if(checkField.IsShowWithId(item.PropName))
+            data.${item.PropName} = input.${item.PropName};
             $end
             $end
             int res = await _${model.FullName}Repository.UpdateAsync(data);
@@ -75,7 +80,7 @@ namespace $model.Namespace
         }
 
         /// <summary>
-        /// 删除角色
+        /// 删除
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

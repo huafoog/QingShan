@@ -2,7 +2,7 @@
 
 export function getList(params) {
   return request({
-    url: '/estimationPredrilling/Page',
+    url: '/estimationLeaseholdPrice/Page',
     method: 'get',
     params
   })
@@ -10,7 +10,7 @@ export function getList(params) {
 
 export function getById(params) {
   return request({
-    url: '/estimationPredrilling/getById',
+    url: '/estimationLeaseholdPrice/getById',
     method: 'get',
     params
   })
@@ -18,7 +18,7 @@ export function getById(params) {
 
 export function add(data) {
   return request({
-    url: '/estimationPredrilling/add',
+    url: '/estimationLeaseholdPrice/add',
     method: 'post',
     data
   })
@@ -26,7 +26,7 @@ export function add(data) {
 
 export function update(data) {
   return request({
-    url: '/estimationPredrilling/update',
+    url: '/estimationLeaseholdPrice/update',
     method: 'post',
     data
   })
@@ -34,7 +34,7 @@ export function update(data) {
 
 export function del(data) {
   return request({
-    url: '/estimationPredrilling/delete',
+    url: '/estimationLeaseholdPrice/delete',
     method: 'post',
     data
   })

@@ -7,15 +7,16 @@
     <el-form-item>
         <el-button type="primary" @click="onSearch">查询</el-button>
     </el-form-item>-->
+            <el-form-item>
+                <el-button type="primary" @click="onAdd">新增</el-button>
+            </el-form-item>
         </el-form>
         <el-table border :data="list">
             
             
             
             
-            
-            <el-table-column prop="CombinedPrice" label="合价" />
-            
+            <el-table-column prop="areaId" label="区域" />
             
             
             
@@ -25,29 +26,11 @@
             
             
             
-            
-            
-            <el-table-column prop="Fee" label="费用" />
-            
-            
-            
-            <el-table-column prop="Number" label="井口数" />
+            <el-table-column prop="fee" label="征租地（万元）" />
             
             
             
-            <el-table-column prop="Remark" label="备注" />
-            
-            
-            
-            <el-table-column prop="TypeId" label="钻机Id" />
-            
-            
-            
-            <el-table-column prop="WellbayId" label="井台id" />
-            
-            
-            
-            <el-table-column prop="WellId" label="" />
+            <el-table-column prop="unit" label="单位（井口）" />
             
             
             <el-table-column label="操作">
@@ -67,21 +50,19 @@
                            @current-change="pageChange"
                            @size-change="sizeChange" />
         </div>
-        <AddOrUpdate v-if="showDetail" :show.sync="showDetail" :types="types" :init-params="initParams" />
+        <AddOrUpdate v-if="showDetail" :show.sync="showDetail" :init-params="initParams" />
     </div>
 
 </template>
 
 <script>
-import { getList, del } from '@/api/estimationPredrilling'
+import { getList, del } from '@/api/estimationLeaseholdWorkload'
 import AddOrUpdate from './form/AddOrUpdate.vue'
-import { getTypes } from '@/api/common'
 export default {
     components: { AddOrUpdate },
     data() {
         return {
             showDetail: false,
-            types: [],
             page: {
                 pageNo: 1,
                 pageSize: 10,
@@ -102,9 +83,6 @@ export default {
     },
     methods: {
         init() {
-            getTypes().then(res => {
-                this.types = res.data
-            })
         },
         fetchData() {
             getList({ pageNo: this.page.pageNo, pageSize: this.page.pageSize }).then(res => {

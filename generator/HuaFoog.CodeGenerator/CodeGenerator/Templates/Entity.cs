@@ -12,19 +12,13 @@ namespace $model.Namespace
     {
 $if(model.ColumnConfig != null)
 $for(item in model.ColumnConfig)
-        $if(item.PropName == "CreateTime")
-        ${ elif(item.PropName == "DeleteTime")}
-         ${ elif(item.PropName == "CreatedId")}
-         ${ elif(item.PropName == "Id")}
-        $else
-            <text>
+        $if(checkField.IsShowWithId(item.PropName))
             /// <summary>
 		    /// $item.Remark
             /// </summary>
             public $item.CsType $item.PropName { get; set; }
-            </text>
         ${end}
-${end}
-$end
+        ${end}
+        $end
     }
 }

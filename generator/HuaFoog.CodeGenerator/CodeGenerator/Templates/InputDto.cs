@@ -9,18 +9,13 @@ namespace $model.Namespace
 	public class ${model.Name}InputDto
     {
         $for(item in model.ColumnConfig)
-        $if(item.PropName == "CreateTime")
-        ${ elif(item.PropName == "DeleteTime")}
-         ${ elif(item.PropName == "CreatedId")}
-        $else
-        <text>
+        $if(checkField.IsShow(item.PropName))
         /// <summary>
 		/// $item.Remark
         /// </summary>
         public $item.CsType $item.PropName { get; set; }
-        </text>
-    $end
-    $end
+        $end
+        $end
     }
     /// <summary>
 	/// $model.Remark
