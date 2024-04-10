@@ -20,6 +20,7 @@ namespace QingShan.Core.Filter
             try
             {
                 _logger.LogError(context.Exception, "全局异常");
+
                 context.Result = new InternalServerErrorObjectResult(new StatusResult("服务器异常"));
             }
             catch (Exception e)

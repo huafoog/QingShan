@@ -54,8 +54,7 @@ namespace System
             return Math.Abs((val / dividend * 100).ToRound());
         }
 
-
-        /// <summary>
+         /// <summary>
         /// 除以
         /// </summary>
         /// <param name="dividend">被除数</param>
@@ -67,7 +66,22 @@ namespace System
             {
                 return 0;
             }
-            return (val / dividend).ToRound();
+            return (val / dividend).ToRound(2);
+        }
+
+        /// <summary>
+        /// 除以
+        /// </summary>
+        /// <param name="dividend">被除数</param>
+        /// <param name="val">除数</param>
+        /// <returns>当被除数为零（0）时返回0</returns>
+        public static decimal Division(this decimal val, decimal dividend, int decimals)
+        {
+            if (dividend == 0)
+            {
+                return 0;
+            }
+            return (val / dividend).ToRound(decimals);
         }
 
         /// <summary>
@@ -107,7 +121,16 @@ namespace System
         /// <returns></returns>
         public static decimal ToWanYuan(this decimal val)
         {
-            return val.Division(10000);
+            return val.Division(10000,0);
+        }
+        /// <summary>
+        /// 转换为万元
+        /// </summary>
+        /// <param name="val"></param>
+        /// <returns></returns>
+        public static decimal ToWanYuan(this decimal val, int decimals)
+        {
+            return val.Division(10000,decimals);
         }
     }
 }
